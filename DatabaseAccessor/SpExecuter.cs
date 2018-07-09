@@ -77,6 +77,13 @@ namespace DatabaseAccess
             });
         }
 
+        /// <summary>
+        /// Executes stored procedure which return data is one row.
+        /// </summary>
+        /// <typeparam name="TResult">Type of resutlt</typeparam>
+        /// <param name="procedureName">Stored procedure name.</param>
+        /// <param name="parameters">Stored proceduer parameters</param>
+        /// <returns>Result which is one row in SQL table.</returns>
         public TResult ExecuteEntitySp<TResult>(string procedureName,IEnumerable<KeyValuePair<string,object>> parameters = null)
         {
             // returning result
