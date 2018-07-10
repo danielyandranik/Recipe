@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>UsersDB</Name>
+    <Name>InstitutionDB</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{cda8a007-09a7-4d5f-a10f-9602af77f19e}</ProjectGuid>
+    <ProjectGuid>{02f0f536-087f-4449-b3e5-35a8d47b2afb}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>UsersDB</RootNamespace>
-    <AssemblyName>UsersDB</AssemblyName>
+    <RootNamespace>InstitutionDB</RootNamespace>
+    <AssemblyName>InstitutionDB</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -57,44 +57,5 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="dbo\" />
-    <Folder Include="dbo\Tables\" />
-    <Folder Include="dbo\Stored Procedures\" />
-    <Folder Include="dbo\Stored Procedures\CreateOperations" />
-    <Folder Include="dbo\Stored Procedures\ReadOperations" />
-    <Folder Include="dbo\Stored Procedures\UpdateOperations" />
-    <Folder Include="dbo\Stored Procedures\DeleteOperations" />
-  </ItemGroup>
-  <ItemGroup>
-    <Build Include="dbo\Tables\Users.sql" />
-    <Build Include="dbo\Tables\UserProfile.sql" />
-    <Build Include="dbo\Tables\PatientProfile.sql" />
-    <Build Include="dbo\Tables\PharmacistProfile.sql" />
-    <Build Include="dbo\Tables\DoctorProfile.sql" />
-    <Build Include="dbo\Stored Procedures\CreateOperations\uspCreateDoctorProfile.sql" />
-    <Build Include="dbo\Stored Procedures\CreateOperations\uspCreatePatientProfile.sql" />
-    <Build Include="dbo\Stored Procedures\CreateOperations\uspCreatePharmacistProfile.sql" />
-    <Build Include="dbo\Stored Procedures\CreateOperations\uspCreateProfile.sql" />
-    <Build Include="dbo\Stored Procedures\CreateOperations\uspCreateUser.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllDoctors.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetDoctorByUserId.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllPharmacists.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmaistByUserId.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPatientByUserId.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllPatients.sql" />
-    <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeleteDoctorProfile.sql" />
-    <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeletePharmacistProfile.sql" />
-    <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeletePatientProfile.sql" />
-    <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeleteUser.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllUsers.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserById.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserByUsername.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateDoctorProfile.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdatePatientProfile.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdatePharmacistProfile.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateUser.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="UsersDB.refactorlog" />
   </ItemGroup>
 </Project>

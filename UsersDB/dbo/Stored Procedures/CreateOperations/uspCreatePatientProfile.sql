@@ -7,5 +7,5 @@ AS
 		declare @profileId int
 		execute @profileId = uspCreateProfile @userId, 'patient', @createdDate, @isApproved 
 
-		insert into PharmacistProfile values(@profileId)
+		insert into PatientProfile values(@profileId)
 	end
