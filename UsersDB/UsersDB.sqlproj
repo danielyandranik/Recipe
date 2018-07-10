@@ -76,6 +76,7 @@
     <Build Include="dbo\Stored Procedures\CreateOperations\uspCreatePharmacistProfile.sql" />
     <Build Include="dbo\Stored Procedures\CreateOperations\uspCreateProfile.sql" />
     <Build Include="dbo\Stored Procedures\CreateOperations\uspCreateUser.sql" />
+<<<<<<< HEAD
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllDoctors.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetDoctorByUserId.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllPharmacists.sql" />
@@ -89,10 +90,28 @@
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllUsers.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserById.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserByUsername.sql" />
+=======
+    <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeleteDoctorProfile.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeletePatientProfile.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeletePharmacistProfile.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeleteUser.sql" />
+>>>>>>> sev
     <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateDoctorProfile.sql" />
     <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdatePatientProfile.sql" />
     <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdatePharmacistProfile.sql" />
     <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateUser.sql" />
+<<<<<<< HEAD
+=======
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllDoctors.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllPatients.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllPharmacists.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllUsers.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetDoctorByUserId.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPatientByUserId.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmaistByUserId.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserById.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserByUsername.sql" />
+>>>>>>> sev
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="UsersDB.refactorlog" />

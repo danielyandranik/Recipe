@@ -1,4 +1,4 @@
-﻿namespace DatabaseAccess
+﻿namespace DatabaseAccess.SpExecuters
 {
     /// <summary>
     /// Enum for stored procedure return data

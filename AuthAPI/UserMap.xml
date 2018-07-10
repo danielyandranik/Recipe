@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<operations
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="MapSchema.xsd">
+  <operation name='GetUserByName'>
+    <spName>uspGetUserByUsername</spName>
+    <parameters>
+      <parameter>
+        <parameterName>username</parameterName>
+        <spParameterName>username</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Entity</returnDataType>
+  </operation>
+  <operation name="GetUserById">
+    <spName>uspGetUserById</spName>
+    <parameters>
+      <parameter>
+        <parameterName>id</parameterName>
+        <spParameterName>userID</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Entity</returnDataType>
+  </operation>
+</operations>

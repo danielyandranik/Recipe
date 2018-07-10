@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace UsersRepository
+namespace AuthAPI.UsersRepository
 {
     /// <summary>
     /// Interface for users repository
