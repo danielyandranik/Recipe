@@ -10,7 +10,7 @@
     [Phone]      VARCHAR (50)  NULL,
     [Sex]        NCHAR (1)     NOT NULL,
     [IsActive]   BIT           NULL,
-    [CurrentProfile] NVARCHAR(20) NULL, 
+    [CurrentProfile] INT NOT NULL, 
     CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
