@@ -1,4 +1,4 @@
-﻿namespace UsersRepository
+﻿namespace AuthAPI.UsersRepository
 {
     /// <summary>
     /// Class for users
@@ -28,6 +28,6 @@
         /// <summary>
         /// Gets or sets Current Profile
         /// </summary>
-        public string CurrentProfile { get; set; }
+        public int CurrentProfile { get; set; }
     }
 }

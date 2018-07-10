@@ -2,9 +2,10 @@
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using DatabaseAccess;
+using DatabaseAccess.Repository;
+using DatabaseAccess.SpExecuters;
 
-namespace UsersRepository
+namespace AuthAPI.UsersRepository
 {
     /// <summary>
     /// User Repository
@@ -14,22 +15,14 @@ namespace UsersRepository
         /// <summary>
         /// Stored procedure executer
         /// </summary>
-        private SpExecuter spExecuter;
+        private Repo<User, SpExecuter> _repo;
 
         /// <summary>
         /// Creates new instance of User repository
         /// </summary>
         public UserRepository()
         {
-            var cnnStringBuilder = new SqlConnectionStringBuilder
-            {
-                DataSource = "(local)",
-                InitialCatalog = "UsersDB",
-                IntegratedSecurity = true
-            };
-
-            // constructing stored procedure executer
-            this.spExecuter = new SpExecuter(cnnStringBuilder.ConnectionString);
+            this._repo = new Repo<User, SpExecuter>("UserMap.xml");
         }
 
         /// <summary>
@@ -41,10 +34,11 @@ namespace UsersRepository
         {
             var task = new Task<User>(() =>
             {
-                return this.spExecuter.ExecuteSp<User>(
-                    "uspGetUserByUsername",
-                    new[] { new KeyValuePair<string, object>("userName", userName) })
-                    .First();
+                return (User)this._repo.ExecuteOperation("GetUserByName",
+                    new[]
+                    {
+                        new KeyValuePair<string,object>("username",userName)
+                    });
             });
 
             task.Start();
@@ -61,10 +55,11 @@ namespace UsersRepository
         {
             var task = new Task<User>(() =>
             {
-                return this.spExecuter.ExecuteSp<User>(
-                    "uspGetUserById",
-                    new[] { new KeyValuePair<string, object>("UserId", id) })
-                    .First();
+                return (User)this._repo.ExecuteOperation("GetUserById",
+                    new[]
+                    {
+                        new KeyValuePair<string,object>("id",id)
+                    });
             });
 
             task.Start();

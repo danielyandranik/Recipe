@@ -5,13 +5,13 @@ using System.Data.SqlClient;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace DatabaseAccess
+namespace DatabaseAccess.SpExecuters
 {
     /// <summary>
     /// Class for accessing data from database executing procedures.
     /// Works only with MS SQL server. 
     /// </summary>
-    public class SpExecuter
+    public class SpExecuter:ISpExecuter
     {
         /// <summary>
         /// SQL server connection string
@@ -27,6 +27,11 @@ namespace DatabaseAccess
         /// Gets connection string
         /// </summary>
         public string ConnectionString => this._connString;
+
+        /// <summary>
+        /// Creates new instance of <see cref="SpExecuter"/>
+        /// </summary>
+        public SpExecuter() { }
 
         /// <summary>
         /// Creates new instance of <see cref="DatabaseAccess.SpExecuter"/> with the given connection string.
@@ -57,6 +62,16 @@ namespace DatabaseAccess
             }.ConnectionString;
 
             this._cachedProperties = new Dictionary<Type, PropertyInfo[]>();
+        }
+
+        /// <summary>
+        /// Creates new stored procedure executer.
+        /// </summary>
+        /// <param name="cnnString">Connection string</param>
+        /// <returns>Stored procedure executer.</returns>
+        public ISpExecuter Create(string cnnString)
+        {
+            return new SpExecuter(cnnString);
         }
 
         /// <summary>
@@ -193,6 +208,7 @@ namespace DatabaseAccess
                 {
                     using (var reader = sqlCommand.ExecuteReader())
                     {
+                        reader.Read();
                         return this.RetrieveEnumerableFromReader<TResult>(reader);
                     }
                 }

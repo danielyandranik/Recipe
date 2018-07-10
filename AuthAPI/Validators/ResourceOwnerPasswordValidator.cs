@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using IdentityModel;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
-using UsersRepository;
+using AuthAPI.UsersRepository;
 
 namespace AuthAPI.Validators
 {
@@ -82,7 +82,7 @@ namespace AuthAPI.Validators
             return new Claim[]
             {
                 new Claim("user_id", user.Id.ToString()),
-                new Claim("current_profile",user.CurrentProfile),
+                new Claim("current_profile",user.CurrentProfile.ToString()),
                 new Claim(JwtClaimTypes.Name,user.UserName),
             };
         }

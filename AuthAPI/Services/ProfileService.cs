@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using AuthAPI.Validators;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
-using UsersRepository;
+using AuthAPI.UsersRepository;
 
 namespace AuthAPI.Services
 {
