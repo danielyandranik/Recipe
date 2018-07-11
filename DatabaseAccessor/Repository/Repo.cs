@@ -35,7 +35,7 @@ namespace DatabaseAccess.Repository
         /// Stored procedure executer
         /// </summary>
         private readonly ISpExecuter _spExecuter;
-
+        
         /// <summary>
         /// Creates new instance of <see cref="Repo"/>.
         /// Make sure that connection string is written in appsettings.json file with the name "Default".

@@ -6,6 +6,8 @@ using IdentityServer4.Validation;
 using AuthAPI.UsersRepository;
 using AuthAPI.Services;
 using AuthAPI.Validators;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace AuthAPI
 {
@@ -14,6 +16,10 @@ namespace AuthAPI
     /// </summary>
     public class Startup
     {
+        private IConfiguration Configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json").Build();
+
         /// <summary>
         /// Configures services
         /// This method gets called by the runtime which uses this method to add services to the container.
