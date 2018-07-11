@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using DatabaseAccess;
 using UserManagementAPI.Models;
+using DatabaseAccess.Repository;
+using DatabaseAccess.SpExecuters;
+using System.Linq;
+using System.Security.Claims;
 
 namespace UserManagementAPI.Controllers
 {
@@ -14,16 +17,23 @@ namespace UserManagementAPI.Controllers
     public class UsersController : Controller
     {
         /// <summary>
-        /// Stored procedure executer
+        /// Repository
         /// </summary>
-        private readonly SpExecuter spExecuter;
+        private Repo<UserFullInfo, SpExecuter> _repo;
+
+        /// <summary>
+        /// Repository for user public info.
+        /// </summary>
+        private Repo<UserPublicInfo, SpExecuter> _pRepo;
 
         /// <summary>
         /// Creates new instance of user controller
         /// </summary>
         public UsersController()
         {
-            this.spExecuter = new SpExecuter("(local)","UsersDB", true);
+            this._repo = new Repo<UserFullInfo, SpExecuter>("MapInfo\\UserMap.xml");
+
+            this._pRepo = new Repo<UserPublicInfo, SpExecuter>("MapInfo\\UserMap.xml");
         }
 
         /// <summary>
@@ -34,7 +44,7 @@ namespace UserManagementAPI.Controllers
         [Authorize]
         public IEnumerable<UserPublicInfo> Get()
         {
-            return this.spExecuter.ExecuteSp<UserPublicInfo>("uspGetAllUsers");
+            return (IEnumerable<UserPublicInfo>)this._pRepo.ExecuteOperation("GetAllUsers");
         }
         
         /// <summary>
@@ -44,20 +54,46 @@ namespace UserManagementAPI.Controllers
         [HttpPost]
         public void Post([FromBody]UserFullInfo user)
         {
-            this.spExecuter.ExecuteSpNonQuery(
-                "uspCreateUser",
-                new[]
-                {
-                    new KeyValuePair<string,object>("FirstName",user.FirstName),
-                    new KeyValuePair<string, object>("MiddleName",user.MiddleName),
-                    new KeyValuePair<string,object>("LastName",user.LastName),
-                    new KeyValuePair<string,object>("Birthdate",user.Birthdate),
-                    new KeyValuePair<string, object>("Sex",user.Sex),
-                    new KeyValuePair<string, object>("Email",user.Email),
-                    new KeyValuePair<string, object>("Password",user.Password),
-                    new KeyValuePair<string, object>("Phone",user.Phone),
-                    new KeyValuePair<string, object>("userName",user.UserName)
-                }); 
+            this._repo.ExecuteOperation("CreateUser", user);
+        }
+
+        /// <summary>
+        /// Puts user
+        /// </summary>
+        /// <param name="user">user</param>
+        [HttpPut]
+        [Authorize]
+        public void Put(int id,[FromBody]UserFullInfo user)
+        {
+            var userId = int.Parse(
+                this.User.Claims.First().Value);
+
+            if (id == userId)
+            {
+                this._repo.ExecuteOperation("UpdateUser", user);
+            }
+        }
+
+        /// <summary>
+        /// Delets user
+        /// </summary>
+        /// <param name="id">id</param>
+        [HttpDelete]
+        [Authorize(Policy = "SignedInUser")]
+        public void Delete(int id)
+        {
+            var userId = int.Parse(
+                ((ClaimsIdentity)this.User.Identity).Claims
+                .Where(claim => claim.Type == "user_id").First().Value);
+
+            //if (id == userId)
+            //{
+                this._repo.ExecuteOperation("DeleteUser",
+                  new[]
+                  {
+                    new KeyValuePair<string,object>("id",id)
+                  });
+            //}
         }
     }
 }

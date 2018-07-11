@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using IdentityServer4.Services;
 using IdentityServer4.Validation;
-using UsersRepository;
+using AuthAPI.UsersRepository;
 using AuthAPI.Services;
 using AuthAPI.Validators;
 

@@ -8,6 +8,11 @@ namespace UserManagementAPI.Models
     public class UserPublicInfo
     {
         /// <summary>
+        /// Gets or sets id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Gets or sets first name.
         /// </summary>
         public string FirstName { get; set; }

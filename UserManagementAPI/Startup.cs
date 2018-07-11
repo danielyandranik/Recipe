@@ -29,6 +29,12 @@ namespace UserManagementAPI
                         options.RequireHttpsMetadata = false;
                         options.ApiName = "UserManagementAPI";
                     });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("SignedInUser", policy => 
+                    policy.RequireClaim("user_id","3"));
+            });
         }
 
         /// <summary>
