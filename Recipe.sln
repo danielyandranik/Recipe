@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseAccessor", "DatabaseAccessor\DatabaseAccessor.csproj", "{7A3EC5AD-01C4-4344-A27B-DDA7FE8F569B}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeConsoleUI", "RecipeConsoleUI\RecipeConsoleUI.csproj", "{94495B68-B00B-4292-B8B1-CCEF041D63AF}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "InstitutionDB", "InstitutionDB\InstitutionDB.sqlproj", "{02F0F536-087F-4449-B3E5-35A8D47B2AFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedecineAPI", "MedecineAPI\MedecineAPI.csproj", "{3ECEBD75-2228-4A6D-A967-D1CC2ADF77F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{02F0F536-087F-4449-B3E5-35A8D47B2AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02F0F536-087F-4449-B3E5-35A8D47B2AFB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{02F0F536-087F-4449-B3E5-35A8D47B2AFB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3ECEBD75-2228-4A6D-A967-D1CC2ADF77F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ECEBD75-2228-4A6D-A967-D1CC2ADF77F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ECEBD75-2228-4A6D-A967-D1CC2ADF77F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ECEBD75-2228-4A6D-A967-D1CC2ADF77F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
