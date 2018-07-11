@@ -9,6 +9,4 @@
 	@postalCode nchar(10),
 	@addressLine nvarchar(100)
 AS
-	begin
-		
-	end
+	
