@@ -66,7 +66,8 @@ namespace UserManagementAPI.Controllers
         public void Put(int id,[FromBody]UserFullInfo user)
         {
             var userId = int.Parse(
-                this.User.Claims.First().Value);
+                ((ClaimsIdentity)this.User.Identity).Claims
+                .Where(claim => claim.Type == "user_id").First().Value);
 
             if (id == userId)
             {
@@ -79,21 +80,21 @@ namespace UserManagementAPI.Controllers
         /// </summary>
         /// <param name="id">id</param>
         [HttpDelete]
-        [Authorize(Policy = "SignedInUser")]
+        [Authorize]
         public void Delete(int id)
         {
             var userId = int.Parse(
                 ((ClaimsIdentity)this.User.Identity).Claims
                 .Where(claim => claim.Type == "user_id").First().Value);
 
-            //if (id == userId)
-            //{
+            if (id == userId)
+            {
                 this._repo.ExecuteOperation("DeleteUser",
                   new[]
                   {
                     new KeyValuePair<string,object>("id",id)
                   });
-            //}
+            }
         }
     }
 }
