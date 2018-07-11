@@ -35,7 +35,7 @@ namespace DatabaseAccess.Repository
         /// Stored procedure executer
         /// </summary>
         private readonly ISpExecuter _spExecuter;
-
+        
         /// <summary>
         /// Creates new instance of <see cref="Repo"/>.
         /// Make sure that connection string is written in appsettings.json file with the name "Default".
@@ -65,7 +65,7 @@ namespace DatabaseAccess.Repository
         /// <param name="opName">Operation name</param>
         /// <param name="parameters">Parameters</param>
         /// <returns>result</returns>
-        public object ExecuteOperation(string opName,IEnumerable<KeyValuePair<string,object>> parameters)
+        public object ExecuteOperation(string opName,IEnumerable<KeyValuePair<string,object>> parameters = null)
         {
             // getting operation info
             var operationInfo = this.GetOperationInfo(opName);
@@ -125,6 +125,8 @@ namespace DatabaseAccess.Repository
         /// <returns>operation info</returns>
         private OperationInfo GetOperationInfo(string operationName)
         {
+            var operationInfo = new OperationInfo();
+
             // getting operation node
             var opXml = this._mapInfo.XPathSelectElement(
                 $"//operation[@name='{operationName}']");
@@ -136,22 +138,25 @@ namespace DatabaseAccess.Repository
                     typeof(ReturnDataType),
                     opXml.Element("returnDataType").Value);
 
-            // getting parameters node
-            var paramsXml = opXml.Element("parameters").Elements("parameter");
+            operationInfo.SpName = spName;
+            operationInfo.ReturnDataType = returnDataType;
 
-            // getting parameters
-            var parameters = paramsXml.ToDictionary(
-                element => element.Element("parameterName").Value,
-                element => element.Element("spParameterName").Value);
+            // getting parameters node
+            var paramsXml = opXml.Element("parameters");
+
+            if (paramsXml != null)
+            {
+                // getting parameters
+                var parameters = paramsXml.Elements("parameter").ToDictionary(
+                    element => element.Element("parameterName").Value,
+                    element => element.Element("spParameterName").Value);
+
+                operationInfo.ParametersMappInfo = parameters;
+            }
+            else operationInfo.ParametersMappInfo = null;
 
             // returning operation info
-            return new OperationInfo
-            {
-                Name = operationName,
-                SpName = spName,
-                ReturnDataType = returnDataType,
-                ParametersMappInfo = parameters
-            };
+            return operationInfo;
         }
 
         /// <summary>
