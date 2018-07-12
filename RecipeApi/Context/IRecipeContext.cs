@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RecipeApi.Context
 {
-    interface IRecipeContext
+    public interface IRecipeContext
     {
         IMongoCollection<Recipe> Recipes { get; }
     }
