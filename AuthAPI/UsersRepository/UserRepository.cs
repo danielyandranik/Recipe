@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
 using DatabaseAccess.Repository;
-using DatabaseAccess.SpExecuters;
 
 namespace AuthAPI.UsersRepository
 {
@@ -13,16 +10,16 @@ namespace AuthAPI.UsersRepository
     public class UserRepository:IUserRepository
     {
         /// <summary>
-        /// Stored procedure executer
+        /// Repository
         /// </summary>
-        private Repo<User, SpExecuter> _repo;
+        private Repo<User> _repo;
 
         /// <summary>
         /// Creates new instance of User repository
         /// </summary>
-        public UserRepository()
+        public UserRepository(Repo<User> repo)
         {
-            this._repo = new Repo<User, SpExecuter>("UserMap.xml");
+            this._repo = repo;
         }
 
         /// <summary>

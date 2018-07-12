@@ -8,6 +8,8 @@ using AuthAPI.Services;
 using AuthAPI.Validators;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using DatabaseAccess.Repository;
+using DatabaseAccess.SpExecuters;
 
 namespace AuthAPI
 {
@@ -44,6 +46,11 @@ namespace AuthAPI
             // adding transients
             services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
             services.AddTransient<IProfileService, ProfileService>();
+
+            // adding singletons
+            services.AddSingleton(new Repo<User>(
+                new MapInfo(this.Configuration["Mappers:Users"]),
+                new SpExecuter(this.Configuration["ConnectionStrings:UsersDB"])));
         }
 
         /// <summary>
