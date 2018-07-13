@@ -16,7 +16,7 @@ namespace AuthAPI
         {
             return new List<ApiResource>
             {
-                new ApiResource("UserManagementAPI")
+                new ApiResource("UserManagementAPI"), // new ApiResource("InstitutionAPI")
             };
         }
 
