@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using DatabaseAccess.SpExecuters;
+using System.Threading.Tasks;
 
 namespace DatabaseAccess.Repository
 {
@@ -8,13 +9,8 @@ namespace DatabaseAccess.Repository
     /// Repository class
     /// </summary>
     /// <typeparam name="TResult">Type of result.</typeparam>
-    public class Repo<TResult>
+    public class Repo<TResult> where TResult:class
     {
-        /// <summary>
-        /// Connection string
-        /// </summary>
-        private readonly string _cnnString;
-
         /// <summary>
         /// Map setting info
         /// </summary>
@@ -52,8 +48,8 @@ namespace DatabaseAccess.Repository
             var spParams = null as IEnumerable<KeyValuePair<string, object>>;
 
             if (parameters != null)
-                spParams = this.ConstructParameters(operationInfo.ParametersMappInfo, parameters);
-            else spParams = parameters;
+                spParams = this.ConstructParameters(operationInfo.ParametersMappInfo, parameters).ToList();
+            else spParams = parameters.ToList();
 
             // executing specific operation
             if(operationInfo.ReturnDataType == ReturnDataType.Entity)
@@ -64,6 +60,24 @@ namespace DatabaseAccess.Repository
                 return this._spExecuter.ExecuteScalarSp<object>(operationInfo.SpName, spParams);
             else
                 return this._spExecuter.ExecuteSpNonQuery(operationInfo.SpName, spParams);
+        }
+
+        /// <summary>
+        /// Executes operation.
+        /// </summary>
+        /// <param name="opName">Operation name.</param>
+        /// <param name="parameters">Parameters</param>
+        /// <returns>Operation execution task.</returns>
+        public Task<object> ExecuteOperationAsync(string opName,IEnumerable<KeyValuePair<string,object>> parameters = null)
+        {
+            var task = new Task<object>(() =>
+            {
+                return this.ExecuteOperation(opName, parameters);
+            });
+
+            task.Start();
+
+            return task;
         }
 
         /// <summary>

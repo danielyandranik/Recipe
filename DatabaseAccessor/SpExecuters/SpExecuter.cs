@@ -82,6 +82,7 @@ namespace DatabaseAccess.SpExecuters
         /// <param name="parameters">Procedure parametes</param>
         /// <returns>Enumerable of rows</returns>
         public IEnumerable<TResult> ExecuteSp<TResult>(string procedureName,IEnumerable<KeyValuePair<string,object>> parameters = null)
+            where TResult:class
         {
             // returning result
             return (IEnumerable<TResult>)this.Execute<TResult>(new StoredProcedure
@@ -100,6 +101,7 @@ namespace DatabaseAccess.SpExecuters
         /// <param name="parameters">Stored proceduer parameters</param>
         /// <returns>Result which is one row in SQL table.</returns>
         public TResult ExecuteEntitySp<TResult>(string procedureName,IEnumerable<KeyValuePair<string,object>> parameters = null)
+            where TResult:class
         {
             // returning result
             return (TResult)this.Execute<TResult>(new StoredProcedure
@@ -118,7 +120,7 @@ namespace DatabaseAccess.SpExecuters
         /// <param name="parameters">Parameters</param>
         /// <returns>Enumerable of rows</returns>
         public Task<IEnumerable<TResult>> ExecuteSpAsync<TResult>(string procedureName,
-                    IEnumerable<KeyValuePair<string,object>> parameters = null)
+                    IEnumerable<KeyValuePair<string,object>> parameters = null) where TResult:class
         {
             var task =  new Task<IEnumerable<TResult>>(() =>
                     this.ExecuteSp<TResult>(procedureName, parameters));
@@ -136,6 +138,7 @@ namespace DatabaseAccess.SpExecuters
         /// <param name="parameters">Procedure Parameters</param>
         /// <returns>Scalar result</returns>
         public TResult ExecuteScalarSp<TResult>(string procedureName,IEnumerable<KeyValuePair<string,object>> parameters = null)
+            where TResult:class
         {
             // returning result
             return (TResult)this.Execute<TResult>(new StoredProcedure
@@ -169,7 +172,7 @@ namespace DatabaseAccess.SpExecuters
         /// <typeparam name="TResult">Type of result</typeparam>
         /// <param name="storedProcedure">Stored procedure</param>
         /// <returns>Result of stored procedure execution</returns>
-        private object Execute<TResult>(StoredProcedure storedProcedure)
+        private object Execute<TResult>(StoredProcedure storedProcedure) where TResult:class
         {
             // checking argument
             if(string.IsNullOrEmpty(storedProcedure.Name))
@@ -260,13 +263,16 @@ namespace DatabaseAccess.SpExecuters
         /// <typeparam name="TResult">Type of result</typeparam>
         /// <param name="reader">Reader</param>
         /// <returns>Result</returns>
-        private TResult RetrieveEnumerableFromReader<TResult>(SqlDataReader reader)
+        private TResult RetrieveEnumerableFromReader<TResult>(SqlDataReader reader) where TResult:class
         {
             // checking argument
             if(reader == null)
             {
                 throw new ArgumentNullException("Reader");
             }
+
+            if(!reader.HasRows)
+                return null;
 
             // creating result instance
             var result = Activator.CreateInstance<TResult>();

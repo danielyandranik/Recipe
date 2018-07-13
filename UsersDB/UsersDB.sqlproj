@@ -86,9 +86,6 @@
     <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeletePharmacistProfile.sql" />
     <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeletePatientProfile.sql" />
     <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeleteUser.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllUsers.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserById.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserByUsername.sql" />
     <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeleteDoctorProfile.sql" />
     <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeletePatientProfile.sql" />
     <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeletePharmacistProfile.sql" />
@@ -100,12 +97,17 @@
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllDoctors.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllPatients.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllPharmacists.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllUsers.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetDoctorByUserId.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPatientByUserId.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmaistByUserId.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserById.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserByUsername.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateOperations\uspVerifyUser.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdatePassword.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserIdInfoById.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserIdInfoByUsername.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUsersPublicInfo.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserPublicInfoByUsername.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserPublicInfoById.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserPersonalInfoById.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="UsersDB.refactorlog" />

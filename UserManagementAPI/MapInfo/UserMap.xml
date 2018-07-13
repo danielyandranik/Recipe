@@ -3,8 +3,38 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:noNamespaceSchemaLocation="MapSchema.xsd">
   <operation name="GetAllUsers">
-    <spName>uspGetAllUsers</spName>
+    <spName>uspGetUsersPublicInfo</spName>
     <returnDataType>Enumerable</returnDataType>
+  </operation>
+  <operation name="GetUserPublicInfoByUsername">
+    <spName>uspGetUserPublicInfoByUsername</spName>
+    <parameters>
+      <parameter>
+        <parameterName>Username</parameterName>
+        <spParameterName>username</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Entity</returnDataType>
+  </operation>
+  <operation name="GetUserPublicInfoById">
+    <spName>uspGetUserPublicInfoById</spName>
+    <parameters>
+      <parameter>
+        <parameterName>Id</parameterName>
+        <spParameterName>id</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Entity</returnDataType>
+  </operation>
+  <operation name="GetUserPersonalInfoById">
+    <spName>uspGetUserPersonalInfoById</spName>
+    <parameters>
+      <parameter>
+        <parameterName>Id</parameterName>
+        <spParameterName>id</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Entity</returnDataType>
   </operation>
   <operation name="CreateUser">
     <spName>uspCreateUser</spName>
@@ -20,6 +50,10 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
       <parameter>
         <parameterName>LastName</parameterName>
         <spParameterName>lastName</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>FullName</parameterName>
+        <spParameterName>fullName</spParameterName>
       </parameter>
       <parameter>
         <parameterName>UserName</parameterName>
@@ -44,6 +78,10 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
       <parameter>
         <parameterName>Sex</parameterName>
         <spParameterName>sex</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>RegisterDate</parameterName>
+        <spParameterName>registerDate</spParameterName>
       </parameter>
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
@@ -100,6 +138,16 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
       <parameter>
         <parameterName>id</parameterName>
         <spParameterName>userId</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="VerifyUser">
+    <spName>uspVerifyUser</spName>
+    <parameters>
+      <parameter>
+        <parameterName>Username</parameterName>
+        <spParameterName>username</spParameterName>
       </parameter>
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
