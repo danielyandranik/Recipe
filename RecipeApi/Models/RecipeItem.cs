@@ -11,7 +11,5 @@
         public int UseFrequencyPerFrequencyUnit { get; set; }
 
         public int UnitCountPerUse { get; set; }
-
-
     }
 }

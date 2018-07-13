@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 using RecipeApi.Context;
@@ -17,18 +15,27 @@ namespace RecipeApi.Repositories
             this._context = context;
         }
 
-        public async Task<IEnumerable<RecipeHistory>> GetAllRecipes()
+        public async Task<IEnumerable<RecipeHistory>> GetAllRecipeHistories()
         {
             return await this._context.RecipeHistories.Find(_ => true).ToListAsync();
         }
 
-        public Task<RecipeHistory> GetRecipe(int id)
+        public Task<RecipeHistory> GetRecipeHistory(string id)
         {
             FilterDefinition<RecipeHistory> filter = Builders<RecipeHistory>.Filter.Eq(recipeHistory => recipeHistory.Id, id);
             return this._context
             .RecipeHistories
             .Find(filter)
             .FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<RecipeHistory>> GetRecipeHistoryByRecipe(string recipeId)
+        {
+            FilterDefinition<RecipeHistory> filter = Builders<RecipeHistory>.Filter.Eq(recipeHistory => recipeHistory.RecipeId, recipeId);
+            return await this._context
+            .RecipeHistories
+            .Find(filter)
+            .ToListAsync<RecipeHistory>();
         }
 
         public async Task Create(RecipeHistory recipeHistory)
@@ -53,6 +60,8 @@ namespace RecipeApi.Repositories
             .DeleteOneAsync(filter);
 
             return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
-        }  
+        }
+
+        
     }
 }

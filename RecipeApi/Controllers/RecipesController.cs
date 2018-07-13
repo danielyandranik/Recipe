@@ -26,6 +26,12 @@ namespace RecipeApi.Controllers
             return new ObjectResult(await this._recipeRepository.GetAllRecipes());
         }
 
+        [HttpGet("patient/{patientId}", Name = "GetRecipesByPatient")]
+        public async Task<IActionResult> GetByPatient(int patientId)
+        {
+            return new ObjectResult(await this._recipeRepository.GetAllRecipesByPatient(patientId));
+        }
+
         [HttpGet("{id}", Name = "Get")]
         public async Task<IActionResult> Get(string id)
         {

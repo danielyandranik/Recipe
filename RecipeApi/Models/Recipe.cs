@@ -19,7 +19,7 @@ namespace RecipeApi.Models
 
         public int ChiefDoctorId { get; set; } 
 
-        public int PatientID { get; set; }
+        public int PatientId { get; set; }
 
         public List<RecipeItem> RecipeItems { get; set; }
     }

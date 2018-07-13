@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace RecipeApi.Repositories
 {
-    interface IRecipeHistoryRepository
+    public interface IRecipeHistoryRepository
     {
-        Task<IEnumerable<RecipeHistory>> GetAllRecipes();
+        Task<IEnumerable<RecipeHistory>> GetAllRecipeHistories();
 
-        Task<RecipeHistory> GetRecipe(int recipeHistoryId);
+        Task<IEnumerable<RecipeHistory>> GetRecipeHistoryByRecipe(string recipeId);
+
+        Task<RecipeHistory> GetRecipeHistory(string id);
 
         Task Create(RecipeHistory recipeHistory);
 
         Task<bool> Update(RecipeHistory recipeHistory);
 
-        Task<bool> Delete(int recipeHistoryId);
+        Task<bool> Delete(string id);
     }
 }

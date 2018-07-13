@@ -10,6 +10,8 @@ namespace RecipeApi.Repositories
     {
         Task<IEnumerable<Recipe>> GetAllRecipes();
 
+        Task<IEnumerable<Recipe>> GetAllRecipesByPatient(int patientId);
+
         Task<Recipe> GetRecipe(string id);
 
         Task Create(Recipe recipe);

@@ -18,6 +18,6 @@ namespace RecipeApi.Context
             _db = client.GetDatabase(options.Value.Database);
         }
 
-        public IMongoCollection<RecipeHistory> Recipes => this._db.GetCollection<RecipeHistory>("RecipeHistories");
+        public IMongoCollection<RecipeHistory> RecipeHistories => this._db.GetCollection<RecipeHistory>("RecipeHistories");
     }
 }

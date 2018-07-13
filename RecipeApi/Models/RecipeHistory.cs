@@ -13,6 +13,12 @@ namespace RecipeApi.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
+        public string RecipeId { get; set; }
 
+        public int PharmacyId { get; set; }
+
+        public DateTime UpdatedOn { get; set; }
+
+        public List<RecipeHistoryItem> Sold { get; set; }
     }
 }

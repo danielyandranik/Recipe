@@ -37,6 +37,9 @@ namespace RecipeApi
 
             services.AddTransient<IRecipeContext, RecipeContext>();
             services.AddTransient<IRecipeRepository, RecipeRepository>();
+
+            services.AddTransient<IRecipeHistoryContext, RecipeHistoryContext>();
+            services.AddTransient<IRecipeHistoryRepository, RecipeHistoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
