@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeConsoleUI", "RecipeCo
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "InstitutionDB", "InstitutionDB\InstitutionDB.sqlproj", "{02F0F536-087F-4449-B3E5-35A8D47B2AFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeApi", "RecipeApi\RecipeApi.csproj", "{6167B1B1-E74F-4B59-963E-F37F34ECA1C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeApi", "RecipeApi\RecipeApi.csproj", "{6167B1B1-E74F-4B59-963E-F37F34ECA1C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstitutionAPI", "InstitutionAPI\InstitutionAPI.csproj", "{255D79B2-37CB-4FB4-820E-3870FB79238E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{6167B1B1-E74F-4B59-963E-F37F34ECA1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6167B1B1-E74F-4B59-963E-F37F34ECA1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6167B1B1-E74F-4B59-963E-F37F34ECA1C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

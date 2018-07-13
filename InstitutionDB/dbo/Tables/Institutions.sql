@@ -1,11 +1,15 @@
 ﻿CREATE TABLE [dbo].[Institutions]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1, 1), 
-    [Name] NVARCHAR(50) NOT NULL, 
-	[Type] NVARCHAR(15) NOT NULL,
+    [Name] NVARCHAR(100) NOT NULL, 
+	[License] NVARCHAR(100) NOT NULL, 
+	[Owner] NVARCHAR(100) NOT NULL,
     [AddressId] INT NOT NULL, 
-    [Email] VARCHAR(320) NULL, 
-    [BusinessId] INT NOT NULL, 
-    [Description] TEXT NULL,
-	FOREIGN KEY (AddressId) REFERENCES Address(Id)
+    [Phone] NVARCHAR(100) NULL, 
+    [Email] NVARCHAR(100) NULL, 
+    [Description] NVARCHAR(MAX) NULL,
+    [OpenTime] TIME NOT NULL, 
+    [CloseTime] TIME NOT NULL, 
+    [Type] NVARCHAR(100) NOT NULL, 
+    FOREIGN KEY (AddressId) REFERENCES Addresses(Id)
 )
