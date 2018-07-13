@@ -12,6 +12,10 @@ namespace MedicineAPI.Repositories
     {
         private readonly IMedicineContext _context;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
         public MedicineRepository(IMedicineContext context)
         {
             _context = context;
