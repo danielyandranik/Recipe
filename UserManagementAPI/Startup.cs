@@ -51,6 +51,19 @@ namespace UserManagementAPI
                 options.AddPolicy("IsAdmin", policy => policy.RequireClaim("current_profile", "admin"));
             });
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("HasProfile", policy =>
+                {
+                    policy.RequireClaim("current_profile",
+                        new[]
+                        {
+                            "Doctor","Pharmacist","MinistryWorker","Patient",
+                            "Admin","HospitalAdmin"
+                        });
+                });
+            });
+
             // adding singletons
             services.AddSingleton(new Repo<UserFullInfo>(
                 new MapInfo(this.Configuration["Mappers:Users"]),
@@ -60,13 +73,13 @@ namespace UserManagementAPI
                 new MapInfo(this.Configuration["Mappers:Users"]),
                 new SpExecuter(this.Configuration["ConnectionStrings:UsersDB"])));
 
+            services.AddTransient(typeof(Repo<UserPublicInfo>));
+
             services.AddSingleton(new Verifier());
 
             services.AddSingleton(new MailService(
                 new NetworkCredential(this.Credentials["Username"],
-                                      this.Credentials["Password"])));
-
-           
+                                      this.Credentials["Password"])));           
         }
 
         /// <summary>

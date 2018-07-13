@@ -26,7 +26,7 @@ namespace DatabaseAccess.Repository
         /// </summary>
         /// <param name="mapInfo">mapping information</param>
         /// <param name="spExecuter">stored procedure executer</param>
-        public Repo(MapInfo mapInfo,ISpExecuter spExecuter)
+        public Repo(MapInfo mapInfo, ISpExecuter spExecuter)
         {
             // setting fields
             this._mapInfo = mapInfo;
