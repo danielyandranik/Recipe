@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using RecipeApi.Models;
 using RecipeApi.Repositories;
 
@@ -23,13 +20,18 @@ namespace RecipeApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return new ObjectResult(await this._recipeRepository.GetAllRecipes());
-        }
+            var query = this.Request.Query;
+            if(query.Count > 0)
+            {
+                StringValues patientId;
+                if (query.TryGetValue("patientId", out patientId))
+                {
+                    return new ObjectResult(await this._recipeRepository.GetAllRecipesByPatient(int.Parse(patientId[0])));
+                }
+                return new NotFoundResult();
+            }
 
-        [HttpGet("patient/{patientId}", Name = "GetRecipesByPatient")]
-        public async Task<IActionResult> GetByPatient(int patientId)
-        {
-            return new ObjectResult(await this._recipeRepository.GetAllRecipesByPatient(patientId));
+            return new ObjectResult(await this._recipeRepository.GetAllRecipes());
         }
 
         [HttpGet("{id}", Name = "Get")]
