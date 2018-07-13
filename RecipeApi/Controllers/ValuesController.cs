@@ -23,6 +23,12 @@ namespace RecipeApi.Controllers
             return "value";
         }
 
+        [HttpGet("more/{id}")]
+        public string GetMore(int id)
+        {
+            return "value" + id;
+        }
+
         // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using DatabaseAccess;
+using DatabaseAccess.SpExecuters;
 
 /******** Tests with some stored procedures ********/
- 
+
 namespace Test
 {
     class Program

@@ -2,6 +2,8 @@
 {
     public class UserPublicInfo
     {
+        public int Id { get; set; }
+
         /// <summary>
         /// Gets or sets first name.
         /// </summary>

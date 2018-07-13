@@ -1,11 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Xml.Linq;
-using System.Xml.XPath;
+﻿using System.Linq;
 using System.Collections.Generic;
 using DatabaseAccess.SpExecuters;
-using Microsoft.Extensions.Configuration;
+using System.Threading.Tasks;
 
 namespace DatabaseAccess.Repository
 {
@@ -13,50 +9,28 @@ namespace DatabaseAccess.Repository
     /// Repository class
     /// </summary>
     /// <typeparam name="TResult">Type of result.</typeparam>
-    /// <typeparam name="TSpExecuter">Type of stored procedure executer.</typeparam>
-    public class Repo<TResult, TSpExecuter> where TSpExecuter : ISpExecuter, new()
+    public class Repo<TResult> where TResult:class
     {
         /// <summary>
-        /// Connection string
+        /// Map setting info
         /// </summary>
-        private readonly string _cnnString;
-
-        /// <summary>
-        /// Map settings XML file path
-        /// </summary>
-        private readonly string _mapSettingsPath;
-
-        /// <summary>
-        /// Map setting document
-        /// </summary>
-        private readonly XDocument _mapInfo;
+        private readonly MapInfo _mapInfo;
 
         /// <summary>
         /// Stored procedure executer
         /// </summary>
         private readonly ISpExecuter _spExecuter;
-
+        
         /// <summary>
-        /// Creates new instance of <see cref="Repo"/>.
-        /// Make sure that connection string is written in appsettings.json file with the name "Default".
+        /// Creates new instance of <see cref="Repo{TResult}"/>
         /// </summary>
-        /// <param name="mappSettingsPath">
-        /// Path of map settings XML file.Make sure that this file is defined using MapSchema.xsd.
-        /// You can download MapSchema.xsd from https://github.com/DanielyanAndranik/Recipe/tree/sev/DatabaseAccessor/MapSchema.xsd
-        /// </param>
-        public Repo(string mappSettingsPath)
+        /// <param name="mapInfo">mapping information</param>
+        /// <param name="spExecuter">stored procedure executer</param>
+        public Repo(MapInfo mapInfo,ISpExecuter spExecuter)
         {
-            // setting map settings Path
-            this._mapSettingsPath = mappSettingsPath;
-
-            // laoding map settings
-            this._mapInfo = XDocument.Load(this._mapSettingsPath);
-
-            // getting connection string
-            this._cnnString = this.GetCnnString();
-
-            // creating stored procedure executer
-            this._spExecuter = new TSpExecuter().Create(this._cnnString);
+            // setting fields
+            this._mapInfo = mapInfo;
+            this._spExecuter = spExecuter;
         }
 
         /// <summary>
@@ -65,7 +39,7 @@ namespace DatabaseAccess.Repository
         /// <param name="opName">Operation name</param>
         /// <param name="parameters">Parameters</param>
         /// <returns>result</returns>
-        public object ExecuteOperation(string opName,IEnumerable<KeyValuePair<string,object>> parameters)
+        public object ExecuteOperation(string opName,IEnumerable<KeyValuePair<string,object>> parameters = null)
         {
             // getting operation info
             var operationInfo = this.GetOperationInfo(opName);
@@ -74,8 +48,8 @@ namespace DatabaseAccess.Repository
             var spParams = null as IEnumerable<KeyValuePair<string, object>>;
 
             if (parameters != null)
-                spParams = this.ConstructParameters(operationInfo.ParametersMappInfo, parameters);
-            else spParams = parameters;
+                spParams = this.ConstructParameters(operationInfo.ParametersMappInfo, parameters).ToList();
+            else spParams = parameters.ToList();
 
             // executing specific operation
             if(operationInfo.ReturnDataType == ReturnDataType.Entity)
@@ -92,6 +66,24 @@ namespace DatabaseAccess.Repository
         /// Executes operation.
         /// </summary>
         /// <param name="opName">Operation name.</param>
+        /// <param name="parameters">Parameters</param>
+        /// <returns>Operation execution task.</returns>
+        public Task<object> ExecuteOperationAsync(string opName,IEnumerable<KeyValuePair<string,object>> parameters = null)
+        {
+            var task = new Task<object>(() =>
+            {
+                return this.ExecuteOperation(opName, parameters);
+            });
+
+            task.Start();
+
+            return task;
+        }
+
+        /// <summary>
+        /// Executes operation.
+        /// </summary>
+        /// <param name="opName">Operation name.</param>
         /// <param name="entity">Entity</param>
         /// <returns>result</returns>
         public object ExecuteOperation(string opName,TResult entity)
@@ -102,55 +94,18 @@ namespace DatabaseAccess.Repository
         }
 
         /// <summary>
-        /// Gets connection string from appsettings.json
-        /// </summary>
-        /// <returns>Connection string.</returns>
-        private string GetCnnString()
-        {
-            // building config
-            var builder = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json");
-
-            var config = builder.Build();
-
-            // returning connection string
-            return config.GetConnectionString("Default");
-        }
-
-        /// <summary>
-        /// Gets operation info from map setting XML file
+        /// Gets operation info from map information
         /// </summary>
         /// <param name="operationName">Operation name</param>
         /// <returns>operation info</returns>
         private OperationInfo GetOperationInfo(string operationName)
         {
-            // getting operation node
-            var opXml = this._mapInfo.XPathSelectElement(
-                $"//operation[@name='{operationName}']");
-
-            // getting sp name and return data type
-            var spName = opXml.Element("spName").Value;
-
-            var returnDataType = (ReturnDataType)Enum.Parse(
-                    typeof(ReturnDataType),
-                    opXml.Element("returnDataType").Value);
-
-            // getting parameters node
-            var paramsXml = opXml.Element("parameters").Elements("parameter");
-
-            // getting parameters
-            var parameters = paramsXml.ToDictionary(
-                element => element.Element("parameterName").Value,
-                element => element.Element("spParameterName").Value);
-
-            // returning operation info
             return new OperationInfo
             {
                 Name = operationName,
-                SpName = spName,
-                ReturnDataType = returnDataType,
-                ParametersMappInfo = parameters
+                SpName = this._mapInfo.OpNames[operationName],
+                ReturnDataType = this._mapInfo.ReturnValues[operationName],
+                ParametersMappInfo = this._mapInfo.Parameters[operationName]
             };
         }
 

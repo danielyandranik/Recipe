@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UsersRepository\UsersRepository.csproj" />
+    <ProjectReference Include="..\DatabaseAccessor\DatabaseAccessor.csproj" />
   </ItemGroup>
 
 </Project>

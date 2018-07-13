@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using RecipeApi.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using RecipeApi.Context;
+using RecipeApi.Repositories;
 
 namespace RecipeApi
 {
@@ -29,9 +31,15 @@ namespace RecipeApi
             services.Configure<Settings.Settings>(
                 options =>
                 {
-                    options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
-                    options.Database = Configuration.GetSection("MongoDb:Database").Value;
+                    options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+                    options.Database = Configuration.GetSection("MongoConnection:Database").Value;
                 });
+
+            services.AddTransient<IRecipeContext, RecipeContext>();
+            services.AddTransient<IRecipeRepository, RecipeRepository>();
+
+            services.AddTransient<IRecipeHistoryContext, RecipeHistoryContext>();
+            services.AddTransient<IRecipeHistoryRepository, RecipeHistoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

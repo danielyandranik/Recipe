@@ -3,7 +3,7 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:noNamespaceSchemaLocation="MapSchema.xsd">
   <operation name='GetUserByName'>
-    <spName>uspGetUserByUsername</spName>
+    <spName>uspGetUserIdInfoByUsername</spName>
     <parameters>
       <parameter>
         <parameterName>username</parameterName>
@@ -13,7 +13,7 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <returnDataType>Entity</returnDataType>
   </operation>
   <operation name="GetUserById">
-    <spName>uspGetUserById</spName>
+    <spName>uspGetUserIdInfoById</spName>
     <parameters>
       <parameter>
         <parameterName>id</parameterName>

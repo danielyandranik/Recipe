@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace UserManagementAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Pharmacies")]
-    public class PharmaciesController : Controller
+    [Route("api/pharmacists")]
+    public class PharmacistsController : Controller
     {
         // GET: api/Pharmacies
         [HttpGet]

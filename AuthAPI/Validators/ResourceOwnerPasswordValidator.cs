@@ -44,7 +44,7 @@ namespace AuthAPI.Validators
                 if (user != null)
                 {
                     // if password is ok set
-                    if (user.Password == context.Password)
+                    if (user.Password == context.Password && user.IsVerified == true)
                     {
                         context.Result = new GrantValidationResult(
                             subject: user.Id.ToString(),
@@ -82,7 +82,7 @@ namespace AuthAPI.Validators
             return new Claim[]
             {
                 new Claim("user_id", user.Id.ToString()),
-                new Claim("current_profile",user.CurrentProfile.ToString()),
+                new Claim("current_profile",user.CurrentProfileType),
                 new Claim(JwtClaimTypes.Name,user.UserName),
             };
         }

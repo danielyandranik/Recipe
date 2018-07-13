@@ -26,8 +26,13 @@
         public bool IsActive { get; set; }
 
         /// <summary>
-        /// Gets or sets Current Profile
+        /// Gets or sets Current Profile Type
         /// </summary>
-        public int CurrentProfile { get; set; }
+        public string CurrentProfileType { get; set; }
+
+        /// <summary>
+        /// Gets or sets IsVerified
+        /// </summary>
+        public bool IsVerified { get; set; }
     }
 }

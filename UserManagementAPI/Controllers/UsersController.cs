@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using DatabaseAccess;
 using UserManagementAPI.Models;
+using DatabaseAccess.Repository;
 
 namespace UserManagementAPI.Controllers
 {
@@ -14,16 +17,16 @@ namespace UserManagementAPI.Controllers
     public class UsersController : Controller
     {
         /// <summary>
-        /// Stored procedure executer
+        /// Repository
         /// </summary>
-        private readonly SpExecuter spExecuter;
+        private Repo<UserPublicInfo> _repo;
 
         /// <summary>
         /// Creates new instance of user controller
         /// </summary>
-        public UsersController()
+        public UsersController(Repo<UserPublicInfo> repo)
         {
-            this.spExecuter = new SpExecuter("(local)","UsersDB", true);
+            this._repo = repo;
         }
 
         /// <summary>
@@ -32,32 +35,90 @@ namespace UserManagementAPI.Controllers
         /// <returns>enumerable of users.</returns>
         [HttpGet]
         [Authorize]
-        public IEnumerable<UserPublicInfo> Get()
+        public async Task<IActionResult> Get()
         {
-            return this.spExecuter.ExecuteSp<UserPublicInfo>("uspGetAllUsers");
+            var result = await this._repo.ExecuteOperationAsync("GetAllUsers");
+
+            if (result == null)
+                return new StatusCodeResult(204);
+
+            return new JsonResult(result);                
         }
         
-        /// <summary>
-        /// Posts new user
-        /// </summary>
-        /// <param name="user">User</param>
-        [HttpPost]
-        public void Post([FromBody]UserFullInfo user)
+        [HttpGet("{id:int}")]
+        [Authorize]
+        public IActionResult Get(int id)
         {
-            this.spExecuter.ExecuteSpNonQuery(
-                "uspCreateUser",
+            var user = this._repo.ExecuteOperation("GetUserPublicInfoById",
                 new[]
                 {
-                    new KeyValuePair<string,object>("FirstName",user.FirstName),
-                    new KeyValuePair<string, object>("MiddleName",user.MiddleName),
-                    new KeyValuePair<string,object>("LastName",user.LastName),
-                    new KeyValuePair<string,object>("Birthdate",user.Birthdate),
-                    new KeyValuePair<string, object>("Sex",user.Sex),
-                    new KeyValuePair<string, object>("Email",user.Email),
-                    new KeyValuePair<string, object>("Password",user.Password),
-                    new KeyValuePair<string, object>("Phone",user.Phone),
-                    new KeyValuePair<string, object>("userName",user.UserName)
-                }); 
+                    new KeyValuePair<string,object>("Id",id)
+                });
+
+            if (user == null)
+                return new StatusCodeResult(404);
+
+            return new JsonResult(user);
+        }
+
+        [HttpGet("{username}")]
+        [Authorize]
+        public IActionResult Get(string username)
+        {
+            var user = this._repo.ExecuteOperation("GetUserPublicInfoByUsername",
+                new[]
+                {
+                    new KeyValuePair<string,object>("Username",username)
+                });
+
+            if (user == null)
+                return new StatusCodeResult(404);
+
+            return new JsonResult(user);
+        }
+
+        /// <summary>
+        /// Delets user
+        /// </summary>
+        [HttpDelete]
+        [Authorize]
+        public void Delete()
+        {
+            var id = this.GetUserId();
+
+            this._repo.ExecuteOperation("DeleteUser",
+                new[]
+                {
+                    new KeyValuePair<string,object>("id",id)
+                });
+        }
+
+        /// <summary>
+        /// Deletes user by id.Demands 'IsAdmin' policy.
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>returns action result.</returns>
+        [HttpDelete("{id}")]
+        [Authorize(Policy = "IsAdmin")]
+        public IActionResult Delete(int id)
+        {
+            var result = (int)this._repo.ExecuteOperation("DeleteUser",
+                new[]
+                {
+                    new KeyValuePair<string,object>("id",id)
+                });
+
+            if (result == -1)
+                return new StatusCodeResult(404);
+
+            return new StatusCodeResult(200);
+        }
+
+        private int GetUserId()
+        {
+            return int.Parse(
+                ((ClaimsIdentity)this.User.Identity).Claims
+                .Where(claim => claim.Type == "user_id").First().Value);
         }
     }
 }

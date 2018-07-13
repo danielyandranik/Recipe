@@ -3,9 +3,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using IdentityServer4.Services;
 using IdentityServer4.Validation;
-using UsersRepository;
+using AuthAPI.UsersRepository;
 using AuthAPI.Services;
 using AuthAPI.Validators;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using DatabaseAccess.Repository;
+using DatabaseAccess.SpExecuters;
 
 namespace AuthAPI
 {
@@ -14,6 +18,10 @@ namespace AuthAPI
     /// </summary>
     public class Startup
     {
+        private IConfiguration Configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json").Build();
+
         /// <summary>
         /// Configures services
         /// This method gets called by the runtime which uses this method to add services to the container.
@@ -38,6 +46,11 @@ namespace AuthAPI
             // adding transients
             services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
             services.AddTransient<IProfileService, ProfileService>();
+
+            // adding singletons
+            services.AddSingleton(new Repo<User>(
+                new MapInfo(this.Configuration["Mappers:Users"]),
+                new SpExecuter(this.Configuration["ConnectionStrings:UsersDB"])));
         }
 
         /// <summary>
