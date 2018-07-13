@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MedecineAPI.Settings;
+using MedicineAPI.Context;
+using MedicineAPI.Repositories;
 
 namespace MedecineAPI
 {
@@ -25,13 +27,17 @@ namespace MedecineAPI
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc();
-			services.Configure<Settings>(
+			services.Configure<Settings.Settings>(
 			options =>
 			{
 				options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
 				options.Database = Configuration.GetSection("MongoDb:Database").Value;
 			});
-		}
+
+            services.AddTransient<IMedicineContext, MedicineContext>();
+            services.AddTransient<IMedicineRepository, MedicineRepository>();
+               
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

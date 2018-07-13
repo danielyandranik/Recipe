@@ -10,10 +10,10 @@ namespace MedicineAPI.Models
     public class Medicine
     {
 		[BsonId]
-		public ObjectId Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+		public string Id { get; set; }
 		public string Name { get; set; }
-		public string Developer { get; set; }
-		public string Publisher { get; set; }
-		public List<string> Platforms { get; set; }
+        public string Maker { get; set; }
+        public string Country { get; set; }
 	}
 }
