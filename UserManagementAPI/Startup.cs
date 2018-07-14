@@ -46,40 +46,13 @@ namespace UserManagementAPI
                     });
 
             // adding policies
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("IsAdmin", policy => policy.RequireClaim("current_profile", "admin"));
-            });
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("HasProfile", policy =>
-                {
-                    policy.RequireClaim("current_profile",
-                        new[]
-                        {
-                            "Doctor","Pharmacist","MinistryWorker","Patient",
-                            "Admin","HospitalAdmin"
-                        });
-                });
-            });
+            this.AddPolicies(services);
 
             // adding singletons
-            services.AddSingleton(new Repo<UserFullInfo>(
-                new MapInfo(this.Configuration["Mappers:Users"]),
-                new SpExecuter(this.Configuration["ConnectionStrings:UsersDB"])));
+            this.AddSingletons(services);
 
-            services.AddSingleton(new Repo<UserPublicInfo>(
-                new MapInfo(this.Configuration["Mappers:Users"]),
-                new SpExecuter(this.Configuration["ConnectionStrings:UsersDB"])));
-
-            services.AddTransient(typeof(Repo<UserPublicInfo>));
-
-            services.AddSingleton(new Verifier());
-
-            services.AddSingleton(new MailService(
-                new NetworkCredential(this.Credentials["Username"],
-                                      this.Credentials["Password"])));           
+            // adding transients
+            this.AddTransients(services);
         }
 
         /// <summary>
@@ -97,6 +70,54 @@ namespace UserManagementAPI
 
             app.UseAuthentication();
             app.UseMvc();
+        }
+
+        /// <summary>
+        /// Adds policies
+        /// </summary>
+        /// <param name="services">Services</param>
+        private void AddPolicies(IServiceCollection services)
+        {
+            // adding policies
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("IsAdmin", policy => policy.RequireClaim("current_profile", "admin"));
+
+                options.AddPolicy("HasProfile", policy =>
+                {
+                    policy.RequireClaim("current_profile",
+                        new[]
+                        {
+                            "Doctor","Pharmacist","MinistryWorker","Patient",
+                            "Admin","HospitalAdmin"
+                        });
+                });
+            });
+        }
+
+        /// <summary>
+        /// Adds singletons
+        /// </summary>
+        /// <param name="services">Services</param>
+        private void AddSingletons(IServiceCollection services)
+        {
+            // adding singletons
+            services.AddSingleton(new MapInfo(this.Configuration["Mappers:Users"]));
+            services.AddSingleton(new SpExecuter(this.Configuration["ConnectionStrings:UsersDB"]));
+            services.AddSingleton(new Verifier());
+            services.AddSingleton(new MailService(
+                new NetworkCredential(this.Credentials["Username"],
+                                      this.Credentials["Password"])));
+        }
+
+        /// <summary>
+        /// Adds transients
+        /// </summary>
+        /// <param name="services">Services</param>
+        private void AddTransients(IServiceCollection services)
+        {
+            // adding transients
+            services.AddTransient(typeof(DataManager));
         }
     }
 }
