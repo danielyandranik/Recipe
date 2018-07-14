@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -9,8 +10,18 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace InstitutionAPI
 {
+    /// <summary>
+    /// Startup class for Institution API
+    /// </summary>
     public class Startup
     {
+        private IConfiguration Configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json").Build();
+
+        private IConfiguration Credentials = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("MailCredentials.json").Build();
 
         /// <summary>
         /// Configures services.
@@ -28,10 +39,37 @@ namespace InstitutionAPI
             services.AddAuthentication("Bearer")
                     .AddIdentityServerAuthentication(options =>
                     {
-                        options.Authority = services.Configure<Authority>(Configuration.GetSection("Path"));
+                        options.Authority = this.Configuration["Endpoints:AuthAPI"];
                         options.RequireHttpsMetadata = false;
                         options.ApiName = "InstitutionAPI";
                     });
+
+            // adding policies
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("PharmacistProfile", policy =>
+                {
+                    policy.RequireClaim("current_profile", "Pharmacist");
+                });
+
+                options.AddPolicy("InstitutionAdminProfile", policy =>
+                {
+                    policy.RequireClaim("current_profile",
+                        new[]
+                        {
+                            "PharmacyAdmin","HospitalAdmin"
+                        });
+                });
+
+                options.AddPolicy("HighLevel", policy =>
+                {
+                    policy.RequireClaim("current_profile",
+                        new[]
+                        {
+                            "MinistryWorker","Admin"
+                        });
+                });
+            });
         }
 
         /// <summary>

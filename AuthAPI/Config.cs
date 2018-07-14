@@ -16,7 +16,8 @@ namespace AuthAPI
         {
             return new List<ApiResource>
             {
-                new ApiResource("UserManagementAPI"), // new ApiResource("InstitutionAPI")
+                new ApiResource("UserManagementAPI"),
+                new ApiResource("InstitutionAPI")
             };
         }
 
@@ -36,7 +37,7 @@ namespace AuthAPI
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = {"UserManagementAPI"}
+                    AllowedScopes = {"UserManagementAPI", "InstitutionAPI"}
                 }
             };
         }

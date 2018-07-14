@@ -53,6 +53,7 @@ namespace InstitutionAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "HighLevel")]
         public void Post([FromBody]Institution institution)
         {
             this.spExecuter.ExecuteSpNonQuery(
@@ -77,6 +78,7 @@ namespace InstitutionAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "InstitutionAdminProfile,HighLevel")]
         public void Put(int id, [FromBody]Institution institution)
         {
             this.spExecuter.ExecuteSpNonQuery("uspUpdateInstitution",
@@ -99,6 +101,7 @@ namespace InstitutionAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "HighLevel")]
         public void Delete(int id)
         {
             this.spExecuter.ExecuteSpNonQuery("uspDeleteInstitution",
