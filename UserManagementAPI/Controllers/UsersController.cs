@@ -19,19 +19,14 @@ namespace UserManagementAPI.Controllers
         /// <summary>
         /// Repository
         /// </summary>
-        private Repo<UserPublicInfo> _repo;
-
-        /// <summary>
-        /// Full info repository
-        /// </summary>
-        private Repo<UserFullInfo> _pRepo;
+        private DataManager _dataManager;
 
         /// <summary>
         /// Creates new instance of user controller
         /// </summary>
-        public UsersController(Repo<UserPublicInfo> repo)
+        public UsersController(DataManager dataManager)
         {
-            this._repo = repo;
+            this._dataManager = dataManager;
         }
 
         /// <summary>
@@ -42,45 +37,16 @@ namespace UserManagementAPI.Controllers
         [Authorize(Policy = "HasProfile")]
         public async Task<IActionResult> Get()
         {
-            // getting query
-            var query = this.Request.Query;
+            // getting result
+            var result = await this._dataManager
+                .OperateAsync<UserPublicInfo>("GetAllUsers");
 
-             // result
-            var result = null as object;
-
-            // if no query return all users
-            if (query.Count == 0)
-            {
-                result = await this._repo.ExecuteOperationAsync("GetAllUsers");
-            }
-            // else return query-specific result
-            else if (query.Count == 1)
-            {
-                if (query.ContainsKey("id"))
-                {
-                    
-                    result = await this._repo.ExecuteOperationAsync("GetUsersPublicInfoById",
-                        new[]
-                        {
-                           new KeyValuePair<string,object>("id",query["id"])
-                        });
-                }
-                else if(query.ContainsKey("username"))
-                {
-                    result = await this._repo.ExecuteOperationAsync("GetUsersPublicInfoByUsername",
-                        new[]
-                        {
-                            new KeyValuePair<string,object>("username",query["username"])
-                        });
-                }
-            }
-
-            // if no result return Error code
+            // if no content retun 204
             if (result == null)
-                return new StatusCodeResult(404);
+                return new StatusCodeResult(204);
 
-            // return result
-            return new JsonResult(result);                    
+            // return JSON serialized content
+            return new JsonResult(result);
         }
 
         /// <summary>
@@ -94,36 +60,13 @@ namespace UserManagementAPI.Controllers
             var id = this.GetUserId();
 
             // deleting user
-            this._repo.ExecuteOperation("DeleteUser",
+            this._dataManager.Operate<UserPublicInfo>("DeleteUser",
                 new[]
                 {
                     new KeyValuePair<string,object>("id",id)
                 });
         }
-
-        /// <summary>
-        /// Deletes user by id.Demands 'IsAdmin' policy.
-        /// </summary>
-        /// <param name="id">id</param>
-        /// <returns>returns action result.</returns>
-        [HttpDelete("{id}")]
-        [Authorize(Policy = "IsAdmin")]
-        public IActionResult Delete(int id)
-        {
-            // getting result
-            var result = (int)this._repo.ExecuteOperation("DeleteUser",
-                new[]
-                {
-                    new KeyValuePair<string,object>("id",id)
-                });
-
-            // if not deleted return 404
-            if (result == -1)
-                return new StatusCodeResult(404);
-
-            // returning success code
-            return new StatusCodeResult(200);
-        }
+       
 
         /// <summary>
         /// Gets user id.
