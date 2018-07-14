@@ -10,7 +10,7 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <spName>uspGetUserPublicInfoByUsername</spName>
     <parameters>
       <parameter>
-        <parameterName>Username</parameterName>
+        <parameterName>primitive</parameterName>
         <spParameterName>username</spParameterName>
       </parameter>
     </parameters>
@@ -20,7 +20,7 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <spName>uspGetUserPublicInfoById</spName>
     <parameters>
       <parameter>
-        <parameterName>Id</parameterName>
+        <parameterName>primitive</parameterName>
         <spParameterName>id</spParameterName>
       </parameter>
     </parameters>
@@ -30,7 +30,7 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <spName>uspGetUserPersonalInfoById</spName>
     <parameters>
       <parameter>
-        <parameterName>Id</parameterName>
+        <parameterName>primitive</parameterName>
         <spParameterName>id</spParameterName>
       </parameter>
     </parameters>
@@ -56,7 +56,7 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
         <spParameterName>fullName</spParameterName>
       </parameter>
       <parameter>
-        <parameterName>UserName</parameterName>
+        <parameterName>Username</parameterName>
         <spParameterName>userName</spParameterName>
       </parameter>
       <parameter>
@@ -86,7 +86,7 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
   </operation>
-  <operation name="UpdateUserPassword">
+  <operation name="UpdatePassword">
     <spName>uspUpdatePassword</spName>
     <parameters>
       <parameter>
@@ -104,11 +104,25 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
   </operation>
+  <operation name="UpdateCurrentProfile">
+    <spName>uspUpdateCurrentProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>Id</parameterName>
+        <spParameterName>userId</spParameterName>  
+      </parameter>
+      <parameter>
+        <parameterName>Profile</parameterName>
+        <spParameterName>newCurrentProfile</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
   <operation name="DeleteUser">
     <spName>uspDeleteUser</spName>
     <parameters>
       <parameter>
-        <parameterName>id</parameterName>
+        <parameterName>primitive</parameterName>
         <spParameterName>userId</spParameterName>
       </parameter>
     </parameters>
@@ -120,6 +134,58 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
       <parameter>
         <parameterName>Username</parameterName>
         <spParameterName>username</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>VerifyKey</parameterName>
+        <spParameterName>key</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="AddVerificationKey">
+    <spName>uspCreateVerificationInfo</spName>
+    <parameters>
+      <parameter>
+        <parameterName>Username</parameterName>
+        <spParameterName>username</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>VerifyKey</parameterName>
+        <spParameterName>key</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="GetAllDoctors">
+    <spName>uspGetAllDoctors</spName>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
+  <operation name="CreateDoctor">
+    <spName>uspCreateDoctorProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>UserId</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>License</parameterName>
+        <spParameterName>license</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>HospitalName</parameterName>
+        <spParameterName>hospitalName</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Specification</parameterName>
+        <spParameterName>specification</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>WorkStartYear</parameterName>
+        <spParameterName>workStartYear</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>GraduatedYear</parameterName>
+        <spParameterName>graduatedYear</spParameterName>
       </parameter>
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>

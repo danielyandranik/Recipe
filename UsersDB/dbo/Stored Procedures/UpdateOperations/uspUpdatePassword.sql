@@ -5,4 +5,4 @@
 AS
 	update Users
 		set [Password] = @newPassword
-	where Id = @userId and [Password] = @oldPassword
+		where Id = @userId and [Password] = @oldPassword

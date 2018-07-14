@@ -1,7 +1,15 @@
 ﻿CREATE PROCEDURE [dbo].[uspVerifyUser]
-	@username nvarchar(100)
+	@username nvarchar(50),
+	@key varchar(50)
 AS
-	update Users
-		set IsVerified = 1,
-			VerifiedDate = GetDate()
-	where Username = @username
+	begin
+		delete from Verifications
+			where Username= @username and [Key] = @key
+		if @@rowcount = 1
+			begin
+			update Users
+				set VerifiedDate = GetDate(),
+					IsVerified = 1
+				where Username = @username
+			end
+	end

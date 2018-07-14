@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using DatabaseAccess.Repository;
+using UserManagementAPI.Models;
 
 namespace UserManagementAPI.Services
 {
@@ -9,29 +10,79 @@ namespace UserManagementAPI.Services
     public class Verifier
     {
         /// <summary>
-        /// Verification keys
+        /// Data manager
         /// </summary>
-        private Dictionary<string, string> _verifyKeys;
+        private DataManager _dataManager;
 
         /// <summary>
-        /// Creates new instance of Verifier
+        /// Mail service
         /// </summary>
-        public Verifier()
+        private MailService _mailService;
+
+        /// <summary>
+        /// Creates new instance of <see cref="Verifier"/>
+        /// </summary>
+        /// <param name="dataManager">Data manager</param>
+        /// <param name="mailService">Mail service</param>
+        public Verifier(DataManager dataManager,MailService mailService)
         {
-            this._verifyKeys = new Dictionary<string, string>();
+            // setting fields
+            this._dataManager = dataManager;
+            this._mailService = mailService;
         }
 
         /// <summary>
-        /// Generates verification key
+        /// Adds verification info to database
         /// </summary>
-        /// <param name="username">Username</param>
-        /// <returns>verifiation key</returns>
-        public string GenerateVerifyKey(string username)
+        /// <param name="id">Id</param>
+        /// <param name="mail">Mail address to which verification key must be sent.</param>
+        public void AddVerificationInfo(string username,string mail)
+        {
+            // generating key
+            var key = this.GenerateVerifyKey();
+
+            // constructing verification info
+            var verificationInfo = new UserVerificationInfo
+            {
+                Username = username,
+                VerifyKey = key
+            };
+
+            // adding verification key
+            this._dataManager.Operate<UserVerificationInfo, object>("AddVerificationKey", verificationInfo);
+
+            // sending verifiaction key to mail
+            this._mailService.Send(mail, key);
+        }
+
+        /// <summary>
+        /// Verifies the user if key is correct.
+        /// </summary>
+        /// <param name="userVerificationInfo">User verification information</param>
+        /// <returns>true,if user is verified,and false otherwise</returns>
+        public bool Verify(UserVerificationInfo userVerificationInfo)
+        {
+            // trying to verify user
+            var result = (int)this._dataManager.Operate<UserVerificationInfo, object>("VerifyUser", userVerificationInfo);
+
+            // if user verification fails return false
+            if (result == 0)
+                return false;
+
+            // return true
+            return true;
+        }
+
+        /// <summary>
+        /// Generates verification key.
+        /// </summary>
+        /// <returns>Verification key</returns>
+        private string GenerateVerifyKey()
         {
             var random = new Random();
-            var result = "";
+            var key = "";
 
-            // genarting verification key
+            // generating verification key
             // this is not very secure 
             // here we need changes
             for(var counter = 0; counter < 32; counter++)
@@ -41,32 +92,11 @@ namespace UserManagementAPI.Services
                 if (num > 90 && num < 97)
                     num += 10;
 
-                result += (char)num;
+                key += (char)num;
             }
 
-            this._verifyKeys[username] = result;
-
-            return result;
-        }
-
-        /// <summary>
-        /// Verifies the user.
-        /// </summary>
-        /// <param name="username">Username.</param>
-        /// <param name="verifyKey">Verification key</param>
-        /// <returns>Verifiaction logic result</returns>
-        public bool Verify(string username, string verifyKey)
-        {
-            if (!this._verifyKeys.ContainsKey(username))
-                return false;
-
-            if (this._verifyKeys[username] == verifyKey)
-            {
-                this._verifyKeys.Remove(username);
-                return true;
-            }
-            
-            return false;            
+            // returning key
+            return key;
         }
     }
 }
