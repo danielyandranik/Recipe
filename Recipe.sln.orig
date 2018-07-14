@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseAccessor", "DatabaseAccessor\DatabaseAccessor.csproj", "{7A3EC5AD-01C4-4344-A27B-DDA7FE8F569B}"
 EndProject
@@ -17,19 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeConsoleUI", "RecipeCo
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "InstitutionDB", "InstitutionDB\InstitutionDB.sqlproj", "{02F0F536-087F-4449-B3E5-35A8D47B2AFB}"
 EndProject
+<<<<<<< HEAD
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeApi", "RecipeApi\RecipeApi.csproj", "{6167B1B1-E74F-4B59-963E-F37F34ECA1C9}"
 EndProject
-<<<<<<< HEAD
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstitutionAPI", "InstitutionAPI\InstitutionAPI.csproj", "{255D79B2-37CB-4FB4-820E-3870FB79238E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailTest", "MailTest\MailTest.csproj", "{8647DB5F-0A08-4C29-867B-8F95B6F116A8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeClient", "RecipeClient\RecipeClient.csproj", "{AFBED9EA-F5AD-4D68-839B-85B6158F28CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailTest", "MailTest\MailTest.csproj", "{8647DB5F-0A08-4C29-867B-8F95B6F116A8}"
 =======
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailTest", "MailTest\MailTest.csproj", "{8647DB5F-0A08-4C29-867B-8F95B6F116A8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicineAPI", "MedecineAPI\MedicineAPI.csproj", "{3ECEBD75-2228-4A6D-A967-D1CC2ADF77F4}"
->>>>>>> remotes/origin/hrach
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedecineAPI", "MedecineAPI\MedecineAPI.csproj", "{3ECEBD75-2228-4A6D-A967-D1CC2ADF77F4}"
+>>>>>>> Medicine, first commit
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,29 +63,21 @@ Global
 		{02F0F536-087F-4449-B3E5-35A8D47B2AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02F0F536-087F-4449-B3E5-35A8D47B2AFB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{02F0F536-087F-4449-B3E5-35A8D47B2AFB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+<<<<<<< HEAD
 		{6167B1B1-E74F-4B59-963E-F37F34ECA1C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6167B1B1-E74F-4B59-963E-F37F34ECA1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6167B1B1-E74F-4B59-963E-F37F34ECA1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6167B1B1-E74F-4B59-963E-F37F34ECA1C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8647DB5F-0A08-4C29-867B-8F95B6F116A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8647DB5F-0A08-4C29-867B-8F95B6F116A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8647DB5F-0A08-4C29-867B-8F95B6F116A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8647DB5F-0A08-4C29-867B-8F95B6F116A8}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
-		{AFBED9EA-F5AD-4D68-839B-85B6158F28CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AFBED9EA-F5AD-4D68-839B-85B6158F28CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AFBED9EA-F5AD-4D68-839B-85B6158F28CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFBED9EA-F5AD-4D68-839B-85B6158F28CA}.Release|Any CPU.Build.0 = Release|Any CPU
 =======
 		{3ECEBD75-2228-4A6D-A967-D1CC2ADF77F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3ECEBD75-2228-4A6D-A967-D1CC2ADF77F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3ECEBD75-2228-4A6D-A967-D1CC2ADF77F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3ECEBD75-2228-4A6D-A967-D1CC2ADF77F4}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> remotes/origin/hrach
+>>>>>>> Medicine, first commit
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
