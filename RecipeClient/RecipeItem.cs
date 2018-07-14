@@ -1,4 +1,4 @@
-﻿namespace RecipeApi.Models
+﻿namespace RecipeClient
 {
     public class RecipeItem
     {

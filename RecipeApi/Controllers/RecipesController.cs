@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using RecipeApi.Models;
 using RecipeApi.Repositories;
 
 namespace RecipeApi.Controllers
 {
+    [Authorize(Policy = "CanWorkWithRecipe")]
     [Produces("application/json")]
     [Route("api/recipes")]
     public class RecipesController : Controller
@@ -23,13 +22,18 @@ namespace RecipeApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return new ObjectResult(await this._recipeRepository.GetAllRecipes());
-        }
+            var query = this.Request.Query;
+            if(query.Count > 0)
+            {
+                StringValues patientId;
+                if (query.TryGetValue("patientId", out patientId))
+                {
+                    return new ObjectResult(await this._recipeRepository.GetAllRecipesByPatient(int.Parse(patientId[0])));
+                }
+                return new NotFoundResult();
+            }
 
-        [HttpGet("patient/{patientId}", Name = "GetRecipesByPatient")]
-        public async Task<IActionResult> GetByPatient(int patientId)
-        {
-            return new ObjectResult(await this._recipeRepository.GetAllRecipesByPatient(patientId));
+            return new ObjectResult(await this._recipeRepository.GetAllRecipes());
         }
 
         [HttpGet("{id}", Name = "Get")]
@@ -44,6 +48,7 @@ namespace RecipeApi.Controllers
             return new ObjectResult(recipe);
         }
 
+        [Authorize(Policy = "DoctorProfile")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Recipe recipe)
         {
@@ -51,6 +56,7 @@ namespace RecipeApi.Controllers
             return new OkObjectResult(recipe);
         }
 
+        [Authorize(Policy = "")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody]Recipe recipe)
         {

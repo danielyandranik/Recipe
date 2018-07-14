@@ -22,6 +22,11 @@ namespace UserManagementAPI.Controllers
         private Repo<UserPublicInfo> _repo;
 
         /// <summary>
+        /// Full info repository
+        /// </summary>
+        private Repo<UserFullInfo> _pRepo;
+
+        /// <summary>
         /// Creates new instance of user controller
         /// </summary>
         public UsersController(Repo<UserPublicInfo> repo)
@@ -34,58 +39,61 @@ namespace UserManagementAPI.Controllers
         /// </summary>
         /// <returns>enumerable of users.</returns>
         [HttpGet]
-        [Authorize]
+        [Authorize(Policy = "HasProfile")]
         public async Task<IActionResult> Get()
         {
-            var result = await this._repo.ExecuteOperationAsync("GetAllUsers");
+            // getting query
+            var query = this.Request.Query;
 
+             // result
+            var result = null as object;
+
+            // if no query return all users
+            if (query.Count == 0)
+            {
+                result = await this._repo.ExecuteOperationAsync("GetAllUsers");
+            }
+            // else return query-specific result
+            else if (query.Count == 1)
+            {
+                if (query.ContainsKey("id"))
+                {
+                    
+                    result = await this._repo.ExecuteOperationAsync("GetUsersPublicInfoById",
+                        new[]
+                        {
+                           new KeyValuePair<string,object>("id",query["id"])
+                        });
+                }
+                else if(query.ContainsKey("username"))
+                {
+                    result = await this._repo.ExecuteOperationAsync("GetUsersPublicInfoByUsername",
+                        new[]
+                        {
+                            new KeyValuePair<string,object>("username",query["username"])
+                        });
+                }
+            }
+
+            // if no result return Error code
             if (result == null)
-                return new StatusCodeResult(204);
-
-            return new JsonResult(result);                
-        }
-        
-        [HttpGet("{id:int}")]
-        [Authorize]
-        public IActionResult Get(int id)
-        {
-            var user = this._repo.ExecuteOperation("GetUserPublicInfoById",
-                new[]
-                {
-                    new KeyValuePair<string,object>("Id",id)
-                });
-
-            if (user == null)
                 return new StatusCodeResult(404);
 
-            return new JsonResult(user);
-        }
-
-        [HttpGet("{username}")]
-        [Authorize]
-        public IActionResult Get(string username)
-        {
-            var user = this._repo.ExecuteOperation("GetUserPublicInfoByUsername",
-                new[]
-                {
-                    new KeyValuePair<string,object>("Username",username)
-                });
-
-            if (user == null)
-                return new StatusCodeResult(404);
-
-            return new JsonResult(user);
+            // return result
+            return new JsonResult(result);                    
         }
 
         /// <summary>
-        /// Delets user
+        /// Deletes user
         /// </summary>
         [HttpDelete]
         [Authorize]
         public void Delete()
         {
+            // getting id
             var id = this.GetUserId();
 
+            // deleting user
             this._repo.ExecuteOperation("DeleteUser",
                 new[]
                 {
@@ -102,20 +110,28 @@ namespace UserManagementAPI.Controllers
         [Authorize(Policy = "IsAdmin")]
         public IActionResult Delete(int id)
         {
+            // getting result
             var result = (int)this._repo.ExecuteOperation("DeleteUser",
                 new[]
                 {
                     new KeyValuePair<string,object>("id",id)
                 });
 
+            // if not deleted return 404
             if (result == -1)
                 return new StatusCodeResult(404);
 
+            // returning success code
             return new StatusCodeResult(200);
         }
 
+        /// <summary>
+        /// Gets user id.
+        /// </summary>
+        /// <returns>User id.</returns>
         private int GetUserId()
         {
+            // returning id
             return int.Parse(
                 ((ClaimsIdentity)this.User.Identity).Claims
                 .Where(claim => claim.Type == "user_id").First().Value);

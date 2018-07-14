@@ -1,21 +1,15 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace RecipeApi.Models
+namespace RecipeClient
 {
-    /// <summary>
-    /// Describes Recipe model.
-    /// </summary>
     public class Recipe
     {
         /// <summary>
         /// An identifier of the recipe.
         /// </summary>
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string Id { get; set; } = null;
 
         /// <summary>
         /// The date of creation of the recipe.
@@ -25,7 +19,7 @@ namespace RecipeApi.Models
         /// <summary>
         /// An identifier of the doctor that creates the recipe.
         /// </summary>
-        public int DoctorId { get; set; }      
+        public int DoctorId { get; set; }
 
         /// <summary>
         /// Checks whether the recipe is approved by chief.
@@ -35,7 +29,7 @@ namespace RecipeApi.Models
         /// <summary>
         /// An identifier of the chief doctor.
         /// </summary>
-        public int ChiefDoctorId { get; set; } 
+        public int ChiefDoctorId { get; set; }
 
         /// <summary>
         /// An identifier of the patient for whom the recipe is created.

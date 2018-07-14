@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RecipeApi.Settings;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using RecipeApi.Context;
 using RecipeApi.Repositories;
 
@@ -40,6 +33,45 @@ namespace RecipeApi
 
             services.AddTransient<IRecipeHistoryContext, RecipeHistoryContext>();
             services.AddTransient<IRecipeHistoryRepository, RecipeHistoryRepository>();
+
+            services.AddAuthentication("Bearer")
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = this.Configuration["Endpoints:AuthApi"];
+                    options.RequireHttpsMetadata = false;
+                    options.ApiName = "RecipeApi";
+                });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("DoctorProfile", policy =>
+                {
+                    policy.RequireClaim("current_profile", "Doctor");
+                });
+
+                options.AddPolicy("PharmacistProfile", policy =>
+                {
+                    policy.RequireClaim("current_profile", "Pharmacist");
+                });
+
+                options.AddPolicy("ChiefDoctorProfile", policy => 
+                {
+                    policy.RequireClaim("currentProfile", "ChiefDoctor");
+                });
+
+                options.AddPolicy("CanWorkWithRecipe", policy =>
+                {
+                    policy.RequireClaim("current_profile", new[]
+                    {
+                        "Docotr", "Pharmacist", "Patient", "ChiefDoctor"
+                    });
+                });
+
+                options.AddPolicy("CanApproveRecipe", policy =>
+                {
+                    policy.RequireClaim("current_profile", "ChiefDoctor");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

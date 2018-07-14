@@ -1,14 +1,16 @@
 ﻿using MongoDB.Driver;
 using RecipeApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RecipeApi.Context
-{
+{   
+    /// <summary>
+    /// An interface for getting Recipes collection.
+    /// </summary>
     public interface IRecipeContext
     {
+        /// <summary>
+        /// Recipes collection.
+        /// </summary>
         IMongoCollection<Recipe> Recipes { get; }
     }
 }
