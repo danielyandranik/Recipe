@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using MedecineAPI.Settings;
 using MedicineAPI.Context;
 using MedicineAPI.Repositories;
 
 namespace MedecineAPI
 {
-    public class Startup
+	public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -34,7 +27,16 @@ namespace MedecineAPI
 				options.Database = Configuration.GetSection("MongoDb:Database").Value;
 			});
 
-            services.AddTransient<IMedicineContext, MedicineContext>();
+			services.AddAuthentication("Bearer")
+				.AddIdentityServerAuthentication(options =>
+				{
+					options.Authority = this.Configuration["Endpoints:AuthApi"];
+					options.RequireHttpsMetadata = false;
+					options.ApiName = "MedicieApi";
+				});
+
+
+			services.AddTransient<IMedicineContext, MedicineContext>();
             services.AddTransient<IMedicineRepository, MedicineRepository>();
                
         }

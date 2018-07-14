@@ -9,11 +9,11 @@ using MongoDB.Driver;
 
 namespace MedicineAPI.Context
 {
-	public class MedicineContex : IMedicineConext
+	public class MedicineContext : IMedicineContext
 	{
 		private readonly IMongoDatabase _db;
 				
-		public MedicineContex(IOptions<Settings> options)
+		public MedicineContext(IOptions<Settings> options)
 		{
 			var client = new MongoClient(options.Value.ConnectionString);
 			_db = client.GetDatabase(options.Value.Database);

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MedicineAPI.Models;
 using MedicineAPI.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MedicineAPI.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Medicine")]
+	[Produces("application/json")]
+    [Route("api/medicine")]
     public class MedicineController : Controller
     {
         private readonly IMedicineRepository _medicineRepository;
@@ -27,8 +23,8 @@ namespace MedicineAPI.Controllers
         }
 
         
-        [HttpGet("{id}", Name = "GetMedicineByID")]
-        public async Task<IActionResult> GetMedicineByID(string id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
         {
             var medicine = await this._medicineRepository.GetMedicineByID(id);
 

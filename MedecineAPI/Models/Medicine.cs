@@ -41,12 +41,9 @@ namespace MedicineAPI.Models
         /// </summary>
         public int ShelfLife { get; set;}
 
-
         /// <summary>
         /// Information about Medicine.
         /// </summary>
         public string Description { get; set; }
-
-
     }
 }
