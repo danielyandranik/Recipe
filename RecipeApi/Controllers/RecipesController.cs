@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using RecipeApi.Models;
@@ -6,6 +7,7 @@ using RecipeApi.Repositories;
 
 namespace RecipeApi.Controllers
 {
+    [Authorize(Policy = "CanWorkWithRecipe")]
     [Produces("application/json")]
     [Route("api/recipes")]
     public class RecipesController : Controller
@@ -46,6 +48,7 @@ namespace RecipeApi.Controllers
             return new ObjectResult(recipe);
         }
 
+        [Authorize(Policy = "DoctorProfile")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Recipe recipe)
         {
@@ -53,6 +56,7 @@ namespace RecipeApi.Controllers
             return new OkObjectResult(recipe);
         }
 
+        [Authorize(Policy = "")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody]Recipe recipe)
         {

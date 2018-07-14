@@ -58,6 +58,19 @@ namespace RecipeApi
                 {
                     policy.RequireClaim("currentProfile", "ChiefDoctor");
                 });
+
+                options.AddPolicy("CanWorkWithRecipe", policy =>
+                {
+                    policy.RequireClaim("current_profile", new[]
+                    {
+                        "Docotr", "Pharmacist", "Patient", "ChiefDoctor"
+                    });
+                });
+
+                options.AddPolicy("CanApproveRecipe", policy =>
+                {
+                    policy.RequireClaim("current_profile", "ChiefDoctor");
+                });
             });
         }
 
