@@ -34,10 +34,10 @@ namespace InstitutionAPI.Controllers
         public IEnumerable<Institution> Get(string type)
         {
             return this.spExecuter.ExecuteSp<Institution>(
-                "uspGetInstitutionsByType",
+                "GetInstitutions",
                  new[]
                 {
-                    new KeyValuePair<string, object>("type", type)
+                    new KeyValuePair<string, object>("Type", type)
                 });
         }
 
@@ -45,10 +45,10 @@ namespace InstitutionAPI.Controllers
         public Institution Get(int id)
         {
             return this.spExecuter.ExecuteEntitySp<Institution>(
-                "uspGetInstitutionById",
+                "GetInstitution",
                 new[]
                 {
-                    new KeyValuePair<string, object>("id", id)
+                    new KeyValuePair<string, object>("Id", id)
                 });
         }
 
@@ -57,21 +57,21 @@ namespace InstitutionAPI.Controllers
         public void Post([FromBody]Institution institution)
         {
             this.spExecuter.ExecuteSpNonQuery(
-                                    "uspCreateInstitution",
+                                    "AddInstitution",
                                     new[]
                                     {
-                                        new KeyValuePair<string, object>("name", institution.Name),
-                                        new KeyValuePair<string, object>("license", institution.License),
-                                        new KeyValuePair<string, object>("owner", institution.Owner),
-                                        new KeyValuePair<string, object>("phone", institution.Phone),
-                                        new KeyValuePair<string, object>("email", institution.Email),
-                                        new KeyValuePair<string, object>("description", institution.Description),
-                                        new KeyValuePair<string, object>("openTime", institution.OpenTime),
-                                        new KeyValuePair<string, object>("closeTime", institution.CloseTime),
-                                        new KeyValuePair<string, object>("type", institution.Type),
-                                        new KeyValuePair<string, object>("name", institution.Address.Country),
-                                        new KeyValuePair<string, object>("license", institution.Address.State),
-                                        new KeyValuePair<string, object>("addressId", institution.Address.City),
+                                        new KeyValuePair<string, object>("Name", institution.Name),
+                                        new KeyValuePair<string, object>("License", institution.License),
+                                        new KeyValuePair<string, object>("Owner", institution.Owner),
+                                        new KeyValuePair<string, object>("Phone", institution.Phone),
+                                        new KeyValuePair<string, object>("Email", institution.Email),
+                                        new KeyValuePair<string, object>("Description", institution.Description),
+                                        new KeyValuePair<string, object>("OpenTime", institution.OpenTime),
+                                        new KeyValuePair<string, object>("CloseTime", institution.CloseTime),
+                                        new KeyValuePair<string, object>("Type", institution.Type),
+                                        new KeyValuePair<string, object>("Country", institution.Address.Country),
+                                        new KeyValuePair<string, object>("State", institution.Address.State),
+                                        new KeyValuePair<string, object>("City", institution.Address.City),
                                         new KeyValuePair<string, object>("phone", institution.Address.PostalCode),
                                         new KeyValuePair<string, object>("email", institution.Address.AddressLine)
                                     });
@@ -81,22 +81,23 @@ namespace InstitutionAPI.Controllers
         [Authorize(Policy = "InstitutionAdminProfile,HighLevel")]
         public void Put(int id, [FromBody]Institution institution)
         {
-            this.spExecuter.ExecuteSpNonQuery("uspUpdateInstitution",
+            this.spExecuter.ExecuteSpNonQuery("UpdateInstitution",
                                     new[]
                                     {
-                                        new KeyValuePair<string, object>("name", institution.Name),
-                                        new KeyValuePair<string, object>("license", institution.License),
-                                        new KeyValuePair<string, object>("owner", institution.Owner),
-                                        new KeyValuePair<string, object>("phone", institution.Phone),
-                                        new KeyValuePair<string, object>("email", institution.Email),
-                                        new KeyValuePair<string, object>("description", institution.Description),
-                                        new KeyValuePair<string, object>("openTime", institution.OpenTime),
-                                        new KeyValuePair<string, object>("closeTime", institution.CloseTime),
-                                        new KeyValuePair<string, object>("name", institution.Address.Country),
-                                        new KeyValuePair<string, object>("license", institution.Address.State),
-                                        new KeyValuePair<string, object>("addressId", institution.Address.City),
-                                        new KeyValuePair<string, object>("phone", institution.Address.PostalCode),
-                                        new KeyValuePair<string, object>("email", institution.Address.AddressLine)
+                                        new KeyValuePair<string, object>("Id", id),
+                                        new KeyValuePair<string, object>("Name", institution.Name),
+                                        new KeyValuePair<string, object>("License", institution.License),
+                                        new KeyValuePair<string, object>("Owner", institution.Owner),
+                                        new KeyValuePair<string, object>("Phone", institution.Phone),
+                                        new KeyValuePair<string, object>("Email", institution.Email),
+                                        new KeyValuePair<string, object>("Description", institution.Description),
+                                        new KeyValuePair<string, object>("OpenTime", institution.OpenTime),
+                                        new KeyValuePair<string, object>("CloseTime", institution.CloseTime),
+                                        new KeyValuePair<string, object>("Country", institution.Address.Country),
+                                        new KeyValuePair<string, object>("State", institution.Address.State),
+                                        new KeyValuePair<string, object>("City", institution.Address.City),
+                                        new KeyValuePair<string, object>("PostalCode", institution.Address.PostalCode),
+                                        new KeyValuePair<string, object>("AddressLine", institution.Address.AddressLine)
                                     });
         }
 
@@ -104,10 +105,10 @@ namespace InstitutionAPI.Controllers
         [Authorize(Policy = "HighLevel")]
         public void Delete(int id)
         {
-            this.spExecuter.ExecuteSpNonQuery("uspDeleteInstitution",
+            this.spExecuter.ExecuteSpNonQuery("DeleteInstitution",
                 new[]
                 {
-                    new KeyValuePair<string, object>("id", id)
+                    new KeyValuePair<string, object>("Id", id)
                 });
         }
     }

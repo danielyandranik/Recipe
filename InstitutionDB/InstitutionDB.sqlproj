@@ -73,6 +73,13 @@
     <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateInstitution.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetInstitutionById.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetInstitutionsByType.sql" />
+    <Build Include="dbo\Tables\PharmacyMedicines.sql" />
+    <Build Include="dbo\Stored Procedures\CreateOperations\uspCreateInstitutionMedicine.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeleteInstitutionMedicine.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllInstitutionMedicines.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetInstitutionMedicineById.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateInstitutionMedicine.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateMedicineQuantity.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="dbo\InstitutionDB.refactorlog" />

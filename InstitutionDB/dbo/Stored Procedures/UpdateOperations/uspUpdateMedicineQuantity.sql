@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[uspUpdateMedicineQuantity]
-	@param1 int = 0,
-	@param2 int
+	@id int,
+	@quantity int
 AS
-	SELECT @param1, @param2
+	update PharmacyMedicines
+	set Quantity = @quantity where id = @id
 RETURN 0
