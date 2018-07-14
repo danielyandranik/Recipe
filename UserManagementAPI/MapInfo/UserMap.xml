@@ -86,48 +86,20 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
   </operation>
-  <operation name="UpdateUser">
-    <spName>uspUpdateUser</spName>
+  <operation name="UpdateUserPassword">
+    <spName>uspUpdatePassword</spName>
     <parameters>
       <parameter>
-        <parameterName>id</parameterName>
+        <parameterName>Id</parameterName>
         <spParameterName>userId</spParameterName>
       </parameter>
       <parameter>
-        <parameterName>FirstName</parameterName>
-        <spParameterName>firstName</spParameterName>
+        <parameterName>OldPassword</parameterName>
+        <spParameterName>oldPassword</spParameterName>
       </parameter>
       <parameter>
-        <parameterName>MiddleName</parameterName>
-        <spParameterName>middleName</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>LastName</parameterName>
-        <spParameterName>lastName</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>UserName</parameterName>
-        <spParameterName>userName</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>Birthdate</parameterName>
-        <spParameterName>birthdate</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>Email</parameterName>
-        <spParameterName>email</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>Password</parameterName>
-        <spParameterName>password</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>Phone</parameterName>
-        <spParameterName>phone</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>Sex</parameterName>
-        <spParameterName>sex</spParameterName>
+        <parameterName>NewPassword</parameterName>
+        <spParameterName>newPassword</spParameterName>
       </parameter>
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>

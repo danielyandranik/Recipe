@@ -112,7 +112,7 @@ namespace DatabaseAccess.Repository
         /// <summary>
         /// Constructs parameters.
         /// </summary>
-        /// <param name="mapInfo">Mao info</param>
+        /// <param name="mapInfo">Map info</param>
         /// <param name="parameters">Parameters</param>
         /// <returns>parameters</returns>
         private IEnumerable<KeyValuePair<string, object>> ConstructParameters(
