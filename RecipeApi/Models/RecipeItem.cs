@@ -1,5 +1,8 @@
 ﻿namespace RecipeApi.Models
 {
+    /// <summary>
+    /// Describes a recipe item.
+    /// </summary>
     public class RecipeItem
     {
         /// <summary>

@@ -1,5 +1,8 @@
 ﻿namespace RecipeClient
 {
+    /// <summary>
+    /// Describes a recipe item.
+    /// </summary>
     public class RecipeItem
     {
         /// <summary>
