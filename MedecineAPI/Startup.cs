@@ -23,8 +23,8 @@ namespace MedecineAPI
 			services.Configure<Settings.Settings>(
 			options =>
 			{
-				options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
-				options.Database = Configuration.GetSection("MongoDb:Database").Value;
+				options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+				options.Database = Configuration.GetSection("MongoConnection:Database").Value;
 			});
 
 			services.AddAuthentication("Bearer")
