@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MedicineApiClient
@@ -17,7 +18,19 @@ namespace MedicineApiClient
 			this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 		}
 
-		public async Task<ResponseMessage<IEnumerable<Medicine>>> GetAllMedicinesAsync()
+        public AuthenticationHeaderValue Authurization
+        {
+            get
+            {
+                return this.client.DefaultRequestHeaders.Authorization;
+            }
+            set
+            {
+                this.client.DefaultRequestHeaders.Authorization = value;
+            }
+        }
+
+        public async Task<ResponseMessage<IEnumerable<Medicine>>> GetAllMedicinesAsync()
 		{
             var httpResponse = await this.client.GetAsync(String.Empty);
 
@@ -49,7 +62,7 @@ namespace MedicineApiClient
 		{
             var json = JsonConvert.SerializeObject(medicine);
 
-            var httpResponse = await this.client.PostAsync(String.Empty, new StringContent(json));
+            var httpResponse = await this.client.PostAsync(String.Empty, new StringContent(json, Encoding.UTF8, "application/json"));
 
             //var content = await httpResponse.Content.ReadAsStringAsync();
         }
@@ -58,7 +71,7 @@ namespace MedicineApiClient
 		{
             var json = JsonConvert.SerializeObject(medicine);
 
-            var httpResponse = await this.client.PutAsync(medicine.Id, new StringContent(json));
+            var httpResponse = await this.client.PutAsync("?id=" + medicine.Id, new StringContent(json, Encoding.UTF8, "application/json"));
 
             //var content = await httpResponse.Content.ReadAsStringAsync();
 

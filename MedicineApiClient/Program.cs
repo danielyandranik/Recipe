@@ -22,7 +22,11 @@ namespace MedicineApiClient
                 Name="aspirin",
                 Units="10",
                 ShelfLife = 10
-            }).RunSynchronously();
+            }).Wait();
+
+            str = client.GetAllMedicinesAsync().Result;
+
+            ;
         }
     }
 }
