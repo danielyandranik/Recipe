@@ -69,6 +69,16 @@ namespace InstitutionAPI
                             "MinistryWorker","Admin"
                         });
                 });
+
+                options.AddPolicy("HasProfile", policy =>
+                {
+                    policy.RequireClaim("current_profile",
+                        new[]
+                        {
+                            "Doctor","Pharmacist","MinistryWorker","Patient",
+                            "Admin","HospitalAdmin"
+                        });
+                });
             });
         }
 

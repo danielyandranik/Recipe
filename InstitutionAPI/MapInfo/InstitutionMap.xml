@@ -38,8 +38,8 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
         <spParameterName>closeTime</spParameterName>
       </parameter>
       <parameter>
-        <parameterName>Name</parameterName>
-        <spParameterName>name</spParameterName>
+        <parameterName>Type</parameterName>
+        <spParameterName>type</spParameterName>
       </parameter>
       <parameter>
         <parameterName>Country</parameterName>
@@ -156,8 +156,22 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     </parameters>
     <returnDataType>Enumerable</returnDataType>
   </operation>
-  <operation name="AddInstitution">
-    <spName>uspCreateInstitution</spName>
+  <operation name="UpdatePrice">
+    <spName>uspUpdateMedicinePrice</spName>
+    <parameters>
+      <parameter>
+        <parameterName>Id</parameterName>
+        <spParameterName>id</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Price</parameterName>
+        <spParameterName>price</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="UpdateInstitution">
+    <spName>uspUpdateInstitution</spName>
     <parameters>
       <parameter>
         <parameterName>Id</parameterName>
@@ -214,44 +228,6 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
       <parameter>
         <parameterName>AddressLine</parameterName>
         <spParameterName>addressLine</spParameterName>
-      </parameter>
-    </parameters>
-    <returnDataType>NoReturnValue</returnDataType>
-    <operation name="GetInstitution">
-      <spName>uspGetInstitutionById</spName>
-      <parameters>
-        <parameter>
-          <parameterName>Id</parameterName>
-          <spParameterName>id</spParameterName>
-        </parameter>
-      </parameters>
-      <returnDataType>Entity</returnDataType>
-    </operation>
-  </operation>
-  <operation name="UpdatePrice">
-    <spName>uspUpdateMedicinePrice</spName>
-    <parameters>
-      <parameter>
-        <parameterName>Id</parameterName>
-        <spParameterName>id</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>Price</parameterName>
-        <spParameterName>price</spParameterName>
-      </parameter>
-    </parameters>
-    <returnDataType>NoReturnValue</returnDataType>
-  </operation>
-  <operation name="UpdateQuantity">
-    <spName>uspUpdateMedicineQuantity</spName>
-    <parameters>
-      <parameter>
-        <parameterName>Id</parameterName>
-        <spParameterName>id</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>Quantity</parameterName>
-        <spParameterName>quantity</spParameterName>
       </parameter>
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
