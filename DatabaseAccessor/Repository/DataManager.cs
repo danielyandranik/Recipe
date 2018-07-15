@@ -178,9 +178,31 @@ namespace DatabaseAccess.Repository
             // getting properties
             var properties = parameter.GetType().GetProperties();
 
+            // list of parameters
+            var parameters = new List<KeyValuePair<string, object>>();
+
+            // loop over properties
+            foreach (var property in properties)
+            {
+                // getting property type
+                var propertyType = property.PropertyType;
+
+                // if property doesn't have primitive type
+                if (!propertyType.IsPrimitive && propertyType != typeof(string) && propertyType != typeof(decimal))
+                {
+                    // getting properties of property
+                    var propProperties = propertyType.GetProperties();
+
+                    // adding paramaters
+                    parameters.AddRange(
+                        propProperties.Select(propProperty =>
+                        KeyValuePair.Create(propProperty.Name, propProperty.GetValue(property.GetValue(parameter)))));
+                }
+                else parameters.Add(KeyValuePair.Create(property.Name, property.GetValue(parameter)));
+            }
+
             // returning parameters
-            return properties.Select(property =>
-                    KeyValuePair.Create(property.Name, property.GetValue(parameter)));
+            return parameters;
         }
     }
 }
