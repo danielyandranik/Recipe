@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicineApiClient
+namespace RecipeClient
 {
     public class RecipeClient
     {
@@ -30,60 +30,54 @@ namespace MedicineApiClient
             }
         }
 
-        public async Task<ResponseMessage<IEnumerable<Medicine>>> GetAllMedicinesAsync()
+        public async Task<ResponseMessage<IEnumerable<Recipe>>> GetAllRecipesAsync()
         {
             var httpResponse = await this.client.GetAsync(String.Empty);
 
             var content = await httpResponse.Content.ReadAsStringAsync();
 
-            return new ResponseMessage<IEnumerable<Medicine>>
+            return new ResponseMessage<IEnumerable<Recipe>>
             {
                 StatusCode = (int)httpResponse.StatusCode,
                 IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
-                Result = JsonConvert.DeserializeObject<IEnumerable<Medicine>>(content)
+                Result = JsonConvert.DeserializeObject<IEnumerable<Recipe>>(content)
             };
         }
 
-        public async Task<ResponseMessage<Medicine>> GetMedicineAsync(string requestUri)
+        public async Task<ResponseMessage<Recipe>> GetRecipeAsync(string requestUri)
         {
             var httpResponse = await this.client.GetAsync(requestUri);
 
             var content = await httpResponse.Content.ReadAsStringAsync();
 
-            return new ResponseMessage<Medicine>
+            return new ResponseMessage<Recipe>
             {
                 StatusCode = (int)httpResponse.StatusCode,
                 IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
-                Result = JsonConvert.DeserializeObject<Medicine>(content)
+                Result = JsonConvert.DeserializeObject<Recipe>(content)
             };
         }
 
-        public async Task CreateMedicineAsync(Medicine medicine)
+        public async Task CreateRecipeAsync(Recipe recipe)
         {
-            var json = JsonConvert.SerializeObject(medicine);
+            var json = JsonConvert.SerializeObject(recipe);
 
             var httpResponse = await this.client.PostAsync(String.Empty, new StringContent(json, Encoding.UTF8, "application/json"));
-
-            //var content = await httpResponse.Content.ReadAsStringAsync();
         }
 
-        public async Task<bool> UpdateMedicineAsync(Medicine medicine)
+        public async Task<bool> UpdateRecipeAsync(Recipe recipe)
         {
-            var json = JsonConvert.SerializeObject(medicine);
+            var json = JsonConvert.SerializeObject(recipe);
 
-            var httpResponse = await this.client.PutAsync("?id=" + medicine.Id, new StringContent(json, Encoding.UTF8, "application/json"));
-
-            //var content = await httpResponse.Content.ReadAsStringAsync();
+            var httpResponse = await this.client.PutAsync("?id=" + recipe.Id, new StringContent(json, Encoding.UTF8, "application/json"));
 
             return httpResponse.IsSuccessStatusCode;
         }
 
-        public async Task<bool> DeleteMedicineAsync(string requestUri)
+        public async Task<bool> DeleteRecipeeAsync(string requestUri)
         {
 
             var httpResponse = await this.client.DeleteAsync(requestUri);
-
-            //var content = await httpResponse.Content.ReadAsStringAsync();
 
             return httpResponse.IsSuccessStatusCode;
         }
