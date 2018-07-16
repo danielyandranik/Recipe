@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using DatabaseAccess.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,37 @@ namespace UserManagementAPI.Controllers
         }
 
         /// <summary>
+        /// Gets all results
+        /// </summary>
+        /// <returns>action result</returns>
+        [HttpGet]
+        [Authorize(Policy = "IsAdmin")]
+        public async Task<IActionResult> Get()
+        {
+            // getting patients
+            var result = await this._dataManager.OperateAsync<Patient>("GetAllPatients");
+
+            // returning result
+            return this.GetActionResult(result);
+        }
+
+        /// <summary>
+        /// Gets patient by id
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>action result</returns>
+        [HttpGet("{id}")]
+        [Authorize]
+        public IActionResult Get(int id)
+        {
+            // getting result
+            var result = this._dataManager.Operate<Patient>("GetPatienById");
+
+            // returning result
+            return this.GetActionResult(result);
+        }
+
+        /// <summary>
         /// Posts new patient 
         /// </summary>
         /// <param name="patient">patient</param>
@@ -48,6 +80,11 @@ namespace UserManagementAPI.Controllers
             return this.GetActionResult(result);
         }
 
+        /// <summary>
+        /// Updates patient
+        /// </summary>
+        /// <param name="patient">patient</param>
+        /// <returns>action result</returns>
         [HttpPut]
         [Authorize]
         public IActionResult Put([FromBody]Patient patient)
@@ -105,6 +142,21 @@ namespace UserManagementAPI.Controllers
                 return new StatusCodeResult(400);
 
             return new StatusCodeResult(200);
+        }
+
+        /// <summary>
+        /// Gets action result
+        /// </summary>
+        /// <param name="result">result</param>
+        /// <returns>action result</returns>
+        private IActionResult GetActionResult(object result)
+        {
+            // if result is null return 404
+            if (result == null)
+                return new StatusCodeResult(404);
+
+            // returning result
+            return new JsonResult(result);
         }
     }
 }
