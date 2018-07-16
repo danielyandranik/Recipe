@@ -9,7 +9,8 @@ AS
 begin
 	declare @profileId int
 
-	select @profileId = UserProfile.ProfileId from UserProfile where UserProfile.UserId = @userId
+	select @profileId = UserProfile.ProfileId from UserProfile 
+		where UserProfile.UserId = @userId and [Type] = 'patient'
 
 	update Patients
 		set Patients.RegionalDoctorName = @regionalDoctorName,

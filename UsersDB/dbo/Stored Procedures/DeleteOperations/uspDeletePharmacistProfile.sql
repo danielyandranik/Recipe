@@ -4,7 +4,8 @@ AS
 begin
 	declare @profileId int
 
-	select @profileId = ProfileId from UserProfile where UserProfile.UserId = @userId and UserProfile.Type = 'pharmacist'
+	select @profileId = ProfileId from UserProfile 
+		where UserProfile.UserId = @userId and UserProfile.[Type] = 'pharmacist'
 
 	delete from Pharmacists where Pharmacists.ProfileId = @profileId
 
