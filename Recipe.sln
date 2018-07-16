@@ -19,7 +19,11 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "InstitutionDB", "Institutio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeApi", "RecipeApi\RecipeApi.csproj", "{6167B1B1-E74F-4B59-963E-F37F34ECA1C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstitutionAPI", "InstitutionAPI\InstitutionAPI.csproj", "{255D79B2-37CB-4FB4-820E-3870FB79238E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstitutionAPI", "InstitutionAPI\InstitutionAPI.csproj", "{255D79B2-37CB-4FB4-820E-3870FB79238E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstitutionClient", "InstitutionClient\InstitutionClient.csproj", "{AF517C63-131E-449C-A06D-B19058B2111E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeClient", "RecipeClient\RecipeClient.csproj", "{42BCC20D-8EB3-446C-962D-985399F89A77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +71,14 @@ Global
 		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF517C63-131E-449C-A06D-B19058B2111E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF517C63-131E-449C-A06D-B19058B2111E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF517C63-131E-449C-A06D-B19058B2111E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF517C63-131E-449C-A06D-B19058B2111E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42BCC20D-8EB3-446C-962D-985399F89A77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42BCC20D-8EB3-446C-962D-985399F89A77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42BCC20D-8EB3-446C-962D-985399F89A77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42BCC20D-8EB3-446C-962D-985399F89A77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

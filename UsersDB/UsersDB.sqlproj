@@ -70,7 +70,7 @@
     <Build Include="dbo\Tables\UserProfile.sql" />
     <Build Include="dbo\Tables\PatientProfile.sql" />
     <Build Include="dbo\Tables\PharmacistProfile.sql" />
-    <Build Include="dbo\Tables\DoctorProfile.sql" />
+    <Build Include="dbo\Tables\Doctors.sql" />
     <Build Include="dbo\Stored Procedures\CreateOperations\uspCreateDoctorProfile.sql" />
     <Build Include="dbo\Stored Procedures\CreateOperations\uspCreatePatientProfile.sql" />
     <Build Include="dbo\Stored Procedures\CreateOperations\uspCreatePharmacistProfile.sql" />
@@ -100,7 +100,6 @@
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetDoctorByUserId.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPatientByUserId.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmaistByUserId.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateOperations\uspVerifyUser.sql" />
     <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdatePassword.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserIdInfoById.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserIdInfoByUsername.sql" />
@@ -108,6 +107,10 @@
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserPublicInfoByUsername.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserPublicInfoById.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUserPersonalInfoById.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateCurrentProfile.sql" />
+    <Build Include="dbo\Tables\Verifications.sql" />
+    <Build Include="dbo\Stored Procedures\CreateOperations\uspCreateVerificationInfo.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateOperations\uspVerifyUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="UsersDB.refactorlog" />

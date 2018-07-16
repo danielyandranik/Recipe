@@ -1,13 +1,14 @@
 ﻿CREATE PROCEDURE [dbo].[uspCreateDoctorProfile]
 	@userId int,
-	@createdDate Datetime = GetDate,
-	@isApproved bit = 0,
 	@license nvarchar(20),
-	@hospitalId int
+	@hospitalName nvarchar(50),
+	@specification nvarchar(100),
+	@workStartYear nvarchar(50),
+	@graduatedYear nvarchar(50)
 AS
 	begin
 		declare @profileId int
-		execute @profileId = uspCreateProfile @userId, 'doctor', @createdDate, @isApproved 
+		execute @profileId = uspCreateProfile @userId, 'doctor'
 
-		insert into DoctorProfile values(@profileId, @license, @hospitalId)
+		insert into Doctors values(@profileId, @license, @hospitalName,@specification,@workStartYear,@graduatedYear)
 	end

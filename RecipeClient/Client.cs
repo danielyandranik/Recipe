@@ -15,7 +15,7 @@ namespace RecipeClient
         public Client()
         {
             this.client = new HttpClient();
-            this.client.DefaultRequestHeaders.
+            //this.client.DefaultRequestHeaders.
         }
 
         public Uri BaseAddress

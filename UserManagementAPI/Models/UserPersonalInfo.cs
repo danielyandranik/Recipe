@@ -1,4 +1,6 @@
-﻿namespace UserManagementAPI.Models
+﻿using System;
+
+namespace UserManagementAPI.Models
 {
     public class UserPersonalInfo:UserPublicInfo
     {
@@ -15,7 +17,7 @@
         /// <summary>
         /// Gets or sets birthdate
         /// </summary>
-        public string Birthdate { get; set; }
+        public DateTime Birthdate { get; set; }
 
         /// <summary>
         /// Gets or sets email

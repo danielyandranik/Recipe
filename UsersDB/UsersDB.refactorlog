@@ -56,4 +56,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="ProfileId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="95e1e781-64ee-482e-87f8-b7bc5e42717b" ChangeDateTime="07/14/2018 20:23:20">
+    <Property Name="ElementName" Value="[dbo].[Verifications].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Verifications]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="053268ea-a2c6-4580-bf62-eb9e845c0dbc" ChangeDateTime="07/14/2018 21:21:03">
+    <Property Name="ElementName" Value="[dbo].[Verifications].[UserId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Verifications]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Username" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3de29d96-cc9c-4203-a0ed-fe33661b0976" ChangeDateTime="07/14/2018 22:04:47">
+    <Property Name="ElementName" Value="[dbo].[DoctorProfile].[HospitalId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DoctorProfile]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HospitalName" />
+  </Operation>
 </Operations>

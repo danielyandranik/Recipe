@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
 using DatabaseAccess.Repository;
-using Microsoft.AspNetCore.Mvc;
 using UserManagementAPI.Models;
 using UserManagementAPI.Services;
 
@@ -10,85 +9,67 @@ namespace UserManagementAPI.Controllers
     /// Register controller
     /// </summary>
     [Produces("application/json")]
+    [Route("api/register")]
     public class RegisterController : Controller
     {
         /// <summary>
-        /// Mail service
+        /// Data manager
         /// </summary>
-        private MailService _mailService;
+        private DataManager _dataManager;
 
         /// <summary>
-        /// Verifier service
+        /// Verifier
         /// </summary>
         private Verifier _verifier;
 
         /// <summary>
-        /// Repository
+        /// Creates Register Controller
         /// </summary>
-        private Repo<UserFullInfo> _repo;
-
-        /// <summary>
-        /// Creates new instance of RegisterController
-        /// </summary>
-        /// <param name="repo">Repository</param>
-        /// <param name="mailService">Mail service.</param>
-        /// <param name="verifier">Verifier</param>
-        public RegisterController(Repo<UserFullInfo> repo,MailService mailService,Verifier verifier)
+        /// <param name="dataManager">Data manager</param>
+        public RegisterController(DataManager dataManager,Verifier verifier)
         {
             // setting fields
-            this._mailService = mailService;
+            this._dataManager = dataManager;
             this._verifier = verifier;
-            this._repo = repo;
-           
         }
 
         /// <summary>
-        /// Operates POST request
+        /// Register new user
         /// </summary>
-        /// <param name="user">User</param>
-        /// <returns>action result</returns>
+        /// <param name="userRegisterInfo">User registration information</param>
+        /// <returns>Action result</returns>
         [HttpPost]
-        [Route("api/register")]
-        public IActionResult Post([FromBody]UserFullInfo user)
+        public IActionResult Post([FromBody]UserRegisterInfo userRegisterInfo)
         {
-            // adding user
-            var addedUsers = (int)this._repo.ExecuteOperation("CreateUser", user);
-
-            // if user exists return 'Conflict' code
-            if (addedUsers == -1)
-                return new StatusCodeResult(409);
-
-            // generating verfification key and sending to user email
-            var key = this._verifier.GenerateVerifyKey(user.UserName);
-            this._mailService.Send(user.Email, key);
-
-            // returning 200
-            return Ok();
-        }
-
-        /// <summary>
-        /// Operates PUT request
-        /// </summary>
-        /// <param name="userVerificationInfo">User verification info.</param>
-        /// <returns>action result</returns>
-        [HttpPut]
-        [Route("api/register/verify")]
-        public IActionResult Put([FromBody]UserVerificationInfo userVerificationInfo)
-        {
-            // if verification fails,return 'Bad Request'
-            if (!this._verifier.Verify(userVerificationInfo.Username, userVerificationInfo.VerifyKey))
+            // register user
+            var result = (int)this._dataManager.Operate<UserRegisterInfo, object>("CreateUser", userRegisterInfo);
+             
+            // if registration is not successful return Bad Request code
+            if (result == 0)
                 return new StatusCodeResult(400);
 
-            // otherwise verify
-            this._repo.ExecuteOperation("VerifyUser",
-                  new[]
-                  {
-                        new KeyValuePair<string,object>("Username",userVerificationInfo.Username)
-                  });
+            // adding verification information
+            this._verifier.AddVerificationInfo(userRegisterInfo.Username, userRegisterInfo.Email);
 
-            // returning 200
-            return Ok();
+            // return Success code
+            return new StatusCodeResult(200);
+        }
 
+        /// <summary>
+        /// Verifies user
+        /// </summary>
+        /// <param name="userVerificationInfo">User verifaction information</param>
+        /// <returns>action result</returns>
+        [HttpPut]
+        [Route("verify")]
+        public IActionResult Put([FromBody]UserVerificationInfo userVerificationInfo)
+        {
+            // if user verification succeeds return 200
+            if (this._verifier.Verify(userVerificationInfo))
+                return new StatusCodeResult(200);
+
+            // return Bad Request code
+            return new StatusCodeResult(400);
         }
     }
 }

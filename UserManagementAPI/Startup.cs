@@ -88,8 +88,8 @@ namespace UserManagementAPI
                     policy.RequireClaim("current_profile",
                         new[]
                         {
-                            "Doctor","Pharmacist","MinistryWorker","Patient",
-                            "Admin","HospitalAdmin"
+                            "doctor","Pharmacist","MinistryWorker","Patient",
+                            "admin","HospitalAdmin"
                         });
                 });
             });
@@ -104,7 +104,6 @@ namespace UserManagementAPI
             // adding singletons
             services.AddSingleton(new MapInfo(this.Configuration["Mappers:Users"]));
             services.AddSingleton(new SpExecuter(this.Configuration["ConnectionStrings:UsersDB"]));
-            services.AddSingleton(new Verifier());
             services.AddSingleton(new MailService(
                 new NetworkCredential(this.Credentials["Username"],
                                       this.Credentials["Password"])));
@@ -118,6 +117,7 @@ namespace UserManagementAPI
         {
             // adding transients
             services.AddTransient(typeof(DataManager));
+            services.AddTransient(typeof(Verifier));
         }
     }
 }

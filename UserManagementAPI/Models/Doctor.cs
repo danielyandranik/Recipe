@@ -1,9 +1,18 @@
 ﻿namespace UserManagementAPI.Models
 {
-    public class Doctor
+    /// <summary>
+    /// Class for doctor profile
+    /// </summary>
+    public class Doctor:DoctorPublicInfo
     {
-        public string License { get; set; }
+        /// <summary>
+        /// Gets or sets User id
+        /// </summary>
+        public int UserId { get; set; }
 
-        public int HospitalId { get; set; }
+        /// <summary>
+        /// Gets or sets license
+        /// </summary>
+        public string License { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MedicineAPI.Controllers
 {
 	[Produces("application/json")]
-    [Route("api/medicine")]
+    [Route("api/medicines")]
     public class MedicineController : Controller
     {
         private readonly IMedicineRepository _medicineRepository;

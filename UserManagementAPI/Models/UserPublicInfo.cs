@@ -1,7 +1,7 @@
 ﻿namespace UserManagementAPI.Models
 {
     /// <summary>
-    /// Class for User  public info
+    /// Class for User public info
     /// </summary>
     public class UserPublicInfo
     {

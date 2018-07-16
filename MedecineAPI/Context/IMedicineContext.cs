@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MedicineAPI.Context
 {
-    interface IMedicineContext
+    public interface IMedicineContext
     {
         IMongoCollection<Medicine> Medicines { get; }
     }

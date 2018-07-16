@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Xml.Linq;
 
 namespace DatabaseAccess.Repository
@@ -17,16 +18,15 @@ namespace DatabaseAccess.Repository
         /// <summary>
         /// Gets or sets operations names
         /// </summary>
-        public Dictionary<string, string> OpNames
+        public ReadOnlyDictionary<string, string> OpNames
         {
             get; private set;
-
         }
 
         /// <summary>
         /// Gets or sets return values
         /// </summary>
-        public Dictionary<string, ReturnDataType> ReturnValues
+        public ReadOnlyDictionary<string, ReturnDataType> ReturnValues
         {
             get; private set;
         }
@@ -34,7 +34,7 @@ namespace DatabaseAccess.Repository
         /// <summary>
         /// Gets or sets parameters
         /// </summary>
-        public Dictionary<string, Dictionary<string, string>> Parameters
+        public ReadOnlyDictionary<string, Dictionary<string, string>> Parameters
         {
             get; private set;
         }
@@ -47,13 +47,13 @@ namespace DatabaseAccess.Repository
         {
             this._path = path;
 
-            this.GetMapInfo();
+            this.SetMapInfo();
         }
 
         /// <summary>
         /// Gets mapping information from file
         /// </summary>
-        private void GetMapInfo()
+        private void SetMapInfo()
         {
             // getting xml document
             var xml = XDocument.Load(this._path);
@@ -110,9 +110,9 @@ namespace DatabaseAccess.Repository
             }
 
             // setting properties
-            this.OpNames = opNames;
-            this.ReturnValues = returnValues;
-            this.Parameters = parameters;
+            this.OpNames = new ReadOnlyDictionary<string, string>(opNames);
+            this.ReturnValues = new ReadOnlyDictionary<string, ReturnDataType>(returnValues);
+            this.Parameters = new ReadOnlyDictionary<string, Dictionary<string, string>>(parameters);
         }
     }
 }

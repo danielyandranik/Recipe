@@ -12,9 +12,9 @@ using DatabaseAccess.Repository;
 
 namespace InstitutionAPI.Controllers
 {
+    //[Authorize(Policy = "")]
     [Produces("application/json")]
     [Route("api/Institutions")]
-    [Authorize]
     public class InstitutionsController : Controller
     {
         /// <summary>
@@ -53,7 +53,7 @@ namespace InstitutionAPI.Controllers
         /// </summary>
         /// <returns>enumerable of institutions</returns>
         [HttpGet]
-        [Authorize(Policy = "HasProfile")]
+        //[Authorize(Policy = "HasProfile")]
         public async Task<IActionResult> Get()
         {
             // getting result
@@ -104,7 +104,7 @@ namespace InstitutionAPI.Controllers
         {
             // adding institution
             var addedUsers = (int)this._repo.ExecuteOperation("AddInstitution", institution);
-
+            var a = (int)_dataManager.Operate<Institution, object>("AddInstitution", institution);
             // if institution exists return 'Conflict' code
             if (addedUsers == -1)
                 return new StatusCodeResult(409);
@@ -135,14 +135,19 @@ namespace InstitutionAPI.Controllers
                 return new NotFoundResult();
             }
 
-            // getting result
-            var result = await this._dataManager
-                .OperateAsync<Institution>("UpdateInstitution", institution);
+            //getting result
+            var result = this._dataManager
+                .Operate<Institution, object>("UpdateInstitution", institution);
 
-            // returning 200
+            //returning 200
             return Ok();
         }
 
+        /// <summary>
+        /// Delete institution
+        /// </summary>
+        /// <param name="id">Intitution id</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [Authorize(Policy = "HighLevel")]
         public IActionResult Delete(int id)

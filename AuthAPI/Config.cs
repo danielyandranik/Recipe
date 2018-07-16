@@ -17,15 +17,9 @@ namespace AuthAPI
             return new List<ApiResource>
             {
                 new ApiResource("UserManagementAPI"),
-<<<<<<< HEAD
                 new ApiResource("RecipeApi"),
-                new ApiResource("InstitutionAPI")
-
-=======
                 new ApiResource("InstitutionAPI"),
-                new ApiResource("RecipeApi"),
-				new ApiResource("MedicineApi")
->>>>>>> db4dfa138e161961c90417a135f2102f0c39bba6
+                new ApiResource("MedicineAPI")
             };
         }
 
@@ -45,13 +39,7 @@ namespace AuthAPI
                     {
                         new Secret("secret".Sha256())
                     },
-<<<<<<< HEAD
-
                     AllowedScopes = {"UserManagementAPI", "RecipeApi", "InstitutionAPI" }
-
-=======
-                    AllowedScopes = {"UserManagementAPI", "InstitutionAPI", "RecipeApi", "MedicineApi"}
->>>>>>> db4dfa138e161961c90417a135f2102f0c39bba6
                 }
             };
         }

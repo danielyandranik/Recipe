@@ -1,0 +1,29 @@
+GET api/users
+Gets all users public information.Requires Authorization and 'HasProfile' policy.
+
+GET api/users/{id}
+Gets signed user personal info by id.Requires Authorization and 'HasProfile' policy.
+
+GET api/users/{username}
+Gets user's public info by username.Requires Authorization and 'HasProfile' policy.
+
+PUT api/users/password
+Updates password.
+
+PUT api/users/profile
+Updates current profile
+
+DELETE api/users/{id}
+Deletes user by id.Requires 'IsAdmin' policy.
+
+POST api/register
+Registers new user.Doesn't require any authorization
+
+PUT api/register/verify
+Verifies the user.
+
+GET api/doctors
+Gets all doctors public information.Requires Authorization and 'HasProfile' policy.
+
+POST api/doctors
+Posts new doctor.Requires authorization.
