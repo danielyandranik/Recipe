@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RecipeClient
-
+namespace MedicineApiClient
 {
     public class ResponseMessage<T>
     {

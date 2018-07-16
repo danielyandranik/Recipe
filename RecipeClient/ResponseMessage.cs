@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MedicineApiClient
+namespace RecipeClient
 {
     public class ResponseMessage<T>
     {
@@ -10,6 +10,6 @@ namespace MedicineApiClient
 
         public bool IsSuccessStatusCode { get; set; }
 
-		public T Result { get; set; }
+		public T Content { get; set; }
     }
 }

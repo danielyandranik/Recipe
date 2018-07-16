@@ -30,56 +30,79 @@ namespace RecipeClient
             }
         }
 
-        public async Task<ResponseMessage<IEnumerable<Recipe>>> GetAllRecipesAsync()
-        {
-            var httpResponse = await this.client.GetAsync(String.Empty);
-
-            var content = await httpResponse.Content.ReadAsStringAsync();
-
-            return new ResponseMessage<IEnumerable<Recipe>>
-            {
-                StatusCode = (int)httpResponse.StatusCode,
-                IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
-                Result = JsonConvert.DeserializeObject<IEnumerable<Recipe>>(content)
-            };
-        }
-
-        public async Task<ResponseMessage<Recipe>> GetRecipeAsync(string requestUri)
+        public async Task<ResponseMessage<IEnumerable<T>>> GetAllAsync<T>(string requestUri)
         {
             var httpResponse = await this.client.GetAsync(requestUri);
 
             var content = await httpResponse.Content.ReadAsStringAsync();
 
-            return new ResponseMessage<Recipe>
+            return new ResponseMessage<IEnumerable<T>>
             {
                 StatusCode = (int)httpResponse.StatusCode,
                 IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
-                Result = JsonConvert.DeserializeObject<Recipe>(content)
+                Content = JsonConvert.DeserializeObject<IEnumerable<T>>(content)
             };
         }
 
-        public async Task CreateRecipeAsync(Recipe recipe)
+        public async Task<ResponseMessage<T>> GetAsync<T>(string requestUri)
         {
-            var json = JsonConvert.SerializeObject(recipe);
+            var httpResponse = await this.client.GetAsync(requestUri);
+
+            var content = await httpResponse.Content.ReadAsStringAsync();
+
+            return new ResponseMessage<T>
+            {
+                StatusCode = (int)httpResponse.StatusCode,
+                IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
+                Content = JsonConvert.DeserializeObject<T>(content)
+            };
+        }
+
+        public async Task<ResponseMessage<string>> CreateAsync<T>(T t)
+        {
+            var json = JsonConvert.SerializeObject(t);
 
             var httpResponse = await this.client.PostAsync(String.Empty, new StringContent(json, Encoding.UTF8, "application/json"));
+
+            var content = await httpResponse.Content.ReadAsStringAsync();
+
+            return new ResponseMessage<string>
+            {
+                StatusCode = (int)httpResponse.StatusCode,
+                IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
+                Content = content
+            };
         }
 
-        public async Task<bool> UpdateRecipeAsync(Recipe recipe)
+        public async Task<ResponseMessage<string>> UpdateAsync<T>(string requesUri, T t)
         {
-            var json = JsonConvert.SerializeObject(recipe);
+            var json = JsonConvert.SerializeObject(t);
 
-            var httpResponse = await this.client.PutAsync("?id=" + recipe.Id, new StringContent(json, Encoding.UTF8, "application/json"));
+            var httpResponse = await this.client.PutAsync(requesUri, new StringContent(json, Encoding.UTF8, "application/json"));
 
-            return httpResponse.IsSuccessStatusCode;
+            var content = await httpResponse.Content.ReadAsStringAsync();
+
+            return new ResponseMessage<string>
+            {
+                StatusCode = (int)httpResponse.StatusCode,
+                IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
+                Content = content
+            };
         }
 
-        public async Task<bool> DeleteRecipeeAsync(string requestUri)
+        public async Task<ResponseMessage<string>> DeleteAsync(string requestUri)
         {
 
             var httpResponse = await this.client.DeleteAsync(requestUri);
 
-            return httpResponse.IsSuccessStatusCode;
+            var content = await httpResponse.Content.ReadAsStringAsync();
+
+            return new ResponseMessage<string>
+            {
+                StatusCode = (int)httpResponse.StatusCode,
+                IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
+                Content = content
+            };
         }
     }
 }
