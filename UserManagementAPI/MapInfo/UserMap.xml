@@ -300,4 +300,88 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
   </operation>
+  <operation name="GetAllPatients">
+    <spName>uspGetAllPatients</spName>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
+  <operation name="GetPatientById">
+    <spName>uspGetPatientByUserId</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="CreatePatient">
+    <spName>uspCreatePatientProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>UserId</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>RegionalDoctorName</parameterName>
+        <spParameterName>regionalDoctorName</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Occupation</parameterName>
+        <spParameterName>occupation</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Address</parameterName>
+        <spParameterName>address</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>IsAlcoholic</parameterName>
+        <spParameterName>isAlcoholic</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>IsDrugAddicted</parameterName>
+        <spParameterName>isDrugAddicted</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="UpdatePatient">
+    <spName>uspUpdatePatientProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>UserId</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>RegionalDoctorName</parameterName>
+        <spParameterName>regionalDoctorName</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Occupation</parameterName>
+        <spParameterName>occupation</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Address</parameterName>
+        <spParameterName>address</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>IsAlcoholic</parameterName>
+        <spParameterName>isAlcoholic</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>IsDrugAddicted</parameterName>
+        <spParameterName>isDrugAddicted</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="DeletePatient">
+    <spName>uspDeletePatientProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
 </operations>

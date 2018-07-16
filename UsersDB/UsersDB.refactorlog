@@ -77,4 +77,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="HospitalName" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="baed991d-a63d-446c-a85a-d593631c8158" ChangeDateTime="07/16/2018 12:32:19">
+    <Property Name="ElementName" Value="[dbo].[Patients].[IsAlcoh]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Patients]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsAlcohоlic" />
+  </Operation>
 </Operations>
