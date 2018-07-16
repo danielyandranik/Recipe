@@ -1,46 +1,158 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using DatabaseAccess.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using UserManagementAPI.Models;
 
 namespace UserManagementAPI.Controllers
 {
+    /// <summary>
+    /// Pharmacists controller
+    /// </summary>
     [Produces("application/json")]
     [Route("api/pharmacists")]
     public class PharmacistsController : Controller
     {
-        // GET: api/Pharmacies
-        [HttpGet]
-        public IEnumerable<string> Get()
+        /// <summary>
+        /// Data manager
+        /// </summary>
+        private DataManager _dataManager;
+
+        /// <summary>
+        /// Creates new instance of PharmacistsController
+        /// </summary>
+        /// <param name="dataManager">Data manager</param>
+        public PharmacistsController(DataManager dataManager)
         {
-            return new string[] { "value1", "value2" };
+            this._dataManager = dataManager;
         }
 
-        // GET: api/Pharmacies/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        /// <summary>
+        /// Gets all pharmacists
+        /// </summary>
+        /// <returns>action result</returns>
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Get()
         {
-            return "value";
+            // getting pharmacists
+            var result = await this._dataManager.OperateAsync<Pharmacist>("GetAllPharmacists");
+
+            // returning result
+            if (result == null)
+                return new StatusCodeResult(204);
+
+            return new JsonResult(result);
         }
-        
-        // POST: api/Pharmacies
+
+        /// <summary>
+        /// Gets pharmacist by id
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>action result</returns>
+        [HttpGet("{id}")]
+        [Authorize]
+        public IActionResult Get(int id)
+        {
+            // gettting userId
+            var userId = this.GetUserId();
+
+            if (userId != id)
+                return new StatusCodeResult(400);
+
+            // getting doctor
+            var pharmacist = this._dataManager.Operate<int, PharmacistFullInfo>("GetPharmacistById", id);
+
+            // returning result
+            if (pharmacist == null)
+                return new StatusCodeResult(404);
+
+            return new JsonResult(pharmacist);
+        }
+
+        /// <summary>
+        /// Posts new pharmacist
+        /// </summary>
+        /// <param name="pharmacistFullInfo">pharmacist full info</param>
+        /// <returns>action result</returns>
         [HttpPost]
-        public void Post([FromBody]string value)
+        [Authorize]
+        public IActionResult Post([FromBody]PharmacistFullInfo pharmacistFullInfo)
         {
+            // checking id
+            if (pharmacistFullInfo.UserId != this.GetUserId())
+                return new StatusCodeResult(400);
+
+            // adding new pharmacist
+            var result = (int)this._dataManager.Operate<PharmacistFullInfo, object>("CreatePharmacist", pharmacistFullInfo);
+
+            // returning result
+            return this.GetActionResult(result);
         }
-        
-        // PUT: api/Pharmacies/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+
+        /// <summary>
+        /// Updates pharmacist
+        /// </summary>
+        /// <param name="pharmacistFullInfo">pharmacist full info</param>
+        /// <returns>action result</returns>
+        [HttpPut]
+        [Authorize]
+        public IActionResult Put([FromBody]PharmacistFullInfo pharmacistFullInfo)
         {
+            // checking id
+            if (pharmacistFullInfo.UserId != this.GetUserId())
+                return new StatusCodeResult(400);
+
+            // updating pharmacist
+            var result = (int)this._dataManager.Operate<PharmacistFullInfo, object>("UpdatePharmacist", pharmacistFullInfo);
+
+            // returning result
+            return this.GetActionResult(result);
         }
-        
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+
+        /// <summary>
+        /// Deletes pharmacist
+        /// </summary>
+        /// <returns>action result</returns>
+        [HttpDelete]
+        [Authorize]
+        public IActionResult Delete()
         {
+            // getting user id
+            var userId = this.GetUserId();
+
+            // deleting
+            var result = (int)this._dataManager.Operate<int, object>("DeletePharmacist", userId);
+
+            // returning result
+            return this.GetActionResult(result);
+        }
+
+        /// <summary>
+        /// Gets user id.
+        /// </summary>
+        /// <returns>User id.</returns>
+        private int GetUserId()
+        {
+            // returning id
+            return int.Parse(
+                ((ClaimsIdentity)this.User.Identity).Claims
+                .Where(claim => claim.Type == "user_id").First().Value);
+        }
+
+        /// <summary>
+        /// Gets action result
+        /// </summary>
+        /// <param name="result">result</param>
+        /// <returns>return result</returns>
+        private IActionResult GetActionResult(int result)
+        {
+            if (result == 0)
+                return new StatusCodeResult(400);
+
+            return new StatusCodeResult(200);
         }
     }
 }

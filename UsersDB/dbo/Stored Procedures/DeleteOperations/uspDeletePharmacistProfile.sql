@@ -6,7 +6,7 @@ begin
 
 	select @profileId = ProfileId from UserProfile where UserProfile.UserId = @userId and UserProfile.Type = 'pharmacist'
 
-	delete from PharmacistProfile where PharmacistProfile.ProfileId = @profileId
+	delete from Pharmacists where Pharmacists.ProfileId = @profileId
 
 	delete from UserProfile where UserProfile.ProfileId = @profileId
 

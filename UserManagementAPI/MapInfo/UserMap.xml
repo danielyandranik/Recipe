@@ -236,4 +236,68 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <spName>uspGetAllPharmacists</spName>
     <returnDataType>Enumerable</returnDataType>
   </operation>
+  <operation name="GetPharmacistById">
+    <spName>uspGetPharmacistByUserId</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primtive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Entity</returnDataType>
+  </operation>
+  <operation name="CreatePharmacist">
+    <spName>uspCreatePharmacistProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>UserId</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>PharmacyId</parameterName>
+        <spParameterName>pharmacyId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>PharmacyName</parameterName>
+        <spParameterName>pharmacyName</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>StartedWorking</parameterName>
+        <spParameterName>startedWorking</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="UpdatePharmacist">
+    <spName>uspUpdatePharmacistProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>UserId</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>PharmacyId</parameterName>
+        <spParameterName>pharmacyId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>PharmacyName</parameterName>
+        <spParameterName>pharmacyName</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>StartedWorking</parameterName>
+        <spParameterName>startedWorking</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="DeletePharmacist">
+    <spName>uspDeletePharmacistProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
 </operations>
