@@ -95,6 +95,10 @@ namespace UserManagementAPI.Controllers
         [Route("password")]
         public IActionResult Put([FromBody]PasswordUpdateInfo passwordUpdateInfo)
         {
+            // checking id
+            if (passwordUpdateInfo.Id != this.GetUserId())
+                return new StatusCodeResult(401);
+
             // updating password
             var result = (int)this._dataManager.Operate<PasswordUpdateInfo, object>("UpdatePassword", passwordUpdateInfo);
 
@@ -111,6 +115,10 @@ namespace UserManagementAPI.Controllers
         [Route("profile")]
         public IActionResult Put([FromBody]ProfileUpdateInfo profileUpdateInfo)
         {
+            // checking id
+            if (profileUpdateInfo.Id != this.GetUserId())
+                return new StatusCodeResult(401);
+
             // updating current profile
             var result = (int)this._dataManager
                 .Operate<ProfileUpdateInfo, object>("UpdateCurrentProfile",profileUpdateInfo);

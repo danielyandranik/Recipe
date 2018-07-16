@@ -49,6 +49,11 @@ namespace UserManagementAPI.Controllers
             return new JsonResult(result);
         }
 
+        /// <summary>
+        /// Gets doctor by id
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>action result</returns>
         [HttpGet("{id}")]
         [Authorize]
         public IActionResult Get(int id)
@@ -57,7 +62,7 @@ namespace UserManagementAPI.Controllers
             var userId = this.GetUserId();
 
             if (userId != id)
-                return new StatusCodeResult(400);
+                return new StatusCodeResult(401);
 
             // getting doctor
             var doctor = this._dataManager.Operate<int, Doctor>("GetDoctorById", id);
@@ -78,6 +83,10 @@ namespace UserManagementAPI.Controllers
         [Authorize]
         public IActionResult Post([FromBody]Doctor doctor)
         {
+            // checking id
+            if (doctor.UserId != this.GetUserId())
+                return new StatusCodeResult(401);
+
             // adding new doctor
             var result = (int)this._dataManager.Operate<Doctor, object>("CreateDoctor", doctor);
 
@@ -94,6 +103,10 @@ namespace UserManagementAPI.Controllers
         [Authorize]
         public IActionResult Put([FromBody]DoctorUpdateInfo doctorUpdateInfo)
         {
+            // checking id
+            if (doctorUpdateInfo.UserId != this.GetUserId())
+                return new StatusCodeResult(401);
+
             // updating doctor
             var result = (int)this._dataManager.Operate<DoctorUpdateInfo, object>("UpdateDoctor", doctorUpdateInfo);
 
