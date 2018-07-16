@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using RecipeApi.Models;
@@ -6,6 +7,7 @@ using RecipeApi.Repositories;
 
 namespace RecipeApi.Controllers
 {
+    [Authorize(Policy = "CanWorkWithRecipeHistory")]
     [Produces("application/json")]
     [Route("api/recipeHistories")]
     public class RecipeHistoriesController : Controller

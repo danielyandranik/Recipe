@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using DatabaseAccess.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -48,6 +50,31 @@ namespace UserManagementAPI.Controllers
         }
 
         /// <summary>
+        /// Gets doctor by id
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>action result</returns>
+        [HttpGet("{id}")]
+        [Authorize]
+        public IActionResult Get(int id)
+        {
+            // gettting userId
+            var userId = this.GetUserId();
+
+            if (userId != id)
+                return new StatusCodeResult(401);
+
+            // getting doctor
+            var doctor = this._dataManager.Operate<int, Doctor>("GetDoctorById", id);
+
+            // returning result
+            if (doctor == null)
+                return new StatusCodeResult(404);
+
+            return new JsonResult(doctor);
+        }
+
+        /// <summary>
         /// Posts new doctor
         /// </summary>
         /// <param name="doctor">doctor</param>
@@ -56,14 +83,73 @@ namespace UserManagementAPI.Controllers
         [Authorize]
         public IActionResult Post([FromBody]Doctor doctor)
         {
+            // checking id
+            if (doctor.UserId != this.GetUserId())
+                return new StatusCodeResult(401);
+
             // adding new doctor
             var result = (int)this._dataManager.Operate<Doctor, object>("CreateDoctor", doctor);
 
-            // if no doctor is added return Bad request code
+            // returning result
+            return this.GetActionResult(result);
+        }
+
+        /// <summary>
+        /// Puts doctor
+        /// </summary>
+        /// <param name="doctorUpdateInfo">Doctor update information</param>
+        /// <returns>action result</returns>
+        [HttpPut]
+        [Authorize]
+        public IActionResult Put([FromBody]DoctorUpdateInfo doctorUpdateInfo)
+        {
+            // checking id
+            if (doctorUpdateInfo.UserId != this.GetUserId())
+                return new StatusCodeResult(401);
+
+            // updating doctor
+            var result = (int)this._dataManager.Operate<DoctorUpdateInfo, object>("UpdateDoctor", doctorUpdateInfo);
+
+            // returning result
+            return this.GetActionResult(result);
+        }
+
+        [HttpDelete]
+        [Authorize]
+        public IActionResult Delete()
+        {
+            // getting user id
+            var userId = this.GetUserId();
+
+            // deleting
+            var result = (int)this._dataManager.Operate<int, object>("DeleteDoctor", userId);
+
+            // returning result
+            return this.GetActionResult(result);
+        }
+
+        /// <summary>
+        /// Gets user id.
+        /// </summary>
+        /// <returns>User id.</returns>
+        private int GetUserId()
+        {
+            // returning id
+            return int.Parse(
+                ((ClaimsIdentity)this.User.Identity).Claims
+                .Where(claim => claim.Type == "user_id").First().Value);
+        }
+
+        /// <summary>
+        /// Gets action result
+        /// </summary>
+        /// <param name="result">result</param>
+        /// <returns>return result</returns>
+        private IActionResult GetActionResult(int result)
+        {
             if (result == 0)
                 return new StatusCodeResult(400);
 
-            // return Success code
             return new StatusCodeResult(200);
         }
     }

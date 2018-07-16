@@ -68,8 +68,8 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Users.sql" />
     <Build Include="dbo\Tables\UserProfile.sql" />
-    <Build Include="dbo\Tables\PatientProfile.sql" />
-    <Build Include="dbo\Tables\PharmacistProfile.sql" />
+    <Build Include="dbo\Tables\Patients.sql" />
+    <Build Include="dbo\Tables\Pharmacists.sql" />
     <Build Include="dbo\Tables\Doctors.sql" />
     <Build Include="dbo\Stored Procedures\CreateOperations\uspCreateDoctorProfile.sql" />
     <Build Include="dbo\Stored Procedures\CreateOperations\uspCreatePatientProfile.sql" />

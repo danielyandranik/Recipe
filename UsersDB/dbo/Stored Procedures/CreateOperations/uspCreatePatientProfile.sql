@@ -1,11 +1,19 @@
 ﻿CREATE PROCEDURE [dbo].[uspCreatePatientProfile]
 	@userId int,
-	@createdDate Datetime = GetDate,
-	@isApproved bit = 0
+	@regionalDoctorName nvarchar(50),
+	@occupation nvarchar(50),
+	@address nvarchar(50),
+	@isAlcoholic nvarchar(50),
+	@isDrugAddicted nvarchar(50)
 AS
 	begin
 		declare @profileId int
-		execute @profileId = uspCreateProfile @userId, 'patient', @createdDate, @isApproved 
+		execute @profileId = uspCreateProfile @userId, 'patient'
 
-		insert into PatientProfile values(@profileId)
+		update UserProfile
+			set UserProfile.IsApproved = 1
+			where UserProfile.ProfileId = @profileId and UserProfile.UserId = @userId
+
+		insert into Patients
+			values(@profileId,@regionalDoctorName,@occupation,@address,@isAlcoholic,@isDrugAddicted)
 	end

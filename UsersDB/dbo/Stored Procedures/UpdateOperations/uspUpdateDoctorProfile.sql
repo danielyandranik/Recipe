@@ -1,15 +1,21 @@
 ﻿CREATE PROCEDURE [dbo].[uspUpdateDoctorProfile]
 	@userId int,
 	@license nvarchar(50) = null,
-	@hospitalId int = null
+	@hospitalName nvarchar(50),
+	@specification nvarchar(50)
 AS
 begin
 	declare @profileId int
 
 	select @profileId = UserProfile.ProfileId from UserProfile where UserProfile.UserId = @userId
 
-	update DoctorProfile set 
+	update Doctors set 
 		License = IIF(@license = null, License, @license),
-		HospitalId = IIF(@hospitalId = null, HospitalId, @hospitalId)
-		where DoctorProfile.ProfileId = @profileId
+		HospitalName = IIF(@hospitalName = null, HospitalName, @hospitalName),
+		Specification = IIf(@specification = null,Specification,@specification)		
+		where Doctors.ProfileId = @profileId
+
+	update UserProfile  set
+		IsApproved = 0 
+		where ProfileId = @profileId and UserId = @userId
 end
