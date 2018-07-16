@@ -54,11 +54,6 @@ namespace RecipeApi
                     policy.RequireClaim("current_profile", "Pharmacist");
                 });
 
-                options.AddPolicy("ChiefDoctorProfile", policy => 
-                {
-                    policy.RequireClaim("currentProfile", "ChiefDoctor");
-                });
-
                 options.AddPolicy("CanWorkWithRecipe", policy =>
                 {
                     policy.RequireClaim("current_profile", new[]
@@ -67,9 +62,20 @@ namespace RecipeApi
                     });
                 });
 
-                options.AddPolicy("CanApproveRecipe", policy =>
+                options.AddPolicy("CanChangeRecipe", policy =>
                 {
-                    policy.RequireClaim("current_profile", "ChiefDoctor");
+                    policy.RequireClaim("current_profile", new[]
+                    {
+                        "ChiefDoctor", "Doctor"
+                    });
+                });
+
+                options.AddPolicy("CanWorkWithRecipeHistory", policy => 
+                {
+                    policy.RequireClaim("current_profile", new[]
+                    {
+                        "Pharmacist", "Doctor", "Patient"
+                    });
                 });
             });
         }
