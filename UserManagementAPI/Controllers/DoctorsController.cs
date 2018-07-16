@@ -49,6 +49,26 @@ namespace UserManagementAPI.Controllers
             return new JsonResult(result);
         }
 
+        [HttpGet("{id}")]
+        [Authorize]
+        public IActionResult Get(int id)
+        {
+            // gettting userId
+            var userId = this.GetUserId();
+
+            if (userId != id)
+                return new StatusCodeResult(400);
+
+            // getting doctor
+            var doctor = this._dataManager.Operate<int, Doctor>("GetDoctorById", id);
+
+            // returning result
+            if (doctor == null)
+                return new StatusCodeResult(404);
+
+            return new JsonResult(doctor);
+        }
+
         /// <summary>
         /// Posts new doctor
         /// </summary>

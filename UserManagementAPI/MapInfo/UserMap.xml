@@ -160,6 +160,16 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <spName>uspGetAllDoctors</spName>
     <returnDataType>Enumerable</returnDataType>
   </operation>
+  <operation name="GetDoctorByID">
+    <spName>uspGetDoctorByUserId</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>     
+    </parameters>
+    <returnDataType>Entity</returnDataType>
+  </operation>
   <operation name="CreateDoctor">
     <spName>uspCreateDoctorProfile</spName>
     <parameters>
@@ -221,5 +231,9 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
       </parameter>
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="GetAllPharmacists">
+    <spName>uspGetAllPharmacists</spName>
+    <returnDataType>Enumerable</returnDataType>
   </operation>
 </operations>
