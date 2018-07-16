@@ -60,7 +60,7 @@ namespace UserManagementAPI.Controllers
             var userId = this.GetUserId();
 
             if (userId != id)
-                return new StatusCodeResult(400);
+                return new StatusCodeResult(401);
 
             // getting doctor
             var pharmacist = this._dataManager.Operate<int, PharmacistFullInfo>("GetPharmacistById", id);
@@ -83,7 +83,7 @@ namespace UserManagementAPI.Controllers
         {
             // checking id
             if (pharmacistFullInfo.UserId != this.GetUserId())
-                return new StatusCodeResult(400);
+                return new StatusCodeResult(401);
 
             // adding new pharmacist
             var result = (int)this._dataManager.Operate<PharmacistFullInfo, object>("CreatePharmacist", pharmacistFullInfo);
@@ -103,7 +103,7 @@ namespace UserManagementAPI.Controllers
         {
             // checking id
             if (pharmacistFullInfo.UserId != this.GetUserId())
-                return new StatusCodeResult(400);
+                return new StatusCodeResult(401);
 
             // updating pharmacist
             var result = (int)this._dataManager.Operate<PharmacistFullInfo, object>("UpdatePharmacist", pharmacistFullInfo);
