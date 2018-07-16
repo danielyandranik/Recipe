@@ -190,4 +190,36 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
   </operation>
+  <operation name="UpdateDoctor">
+    <spName>uspUpdateDoctorProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>UserId</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>License</parameterName>
+        <spParameterName>license</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>HospitalName</parameterName>
+        <spParameterName>hospitalName</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Specification</parameterName>
+        <spParameterName>specification</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="DeleteDoctor">
+    <spName>uspDeleteDoctorProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
 </operations>

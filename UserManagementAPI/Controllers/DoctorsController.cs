@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using DatabaseAccess.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -59,11 +61,62 @@ namespace UserManagementAPI.Controllers
             // adding new doctor
             var result = (int)this._dataManager.Operate<Doctor, object>("CreateDoctor", doctor);
 
-            // if no doctor is added return Bad request code
+            // returning result
+            return this.GetActionResult(result);
+        }
+
+        /// <summary>
+        /// Puts doctor
+        /// </summary>
+        /// <param name="doctorUpdateInfo">Doctor update information</param>
+        /// <returns>action result</returns>
+        [HttpPut]
+        [Authorize]
+        public IActionResult Put([FromBody]DoctorUpdateInfo doctorUpdateInfo)
+        {
+            // updating doctor
+            var result = (int)this._dataManager.Operate<DoctorUpdateInfo, object>("UpdateDoctor", doctorUpdateInfo);
+
+            // returning result
+            return this.GetActionResult(result);
+        }
+
+        [HttpDelete]
+        [Authorize]
+        public IActionResult Delete()
+        {
+            // getting user id
+            var userId = this.GetUserId();
+
+            // deleting
+            var result = (int)this._dataManager.Operate<int, object>("DeleteDoctor", userId);
+
+            // returning result
+            return this.GetActionResult(result);
+        }
+
+        /// <summary>
+        /// Gets user id.
+        /// </summary>
+        /// <returns>User id.</returns>
+        private int GetUserId()
+        {
+            // returning id
+            return int.Parse(
+                ((ClaimsIdentity)this.User.Identity).Claims
+                .Where(claim => claim.Type == "user_id").First().Value);
+        }
+
+        /// <summary>
+        /// Gets action result
+        /// </summary>
+        /// <param name="result">result</param>
+        /// <returns>return result</returns>
+        private IActionResult GetActionResult(int result)
+        {
             if (result == 0)
                 return new StatusCodeResult(400);
 
-            // return Success code
             return new StatusCodeResult(200);
         }
     }

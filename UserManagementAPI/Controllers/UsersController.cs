@@ -37,8 +37,7 @@ namespace UserManagementAPI.Controllers
         public async Task<IActionResult> Get()
         {
             // getting result
-            var result = await this._dataManager
-                .OperateAsync<UserPublicInfo>("GetAllUsers");
+            var result = await this._dataManager.OperateAsync<UserPublicInfo>("GetAllUsers");
 
             // returning result
             return this.GetGetResult(result);
