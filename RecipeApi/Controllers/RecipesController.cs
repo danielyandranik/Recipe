@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using RecipeApi.Models;
 using RecipeApi.Repositories;
+using System.Linq;
 
 namespace RecipeApi.Controllers
 {
@@ -28,11 +29,16 @@ namespace RecipeApi.Controllers
                 StringValues patientId;
                 if (query.TryGetValue("patientId", out patientId))
                 {
+                    if(User.FindFirst("current_profile").Value == "Patient")
+                    {
+                        // Get patientId from user managment
+                        // check if patiendIds are not equal
+                        return new UnauthorizedResult();
+                    }
                     return new ObjectResult(await this._recipeRepository.GetAllRecipesByPatient(int.Parse(patientId[0])));
                 }
                 return new NotFoundResult();
             }
-
             return new ObjectResult(await this._recipeRepository.GetAllRecipes());
         }
 
@@ -56,7 +62,7 @@ namespace RecipeApi.Controllers
             return new OkObjectResult(recipe);
         }
 
-        [Authorize(Policy = "")]
+        [Authorize(Policy = "CanChangeRecipe")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody]Recipe recipe)
         {
@@ -73,6 +79,7 @@ namespace RecipeApi.Controllers
             return new OkObjectResult(recipe);
         }
 
+        [Authorize(Policy = "DoctorProfile")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
