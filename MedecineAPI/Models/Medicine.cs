@@ -51,5 +51,7 @@ namespace MedicineAPI.Models
         /// </summary>
         [BsonElement("description")]
         public string Description { get; set; }
+
+
     }
 }

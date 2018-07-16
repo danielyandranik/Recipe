@@ -22,7 +22,33 @@ namespace MedicineAPI.Controllers
             return new ObjectResult(await this._medicineRepository.GetAllMedicines());
         }
 
-        
+        [HttpGet]
+        public async Task<IActionResult> GetMedicineByName(string name)
+        {
+            var medicine = await this._medicineRepository.GetMedicineByName(name);
+
+            if(medicine == null)
+            {
+                return new NotFoundResult();
+            }
+
+            return new ObjectResult(medicine);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetMedicineByCountry(string name)
+        {
+            var medicines = await this._medicineRepository.GetByCountry(name);
+
+            if (medicines == null)
+            {
+                return new NotFoundResult();
+            }
+
+            return new ObjectResult(medicines);
+        }
+
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {

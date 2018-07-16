@@ -30,6 +30,15 @@ namespace MedicineAPI.Repositories
         Task<Medicine> GetMedicineByName(string name);
 
         /// <summary>
+        /// Getting medicines from this coutry.
+        /// </summary>
+        /// <param name="country">Country Name.</param>
+        /// <returns>List of Medicines.</returns>
+        Task<IEnumerable<Medicine>> GetByCountry(string country);
+
+
+
+        /// <summary>
         /// Adds a new medicine.
         /// </summary>
         /// <param name="medicine">Medicine to add.</param>
