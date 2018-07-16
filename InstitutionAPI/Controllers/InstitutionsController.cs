@@ -94,19 +94,39 @@ namespace InstitutionAPI.Controllers
         }
 
         /// <summary>
+        /// Get pharmacies by medicine id
+        /// </summary>
+        /// <param name="id">Medicine id</param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        [Authorize(Policy = "HasProfile")]
+        public async Task<IActionResult> GetPharmacy(int medicineId)
+        {
+            // getting result
+            var result = await this._dataManager.OperateAsync<int, Institution>("GetPharmaciesByMedicine", medicineId);
+
+            // if no content retun 204
+            if (result == null)
+                return new StatusCodeResult(204);
+
+            // return JSON serialized content
+            return new JsonResult(result);
+        }
+
+        /// <summary>
         /// Add institution
         /// </summary>
         /// <param name="user">Institution</param>
         /// <returns>Action result</returns>
         [HttpPost]
         [Authorize(Policy = "HighLevel")]
-        public IActionResult Post([FromBody]Institution institution)
+        public async Task<IActionResult> Post([FromBody]Institution institution)
         {
             // adding institution
-            var addedUsers = (int)this._repo.ExecuteOperation("AddInstitution", institution);
-            var a = (int)_dataManager.Operate<Institution, object>("AddInstitution", institution);
+            var addedInstitutions = await this._dataManager.OperateAsync<Institution, object>("AddInstitution", institution);
+
             // if institution exists return 'Conflict' code
-            if (addedUsers == -1)
+            if ((int)addedInstitutions == -1)
                 return new StatusCodeResult(409);
 
             // returning 200
@@ -120,24 +140,18 @@ namespace InstitutionAPI.Controllers
         /// <param name="institution">Updating info</param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        [Authorize(Policy = "InstitutionAdminProfile,HighLevel")]
+        [Authorize(Policy = "CanUpdateInstitution")]
         public async Task<IActionResult> Put(int id, [FromBody]Institution institution)
         {
-            var dbInstitution = await this._dataManager
-                .OperateAsync<Institution>("GetInstitution",
-                                            new[]
-                                            {
-                                                new KeyValuePair<string, object>("Id", id)
-                                            });
+            var dbInstitution = await this._dataManager.OperateAsync<int, Institution>("GetInstitution", id);
 
-            if (dbInstitution == null)
+            if ((int)dbInstitution == -1)
             {
                 return new NotFoundResult();
             }
 
             //getting result
-            var result = this._dataManager
-                .Operate<Institution, object>("UpdateInstitution", institution);
+            var result = await this._dataManager.OperateAsync<Institution, object>("UpdateInstitution", institution);
 
             //returning 200
             return Ok();
@@ -150,17 +164,12 @@ namespace InstitutionAPI.Controllers
         /// <returns></returns>
         [HttpDelete("{id}")]
         [Authorize(Policy = "HighLevel")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var deletedInstitutions = 0;
-            this.spExecuter.ExecuteSpNonQuery("DeleteInstitution",
-                new[]
-                {
-                    new KeyValuePair<string, object>("Id", id)
-                });
-
+            var deletedInstitutions  = await this._dataManager.OperateAsync<int, Object>("DeleteInstitution", id);
+            
             // if deleting impossible return 'Conflict' code
-            if (deletedInstitutions == -1)
+            if ((int)deletedInstitutions == -1)
                 return new StatusCodeResult(409);
 
             // returning 200

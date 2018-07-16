@@ -77,7 +77,6 @@
     <Build Include="dbo\Stored Procedures\CreateOperations\uspCreatePharmacyMedicine.sql" />
     <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeletePharmacyMedicine.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmacyMedicines.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmacyMedicineById.sql" />
     <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateMedicinePrice.sql" />
     <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateMedicineQuantity.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmaciesByMedicineId.sql" />

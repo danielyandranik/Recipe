@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using DatabaseAccess.Repository;
+using DatabaseAccess.SpExecuters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,10 +20,7 @@ namespace InstitutionAPI
         private IConfiguration Configuration = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("appsettings.json").Build();
-
-        private IConfiguration Credentials = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("MailCredentials.json").Build();
+        
 
         /// <summary>
         /// Configures services.
@@ -50,6 +49,15 @@ namespace InstitutionAPI
                 options.AddPolicy("PharmacistProfile", policy =>
                 {
                     policy.RequireClaim("current_profile", "Pharmacist");
+                });
+
+                options.AddPolicy("CanUpdateInstitution", policy =>
+                {
+                    policy.RequireClaim("current_profile",
+                        new[]
+                        {
+                            "PharmacyAdmin","HospitalAdmin", "MinistryWorker", "Admin"
+                        });
                 });
 
                 options.AddPolicy("InstitutionAdminProfile", policy =>
@@ -97,6 +105,27 @@ namespace InstitutionAPI
 
             app.UseAuthentication();
             app.UseMvc();
+        }
+
+        /// <summary>
+        /// Adds singletons
+        /// </summary>
+        /// <param name="services">Services</param>
+        private void AddSingletons(IServiceCollection services)
+        {
+            // adding singletons
+            services.AddSingleton(new MapInfo(this.Configuration["Mappers:Institutions"]));
+            services.AddSingleton(new SpExecuter(this.Configuration["ConnectionStrings:InstitutionDB"]));
+        }
+
+        /// <summary>
+        /// Adds transients
+        /// </summary>
+        /// <param name="services">Services</param>
+        private void AddTransients(IServiceCollection services)
+        {
+            // adding transients
+            services.AddTransient(typeof(DataManager));
         }
     }
 }
