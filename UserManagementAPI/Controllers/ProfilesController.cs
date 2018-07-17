@@ -50,7 +50,7 @@ namespace UserManagementAPI.Controllers
         /// </summary>
         /// <param name="id">id</param>
         /// <returns>action result</returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         [Authorize]
         public async Task<IActionResult> Get(int id)
         {
@@ -59,6 +59,22 @@ namespace UserManagementAPI.Controllers
 
             // getting result
             var result = await this._dataManager.OperateAsync<int, Profile>("GetProfilesById", id);
+
+            // returning result
+            return this.GetActionResult(result);
+        }
+
+        /// <summary>
+        /// Gets unapproved profiles by type.
+        /// </summary>
+        /// <param name="type">type</param>
+        /// <returns>action result</returns>
+        [HttpGet("{type}")]
+        [Authorize(Policy = "IsApprover")]
+        public async Task<IActionResult> Get(string type)
+        {
+            // getting result
+            var result = await this._dataManager.OperateAsync<string, Profile>("GetUnapprovedProfiles", type);
 
             // returning result
             return this.GetActionResult(result);
