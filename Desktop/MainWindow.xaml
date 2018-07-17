@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desktop"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="768" MinWidth="1024" MaxWidth="{DynamicResource {x:Static SystemParameters.FullPrimaryScreenWidthKey}}" MaxHeight="{DynamicResource {x:Static SystemParameters.FullPrimaryScreenHeightKey}}" WindowStartupLocation="CenterScreen" WindowState="Maximized" Background="#FF4FC0FF">
+        Title="MainWindow" MinHeight="768" MinWidth="1024" MaxWidth="{DynamicResource {x:Static SystemParameters.FullPrimaryScreenWidthKey}}" MaxHeight="{DynamicResource {x:Static SystemParameters.FullPrimaryScreenHeightKey}}" WindowStartupLocation="CenterScreen" WindowState="Maximized" Background="#FF4FC0FF" Width="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenWidthKey}}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
