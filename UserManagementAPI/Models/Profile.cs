@@ -8,6 +8,11 @@ namespace UserManagementAPI.Models
     public class Profile
     {
         /// <summary>
+        /// Gets or sets user id
+        /// </summary>
+        public int UserId { get; set; }
+
+        /// <summary>
         /// Gets or sets type
         /// </summary>
         public string Type { get; set; }

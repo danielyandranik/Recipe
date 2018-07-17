@@ -126,6 +126,7 @@
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllProfiles.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetProfilesByUserId.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUnapprovedProfilesByType.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateOperations\uspApproveProfile.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="UsersDB.refactorlog" />
