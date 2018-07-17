@@ -124,6 +124,29 @@ namespace DatabaseAccess.Repository
         }
 
         /// <summary>
+        /// Operates the action
+        /// </summary>
+        /// <typeparam name="TFirstParameter">Type of first parameter</typeparam>
+        /// <typeparam name="TSecondParameter">Type of second parameter</typeparam>
+        /// <typeparam name="TResult">Type of result</typeparam>
+        /// <param name="operationName">Operation name</param>
+        /// <param name="firstParameter">First parameter</param>
+        /// <param name="secondParameter">Second parameter</param>
+        /// <returns>result</returns>
+        public object Operate<TFirstParameter,TSecondParameter,TResult>(string operationName,TFirstParameter firstParameter,TSecondParameter secondParameter)
+            where TResult:class
+        {
+            // getting parameters
+            var parameters = this.GetParameters(firstParameter).ToList();
+
+            // adding parameter
+            parameters.AddRange(this.GetParameters(secondParameter));
+
+            // returning result
+            return this.Operate<TResult>(operationName, parameters);
+        }
+
+        /// <summary>
         /// Gets operation information
         /// </summary>
         /// <param name="operationName">Operation name</param>

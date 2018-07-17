@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[uspUpdateMinistryWorker]
+﻿CREATE PROCEDURE [dbo].[uspUpdateMinistryWorkerProfile]
 	@userId int,
 	@position nvarchar(50),
 	@startedWorking nvarchar(50)
