@@ -101,6 +101,10 @@ namespace UserManagementAPI
                             "admin","ministryworker","hospitaldirector"
                         });
                 });
+
+                options.AddPolicy("IsHospitalDirector", policy => policy.RequireClaim("current_profile", "hospitaldirector"));
+
+                options.AddPolicy("IsPharmacistAdmin", policy => policy.RequireClaim("current_profile", "pharmacistadmin"));
             });
         }
 
