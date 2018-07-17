@@ -21,7 +21,7 @@ namespace UserManagementAPI.Controllers
         private DataManager _dataManager;
 
         /// <summary>
-        /// Creates new instance of data manager.
+        /// Creates new instance of data MinistryWorkers controller
         /// </summary>
         /// <param name="dataManager">Data manager</param>
         public MinistryWorkersController(DataManager dataManager)
