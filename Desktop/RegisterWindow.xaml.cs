@@ -25,5 +25,18 @@ namespace Desktop
         {
             InitializeComponent();
         }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            var signIn = new SignIn();
+            signIn.Show();
+            this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var confirmation = new CodeConfirmation();
+            confirmation.Show();
+        }
     }
 }

@@ -65,7 +65,7 @@
             </Button>
             <TextBlock Margin="0,25,0,0" FontFamily="Comfortaa" FontWeight="Bold" Foreground="#FF474747" FontSize="14">
                 Don't have an account?
-                <Hyperlink Foreground="White">Register</Hyperlink>
+                <Hyperlink Click="Hyperlink_Click" Foreground="White">Register</Hyperlink>
             </TextBlock>
         </StackPanel>
     </Grid>
