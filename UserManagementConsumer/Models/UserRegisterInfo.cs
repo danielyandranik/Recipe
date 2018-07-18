@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UserManagementAPI.Models
+namespace UserManagementConsumer.Models
 {
     /// <summary>
     /// Class for user register information
