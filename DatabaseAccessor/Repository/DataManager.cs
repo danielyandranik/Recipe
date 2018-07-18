@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using DatabaseAccess.SpExecuters;
@@ -211,7 +212,7 @@ namespace DatabaseAccess.Repository
                 var propertyType = property.PropertyType;
 
                 // if property doesn't have primitive type
-                if (!propertyType.IsPrimitive && propertyType != typeof(string) && propertyType != typeof(decimal))
+                if (!propertyType.IsPrimitive && propertyType != typeof(string)  && propertyType != typeof(DateTime))
                 {
                     // getting properties of property
                     var propProperties = propertyType.GetProperties();
