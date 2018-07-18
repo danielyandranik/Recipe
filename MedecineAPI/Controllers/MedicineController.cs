@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 using MedicineAPI.Models;
 using MedicineAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 
 namespace MedicineAPI.Controllers
 {
@@ -19,37 +21,43 @@ namespace MedicineAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            var query = this.Request.Query;
+            if (query.Count > 0)
+            {
+                StringValues queryString;
+
+                if (query.TryGetValue("country", out queryString))
+                {
+                    var medicines = await this._medicineRepository.GetByCountry(queryString[0]);
+
+                    if (medicines == null)
+                    {
+                        return new NotFoundResult();
+                    }
+
+                    return new ObjectResult(medicines);
+                }
+
+                if (query.TryGetValue("medicineName", out queryString))
+                {
+                    var medicine = await this._medicineRepository.GetMedicineByName(queryString[0]);
+
+                    if (medicine == null)
+                    {
+                        return new NotFoundResult();
+                    }
+
+                    return new ObjectResult(medicine);
+                }
+
+                return new NotFoundResult();
+            }
+
             return new ObjectResult(await this._medicineRepository.GetAllMedicines());
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetMedicineByName(string name)
-        {
-            var medicine = await this._medicineRepository.GetMedicineByName(name);
 
-            if(medicine == null)
-            {
-                return new NotFoundResult();
-            }
-
-            return new ObjectResult(medicine);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetMedicineByCountry(string name)
-        {
-            var medicines = await this._medicineRepository.GetByCountry(name);
-
-            if (medicines == null)
-            {
-                return new NotFoundResult();
-            }
-
-            return new ObjectResult(medicines);
-        }
-
-
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "Get")]
         public async Task<IActionResult> Get(string id)
         {
             var medicine = await this._medicineRepository.GetMedicineByID(id);
@@ -61,6 +69,7 @@ namespace MedicineAPI.Controllers
             return new ObjectResult(medicine);
         }
 
+        [Authorize(Policy = "MinistryWorkerProfile")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Medicine medicine)
         {
@@ -68,6 +77,7 @@ namespace MedicineAPI.Controllers
             return new OkObjectResult(medicine);
         }
 
+        [Authorize(Policy = "MinistryWorkerProfile")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody]Medicine medicine)
         {
@@ -84,6 +94,7 @@ namespace MedicineAPI.Controllers
             return new OkObjectResult(medicine);
         }
 
+        [Authorize(Policy = "MinistryWorkerProfile")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -97,5 +108,5 @@ namespace MedicineAPI.Controllers
             await this._medicineRepository.Delete(id);
             return new OkResult();
         }
-        }
+    }
 }

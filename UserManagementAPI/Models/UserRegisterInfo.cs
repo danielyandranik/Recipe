@@ -35,7 +35,7 @@ namespace UserManagementAPI.Models
         /// <summary>
         /// Gets or sets Birthdate
         /// </summary>
-        public DateTime Birthdate { get; set; }
+        public string Birthdate { get; set; }
 
         /// <summary>
         /// Gets or sets email

@@ -9,5 +9,4 @@ begin
 	delete from Doctors where Doctors.ProfileId = @profileId
 
 	delete from UserProfile where UserProfile.ProfileId = @profileId
-
 end

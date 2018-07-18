@@ -88,10 +88,23 @@ namespace UserManagementAPI
                     policy.RequireClaim("current_profile",
                         new[]
                         {
-                            "doctor","Pharmacist","MinistryWorker","Patient",
-                            "admin","HospitalAdmin"
+                            "doctor","pharmacist","ministryworker","patient",
+                            "admin","hospitaldirector"
                         });
                 });
+
+                options.AddPolicy("IsApprover", policy =>
+                {
+                    policy.RequireClaim("current_profile",
+                        new[]
+                        {
+                            "admin","ministryworker","hospitaldirector"
+                        });
+                });
+
+                options.AddPolicy("IsHospitalDirector", policy => policy.RequireClaim("current_profile", "hospitaldirector"));
+
+                options.AddPolicy("IsPharmacistAdmin", policy => policy.RequireClaim("current_profile", "pharmacistadmin"));
             });
         }
 

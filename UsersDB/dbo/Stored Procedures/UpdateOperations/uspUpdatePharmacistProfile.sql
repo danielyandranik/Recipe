@@ -7,7 +7,8 @@ AS
 begin
 	declare @profileId int
 
-	select @profileId = UserProfile.ProfileId from UserProfile where UserProfile.UserId = @userId
+	select @profileId = UserProfile.ProfileId from UserProfile 
+		where UserProfile.UserId = @userId and [Type] = 'pharmacist'
 
 	update Pharmacists set 
 		PharmacyId = IIF(@pharmacyId = null, PharmacyId, @pharmacyId),

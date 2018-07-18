@@ -33,13 +33,15 @@ namespace AuthAPI
             {
                 new Client
                 {
-                    ClientId = "RecipeConsoleUI",
+                    ClientId = "DefaultClient",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = {"UserManagementAPI", "RecipeApi", "InstitutionAPI" }
+                    AllowedScopes = {"UserManagementAPI", "RecipeApi", "InstitutionAPI" },
+                    UpdateAccessTokenClaimsOnRefresh = true,
+                    AccessTokenLifetime = 3600
                 }
             };
         }

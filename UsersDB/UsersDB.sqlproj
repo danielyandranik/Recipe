@@ -111,6 +111,22 @@
     <Build Include="dbo\Tables\Verifications.sql" />
     <Build Include="dbo\Stored Procedures\CreateOperations\uspCreateVerificationInfo.sql" />
     <Build Include="dbo\Stored Procedures\UpdateOperations\uspVerifyUser.sql" />
+    <Build Include="dbo\Tables\MinistryWorkers.sql" />
+    <Build Include="dbo\Stored Procedures\CreateOperations\uspCreateMinistryWorkerProfile.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeleteMinistryWorkerProfile.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllMinistryWorkers.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateMinistryWorkerProfile.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetMinistryWorkerByUserId.sql" />
+    <Build Include="dbo\Tables\HospitalDirectors.sql" />
+    <Build Include="dbo\Stored Procedures\CreateOperations\uspCreateHospitalDirectorProfile.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeleteHospitalDirectorProfile.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllHospitalDirectors.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetHospitalDirectorByUserId.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateHospitalDirectorProfile.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetAllProfiles.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetProfilesByUserId.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUnapprovedProfilesByType.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateOperations\uspApproveProfile.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="UsersDB.refactorlog" />

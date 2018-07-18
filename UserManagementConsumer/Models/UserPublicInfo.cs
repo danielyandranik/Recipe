@@ -1,7 +1,13 @@
-﻿namespace RecipeConsoleUI
+﻿namespace UserManagementConsumer.Models
 {
+    /// <summary>
+    /// Class for User public info
+    /// </summary>
     public class UserPublicInfo
     {
+        /// <summary>
+        /// Gets or sets id.
+        /// </summary>
         public int Id { get; set; }
 
         /// <summary>
@@ -18,16 +24,6 @@
         /// Gets or sets username
         /// </summary>
         public string UserName { get; set; }
-
-        /// <summary>
-        /// Gets or sets email
-        /// </summary>
-        public string Email { get; set; }
-
-        /// <summary>
-        /// Gets or sets password
-        /// </summary>
-        public string Phone { get; set; }
 
         /// <summary>
         /// Gets or sets sex

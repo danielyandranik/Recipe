@@ -5,15 +5,11 @@ VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseAccessor", "DatabaseAccessor\DatabaseAccessor.csproj", "{7A3EC5AD-01C4-4344-A27B-DDA7FE8F569B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpExecuterTest", "SpExecuterTest\SpExecuterTest.csproj", "{BE750DFF-E0E9-4F25-828E-D583A3FFF349}"
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UsersDB", "UsersDB\UsersDB.sqlproj", "{CDA8A007-09A7-4D5F-A10F-9602AF77F19E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthAPI", "AuthAPI\AuthAPI.csproj", "{0A3AB837-90EE-4803-982D-FA5F8381AB51}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagementAPI", "UserManagementAPI\UserManagementAPI.csproj", "{9479A46F-F571-4C0D-AA65-BC0E856A1FEB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeConsoleUI", "RecipeConsoleUI\RecipeConsoleUI.csproj", "{94495B68-B00B-4292-B8B1-CCEF041D63AF}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "InstitutionDB", "InstitutionDB\InstitutionDB.sqlproj", "{02F0F536-087F-4449-B3E5-35A8D47B2AFB}"
 EndProject
@@ -29,7 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicineAPI", "MedecineAPI\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicineApiClient", "MedicineApiClient\MedicineApiClient.csproj", "{53A3194C-94C6-4D17-8EAD-D321807C8065}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicineClient", "MedicineClient\MedicineClient.csproj", "{AE5ED806-1CDE-4BD6-B955-17B05A70D17B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{39ED7BC1-FCBE-4802-B783-AC9B9425A1E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Desktop\Desktop.csproj", "{44E381BE-4290-4D4D-90D1-B282A82A91F2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagementConsumer", "UserManagementConsumer\UserManagementConsumer.csproj", "{CA6812B8-E866-4F9C-9F43-6329DC4B5EB7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagementApiClientTest", "UserManagementApiClientTest\UserManagementApiClientTest.csproj", "{C4219108-2B41-4261-8A72-B0C8528055CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +43,6 @@ Global
 		{7A3EC5AD-01C4-4344-A27B-DDA7FE8F569B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A3EC5AD-01C4-4344-A27B-DDA7FE8F569B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A3EC5AD-01C4-4344-A27B-DDA7FE8F569B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE750DFF-E0E9-4F25-828E-D583A3FFF349}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE750DFF-E0E9-4F25-828E-D583A3FFF349}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE750DFF-E0E9-4F25-828E-D583A3FFF349}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE750DFF-E0E9-4F25-828E-D583A3FFF349}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CDA8A007-09A7-4D5F-A10F-9602AF77F19E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CDA8A007-09A7-4D5F-A10F-9602AF77F19E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDA8A007-09A7-4D5F-A10F-9602AF77F19E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -59,10 +57,6 @@ Global
 		{9479A46F-F571-4C0D-AA65-BC0E856A1FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9479A46F-F571-4C0D-AA65-BC0E856A1FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9479A46F-F571-4C0D-AA65-BC0E856A1FEB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{94495B68-B00B-4292-B8B1-CCEF041D63AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94495B68-B00B-4292-B8B1-CCEF041D63AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94495B68-B00B-4292-B8B1-CCEF041D63AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94495B68-B00B-4292-B8B1-CCEF041D63AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{02F0F536-087F-4449-B3E5-35A8D47B2AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{02F0F536-087F-4449-B3E5-35A8D47B2AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02F0F536-087F-4449-B3E5-35A8D47B2AFB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -93,13 +87,24 @@ Global
 		{53A3194C-94C6-4D17-8EAD-D321807C8065}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53A3194C-94C6-4D17-8EAD-D321807C8065}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53A3194C-94C6-4D17-8EAD-D321807C8065}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE5ED806-1CDE-4BD6-B955-17B05A70D17B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE5ED806-1CDE-4BD6-B955-17B05A70D17B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE5ED806-1CDE-4BD6-B955-17B05A70D17B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE5ED806-1CDE-4BD6-B955-17B05A70D17B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA6812B8-E866-4F9C-9F43-6329DC4B5EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA6812B8-E866-4F9C-9F43-6329DC4B5EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA6812B8-E866-4F9C-9F43-6329DC4B5EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA6812B8-E866-4F9C-9F43-6329DC4B5EB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4219108-2B41-4261-8A72-B0C8528055CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4219108-2B41-4261-8A72-B0C8528055CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4219108-2B41-4261-8A72-B0C8528055CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4219108-2B41-4261-8A72-B0C8528055CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{44E381BE-4290-4D4D-90D1-B282A82A91F2} = {39ED7BC1-FCBE-4802-B783-AC9B9425A1E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC9DDD84-600F-4E9F-8ADE-3F9225F4FCBC}

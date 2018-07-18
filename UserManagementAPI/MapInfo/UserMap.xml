@@ -384,4 +384,170 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
   </operation>
+  <operation name="GetAllMinstryWorkers">
+    <spName>uspGetAllMinistryWorkers</spName>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
+  <operation name="GetMinistryWorkerById">
+    <spName>uspGetMinistryWorkerByUserId</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Entity</returnDataType>
+  </operation>
+  <operation name="CreateMinistryWorker">
+    <spName>uspCreateMinistryWorkerProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Position</parameterName>
+        <spParameterName>position</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>StartedWorking</parameterName>
+        <spParameterName>startedWorking</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="UpdateMinistryWorker">
+    <spName>uspUpdateMinistryWorkerProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Position</parameterName>
+        <spParameterName>position</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>StartedWorking</parameterName>
+        <spParameterName>startedWorking</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="DeleteMinistryWorker">
+    <spName>uspDeleteMinistryWorkerProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="GetAllHospitalDirectors">
+    <spName>uspGetAllHospitalDirectors</spName>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
+  <operation name="GetHospitalDirectorById">
+    <spName>uspGetHospitalDirectorByUserId</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Entity</returnDataType>
+  </operation>
+  <operation name="CreateHospitalDirector">
+    <spName>uspCreateHospitalDirectorProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>HospitalName</parameterName>
+        <spParameterName>hospitalName</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Occupation</parameterName>
+        <spParameterName>occupation</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>StartedWorking</parameterName>
+        <spParameterName>startedWorking</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="UpdateHospitalDirector">
+    <spName>uspUpdateHospitalDirectorProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>HospitalName</parameterName>
+        <spParameterName>hospitalName</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Occupation</parameterName>
+        <spParameterName>occupation</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>StartedWorking</parameterName>
+        <spParameterName>startedWorking</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="DeleteHospitalDirector">
+    <spName>uspDeleteHospitalDirectorProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="GetAllProfiles">
+    <spName>uspGetAllProfiles</spName>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
+  <operation name="GetProfilesById">
+    <spName>uspGetProfilesByUserId</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
+  <operation name="GetUnapprovedProfiles">
+    <spName>uspGetUnapprovedProfilesByType</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>type</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
+  <operation name="ApproveProfile">
+    <spName>uspApproveProfile</spName>
+    <parameters>
+      <parameter>
+        <parameterName>UserId</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Type</parameterName>
+        <spParameterName>type</spParameterName>  
+    </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
 </operations>

@@ -49,7 +49,7 @@ namespace UserManagementAPI.Controllers
         /// <param name="id">id</param>
         /// <returns>user</returns>
         [HttpGet("{id:int}")]
-        [Authorize(Policy = "HasProfile")]
+        [Authorize]
         public IActionResult Get(int id)
         {
             // getting id
@@ -74,7 +74,7 @@ namespace UserManagementAPI.Controllers
         /// <param name="username">username</param>
         /// <returns>user</returns>
         [HttpGet("{username}")]
-        [Authorize(Policy = "HasProfile")]
+        [Authorize]
         public IActionResult Get(string username)
         {
             // getting result
