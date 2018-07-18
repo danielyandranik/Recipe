@@ -313,12 +313,12 @@ namespace DatabaseAccess.SpExecuters
                     }
 
                     property.SetValue(result, propObject);
-
-                    continue;
                 }
-
                 // setting primitive property value
-                property.SetValue(result, reader[property.Name]);
+                else
+                {
+                    property.SetValue(result, reader[property.Name]);
+                }
             }
 
             // returning result
