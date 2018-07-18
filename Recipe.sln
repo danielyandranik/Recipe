@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseAccessor", "DatabaseAccessor\DatabaseAccessor.csproj", "{7A3EC5AD-01C4-4344-A27B-DDA7FE8F569B}"
 EndProject
@@ -29,9 +29,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{39ED7BC1-FCBE-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Desktop\Desktop.csproj", "{44E381BE-4290-4D4D-90D1-B282A82A91F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagementConsumer", "UserManagementConsumer\UserManagementConsumer.csproj", "{CA6812B8-E866-4F9C-9F43-6329DC4B5EB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagementConsumer", "UserManagementConsumer\UserManagementConsumer.csproj", "{CA6812B8-E866-4F9C-9F43-6329DC4B5EB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagementApiClientTest", "UserManagementApiClientTest\UserManagementApiClientTest.csproj", "{C4219108-2B41-4261-8A72-B0C8528055CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagementApiClientTest", "UserManagementApiClientTest\UserManagementApiClientTest.csproj", "{C4219108-2B41-4261-8A72-B0C8528055CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

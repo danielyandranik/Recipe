@@ -38,7 +38,16 @@ namespace MedecineAPI
 
 			services.AddTransient<IMedicineContext, MedicineContext>();
             services.AddTransient<IMedicineRepository, MedicineRepository>();
-               
+
+            // add polices 
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("MinistryWorkerProfile", policy =>
+                {
+                    policy.RequireClaim("current_profile", "MinistryWorker");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

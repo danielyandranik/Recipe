@@ -21,12 +21,22 @@ namespace MedicineAPI.Repositories
             _context = context;
         }
 
-
+        /// <summary>
+        /// Adds a new medicine.
+        /// </summary>
+        /// <param name="medicine">Medicine to add.</param>
+        /// <returns></returns>
         public async Task Create(Medicine medicine)
         {
             await this._context.Medicines.InsertOneAsync(medicine);
         }
 
+
+        /// <summary>
+        /// Delete the medicine.
+        /// </summary>
+        /// <param name="id">Medicine ID from wich it's going to be deleted.</param>
+        /// <returns>Returns True if the request has been succeeded.</returns>
         public async Task<bool> Delete(string id)
         {
             FilterDefinition<Medicine> filter = Builders<Medicine>.Filter.Eq(medicine => medicine.Id, id);
@@ -38,11 +48,29 @@ namespace MedicineAPI.Repositories
 
         }
 
+        /// <summary>
+        /// Getting all medicines.
+        /// </summary>
+        /// <returns>List of Medicines.</returns>
         public async Task<IEnumerable<Medicine>> GetAllMedicines()
         {
             return await this._context.Medicines.Find(_ => true).ToListAsync();
         }
 
+        public async Task<IEnumerable<Medicine>> GetByCountry(string country)
+        {
+            FilterDefinition<Medicine> filter = Builders<Medicine>.Filter.Eq(medicine => medicine.Country, country);
+            return await this._context
+            .Medicines
+            .Find(filter)
+            .ToListAsync<Medicine>();
+        }
+
+        /// <summary>
+        /// Getting medicine by "ID".
+        /// </summary>
+        /// <param name="id">Medicine ID.</param>
+        /// <returns>Medicine having this ID.</returns>
         public async Task<Medicine> GetMedicineByID(string id)
         {
             FilterDefinition<Medicine> filter = Builders<Medicine>.Filter.Eq(medicine => medicine.Id, id);
@@ -52,6 +80,11 @@ namespace MedicineAPI.Repositories
             .FirstOrDefaultAsync<Medicine>();
         }
 
+        /// <summary>
+        /// Getting medicine by "Name".
+        /// </summary>
+        /// <param name="name">Medicine Name.</param>
+        /// <returns>Medicin with specified name.</returns>
         public async Task<Medicine> GetMedicineByName(string name)
         {
             FilterDefinition<Medicine> filter = Builders<Medicine>.Filter.Eq(medicine => medicine.Name, name);
@@ -61,6 +94,11 @@ namespace MedicineAPI.Repositories
             .FirstOrDefaultAsync<Medicine>();
         }
 
+        /// <summary>
+        /// Makes changes.
+        /// </summary>
+        /// <param name="medicine">Change the information of the medicine.</param>
+        /// <returns>Returns True if the request has been succeeded.</returns>
         public async Task<bool> Update(Medicine medicine)
         {
             ReplaceOneResult updateResult = await this._context
