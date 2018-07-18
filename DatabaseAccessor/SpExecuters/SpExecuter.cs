@@ -295,6 +295,29 @@ namespace DatabaseAccess.SpExecuters
             // setting result object properties
             foreach(var property in properties)
             {
+                // getting property type
+                var propertyType = property.PropertyType;
+
+                if (!propertyType.IsPrimitive && propertyType != typeof(string) && propertyType != typeof(DateTime))
+                {
+                    // getting properties of complex property
+                    var propProperties = propertyType.GetProperties();
+
+                    // getting property object
+                    var propObject = Activator.CreateInstance(propertyType);
+
+                    // loop over the properties of complex property
+                    foreach (var propProperty in propProperties)
+                    {
+                        propProperty.SetValue(propObject, reader[propProperty.Name]);
+                    }
+
+                    property.SetValue(result, propObject);
+
+                    continue;
+                }
+
+                // setting primitive property value
                 property.SetValue(result, reader[property.Name]);
             }
 
