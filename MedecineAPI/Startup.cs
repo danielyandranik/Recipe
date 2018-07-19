@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MedicineAPI.Context;
 using MedicineAPI.Repositories;
+using System.IO;
 
 namespace MedecineAPI
 {
@@ -14,25 +15,33 @@ namespace MedecineAPI
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json").Build();
 
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddMvc();
-			services.Configure<Settings.Settings>(
+            // adding MVC Core,authorization and JSON formatting
+            services.AddMvcCore()
+                    .AddAuthorization()
+                    .AddJsonFormatters();
+
+            services.Configure<Settings.Settings>(
 			options =>
 			{
 				options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
 				options.Database = Configuration.GetSection("MongoConnection:Database").Value;
 			});
 
-			services.AddAuthentication("Bearer")
+
+
+            services.AddAuthentication("Bearer")
 				.AddIdentityServerAuthentication(options =>
 				{
 					options.Authority = this.Configuration["Endpoints:AuthApi"];
 					options.RequireHttpsMetadata = false;
-					options.ApiName = "MedicieApi";
+					options.ApiName = "MedicineAPI";
 				});
 
 
@@ -57,7 +66,7 @@ namespace MedecineAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

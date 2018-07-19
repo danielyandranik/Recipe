@@ -39,7 +39,7 @@ namespace AuthAPI
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = {"UserManagementAPI", "RecipeApi", "InstitutionAPI" },
+                    AllowedScopes = {"UserManagementAPI", "RecipeApi", "InstitutionAPI","MedicineAPI" },
                     UpdateAccessTokenClaimsOnRefresh = true,
                     AccessTokenLifetime = 3600
                 }

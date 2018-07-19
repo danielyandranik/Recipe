@@ -18,6 +18,7 @@ namespace MedicineAPI.Controllers
             this._medicineRepository = medicineRepository;
         }
 
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
