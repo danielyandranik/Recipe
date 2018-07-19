@@ -72,6 +72,11 @@ namespace UserManagementConsumer.Client
         }
 
         /// <summary>
+        /// Creates new instance of <see cref="UserManagementApiClient"/>
+        /// </summary>
+        public UserManagementApiClient():this("http://localhost:5700","http://localhost:5800") { }
+
+        /// <summary>
         /// Registers new user
         /// </summary>
         /// <param name="userRegisterInfo">User registration data</param>
