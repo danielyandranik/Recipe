@@ -31,11 +31,23 @@
             </Setter>
         </Style>
     </Page.Resources>
-    <StackPanel>
-        <TextBlock Text="Medicines" HorizontalAlignment="Center" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="24" Margin="0,20,0,0"/>
-        <Separator Width="500"  HorizontalAlignment="Center" Margin="0,15" Background="#FF7A7979" Height="3" />
+    
+    <Grid>
+        <Grid.RowDefinitions>
 
-        <Grid Height="70" Background="#FF39B9B9">
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Medicines" HorizontalAlignment="Center" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="24" Margin="0,20,0,0"/>
+            <Separator Width="500"  HorizontalAlignment="Center" Margin="0,15" Background="#FF7A7979" Height="3" />
+        </StackPanel>
+
+        <Grid Grid.Row="1" Height="70" Background="#FF39B9B9">
 
             <Grid.ColumnDefinitions>
 
@@ -44,9 +56,9 @@
                 <ColumnDefinition Width="*"/>
 
             </Grid.ColumnDefinitions>
-            
+
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="1">
-                
+
                 <Label Content="Filter by:" Foreground="#DDFFFFFF" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" />
                 <Label Content="Name" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
                 <TextBox VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" />
@@ -54,8 +66,67 @@
                 <TextBox VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" />
 
             </StackPanel>
-            
+
         </Grid>
-    
-    </StackPanel>
+
+        <StackPanel Grid.Row="2">
+
+            <Grid Height="40">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="Name" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                <Label Grid.Column="1" Content="Maker" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                <Label Grid.Column="2" Content="Country" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                <Label Grid.Column="3" Content="Units" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                <Label Grid.Column="4" Content="Shelf life" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                <Label Grid.Column="5" Content="Description" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+
+
+            </Grid>
+            <Separator />
+
+        </StackPanel>
+
+        <ListView Grid.Row="3" HorizontalContentAlignment="Stretch" MinWidth="900" Width="auto" Name="Tweets">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="{Binding Path=MaxWidth}"  Height="40" >
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="1" Content="{Binding Maker}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="2" Content="{Binding Country}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="3" Content="{Binding Units}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="4" Content="{Binding ShelfLife}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="5" Content="{Binding Description}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+    </Grid>
+
 </Page>
