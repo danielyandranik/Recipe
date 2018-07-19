@@ -1,14 +1,19 @@
-﻿using System;
+﻿using Desktop.Pages;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Media;
 
 namespace Desktop
 {
     public partial class MainWindow : Window
     {
+        private readonly static Medicines medicines;
+        private static readonly Hospitals hospitals;
+        private static readonly Phamracies phamracies;
         private double _aspectRatio;
         private bool? _adjustingHeight = null;
 
@@ -20,6 +25,13 @@ namespace Desktop
         {
             WINDOWPOSCHANGING = 0x0046,
             EXITSIZEMOVE = 0x0232,
+        }
+
+        static MainWindow()
+        {
+            medicines = new Medicines();
+            hospitals = new Hospitals();
+            phamracies = new Phamracies();
         }
 
         public MainWindow()
@@ -109,6 +121,21 @@ namespace Desktop
             }
 
             return IntPtr.Zero;
+        }
+
+        private void Medicines_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.frame.NavigationService.Navigate(medicines);
+        }
+
+        private void Hospitals_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.frame.NavigationService.Navigate(hospitals);
+        }
+
+        private void Pharmacies_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.frame.NavigationService.Navigate(phamracies);
         }
     }
 }
