@@ -37,10 +37,30 @@
             <StackPanel Orientation="Horizontal" Grid.Column="3">
 
                 <TextBlock Text="Andranik, patient" Foreground="White" FontSize="24" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                <Image Source="/Images/down_arrow.png" Width="24" Height="20" VerticalAlignment="Center" Margin="0,8,20,0" />
-           
-            </StackPanel>
+                <Image PreviewMouseDown="Toggle_menu" Cursor="Hand" Source="/Images/down_arrow.png" Width="24" Height="20" VerticalAlignment="Center" Margin="0,8,15,0" />
+                <Popup Name="menu" Margin="0" Placement="Right" VerticalOffset="71" HorizontalOffset="-151" PopupAnimation="Fade" AllowsTransparency="True" >
+                    <StackPanel Background="#FF39B9B9" HorizontalAlignment="Right" Width="150">
+                        
+                        <Label VerticalContentAlignment="Center" Content="Profiles" FontFamily="Comfortaa" FontWeight="Bold" FontSize="16" Foreground="#FF182634" Height="32" VerticalAlignment="Center"/>
+                        
+                        <Separator Width="120" Background="#FFFFFFFF" />
+                        <Button Content="Patient" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
+                        
+                        <Separator Width="120" Background="#FFFFFFFF" />
+                        <Button Content="Doctor" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
+                        
+                        <Separator Width="120" Background="#FFFFFFFF" />
+                        <Button Content="Add new" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
+                        
+                        <Separator Background="#FF182634" Margin="0,5" />
+                        <Button Content="Sign Out" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
 
+                    </StackPanel>
+                </Popup>
+            </StackPanel>
+            
+            
+            
             <StackPanel Orientation="Horizontal" Grid.Column="1">
                 
                 <TextBlock PreviewMouseDown="Medicines_PreviewMouseDown" Cursor="Hand" Text="Medicines" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
@@ -48,7 +68,8 @@
                 <TextBlock PreviewMouseDown="Pharmacies_PreviewMouseDown" Cursor="Hand" Text="Pharmacies" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
 
             </StackPanel>
-            
+
+
         </Grid>
 
         <Grid Grid.Row="1">

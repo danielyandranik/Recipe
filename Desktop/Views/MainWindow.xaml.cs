@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -15,6 +16,7 @@ namespace Desktop.Views
         private readonly static Medicines medicines;
         private static readonly Hospitals hospitals;
         private static readonly Phamracies phamracies;
+        private static int menuButtonRotateAngle;
         private double _aspectRatio;
         private bool? _adjustingHeight = null;
 
@@ -33,6 +35,7 @@ namespace Desktop.Views
             medicines = new Medicines();
             hospitals = new Hospitals();
             phamracies = new Phamracies();
+            menuButtonRotateAngle = 180;
         }
 
         public MainWindow()
@@ -137,6 +140,15 @@ namespace Desktop.Views
         private void Pharmacies_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             this.frame.NavigationService.Navigate(phamracies);
+        }
+
+        private void Toggle_menu(object sender, MouseButtonEventArgs e)
+        {
+            var button = (Image)sender;
+
+            button.LayoutTransform = new RotateTransform(menuButtonRotateAngle);
+            menuButtonRotateAngle = (menuButtonRotateAngle == 180) ? 0 : 180;
+            this.menu.IsOpen = !this.menu.IsOpen;
         }
     }
 }
