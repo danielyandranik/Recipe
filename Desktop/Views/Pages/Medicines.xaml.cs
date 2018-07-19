@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Desktop
+namespace Desktop.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for CodeConfirmation.xaml
+    /// Interaction logic for Medicines.xaml
     /// </summary>
-    public partial class CodeConfirmation : Window
+    public partial class Medicines : Page
     {
-        public CodeConfirmation()
+        public Medicines()
         {
             InitializeComponent();
         }

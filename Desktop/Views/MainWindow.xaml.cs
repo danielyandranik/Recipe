@@ -1,4 +1,4 @@
-﻿using Desktop.Pages;
+﻿using Desktop.Views.Pages;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -7,7 +7,8 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 
-namespace Desktop
+namespace Desktop.Views
+
 {
     public partial class MainWindow : Window
     {

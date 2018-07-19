@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Desktop.Pages
+namespace Desktop.Views
 {
     /// <summary>
-    /// Interaction logic for Phamracies.xaml
+    /// Interaction logic for CodeConfirmation.xaml
     /// </summary>
-    public partial class Phamracies : Page
+    public partial class CodeConfirmation : Window
     {
-        public Phamracies()
+        public CodeConfirmation()
         {
             InitializeComponent();
         }

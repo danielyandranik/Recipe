@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Desktop.Pages
+namespace Desktop.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for Medicines.xaml
+    /// Interaction logic for Hospitals.xaml
     /// </summary>
-    public partial class Medicines : Page
+    public partial class Hospitals : Page
     {
-        public Medicines()
+        public Hospitals()
         {
             InitializeComponent();
         }
