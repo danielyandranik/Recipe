@@ -39,9 +39,9 @@
                  Margin="0,10,0,0" FontSize="16" FontFamily="Consolas" 
                  BorderBrush="White" CaretBrush="White" 
                  Foreground="White" SelectionBrush="White" 
-                 Text="{Binding VerificationCode}"/>
+                 Text="{Binding VerificationCode, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <Button BorderThickness="2" Content="Confirm" Background="{x:Null}" 
                 BorderBrush="White" Height="40" Width="120" FontFamily="Comfortaa" FontSize="20" Margin="0,30,0,0" 
-                Command=""/>
+                Command="{Binding ConfirmCommand}" CommandParameter="{Binding VerificationCode}"/>
     </StackPanel>
 </Window>

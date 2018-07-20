@@ -83,7 +83,7 @@
                 <Label Content="Sex *" Foreground="#FF474747" HorizontalAlignment="Center" FontFamily="Comfortaa" FontSize="16" Margin="0,10,0,0"/>
                 <ComboBox Text="Select" Width="240" BorderBrush="{x:Null}" Foreground="#FF39B9B9" 
                           FontFamily="Comfortaa" FontSize="14" Height="40" VerticalAlignment="Center" 
-                          Background="#FFF71919" Margin="0,10,0,0"
+                          Background="AliceBlue" Margin="0,10,0,0"
                           SelectedValue="{Binding Register.Sex, UpdateSourceTrigger=PropertyChanged}">
                     <ComboBoxItem VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="40" FontWeight="Bold" FontSize="16">Male</ComboBoxItem>
                     <ComboBoxItem VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="40" FontWeight="Bold" FontSize="16">Female</ComboBoxItem>

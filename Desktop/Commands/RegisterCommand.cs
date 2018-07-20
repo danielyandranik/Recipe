@@ -61,7 +61,7 @@ namespace Desktop.Commands
             {
                 var info = await this._userManagementApiClient.RegisterAsync(this.Map(register));
                 if (info.Result.IsSuccessStatusCode)
-                    new CodeConfirmation(new ConfirmationViewModel(register.Username)).Show();
+                    new CodeConfirmation(new ConfirmationViewModel(register.Username)).Show();                
             }
             catch(Exception)
             {

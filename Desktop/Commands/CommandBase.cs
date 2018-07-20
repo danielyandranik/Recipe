@@ -9,7 +9,7 @@ namespace Desktop.Commands
     public abstract class CommandBase : ICommand
     {
         /// <summary>
-        /// Event handler for CanExecute changed
+        /// Event  for CanExecute changed
         /// </summary>
         public event EventHandler CanExecuteChanged
         {
