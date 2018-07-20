@@ -80,6 +80,7 @@
     <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateMedicinePrice.sql" />
     <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateMedicineQuantity.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmaciesByMedicineId.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmacyMedicineById.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="dbo\InstitutionDB.refactorlog" />

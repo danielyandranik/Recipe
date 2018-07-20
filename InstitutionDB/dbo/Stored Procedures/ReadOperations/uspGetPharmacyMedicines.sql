@@ -1,8 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[uspGetPharmacyMedicines]
-	@pharmacyId int
+	@id int
 AS
 	begin
-		select MedicineId, Quantity, Price
+		select *
 		from PharmacyMedicines join Institutions on Institutions.Id = PharmacyId
-		where PharmacyId = @pharmacyId
+		where PharmacyId = @id
 	end
+GO

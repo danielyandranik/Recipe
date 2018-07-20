@@ -8,8 +8,8 @@
     [Phone] NVARCHAR(100) NULL, 
     [Email] NVARCHAR(100) NULL, 
     [Description] NVARCHAR(MAX) NULL,
-    [OpenTime] TIME NOT NULL, 
-    [CloseTime] TIME NOT NULL, 
+    [OpenTime] NVARCHAR(100) NOT NULL, 
+    [CloseTime] NVARCHAR(100) NOT NULL, 
     [Type] NVARCHAR(100) NOT NULL, 
     FOREIGN KEY (AddressId) REFERENCES Addresses(Id)
 )
