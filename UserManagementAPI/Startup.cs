@@ -88,7 +88,7 @@ namespace UserManagementAPI
                     policy.RequireClaim("current_profile",
                         new[]
                         {
-                            "doctor","Pharmacist","MinistryWorker","Patient",
+                            "Doctor","Pharmacist","MinistryWorker","Patient",
                             "admin","HospitalAdmin"
                         });
                 });

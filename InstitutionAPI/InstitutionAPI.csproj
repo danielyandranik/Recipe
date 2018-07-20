@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DatabaseAccessor\DatabaseAccessor.csproj" />
-    <ProjectReference Include="..\MedicineApiClient\MedicineApiClient.csproj" />
+    <ProjectReference Include="..\RestClient\RestClient.csproj" />
   </ItemGroup>
 
 </Project>

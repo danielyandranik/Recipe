@@ -1,31 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using DatabaseAccess;
-using DatabaseAccess.SpExecuters;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using InstitutionAPI.Models;
 using DatabaseAccess.Repository;
 
 namespace InstitutionAPI.Controllers
 {
-    //[Authorize(Policy = "")]
+    [Authorize(Policy = "HasProfile")]
     [Produces("application/json")]
-    [Route("api/Institutions")]
+    [Route("api/institutions")]
     public class InstitutionsController : Controller
     {
         /// <summary>
         /// Repository
         /// </summary>
         private DataManager _dataManager;
-
-        /// <summary>
-        /// Repository
-        /// </summary>
-        private Repo<Institution> _repo;
 
         /// <summary>
         /// Creates new instance of institution controller
@@ -35,30 +25,17 @@ namespace InstitutionAPI.Controllers
             this._dataManager = dataManager;
         }
 
-        /// <summary>
-        /// Stored procedure executer
-        /// </summary>
-        private readonly SpExecuter spExecuter;
 
         /// <summary>
-        /// Creates new instance of institution controller
+        /// Gets enumerable of certain type of institutions
         /// </summary>
-        public InstitutionsController()
-        {
-            this.spExecuter = new SpExecuter("(local)", "InstitutionDB", true);
-        }
-
-        /// <summary>
-        /// Gets enumerable of institutions
-        /// </summary>
-        /// <returns>enumerable of institutions</returns>
-        [HttpGet]
-        //[Authorize(Policy = "HasProfile")]
-        public async Task<IActionResult> Get()
+        /// <param name="type">Institution type</param>
+        /// <returns></returns>
+        [HttpGet("{type}")]
+        public async Task<IActionResult> Get(string type)
         {
             // getting result
-            var result = await this._dataManager
-                .OperateAsync<Institution>("GetInstitutions");
+            var result = await this._dataManager.OperateAsync<string, Institution>("GetInstitutions", type);
 
             // if no content retun 204
             if (result == null)
@@ -73,17 +50,11 @@ namespace InstitutionAPI.Controllers
         /// </summary>
         /// <param name="id">Institution id</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
-        [Authorize(Policy = "HasProfile")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
             // getting result
-            var result = await this._dataManager
-                .OperateAsync<Institution>("GetInstitution",
-                                            new[]
-                                            {
-                                                new KeyValuePair<string, object>("Id", id)
-                                            });
+            var result = await this._dataManager.OperateAsync<int, Institution>("GetInstitution", id);
 
             // if no content retun 204
             if (result == null)
@@ -98,12 +69,12 @@ namespace InstitutionAPI.Controllers
         /// </summary>
         /// <param name="id">Medicine id</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
-        [Authorize(Policy = "HasProfile")]
-        public async Task<IActionResult> GetPharmacy(int medicineId)
+        [HttpGet]
+        [ActionName("pharmacy")]
+        public async Task<IActionResult> GetPharmasy(int id)
         {
             // getting result
-            var result = await this._dataManager.OperateAsync<int, Institution>("GetPharmaciesByMedicine", medicineId);
+            var result = await this._dataManager.OperateAsync<int, Institution>("GetPharmaciesByMedicine", id);
 
             // if no content retun 204
             if (result == null)
@@ -119,14 +90,15 @@ namespace InstitutionAPI.Controllers
         /// <param name="user">Institution</param>
         /// <returns>Action result</returns>
         [HttpPost]
-        [Authorize(Policy = "HighLevel")]
+        //[Authorize(Policy = "HighLevel")]
+        [Authorize(Policy = "HasProfile")]
         public async Task<IActionResult> Post([FromBody]Institution institution)
         {
             // adding institution
             var addedInstitutions = await this._dataManager.OperateAsync<Institution, object>("AddInstitution", institution);
 
             // if institution exists return 'Conflict' code
-            if ((int)addedInstitutions == -1)
+            if ((int)addedInstitutions < 1)
                 return new StatusCodeResult(409);
 
             // returning 200
@@ -139,13 +111,14 @@ namespace InstitutionAPI.Controllers
         /// <param name="id">Intitution id</param>
         /// <param name="institution">Updating info</param>
         /// <returns></returns>
-        [HttpPut("{id}")]
-        [Authorize(Policy = "CanUpdateInstitution")]
-        public async Task<IActionResult> Put(int id, [FromBody]Institution institution)
+        [HttpPut]
+        //[Authorize(Policy = "CanUpdateInstitution")]
+        [Authorize(Policy = "HasProfile")]
+        public async Task<IActionResult> Put([FromBody]Institution institution)
         {
-            var dbInstitution = await this._dataManager.OperateAsync<int, Institution>("GetInstitution", id);
+            var dbInstitution = await this._dataManager.OperateAsync<int, Institution>("GetInstitution", institution.Id);
 
-            if ((int)dbInstitution == -1)
+            if (dbInstitution is null)
             {
                 return new NotFoundResult();
             }
@@ -163,10 +136,11 @@ namespace InstitutionAPI.Controllers
         /// <param name="id">Intitution id</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        [Authorize(Policy = "HighLevel")]
+        //[Authorize(Policy = "HighLevel")]
+        [Authorize(Policy = "HasProfile")]
         public async Task<IActionResult> Delete(int id)
         {
-            var deletedInstitutions  = await this._dataManager.OperateAsync<int, Object>("DeleteInstitution", id);
+            var deletedInstitutions  = await this._dataManager.OperateAsync<int, Object>("RemoveInstitution", id);
             
             // if deleting impossible return 'Conflict' code
             if ((int)deletedInstitutions == -1)

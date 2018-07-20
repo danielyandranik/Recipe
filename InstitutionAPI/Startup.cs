@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RestClient;
 
 namespace InstitutionAPI
 {
@@ -51,6 +52,11 @@ namespace InstitutionAPI
                     policy.RequireClaim("current_profile", "Pharmacist");
                 });
 
+                options.AddPolicy("PharmacyAdminProfile", policy =>
+                {
+                    policy.RequireClaim("current_profile", "PharmacyAdmin");
+                });
+
                 options.AddPolicy("CanUpdateInstitution", policy =>
                 {
                     policy.RequireClaim("current_profile",
@@ -88,6 +94,9 @@ namespace InstitutionAPI
                         });
                 });
             });
+
+            this.AddSingletons(services);
+            this.AddTransients(services);
         }
 
         /// <summary>
@@ -115,7 +124,8 @@ namespace InstitutionAPI
         {
             // adding singletons
             services.AddSingleton(new MapInfo(this.Configuration["Mappers:Institutions"]));
-            services.AddSingleton(new SpExecuter(this.Configuration["ConnectionStrings:InstitutionDB"]));
+            services.AddSingleton(new SpExecuter(this.Configuration.GetConnectionString("InstitutionDB")));
+           // services.AddSingleton(new Client(""));
         }
 
         /// <summary>
