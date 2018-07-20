@@ -21,7 +21,7 @@ namespace Desktop.Commands
         /// <returns>boolean value indicating if the command can be executed</returns>
         public bool CanExecute(object parameter)
         {
-            return parameter != null;
+            return true;
         }
 
         /// <summary>
