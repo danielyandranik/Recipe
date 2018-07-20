@@ -62,14 +62,18 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
         <spParameterName>addressLine</spParameterName>
       </parameter>
     </parameters>
-    <returnDataType>Scalar</returnDataType>
+    <returnDataType>NoReturnValue</returnDataType>
   </operation>
   <operation name="AddPharmacyMedicine">
     <spName>uspCreatePharmacyMedicine</spName>
     <parameters>
       <parameter>
-        <parameterName>InstitutionId</parameterName>
-        <spParameterName>institutionId</spParameterName>
+        <parameterName>Id</parameterName>
+        <spParameterName>id</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>PharmacyId</parameterName>
+        <spParameterName>pharmacyId</spParameterName>
       </parameter>
       <parameter>
         <parameterName>MedicineId</parameterName>
@@ -84,13 +88,13 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
         <spParameterName>price</spParameterName>
       </parameter>
     </parameters>
-    <returnDataType>Scalar</returnDataType>
+    <returnDataType>NoReturnValue</returnDataType>
   </operation>
   <operation name="RemoveInstitution">
     <spName>uspDeleteInstitution</spName>
     <parameters>
       <parameter>
-        <parameterName>Id</parameterName>
+        <parameterName>primitive</parameterName>
         <spParameterName>id</spParameterName>
       </parameter>
     </parameters>
@@ -100,7 +104,7 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <spName>uspDeletePharmacyMedicine</spName>
     <parameters>
       <parameter>
-        <parameterName>Id</parameterName>
+        <parameterName>primitive</parameterName>
         <spParameterName>id</spParameterName>
       </parameter>
     </parameters>
@@ -110,7 +114,7 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <spName>uspGetInstitutionById</spName>
     <parameters>
       <parameter>
-        <parameterName>Id</parameterName>
+        <parameterName>primitive</parameterName>
         <spParameterName>id</spParameterName>
       </parameter>
     </parameters>
@@ -120,8 +124,18 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <spName>uspGetInstitutionsByType</spName>
     <parameters>
       <parameter>
-        <parameterName>Type</parameterName>
+        <parameterName>primitive</parameterName>
         <spParameterName>type</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
+  <operation name="GetPharmacyMedicines">
+    <spName>uspGetPharmacyMedicines</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>id</spParameterName>
       </parameter>
     </parameters>
     <returnDataType>Enumerable</returnDataType>
@@ -130,28 +144,18 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <spName>uspGetPharmacyMedicineById</spName>
     <parameters>
       <parameter>
-        <parameterName>Id</parameterName>
+        <parameterName>primitive</parameterName>
         <spParameterName>id</spParameterName>
       </parameter>
     </parameters>
     <returnDataType>Entity</returnDataType>
   </operation>
-  <operation name="GetPharmacyMedicines">
-    <spName>uspGetPharmacyMedicines</spName>
-    <parameters>
-      <parameter>
-        <parameterName>PharmacyId</parameterName>
-        <spParameterName>pharmacyId</spParameterName>
-      </parameter>
-    </parameters>
-    <returnDataType>Enumerable</returnDataType>
-  </operation>
   <operation name="GetPharmaciesByMedicine">
     <spName>uspGetPharmaciesByMedicineId</spName>
     <parameters>
       <parameter>
-        <parameterName>MedicineId</parameterName>
-        <spParameterName>medicineId</spParameterName>
+        <parameterName>primitive</parameterName>
+        <spParameterName>id</spParameterName>
       </parameter>
     </parameters>
     <returnDataType>Enumerable</returnDataType>
@@ -166,6 +170,20 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
       <parameter>
         <parameterName>Price</parameterName>
         <spParameterName>price</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+  <operation name="UpdateQuantity">
+    <spName>uspUpdateMedicineQuantity</spName>
+    <parameters>
+      <parameter>
+        <parameterName>Id</parameterName>
+        <spParameterName>id</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Quantity</parameterName>
+        <spParameterName>quantity</spParameterName>
       </parameter>
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
@@ -210,6 +228,10 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
         <spParameterName>closeTime</spParameterName>
       </parameter>
       <parameter>
+        <parameterName>Type</parameterName>
+        <spParameterName>type</spParameterName>
+      </parameter>
+      <parameter>
         <parameterName>Country</parameterName>
         <spParameterName>country</spParameterName>
       </parameter>
@@ -232,6 +254,4 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
   </operation>
-  
-
 </operations>

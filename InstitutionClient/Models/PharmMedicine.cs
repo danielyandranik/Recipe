@@ -1,4 +1,4 @@
-﻿namespace InstitutionAPI.Models
+﻿namespace InstitutionClient.Models
 {
     public class PharmMedicine
     {
