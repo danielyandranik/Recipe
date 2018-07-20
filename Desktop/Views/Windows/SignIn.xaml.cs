@@ -15,13 +15,20 @@ using System.Windows.Shapes;
 namespace Desktop.Views
 {
     /// <summary>
-    /// Interaction logic for CodeConfirmation.xaml
+    /// Interaction logic for SignIn.xaml
     /// </summary>
-    public partial class CodeConfirmation : Window
+    public partial class SignIn : Window
     {
-        public CodeConfirmation()
+        public SignIn()
         {
             InitializeComponent();
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            var register = new RegisterWindow(); 
+            register.Show();
+            this.Close();
         }
     }
 }
