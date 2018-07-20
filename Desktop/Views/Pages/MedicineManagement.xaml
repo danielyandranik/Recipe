@@ -8,12 +8,38 @@
       MinHeight="609" MinWidth="902"
       Title="MedicineManagement" Background="White">
 
+    <Page.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <!-- Modify default template, to change triggers -->
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border x:Name="border" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" >
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="BorderBrush" Value="#FF182634"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </Trigger>
+
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" Value="#FF182634"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
     <Grid>
 
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
@@ -26,8 +52,154 @@
                 <RowDefinition Height="*"/>
                 
             </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+
+                
+                <TextBlock  Text="Add a new medicine" HorizontalAlignment="Left" FontFamily="Comfortaa" FontSize="24" Margin="40,15,0,15" />
+
+                <Button Content="Add" Background="#FF1AC560" Width="120" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,15,40,15" BorderBrush="{x:Null}" FontFamily="Comfortaa" FontSize="16" />
+
+                
+
+            </Grid>
+
+            <Grid Grid.Row="1" Background="#FFF1FFFA">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    
+
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="1">
+
+                    <Label Content="Name" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                    <TextBox VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="200" FontSize="16" FontFamily="Consolas" BorderBrush="#FF182634" CaretBrush="#FF182634" Foreground="#FF182634" SelectionBrush="White" Margin="0,5,0,0" />
+                    <Label Content="Maker" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                    <TextBox VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="200" FontSize="16" FontFamily="Consolas" BorderBrush="#FF182634" CaretBrush="#FF182634" Foreground="#FF182634" SelectionBrush="White" Margin="0,5,0,0" />
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="3">
+
+                    <Label Content="Country" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                    <TextBox VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="200" FontSize="16" FontFamily="Consolas" BorderBrush="#FF182634" CaretBrush="#FF182634" Foreground="#FF182634" SelectionBrush="White" Margin="0,5,0,0" />
+
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Margin="0,0,5,0">
+                            
+                            <Label Content="Units" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                            <TextBox VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="100" FontSize="16" FontFamily="Consolas" BorderBrush="#FF182634" CaretBrush="#FF182634" Foreground="#FF182634" SelectionBrush="White" Margin="0,5,0,0" />
+
+                        </StackPanel>
+
+                        <StackPanel Margin="5,0,0,0">
+                            <Label Content="Shelf life" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                            <TextBox VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="90" FontSize="16" FontFamily="Consolas" BorderBrush="#FF182634" CaretBrush="#FF182634" Foreground="#FF182634" SelectionBrush="White" Margin="0,5,0,0" />
+
+                        </StackPanel>
+                        
+                     </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="5">
+
+                    <Label Content="Description" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                    <TextBox Height="97" Width="240" TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" FontSize="16" FontFamily="Consolas" BorderBrush="#FF182634" CaretBrush="#FF182634" Foreground="#FF182634" SelectionBrush="White" Margin="0,5,0,0" />
+                </StackPanel>
+
+            </Grid>
+            
             
         </Grid>
-        
+
+        <Grid Grid.Row="1">
+
+            <Grid Grid.Row="0">
+
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+
+
+                    <TextBlock  Text="Update the medicine" HorizontalAlignment="Left" FontFamily="Comfortaa" FontSize="24" Margin="40,15,0,15" />
+
+                    <Button Content="Update" Background="#FFE5F919" Width="120" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,15,40,15" BorderBrush="{x:Null}" FontFamily="Comfortaa" FontSize="16" />
+
+
+
+                </Grid>
+
+                <Grid Grid.Row="1" Background="#FFF1FFFA">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+
+
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="1">
+
+                        <Label Content="Name" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                        <TextBox VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="200" FontSize="16" FontFamily="Consolas" BorderBrush="#FF182634" CaretBrush="#FF182634" Foreground="#FF182634" SelectionBrush="White" Margin="0,5,0,0" />
+                        <Label Content="Maker" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                        <TextBox VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="200" FontSize="16" FontFamily="Consolas" BorderBrush="#FF182634" CaretBrush="#FF182634" Foreground="#FF182634" SelectionBrush="White" Margin="0,5,0,0" />
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="3">
+
+                        <Label Content="Country" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                        <TextBox VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="200" FontSize="16" FontFamily="Consolas" BorderBrush="#FF182634" CaretBrush="#FF182634" Foreground="#FF182634" SelectionBrush="White" Margin="0,5,0,0" />
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="0,0,5,0">
+
+                                <Label Content="Units" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                                <TextBox VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="100" FontSize="16" FontFamily="Consolas" BorderBrush="#FF182634" CaretBrush="#FF182634" Foreground="#FF182634" SelectionBrush="White" Margin="0,5,0,0" />
+
+                            </StackPanel>
+
+                            <StackPanel Margin="5,0,0,0">
+                                <Label Content="Shelf life" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                                <TextBox VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="90" FontSize="16" FontFamily="Consolas" BorderBrush="#FF182634" CaretBrush="#FF182634" Foreground="#FF182634" SelectionBrush="White" Margin="0,5,0,0" />
+
+                            </StackPanel>
+
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="5">
+
+                        <Label Content="Description" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                        <TextBox Height="97" Width="240" TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" FontSize="16" FontFamily="Consolas" BorderBrush="#FF182634" CaretBrush="#FF182634" Foreground="#FF182634" SelectionBrush="White" Margin="0,5,0,0" />
+                    </StackPanel>
+
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+            
     </Grid>
 </Page>

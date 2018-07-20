@@ -50,13 +50,33 @@
                         <Button Content="Doctor" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
                         
                         <Separator Width="120" Background="#FFFFFFFF" />
-                        <Button Content="Add new" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
+                        <Button Content="Add new" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="Button_Click" />
                         
                         <Separator Background="#FF182634" Margin="0,5" />
                         <Button Content="Sign Out" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
 
+                        <Popup Name="AddProfile" Margin="0" VerticalOffset="-80" PopupAnimation="Fade" AllowsTransparency="True" HorizontalOffset="-151">
+                            <StackPanel Background="#FF39B9B9" HorizontalAlignment="Right" Width="150">
+
+                                <Button Width="150" Content="Patient" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddPatientProfile"/>
+                                <Separator Width="120" Background="#FFFFFFFF" />
+
+                                <Button Width="150" Content="Doctor" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddDoctorProfile"/>
+                                <Separator Width="120" Background="#FFFFFFFF" />
+
+                                <Button Width="150" Content="Chief Doctor" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddChiefDoctorProfile" />
+                                <Separator Width="120" Background="#FFFFFFFF" />
+
+                                <Button Width="150" Content="Pharmacist" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddPharmacistProfile"/>
+                                
+                            </StackPanel>
+                        </Popup>
+
                     </StackPanel>
+
+
                 </Popup>
+                
             </StackPanel>
             
             
