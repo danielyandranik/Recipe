@@ -1,205 +1,170 @@
-﻿using Newtonsoft.Json;
+﻿using InstitutionClient.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace InstitutionClient
 {
     public class Client
     {
-        /// <summary>
-        /// Base address URI
-        /// </summary>
-        private Uri uri;
+        private readonly HttpClient client;
 
-        /// <summary>
-        /// Http client for making HTTP requests
-        /// </summary>
-        private HttpClient httpClient;
-
-        /// <summary>
-        /// Creates new instance of RestClient
-        /// </summary>
-        /// <param name="uri">Base address URI</param>
-        public Client(string uri)
+        public Client(string baseAddress)
         {
-            // if uri is null then throw an exception informing about that
-            if (uri == null)
-            {
-                throw new NoNullAllowedException("Uri");
-            }
-
-            // constructing URI
-            this.uri = new Uri(uri);
-
-            // constructing http client
-            this.httpClient = new HttpClient();
-            this.httpClient.BaseAddress = this.uri;
-            this.httpClient.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue($"application/json"));
+            // api.institutions? base address??
+            this.client = new HttpClient() { BaseAddress = new Uri(baseAddress) };
+            this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        /// <summary>
-        /// Sends HTTP GET request
-        /// </summary>
-        /// <typeparam name="T">Type of object</typeparam>
-        /// <param name="resourcePath">Resource path</param>
-        /// <returns>Returns response result.</returns>
-        public ResponseResult Get<T>(string resourcePath)
+        public AuthenticationHeaderValue Authurization
         {
-            // constructing response result
-            var responseResult = new ResponseResult();
-
-            // sending GET request
-            var response = this.httpClient.GetAsync(resourcePath).Result;
-
-            // if request is not successful
-            if (!response.IsSuccessStatusCode)
+            get
             {
-                // construct response result about failure
-                responseResult.Status = Status.Failure;
-                responseResult.Content = null;
-
-                // return response result
-                return responseResult;
+                return this.client.DefaultRequestHeaders.Authorization;
             }
-
-            // reading response
-            var result = response.Content.ReadAsStringAsync().Result;
-
-            // deserializing response
-            var list = JsonConvert.DeserializeObject<T>(result);
-
-            // constructing response result about success
-            responseResult.Status = Status.Success;
-            responseResult.Content = list;
-
-            // return response result
-            return responseResult;
+            set
+            {
+                this.client.DefaultRequestHeaders.Authorization = value;
+            }
         }
 
-        /// <summary>
-        /// Sends HTTP POST request
-        /// </summary>
-        /// <typeparam name="T">Type of object</typeparam>
-        /// <param name="item">Item</param>
-        /// <param name="resourcePath">Resource path</param>
-        /// <returns>Returns response result</returns>
-        public ResponseResult Post<T>(T item, string resourcePath)
+        private async Task<ResponseMessage<IEnumerable<T>>> GetAllAsync<T>(string requestUri)
         {
-            // constructing response result
-            var responseResult = new ResponseResult();
+            var httpResponse = await this.client.GetAsync(requestUri);
 
-            // serializing item
-            var serializedItem = JsonConvert.SerializeObject(item);
+            var content = await httpResponse.Content.ReadAsStringAsync();
 
-            // constructing String Content
-            var httpContent = new StringContent(
-                serializedItem, Encoding.UTF8, $"application/json");
-
-            // sending POST request
-            var response = this.httpClient.PostAsync(resourcePath, httpContent).Result;
-
-            // if request is not successful
-            if (!response.IsSuccessStatusCode)
+            return new ResponseMessage<IEnumerable<T>>
             {
-                // construct response result about failure 
-                responseResult.Status = Status.Failure;
-                responseResult.Content = null;
-
-                // return response result
-                return responseResult;
-            }
-
-            // otherwise construct response result about success
-            responseResult.Status = Status.Success;
-            responseResult.Content = "Successfully posted";
-
-            // return response result
-            return responseResult;
+                StatusCode = (int)httpResponse.StatusCode,
+                IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
+                Content = JsonConvert.DeserializeObject<IEnumerable<T>>(content)
+            };
         }
 
-        /// <summary>
-        /// Sends HTTP PUT request
-        /// </summary>
-        /// <typeparam name="T">Type of object</typeparam>
-        /// <param name="id">ID</param>
-        /// <param name="item">Item</param>
-        /// <param name="resourcePath">Resource path</param>
-        /// <returns>Returns response result</returns>
-        public ResponseResult Put<T>(int id, T item, string resourcePath)
+        private async Task<ResponseMessage<T>> GetAsync<T>(string requestUri)
         {
-            // constructing response resuly
-            var responseResult = new ResponseResult();
+            var httpResponse = await this.client.GetAsync(requestUri);
 
-            var data = new DataToPost<T>() { Id = id, Item = item };
+            var content = await httpResponse.Content.ReadAsStringAsync();
 
-            // serializing item
-            var serializedItem = JsonConvert.SerializeObject(data);
-
-            // constructing String Content
-            var httpContent = new StringContent(
-                serializedItem, Encoding.UTF8, $"application/json");
-
-            // sending PUT request
-            var response = this.httpClient.PutAsync(resourcePath, httpContent).Result;
-
-            // if request is not successful
-            if (!response.IsSuccessStatusCode)
+            return new ResponseMessage<T>
             {
-                // construct response result about failure
-                responseResult.Status = Status.Failure;
-                responseResult.Content = null;
-
-                // return response result
-                return responseResult;
-            }
-
-            // otherwise construct response result about success
-            responseResult.Status = Status.Success;
-            responseResult.Content = "Successfully put";
-
-            // return response result
-            return responseResult;
+                StatusCode = (int)httpResponse.StatusCode,
+                IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
+                Content = JsonConvert.DeserializeObject<T>(content)
+            };
         }
 
-        /// <summary>
-        /// Sends DELETE request
-        /// </summary>
-        /// <param name="id">ID</param>
-        /// <param name="resourcePath">Resource path</param>
-        /// <returns>Returns response result</returns>
-        public ResponseResult Delete(int id, string resourcePath)
+        private async Task<ResponseMessage<string>> CreateAsync<T>(string requestUri, T t)
         {
-            // constructing response result
-            var responseResult = new ResponseResult();
+            var json = JsonConvert.SerializeObject(t);
 
-            // sending DELETE request
-            var response = this.httpClient.DeleteAsync($"{resourcePath}/{id}").Result;
+            var httpResponse = await this.client.PostAsync(requestUri, new StringContent(json, Encoding.UTF8, "application/json"));
 
-            // if request is not successful
-            if (!response.IsSuccessStatusCode)
+            var content = await httpResponse.Content.ReadAsStringAsync();
+
+            return new ResponseMessage<string>
             {
-                // construct response result about failure
-                responseResult.Status = Status.Failure;
-                responseResult.Content = null;
+                StatusCode = (int)httpResponse.StatusCode,
+                IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
+                Content = content
+            };
+        }
 
-                // return response result
-                return responseResult;
-            }
+        private async Task<ResponseMessage<string>> UpdateAsync<T>(string requesUri, T t)
+        {
+            var json = JsonConvert.SerializeObject(t);
 
-            // otherwise construct response result about success
-            responseResult.Status = Status.Success;
-            responseResult.Content = "Successfully deleted.";
+            var httpResponse = await this.client.PutAsync(requesUri, new StringContent(json, Encoding.UTF8, "application/json"));
 
-            // return response result
-            return responseResult;
+            var content = await httpResponse.Content.ReadAsStringAsync();
+
+            return new ResponseMessage<string>
+            {
+                StatusCode = (int)httpResponse.StatusCode,
+                IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
+                Content = content
+            };
+        }
+
+        private async Task<ResponseMessage<string>> DeleteAsync(string requestUri)
+        {
+
+            var httpResponse = await this.client.DeleteAsync(requestUri);
+
+            var content = await httpResponse.Content.ReadAsStringAsync();
+
+            return new ResponseMessage<string>
+            {
+                StatusCode = (int)httpResponse.StatusCode,
+                IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
+                Content = content
+            };
+        }
+
+        public async Task<ResponseMessage<IEnumerable<Institution>>> GetAllHospitalsAsync()
+        {
+            return await this.GetAllAsync<Institution>("api/institutions/hospital");
+        }
+
+        public async Task<ResponseMessage<IEnumerable<Institution>>> GetAllPharmaciessAsync()
+        {
+            return await this.GetAllAsync<Institution>("api/institutions/pharmacy");
+        }
+
+        public async Task<ResponseMessage<IEnumerable<Institution>>> GetAllSuppliersAsync(int medicineId)
+        {
+            return await this.GetAllAsync<Institution>($"api/institutions/pharmacy/?id={medicineId}");
+        }
+
+        public async Task<ResponseMessage<IEnumerable<PharmMedicine>>> GetAllPharmacyMedicinesAsync(int pharmacyId)
+        {
+            return await this.GetAllAsync<PharmMedicine>($"api/pharmmeds/{pharmacyId}");
+        }
+
+        public async Task<ResponseMessage<Institution>> GetInstitution(int id)
+        {
+            return await this.GetAsync<Institution>($"api/institutions/{id}");
+        }
+
+        public async Task<ResponseMessage<PharmMedicine>> GetPharmacyMedicine(int id)
+        {
+            return await this.GetAsync<PharmMedicine>($"api/pharmmeds/{id}");
+        }
+
+        public async Task<ResponseMessage<string>> CreateInstitution(Institution institution)
+        {
+            return await this.CreateAsync<Institution>("api/institutions",institution);
+        }
+
+        public async Task<ResponseMessage<string>> CreatePharmacyMedicine(PharmMedicine medicine)
+        {
+            return await this.CreateAsync<PharmMedicine>( "api/pharmmeds",medicine);
+        }
+
+        public async Task<ResponseMessage<string>> UpdateInstitutionAsync(Institution institution)
+        {
+            return await this.UpdateAsync<Institution>("api/institutions", institution);
+        }
+
+        public async Task<ResponseMessage<string>> UpdateMedicinePriceAsync(MedicinePriceInfo price)
+        {
+            return await this.UpdateAsync<MedicinePriceInfo>("api/pharmmeds/price", price);
+        }
+
+        public async Task<ResponseMessage<string>> UpdateMedicineQuantityAsync(MedicineQuantityInfo quantity)
+        {
+            return await this.UpdateAsync<MedicineQuantityInfo>("api/pharmmeds/quantity", quantity);
+        }
+
+        private async Task<ResponseMessage<string>> DeletePharmacyMedicineAsync(int id)
+        {
+            return await this.DeleteAsync($"api/pharmmeds/{id}");
         }
     }
 }
-
-

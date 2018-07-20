@@ -1,4 +1,4 @@
-﻿namespace InstitutionClient
+﻿namespace InstitutionClient.Models
 {
     public class Address
     {

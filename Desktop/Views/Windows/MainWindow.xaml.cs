@@ -150,5 +150,10 @@ namespace Desktop.Views
             menuButtonRotateAngle = (menuButtonRotateAngle == 180) ? 0 : 180;
             this.menu.IsOpen = !this.menu.IsOpen;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.AddProfile.IsOpen = !this.AddProfile.IsOpen;
+        }
     }
 }

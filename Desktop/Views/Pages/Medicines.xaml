@@ -99,6 +99,14 @@
         </StackPanel>
 
         <ListView Grid.Row="3" HorizontalContentAlignment="Stretch" Height="{Binding Path=ActualHeight}" MinWidth="900" Width="auto" Name="Tweets">
+
+            <ListView.ContextMenu>
+                <ContextMenu Name="MedicineContextMenu" StaysOpen="true" Background="WhiteSmoke">
+                    <MenuItem Header="Edit" Name="EditMedicineContextMenu" Click="EditMedicineContextMenu_Click"/>
+                    <MenuItem Header="Remove" Name="RemoveMedicineContextMenu" />
+                </ContextMenu>
+            </ListView.ContextMenu>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid  Height="40" >

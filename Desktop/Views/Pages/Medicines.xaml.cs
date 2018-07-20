@@ -187,6 +187,11 @@ namespace Desktop.Views.Pages
                 }
             };
         }
+
+        private void EditMedicineContextMenu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
     public class Medicine

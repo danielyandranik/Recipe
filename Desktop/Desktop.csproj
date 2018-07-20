@@ -241,6 +241,9 @@
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\Pages\AddPatientProfile.xaml.cs">
+      <DependentUpon>AddPatientProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\MedicineManagement.xaml.cs">
       <DependentUpon>MedicineManagement.xaml</DependentUpon>
     </Compile>
@@ -262,6 +265,10 @@
     <Compile Include="Views\Windows\SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\Pages\AddPatientProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\MedicineManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
