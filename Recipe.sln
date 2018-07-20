@@ -17,30 +17,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeApi", "RecipeApi\Reci
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstitutionAPI", "InstitutionAPI\InstitutionAPI.csproj", "{255D79B2-37CB-4FB4-820E-3870FB79238E}"
 EndProject
-<<<<<<< HEAD
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstitutionClient", "InstitutionClient\InstitutionClient.csproj", "{AF517C63-131E-449C-A06D-B19058B2111E}"
 EndProject
-=======
->>>>>>> Sona
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeClient", "RecipeClient\RecipeClient.csproj", "{42BCC20D-8EB3-446C-962D-985399F89A77}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicineAPI", "MedecineAPI\MedicineAPI.csproj", "{85651B79-C06E-4FB7-B088-59AC1A98A85B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicineApiClient", "MedicineApiClient\MedicineApiClient.csproj", "{53A3194C-94C6-4D17-8EAD-D321807C8065}"
 EndProject
-<<<<<<< HEAD
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{39ED7BC1-FCBE-4802-B783-AC9B9425A1E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Desktop\Desktop.csproj", "{44E381BE-4290-4D4D-90D1-B282A82A91F2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagementApiClientTest", "UserManagementApiClientTest\UserManagementApiClientTest.csproj", "{C4219108-2B41-4261-8A72-B0C8528055CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagementConsumer", "UserManagementConsumer\UserManagementConsumer.csproj", "{8560FA8A-F884-4B92-B1D6-28C2CB511D56}"
-=======
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestClient", "RestClient\RestClient.csproj", "{55656E99-563A-460E-A401-FEEB909B3D86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagementConsumer", "UserManagementConsumer\UserManagementConsumer.csproj", "{8560FA8A-F884-4B92-B1D6-28C2CB511D56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstitutionClient", "InstitutionClient\InstitutionClient.csproj", "{ADFF8CAD-8181-4DB7-A910-189A13F3BCFA}"
->>>>>>> Sona
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestClient", "RestClient\RestClient.csproj", "{55656E99-563A-460E-A401-FEEB909B3D86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,13 +73,10 @@ Global
 		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{255D79B2-37CB-4FB4-820E-3870FB79238E}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
 		{AF517C63-131E-449C-A06D-B19058B2111E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF517C63-131E-449C-A06D-B19058B2111E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF517C63-131E-449C-A06D-B19058B2111E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF517C63-131E-449C-A06D-B19058B2111E}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
->>>>>>> Sona
 		{42BCC20D-8EB3-446C-962D-985399F89A77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{42BCC20D-8EB3-446C-962D-985399F89A77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42BCC20D-8EB3-446C-962D-985399F89A77}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -99,7 +89,6 @@ Global
 		{53A3194C-94C6-4D17-8EAD-D321807C8065}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53A3194C-94C6-4D17-8EAD-D321807C8065}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53A3194C-94C6-4D17-8EAD-D321807C8065}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
 		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -112,16 +101,10 @@ Global
 		{8560FA8A-F884-4B92-B1D6-28C2CB511D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8560FA8A-F884-4B92-B1D6-28C2CB511D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8560FA8A-F884-4B92-B1D6-28C2CB511D56}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
 		{55656E99-563A-460E-A401-FEEB909B3D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55656E99-563A-460E-A401-FEEB909B3D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55656E99-563A-460E-A401-FEEB909B3D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55656E99-563A-460E-A401-FEEB909B3D86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ADFF8CAD-8181-4DB7-A910-189A13F3BCFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ADFF8CAD-8181-4DB7-A910-189A13F3BCFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ADFF8CAD-8181-4DB7-A910-189A13F3BCFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ADFF8CAD-8181-4DB7-A910-189A13F3BCFA}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> Sona
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

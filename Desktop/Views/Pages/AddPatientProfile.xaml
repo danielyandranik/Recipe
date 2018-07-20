@@ -20,11 +20,12 @@
 
         <StackPanel Grid.Row="0">
 
-            <TextBlock Text="Add patient profile"/>
-            <Separator />
-
+            <TextBlock Text="Add patient profile" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
+            <Separator Background="#FF182634" Width="600" Margin="0,5" />
 
         </StackPanel>
+        
+        
         
     </Grid>
 </Page>
