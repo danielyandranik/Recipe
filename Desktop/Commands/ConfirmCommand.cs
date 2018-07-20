@@ -1,4 +1,5 @@
 ﻿using Desktop.ViewModels;
+using Desktop.Views;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
 
@@ -38,8 +39,14 @@ namespace Desktop.Commands
                     });
 
                 if (response.Result.IsSuccessStatusCode)
-                    return;
+                {
+                    new SignIn().Show();
 
+                    for (var count = App.Current.Windows.Count - 2; count >= 0; count--)
+                    {
+                        App.Current.Windows[count].Close();
+                    }
+                }                
             }
             catch { }
         }

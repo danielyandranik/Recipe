@@ -28,7 +28,7 @@ namespace Desktop.ViewModels
         /// <typeparam name="TProperty">Type of property</typeparam>
         /// <param name="property">property</param>
         /// <param name="value">value</param>
-        protected void SetProperty<TProperty>(ref TProperty property,TProperty value)
+        protected void SetProperty<TProperty>(ref TProperty property, TProperty value, [CallerMemberName]string propName = "")
         {
             // if property isn't changed
             if (property.Equals(value))
@@ -36,7 +36,7 @@ namespace Desktop.ViewModels
 
             // otherwise update and notify
             property = value;
-            this.NotifyPropertyChanged();
+            this.NotifyPropertyChanged(propName);
         }
     }
 }
