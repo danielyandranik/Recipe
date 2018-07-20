@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Desktop
+namespace Desktop.Views
 {
     /// <summary>
     /// Interaction logic for SignIn.xaml
@@ -26,7 +26,7 @@ namespace Desktop
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            var register = new Register(); 
+            var register = new RegisterWindow(); 
             register.Show();
             this.Close();
         }

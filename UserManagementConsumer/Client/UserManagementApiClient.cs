@@ -68,27 +68,32 @@ namespace UserManagementConsumer.Client
 
             // constructing http clients
             this.ConstructRegisterClient();
-            this.ConstructTokenClient();
+            //this.ConstructTokenClient();
         }
+
+        /// <summary>
+        /// Creates new instance of <see cref="UserManagementApiClient"/>
+        /// </summary>
+        public UserManagementApiClient():this("http://localhost:5700","http://localhost:5800") { }
 
         /// <summary>
         /// Registers new user
         /// </summary>
         /// <param name="userRegisterInfo">User registration data</param>
         /// <returns>response</returns>
-        public async Task<Response<string>> RegisterAsync(UserRegisterInfo userRegisterInfo)
+        public async Task<Response<HttpResponseMessage>> RegisterAsync(UserRegisterInfo userRegisterInfo)
         {
             // getting response
             var response = await this._registerClient.PostAsync("api/register",this.ConstructContent(userRegisterInfo));
 
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse("Error occured", response.ReasonPhrase);
+                return this.ConstructResponse(response.ReasonPhrase, response);
 
             // reading response
             var responseString = await response.Content.ReadAsStringAsync();
 
             // returning response
-            return this.ConstructResponse("Successfully registered.Please verify your account", responseString);
+            return this.ConstructResponse(response.ReasonPhrase, response);
         }
 
         /// <summary>
@@ -96,19 +101,19 @@ namespace UserManagementConsumer.Client
         /// </summary>
         /// <param name="userVerificationInfo">User verification information</param>
         /// <returns>response</returns>
-        public async Task<Response<string>> VerifyAsync(UserVerificationInfo userVerificationInfo)
+        public async Task<Response<HttpResponseMessage>> VerifyAsync(UserVerificationInfo userVerificationInfo)
         {
             // getting response
             var response = await this._registerClient.PutAsync("api/register/verify",this.ConstructContent(userVerificationInfo));
 
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse("Error occured", response.ReasonPhrase);
+                return this.ConstructResponse(response.ReasonPhrase, response);
 
             // reading content
             var content = await response.Content.ReadAsStringAsync();
 
             // returning response
-            return this.ConstructResponse("Successfully Verified", content);
+            return this.ConstructResponse(response.ReasonPhrase, response);
         }
 
         /// <summary>
