@@ -33,6 +33,7 @@
     </Page.Resources>
     
     <Grid>
+        
         <Grid.RowDefinitions>
 
             <RowDefinition Height="Auto" />
@@ -97,10 +98,10 @@
 
         </StackPanel>
 
-        <ListView Grid.Row="3" HorizontalContentAlignment="Stretch" MinWidth="900" Width="auto" Name="Tweets">
+        <ListView Grid.Row="3" HorizontalContentAlignment="Stretch" Height="{Binding Path=ActualHeight}" MinWidth="900" Width="auto" Name="Tweets">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="{Binding Path=MaxWidth}"  Height="40" >
+                    <Grid  Height="40" >
 
                         <Grid.ColumnDefinitions>
 
