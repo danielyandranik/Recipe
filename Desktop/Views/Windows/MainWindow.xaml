@@ -58,28 +58,17 @@
                         <Popup Name="AddProfile" Margin="0" VerticalOffset="-80" PopupAnimation="Fade" AllowsTransparency="True" HorizontalOffset="-151">
                             <StackPanel Background="#FF39B9B9" HorizontalAlignment="Right" Width="150">
 
-<<<<<<< HEAD
-                                <Button Width="150" Content="Patient" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
-=======
                                 <Button Width="150" Content="Patient" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddPatientProfileButton_Click"/>
->>>>>>> 84c5b0b8b14dac73c48b57ceea3ad488713b9551
                                 <Separator Width="120" Background="#FFFFFFFF" />
 
                                 <Button Width="150" Content="Doctor" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
                                 <Separator Width="120" Background="#FFFFFFFF" />
 
-<<<<<<< HEAD
                                 <Button Width="150" Content="Chief Doctor" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"  />
                                 <Separator Width="120" Background="#FFFFFFFF" />
 
                                 <Button Width="150" Content="Pharmacist" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
-=======
-                                <Button Width="150" Content="Chief Doctor" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
-                                <Separator Width="120" Background="#FFFFFFFF" />
 
-                                <Button Width="150" Content="Pharmacist" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
->>>>>>> 84c5b0b8b14dac73c48b57ceea3ad488713b9551
-                                
                             </StackPanel>
                         </Popup>
 
