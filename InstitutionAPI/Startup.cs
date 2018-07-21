@@ -49,12 +49,12 @@ namespace InstitutionAPI
             {
                 options.AddPolicy("PharmacistProfile", policy =>
                 {
-                    policy.RequireClaim("current_profile", "Pharmacist");
+                    policy.RequireClaim("current_profile", "pharmacist");
                 });
 
                 options.AddPolicy("PharmacyAdminProfile", policy =>
                 {
-                    policy.RequireClaim("current_profile", "PharmacyAdmin");
+                    policy.RequireClaim("current_profile", "pharmacy_admin");
                 });
 
                 options.AddPolicy("CanUpdateInstitution", policy =>
@@ -62,7 +62,7 @@ namespace InstitutionAPI
                     policy.RequireClaim("current_profile",
                         new[]
                         {
-                            "PharmacyAdmin","HospitalAdmin", "MinistryWorker", "Admin"
+                            "pharmacy_admin","hospital_admin", "ministry_worker", "admin"
                         });
                 });
 
@@ -71,7 +71,7 @@ namespace InstitutionAPI
                     policy.RequireClaim("current_profile",
                         new[]
                         {
-                            "PharmacyAdmin","HospitalAdmin"
+                            "pharmacy_admin","hospital_admin"
                         });
                 });
 
@@ -80,7 +80,7 @@ namespace InstitutionAPI
                     policy.RequireClaim("current_profile",
                         new[]
                         {
-                            "MinistryWorker","Admin"
+                            "ministry_worker","admin"
                         });
                 });
 
@@ -89,8 +89,8 @@ namespace InstitutionAPI
                     policy.RequireClaim("current_profile",
                         new[]
                         {
-                            "Doctor","Pharmacist","MinistryWorker","Patient",
-                            "Admin","HospitalAdmin"
+                            "doctor","pharmacist","ministry_worker","patient",
+                            "admin","hospital_admin"
                         });
                 });
             });
