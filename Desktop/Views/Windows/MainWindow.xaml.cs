@@ -16,6 +16,8 @@ namespace Desktop.Views
         private readonly static Medicines medicines;
         private static readonly Hospitals hospitals;
         private static readonly Phamracies phamracies;
+
+        private readonly AddPatientProfile addPatientProfile;
         private static int menuButtonRotateAngle;
         private double _aspectRatio;
         private bool? _adjustingHeight = null;
@@ -41,6 +43,7 @@ namespace Desktop.Views
         public MainWindow()
         {
             InitializeComponent();
+            this.addPatientProfile = new AddPatientProfile();
             //this.SourceInitialized += Window_SourceInitialized;
         }
 
@@ -154,6 +157,16 @@ namespace Desktop.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.AddProfile.IsOpen = !this.AddProfile.IsOpen;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddPatientProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.frame.NavigationService.Navigate(this.addPatientProfile);
         }
     }
 }
