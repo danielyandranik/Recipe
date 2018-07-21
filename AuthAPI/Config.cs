@@ -18,7 +18,7 @@ namespace AuthAPI
             {
                 new ApiResource("UserManagementAPI"),
                 new ApiResource("RecipeApi"),
-                new ApiResource("InstitutionAPI"),
+                new ApiResource("InstitutionsAPI"),
                 new ApiResource("MedicineAPI")
             };
         }
@@ -39,7 +39,7 @@ namespace AuthAPI
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = {"UserManagementAPI", "RecipeApi", "InstitutionAPI","MedicineAPI" },
+                    AllowedScopes = {"UserManagementAPI", "RecipeApi", "InstitutionsAPI","MedicineAPI" },
                     UpdateAccessTokenClaimsOnRefresh = true,
                     AccessTokenLifetime = 3600
                 }

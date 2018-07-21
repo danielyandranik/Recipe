@@ -298,7 +298,7 @@ namespace DatabaseAccess.SpExecuters
                 // getting property type
                 var propertyType = property.PropertyType;
 
-                if (!propertyType.IsPrimitive && propertyType != typeof(string) && propertyType != typeof(DateTime))
+                if (!propertyType.IsPrimitive && propertyType != typeof(string) && propertyType != typeof(DateTime) && propertyType != typeof(decimal))
                 {
                     // getting properties of complex property
                     var propProperties = propertyType.GetProperties();
@@ -317,7 +317,14 @@ namespace DatabaseAccess.SpExecuters
                 // setting primitive property value
                 else
                 {
-                    property.SetValue(result, reader[property.Name]);
+                    try
+                    {
+                        property.SetValue(result, reader[property.Name]);
+                    }
+                    catch (Exception ex)
+                    {
+                        var aaa = reader[property.Name];
+                    }
                 }
             }
 
