@@ -30,5 +30,10 @@ namespace Desktop.Views
             register.Show();
             this.Close();
         }
+
+        private void Close_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.InvalidInputPopup.IsOpen = false;
+        }
     }
 }

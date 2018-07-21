@@ -8,19 +8,34 @@ using System.IO;
 
 namespace MedecineAPI
 {
+    /// <summary>
+    ///  Startup class for MedecineAPI
+    /// </summary>
 	public class Startup
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IConfiguration Configuration = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("appsettings.json").Build();
 
-		// This method gets called by the runtime. Use this method to add services to the container.
-		public void ConfigureServices(IServiceCollection services)
+
+        /// <summary>
+        /// Configures services.
+        ///  This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services">Services.</param>
+        public void ConfigureServices(IServiceCollection services)
 		{
             // adding MVC Core,authorization and JSON formatting
             services.AddMvcCore()
@@ -35,7 +50,7 @@ namespace MedecineAPI
 			});
 
 
-
+            // adding authentication info
             services.AddAuthentication("Bearer")
 				.AddIdentityServerAuthentication(options =>
 				{
@@ -45,21 +60,27 @@ namespace MedecineAPI
 				});
 
 
-			services.AddTransient<IMedicineContext, MedicineContext>();
+            // adding transients
+            services.AddTransient<IMedicineContext, MedicineContext>();
             services.AddTransient<IMedicineRepository, MedicineRepository>();
 
             // add polices 
-
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("MinistryWorkerProfile", policy =>
                 {
-                    policy.RequireClaim("current_profile", "MinistryWorker");
+                    policy.RequireClaim("current_profile", "ministry_worker");
                 });
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
+        /// <summary>
+        /// Configures app and environment.
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">App</param>
+        /// <param name="env">Environment</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

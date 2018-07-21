@@ -42,5 +42,10 @@ namespace Desktop.Views
                 this._registerViewModel.Register.Password = passwordBox.Password;
             else this._registerViewModel.Register.ConfirmPassword = passwordBox.Password;
         }
+
+        private void Close_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.InvalidInputPopup.IsOpen = false;
+        }
     }
 }
