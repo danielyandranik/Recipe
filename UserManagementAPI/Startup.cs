@@ -117,9 +117,7 @@ namespace UserManagementAPI
             // adding singletons
             services.AddSingleton(new MapInfo(this.Configuration["Mappers:Users"]));
             services.AddSingleton(new SpExecuter(this.Configuration["ConnectionStrings:UsersDB"]));
-            services.AddSingleton(new MailService(
-                new NetworkCredential(this.Credentials["Username"],
-                                      this.Credentials["Password"])));
+            services.AddSingleton(new NetworkCredential(this.Credentials["Username"],this.Credentials["Password"]));
         }
 
         /// <summary>
@@ -131,6 +129,7 @@ namespace UserManagementAPI
             // adding transients
             services.AddTransient(typeof(DataManager));
             services.AddTransient(typeof(Verifier));
+            services.AddTransient(typeof(MailService));
         }
     }
 }
