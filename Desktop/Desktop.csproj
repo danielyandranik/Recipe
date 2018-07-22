@@ -255,8 +255,6 @@
     <Compile Include="Validations\RegisterInfputValidation.cs" />
     <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
-    <Compile Include="ViewModels\SignInViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Pages\AddDoctorProfile.xaml.cs">
       <DependentUpon>AddDoctorProfile.xaml</DependentUpon>
     </Compile>

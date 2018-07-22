@@ -18,9 +18,9 @@ namespace Desktop.Views.Pages
     /// <summary>
     /// Interaction logic for AddPharmacy.xaml
     /// </summary>
-    public partial class AddPharmacy : Page
+    public partial class AddInstitution : Page
     {
-        public AddPharmacy()
+        public AddInstitution()
         {
             InitializeComponent();
         }
