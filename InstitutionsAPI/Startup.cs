@@ -39,7 +39,7 @@ namespace InstitutionsAPI
             // adding policies
             services.AddAuthorization(options =>
             {
-<<<<<<< HEAD:InstitutionsAPI/Startup.cs
+
                 //options.AddPolicy("PharmacistProfile", policy =>
                 //{
                 //    policy.RequireClaim("current_profile", "pharmacist");
@@ -76,7 +76,7 @@ namespace InstitutionsAPI
                 //            "MinistryWorker","Admin"
                 //        });
                 //});
-=======
+
                 options.AddPolicy("PharmacistProfile", policy =>
                 {
                     policy.RequireClaim("current_profile", "pharmacist");
@@ -113,21 +113,21 @@ namespace InstitutionsAPI
                             "ministry_worker","admin"
                         });
                 });
->>>>>>> 84c5b0b8b14dac73c48b57ceea3ad488713b9551:InstitutionAPI/Startup.cs
+
 
                 options.AddPolicy("has_profile", policy =>
                 {
                     policy.RequireClaim("current_profile",
                         new[]
                         {
-<<<<<<< HEAD:InstitutionsAPI/Startup.cs
-                            "doctor"
+
+                            "doctor",
                             //,"pharmacist","ministry_worker","patient",
                             //"admin","hospital_admin"
-=======
+
                             "doctor","pharmacist","ministry_worker","patient",
                             "admin","hospital_admin"
->>>>>>> 84c5b0b8b14dac73c48b57ceea3ad488713b9551:InstitutionAPI/Startup.cs
+
                         });
                 });
             });

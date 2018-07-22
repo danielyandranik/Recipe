@@ -255,8 +255,6 @@
     <Compile Include="Validations\RegisterInfputValidation.cs" />
     <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
-<<<<<<< HEAD
-=======
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Pages\AddDoctorProfile.xaml.cs">
@@ -265,7 +263,6 @@
     <Compile Include="Views\Pages\AddHospitalAdministartorProfile.xaml.cs">
       <DependentUpon>AddHospitalAdministartorProfile.xaml</DependentUpon>
     </Compile>
->>>>>>> 5172317534223cced57897d0362369a19540c790
     <Compile Include="Views\Pages\AddPatientProfile.xaml.cs">
       <DependentUpon>AddPatientProfile.xaml</DependentUpon>
     </Compile>
