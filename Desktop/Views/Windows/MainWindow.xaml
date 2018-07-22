@@ -55,6 +55,7 @@
                         <Separator Background="#FF182634" Margin="0,5" />
                         <Button Content="Sign Out" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
 
+<<<<<<< HEAD
                         <Popup Name="AddProfile" Margin="0" VerticalOffset="-80" PopupAnimation="Fade" AllowsTransparency="True" HorizontalOffset="-151">
                             <StackPanel Background="#FF39B9B9" HorizontalAlignment="Right" Width="150">
 
@@ -78,6 +79,21 @@
                                 <Separator Width="120" Background="#FFFFFFFF" />
 
                                         <Button Width="150" Content="Pharmacist" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
+=======
+                        <Popup Name="AddProfile" Margin="0" VerticalOffset="-80" PopupAnimation="Fade" AllowsTransparency="True" HorizontalOffset="-200">
+                            <StackPanel Background="#FF39B9B9" HorizontalAlignment="Right" Width="200">
+
+                                <Button Width="200" Content="Patient" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddPatientProfileButton_Click"/>
+                                <Separator Width="150" Background="#FFFFFFFF" />
+
+                                <Button Width="200" Content="Doctor" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddDoctorProfileButton_Click"/>
+                                <Separator Width="150" Background="#FFFFFFFF" />
+
+                                <Button Width="200" Content="Pharmacist" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddPharmacistProfileButton_Click" />
+                                <Separator Width="150" Background="#FFFFFFFF" />
+
+                                <Button Width="200" Content="Hospital Administrator" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddHospitalAdministartortProfileButton_Click"/>
+>>>>>>> 5172317534223cced57897d0362369a19540c790
 
                             </StackPanel>
                         </Popup>

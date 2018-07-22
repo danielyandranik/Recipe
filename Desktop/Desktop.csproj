@@ -255,8 +255,25 @@
     <Compile Include="Validations\RegisterInfputValidation.cs" />
     <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
+<<<<<<< HEAD
+=======
+    <Compile Include="ViewModels\SignInViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\Pages\AddDoctorProfile.xaml.cs">
+      <DependentUpon>AddDoctorProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\AddHospitalAdministartorProfile.xaml.cs">
+      <DependentUpon>AddHospitalAdministartorProfile.xaml</DependentUpon>
+    </Compile>
+>>>>>>> 5172317534223cced57897d0362369a19540c790
     <Compile Include="Views\Pages\AddPatientProfile.xaml.cs">
       <DependentUpon>AddPatientProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\AddPharmacistProfile.xaml.cs">
+      <DependentUpon>AddPharmacistProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\AddInstitution.xaml.cs">
+      <DependentUpon>AddInstitution.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\MedicineManagement.xaml.cs">
       <DependentUpon>MedicineManagement.xaml</DependentUpon>
@@ -282,7 +299,23 @@
     <Compile Include="Views\Windows\SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\Pages\AddDoctorProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\AddHospitalAdministartorProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\AddPatientProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\AddPharmacistProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\AddInstitution.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

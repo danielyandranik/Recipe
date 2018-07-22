@@ -16,9 +16,12 @@ namespace Desktop.Views
     {
         private readonly static Medicines medicines;
         private static readonly Hospitals hospitals;
-        private static readonly Phamracies phamracies;
+        private static readonly Pharmacies pharmacies;
 
         private readonly AddPatientProfile addPatientProfile;
+        private readonly AddDoctorProfile addDoctorProfile;
+        private readonly AddPharmacistProfile addPharmacistProfile;
+        private readonly AddHospitalAdministartorProfile addHospitalAdministartorProfile;
         private static int menuButtonRotateAngle;
         private double _aspectRatio;
         private bool? _adjustingHeight = null;
@@ -37,7 +40,7 @@ namespace Desktop.Views
         {
             medicines = new Medicines();
             hospitals = new Hospitals();
-            phamracies = new Phamracies();
+            pharmacies = new Pharmacies();
             menuButtonRotateAngle = 180;
         }
 
@@ -45,6 +48,9 @@ namespace Desktop.Views
         {
             InitializeComponent();
             this.addPatientProfile = new AddPatientProfile();
+            this.addDoctorProfile = new AddDoctorProfile();
+            this.addPharmacistProfile = new AddPharmacistProfile();
+            this.addHospitalAdministartorProfile = new AddHospitalAdministartorProfile();
             //this.SourceInitialized += Window_SourceInitialized;
         }
 
@@ -143,7 +149,7 @@ namespace Desktop.Views
 
         private void Pharmacies_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.frame.NavigationService.Navigate(phamracies);
+            this.frame.NavigationService.Navigate(pharmacies);
         }
 
         private void Toggle_menu(object sender, MouseButtonEventArgs e)
@@ -160,14 +166,24 @@ namespace Desktop.Views
             this.AddProfile.IsOpen = !this.AddProfile.IsOpen;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void AddPatientProfileButton_Click(object sender, RoutedEventArgs e)
         {
             this.frame.NavigationService.Navigate(this.addPatientProfile);
+        }
+
+        private void AddDoctorProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.frame.NavigationService.Navigate(this.addDoctorProfile);
+        }
+
+        private void AddPharmacistProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.frame.NavigationService.Navigate(this.addPharmacistProfile);
+        }
+
+        private void AddHospitalAdministartortProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.frame.NavigationService.Navigate(this.addHospitalAdministartorProfile);
         }
     }
 }
