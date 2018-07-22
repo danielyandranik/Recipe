@@ -18,6 +18,9 @@ namespace Desktop.Views
         private static readonly Phamracies phamracies;
 
         private readonly AddPatientProfile addPatientProfile;
+        private readonly AddDoctorProfile addDoctorProfile;
+        private readonly AddPharmacistProfile addPharmacistProfile;
+        private readonly AddHospitalAdministartorProfile addHospitalAdministartorProfile;
         private static int menuButtonRotateAngle;
         private double _aspectRatio;
         private bool? _adjustingHeight = null;
@@ -44,6 +47,9 @@ namespace Desktop.Views
         {
             InitializeComponent();
             this.addPatientProfile = new AddPatientProfile();
+            this.addDoctorProfile = new AddDoctorProfile();
+            this.addPharmacistProfile = new AddPharmacistProfile();
+            this.addHospitalAdministartorProfile = new AddHospitalAdministartorProfile();
             //this.SourceInitialized += Window_SourceInitialized;
         }
 
@@ -159,14 +165,24 @@ namespace Desktop.Views
             this.AddProfile.IsOpen = !this.AddProfile.IsOpen;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void AddPatientProfileButton_Click(object sender, RoutedEventArgs e)
         {
             this.frame.NavigationService.Navigate(this.addPatientProfile);
+        }
+
+        private void AddDoctorProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.frame.NavigationService.Navigate(this.addDoctorProfile);
+        }
+
+        private void AddPharmacistProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.frame.NavigationService.Navigate(this.addPharmacistProfile);
+        }
+
+        private void AddHospitalAdministartortProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.frame.NavigationService.Navigate(this.addHospitalAdministartorProfile);
         }
     }
 }

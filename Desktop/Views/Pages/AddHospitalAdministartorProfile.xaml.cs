@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Desktop.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for Add_DoctorProfile.xaml
+    /// Interaction logic for AddHospitalAdministartorProfile.xaml
     /// </summary>
-    public partial class Add_DoctorProfile : Page
+    public partial class AddHospitalAdministartorProfile : Page
     {
-        public Add_DoctorProfile()
+        public AddHospitalAdministartorProfile()
         {
             InitializeComponent();
         }
