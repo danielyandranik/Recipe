@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Desktop.ViewModels
+namespace Desktop.Commands
 {
-    public class SignInViewModel
+    class SignInCommand
     {
-
     }
 }

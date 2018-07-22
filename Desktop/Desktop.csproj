@@ -49,6 +49,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
     <Reference Include="IdentityModel, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\IdentityModel.3.6.0\lib\net461\IdentityModel.dll</HintPath>
     </Reference>
@@ -213,7 +222,7 @@
       <HintPath>..\packages\System.Text.Encodings.Web.4.4.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Expression.Blend.Sdk.1.0.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -232,15 +241,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\ConfirmCommand.cs" />
-    <Compile Include="Commands\HyperLinkCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
-    <Compile Include="Models\RegisterInfo.cs" />
-    <Compile Include="ViewModels\ConfirmationViewModel.cs" />
+    <Compile Include="Commands\SignInCommand.cs" />
+    <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="Interfaces\IValidation.cs" />
+    <Compile Include="Models\Register.cs" />
+    <Compile Include="Services\CodeConfirmationService.cs" />
+    <Compile Include="Services\HyperLinkService.cs" />
+    <Compile Include="Services\RegistrationService.cs" />
+    <Compile Include="Validations\ConfirmationCodeInputValidation.cs" />
+    <Compile Include="Validations\RegisterInfputValidation.cs" />
+    <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
-    <Compile Include="ViewModels\SignInViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Pages\AddPatientProfile.xaml.cs">
       <DependentUpon>AddPatientProfile.xaml</DependentUpon>
     </Compile>
@@ -258,6 +272,9 @@
     </Compile>
     <Compile Include="Views\Pages\Pharmacies.xaml.cs">
       <DependentUpon>Pharmacies.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\RecipeMessageBox.xaml.cs">
+      <DependentUpon>RecipeMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
@@ -298,6 +315,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Pharmacies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\RecipeMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
