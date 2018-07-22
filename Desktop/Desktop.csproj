@@ -253,6 +253,9 @@
     <Compile Include="Views\Pages\AddPharmacistProfile.xaml.cs">
       <DependentUpon>AddPharmacistProfile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\AddInstitution.xaml.cs">
+      <DependentUpon>AddInstitution.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\MedicineManagement.xaml.cs">
       <DependentUpon>MedicineManagement.xaml</DependentUpon>
     </Compile>
@@ -287,6 +290,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\AddPharmacistProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\AddInstitution.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
