@@ -46,38 +46,43 @@ namespace RecipeApi
             {
                 options.AddPolicy("DoctorProfile", policy =>
                 {
-                    policy.RequireClaim("current_profile", "Doctor");
+                    policy.RequireClaim("current_profile", "doctor");
                 });
 
                 options.AddPolicy("PharmacistProfile", policy =>
                 {
-                    policy.RequireClaim("current_profile", "Pharmacist");
+                    policy.RequireClaim("current_profile", "pharmacist");
                 });
 
                 options.AddPolicy("CanWorkWithRecipe", policy =>
                 {
                     policy.RequireClaim("current_profile", new[]
                     {
-                        "Docotr", "Pharmacist", "Patient", "ChiefDoctor"
-                    });
+                        "docotr", "pharmacist", "patient", "chief_doctor"
+					});
                 });
 
                 options.AddPolicy("CanChangeRecipe", policy =>
                 {
                     policy.RequireClaim("current_profile", new[]
                     {
-                        "ChiefDoctor", "Doctor"
-                    });
+                        "chief_doctor", "docotr"
+					});
                 });
 
-                options.AddPolicy("CanWorkWithRecipeHistory", policy => 
+                options.AddPolicy("CanChangeRecipeHistory", policy => 
                 {
-                    policy.RequireClaim("current_profile", new[]
-                    {
-                        "Pharmacist", "Doctor", "Patient"
-                    });
+                    policy.RequireClaim("current_profile", "pharmacist" );
                 });
-            });
+
+				options.AddPolicy("CanWorkWithRecipeHistory", policy =>
+				{
+					policy.RequireClaim("current_profile", new[]
+					{
+						"pharmacist", "doctor", "patient"
+					});
+				});
+			});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

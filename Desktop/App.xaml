@@ -2,7 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              xmlns:local="clr-namespace:Desktop" 
+<<<<<<< HEAD
              StartupUri="Views/Windows/MainWindow.xaml" 
+=======
+             StartupUri="Views/Pages/AddPatientProfile.xaml" 
+>>>>>>> 4643111094ab2bfe847effbe02174eadce3023db
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
   <Application.Resources>
