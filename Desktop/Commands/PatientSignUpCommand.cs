@@ -44,7 +44,7 @@ namespace Desktop.Commands
         /// Executes command
         /// </summary>
         /// <param name="parameter">parameter</param>
-        public override async void ExecuteAsync(object parameter)
+        public override async void Execute(object parameter)
         {
             var patient = (PatientInfo)parameter;
 

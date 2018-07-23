@@ -3,7 +3,7 @@
     /// <summary>
     /// Class for register information
     /// </summary>
-    public class PatientInfo
+    public class Register
     {
         /// <summary>
         /// Gets or sets first name
@@ -21,9 +21,9 @@
         public string MiddleName { get; set; }
 
         /// <summary>
-        /// Gets or sets sex
+        /// Gets or sets sex index
         /// </summary>
-        public string Sex { get; set; }
+        public int SexIndex { get; set; }
 
         /// <summary>
         /// Gets or sets birthdate day
