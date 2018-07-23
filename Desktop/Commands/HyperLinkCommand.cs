@@ -28,7 +28,7 @@ namespace Desktop.Commands
         /// Executes the command
         /// </summary>
         /// <param name="parameter">parameter</param>
-        public void Execute(object parameter)
+        public void ExecuteAsync(object parameter)
         {
             if(parameter is RegisterWindow)
             {

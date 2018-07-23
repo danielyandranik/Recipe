@@ -13,7 +13,7 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Registration information
         /// </summary>
-        private RegisterInfo _register;        
+        private PatientInfo _register;        
 
         /// <summary>
         /// Gets or sets Register command
@@ -33,7 +33,7 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Gets or sets Register information
         /// </summary>
-        public RegisterInfo Register
+        public PatientInfo Register
         {
             // gets register information
             get => this._register;
@@ -49,7 +49,7 @@ namespace Desktop.ViewModels
         public RegisterWindowViewModel(RegisterWindow registerWindow)
         {
             // setting fields and properties
-            this._register = new RegisterInfo();
+            this._register = new PatientInfo();
             this.RegisterWindow = registerWindow;
             this.RegisterCommand = new RegisterCommand();
             this.HyperLinkCommand = new HyperLinkCommand();

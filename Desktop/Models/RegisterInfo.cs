@@ -3,7 +3,7 @@
     /// <summary>
     /// Class for register information
     /// </summary>
-    public class RegisterInfo
+    public class PatientInfo
     {
         /// <summary>
         /// Gets or sets first name

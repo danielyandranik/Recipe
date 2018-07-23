@@ -39,7 +39,7 @@ namespace Desktop.Commands
             if (parameter == null)
                 return false;
 
-            var register = (RegisterInfo)parameter;
+            var register = (PatientInfo)parameter;
 
             return this.ValidateDate(register) &&
                     this.ValidatePassword(register) && 
@@ -53,9 +53,9 @@ namespace Desktop.Commands
         /// Executes command
         /// </summary>
         /// <param name="parameter">parameter</param>
-        public override async void Execute(object parameter)
+        public override async void ExecuteAsync(object parameter)
         {
-            var register= (RegisterInfo)parameter;
+            var register= (PatientInfo)parameter;
 
             try
             {
@@ -74,7 +74,7 @@ namespace Desktop.Commands
         /// </summary>
         /// <param name="register">register info</param>
         /// <returns>boolean value indicating the validity of date</returns>
-        private bool ValidateDate(RegisterInfo register)
+        private bool ValidateDate(PatientInfo register)
         {
             if (!(int.TryParse(register.Year, out var year) &&
                 int.TryParse(register.Month, out var month) &&
@@ -89,7 +89,7 @@ namespace Desktop.Commands
         /// </summary>
         /// <param name="register">register info</param>
         /// <returns>boolean value indicating the validity of names</returns>
-        private bool ValidateNames(RegisterInfo register)
+        private bool ValidateNames(PatientInfo register)
         {
             return (string.IsNullOrEmpty(register.FirstName) ||
                    string.IsNullOrEmpty(register.LastName) ||
@@ -102,7 +102,7 @@ namespace Desktop.Commands
         /// </summary>
         /// <param name="register">register info</param>
         /// <returns>boolean value indicating the validity of password</returns>
-        private bool ValidatePassword(RegisterInfo register)
+        private bool ValidatePassword(PatientInfo register)
         {
             if (string.IsNullOrEmpty(register.Password) ||string.IsNullOrEmpty(register.ConfirmPassword))
                 return false;
@@ -116,7 +116,7 @@ namespace Desktop.Commands
         /// </summary>
         /// <param name="register">register info</param>
         /// <returns>boolean value indicating the validity of phone number</returns>
-        private bool ValidatePhone(RegisterInfo register)
+        private bool ValidatePhone(PatientInfo register)
         {
             if (string.IsNullOrEmpty(register.Phone))
                 return false;
@@ -129,7 +129,7 @@ namespace Desktop.Commands
         /// </summary>
         /// <param name="register">register info</param>
         /// <returns>boolean value indicating the validity of sex</returns>
-        private bool ValidateSex(RegisterInfo register)
+        private bool ValidateSex(PatientInfo register)
         {
             return register?.Sex?.Length != 0;
         }
@@ -139,7 +139,7 @@ namespace Desktop.Commands
         /// </summary>
         /// <param name="register">register info</param>
         /// <returns>boolean value indicating the validity of mail address</returns>
-        private bool ValidateEmail(RegisterInfo register)
+        private bool ValidateEmail(PatientInfo register)
         {
             if (string.IsNullOrEmpty(register.Email))
                 return false;
@@ -160,7 +160,7 @@ namespace Desktop.Commands
         /// </summary>
         /// <param name="register">register info</param>
         /// <returns>instance of <see cref="UserRegisterInfo"/> with the given registration information</returns>
-        private UserRegisterInfo Map(RegisterInfo register)
+        private UserRegisterInfo Map(PatientInfo register)
         {
             return new UserRegisterInfo
             {

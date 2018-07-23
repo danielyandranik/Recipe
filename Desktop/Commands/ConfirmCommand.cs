@@ -25,7 +25,7 @@ namespace Desktop.Commands
             return ((string)parameter).Length == 32;
         }
 
-        public override async void Execute(object parameter)
+        public override async void ExecuteAsync(object parameter)
         {
             var code = (string)parameter;
 
