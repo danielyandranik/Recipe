@@ -248,6 +248,7 @@
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IValidation.cs" />
     <Compile Include="Models\Register.cs" />
+    <Compile Include="Models\SignInInfo.cs" />
     <Compile Include="Services\CodeConfirmationService.cs" />
     <Compile Include="Services\HyperLinkService.cs" />
     <Compile Include="Services\RegistrationService.cs" />
@@ -255,6 +256,7 @@
     <Compile Include="Validations\RegisterInfputValidation.cs" />
     <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
+    <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="Views\Pages\AddDoctorProfile.xaml.cs">
       <DependentUpon>AddDoctorProfile.xaml</DependentUpon>
     </Compile>

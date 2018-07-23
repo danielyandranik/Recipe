@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Desktop.ViewModels;
 
 namespace Desktop.Views
 {
@@ -19,21 +20,21 @@ namespace Desktop.Views
     /// </summary>
     public partial class SignIn : Window
     {
+        /// <summary>
+        /// Sign in view model
+        /// </summary>
+        private SignInViewModel _signInVM;
+
         public SignIn()
         {
             InitializeComponent();
+            this._signInVM = new SignInViewModel();
+            this.DataContext = this._signInVM;
         }
 
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            var register = new RegisterWindow(); 
-            register.Show();
-            this.Close();
-        }
-
-        private void Close_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.InvalidInputPopup.IsOpen = false;
+            this._signInVM.
         }
     }
 }
