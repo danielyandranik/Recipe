@@ -1,0 +1,90 @@
+﻿<Page x:Class="Desktop.Views.Pages.CreateRecipe"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Desktop.Views.Pages"
+      mc:Ignorable="d" 
+      MinHeight="609" MinWidth="902"
+      d:DesignHeight="450" d:DesignWidth="902"
+      Title="CreateRecipe" Background="White">
+
+    <Page.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <!-- Modify default template, to change triggers -->
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,0,2" >
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#FF39B9B9">
+
+            <TextBlock Text="Create recipe" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="28" HorizontalAlignment="Center" Margin="0,20"/>
+            <Button Content="Done" Width="100" Height="32" HorizontalAlignment="Right" Margin="0,0,20,0" Background="White" BorderBrush="White" Foreground="#FF39B9B9" FontSize="14" FontWeight="Bold" FontFamily="Comfortaa"/>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Margin="0,10,0,0">
+
+                <Label Content="Who the recipe is for?" FontSize="16" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                <TextBox Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
+                <Separator Margin="0,8,0,2" Background="#FF182634" />
+
+        </StackPanel>
+
+        <Grid Grid.Row="2" Height="40">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="Medicine" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+                <Label Grid.Column="1" Content="Count" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+                <Label Grid.Column="2" Content="Use frequency unit" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+                <Label Grid.Column="3" Content="Times per unit" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+                <Label Grid.Column="4" Content="Count per use" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+
+            </Grid>
+
+        <Grid Grid.Row="3">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="1" Content="Add" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF39B9B9" BorderBrush="#FF39B9B9" FontFamily="Comfortaa" FontWeight="Bold" Margin="0,20,20,0" />
+                
+            </Grid>
+            
+        </Grid>
+    </Grid>
+</Page>
