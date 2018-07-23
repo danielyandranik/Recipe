@@ -261,11 +261,11 @@
     <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
     <Compile Include="ViewModels\PatientProfileViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
-    <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="Views\Controls\Recipe.xaml.cs">
       <DependentUpon>Recipe.xaml</DependentUpon>
     </Compile>
@@ -345,6 +345,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="settings.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

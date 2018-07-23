@@ -81,7 +81,7 @@ namespace Desktop.ViewModels
             this._registrationService = new RegistrationService();
             this._hyperLinkService = new HyperLinkService();
             this._registerCommand = new RegisterCommand(this._registrationService.Execute, this._validation.Validate);
-            this._hyperlinkCommand = new RelayCommand(() => this._hyperLinkService.Navigate<SignIn>(), () => true);
+            this._hyperlinkCommand = new RelayCommand(() => this._hyperLinkService.Navigate<RegisterWindow,SignIn>(), () => true);
         }
     }
 }
