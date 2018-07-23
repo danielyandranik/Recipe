@@ -31,6 +31,6 @@ namespace Desktop.Commands
         /// Executes command
         /// </summary>
         /// <param name="parameter">parameter</param>
-        public abstract void ExecuteAsync(object parameter);
+        public abstract void Execute(object parameter);
     }
 }

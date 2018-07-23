@@ -34,7 +34,9 @@ namespace Desktop.Views
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            this._signInVM.
+            var passwordBox = (PasswordBox)sender;
+
+            this._signInVM.SignInInfo.Password = passwordBox.Password;
         }
     }
 }

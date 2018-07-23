@@ -68,7 +68,7 @@ namespace UserManagementConsumer.Client
 
             // constructing http clients
             this.ConstructRegisterClient();
-            //this.ConstructTokenClient();
+            this.ConstructTokenClient();
         }
 
         /// <summary>

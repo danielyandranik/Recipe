@@ -1,25 +1,23 @@
-﻿using System;
+﻿using Desktop.Views.Windows;
+using System;
 using System.Threading.Tasks;
-using System.Net.Http;
 using UserManagementConsumer.Client;
-using Desktop.Models;
-using Desktop.Views;
-using Desktop.Views.Windows;
-using Desktop.ViewModels;
+using UserManagementConsumer.Models;
 
 namespace Desktop.Commands
 {
     /// <summary>
-    /// Command for registration
+    /// Command for patient signing up
     /// </summary>
-    public class RegisterCommand : AsyncCommand<Register, Response<HttpResponseMessage>>
+    public class PatientProfileCommand : AsyncCommand<Patient, Response<string>>
     {
+
         /// <summary>
-        /// Creates new instance of <see cref="RegisterCommand"/>
+        /// Creates new instance of <see cref="PatientProfileCommand"/>
         /// </summary>
         /// <param name="executeMethod">Execute method</param>
         /// <param name="canExecuteMethod">Can execute method</param>
-        public RegisterCommand(Func<Register, Task<Response<HttpResponseMessage>>> executeMethod, Func<Register, bool> canExecuteMethod) :
+        public PatientProfileCommand(Func<Patient, Task<Response<string>>> executeMethod, Func<Patient, bool> canExecuteMethod) :
             base(executeMethod, canExecuteMethod)
         { }
 
@@ -31,19 +29,17 @@ namespace Desktop.Commands
         {
             try
             {
-                var register = (Register)parameter;
+                var patient = (Patient)parameter;
 
-                var response = await this.ExecuteAsync(register);
+                var response = await this.ExecuteAsync(patient);
 
-                if (response.Result.IsSuccessStatusCode)
+                if (response.Message.Equals("Success"))
                 {
-                    var vm = new CodeConfirmationViewModel(register.Username);
-                    var window = new CodeConfirmation(vm);
-                    window.Show();
+                    RecipeMessageBox.Show("Patient profile is added");
                 }
                 else
                 {
-                    RecipeMessageBox.Show("Unable to register");
+                    RecipeMessageBox.Show("Unable to add profile");
                 }
             }
             catch (Exception)

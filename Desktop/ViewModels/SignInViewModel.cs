@@ -19,6 +19,11 @@ namespace Desktop.ViewModels
         private SignInInfo _signInInfo;
 
         public SignInInfo SignInInfo
+        {
+            get => this._signInInfo;
+
+            set => this.Set("SignInInfo", ref this._signInInfo, value);
+        }
 
     }
 }
