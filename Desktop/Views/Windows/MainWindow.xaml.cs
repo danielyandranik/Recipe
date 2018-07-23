@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -15,7 +16,7 @@ namespace Desktop.Views
     {
         private readonly static Medicines medicines;
         private static readonly Hospitals hospitals;
-        private static readonly Phamracies phamracies;
+        private static readonly Pharmacies pharmacies;
 
         private readonly AddPatientProfile addPatientProfile;
         private readonly AddDoctorProfile addDoctorProfile;
@@ -39,7 +40,7 @@ namespace Desktop.Views
         {
             medicines = new Medicines();
             hospitals = new Hospitals();
-            phamracies = new Phamracies();
+            pharmacies = new Pharmacies();
             menuButtonRotateAngle = 180;
         }
 
@@ -148,7 +149,7 @@ namespace Desktop.Views
 
         private void Pharmacies_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.frame.NavigationService.Navigate(phamracies);
+            this.frame.NavigationService.Navigate(pharmacies);
         }
 
         private void Toggle_menu(object sender, MouseButtonEventArgs e)

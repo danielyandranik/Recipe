@@ -9,21 +9,20 @@ namespace Desktop.Views
     public partial class CodeConfirmation : Window
     {
         /// <summary>
-        /// Confirmation view model
+        /// Code confirmation window view mode
         /// </summary>
-        private ConfirmationViewModel _confirmationViewModel;
+        private readonly CodeConfirmationViewModel _codeConfirmationVM;
 
         /// <summary>
         /// Creates new instance of <see cref="CodeConfirmation"/>
         /// </summary>
-        public CodeConfirmation(ConfirmationViewModel confirmationViewModel)
+        public CodeConfirmation(CodeConfirmationViewModel codeConfirmationViewModel)
         {
             // initializing components
             InitializeComponent();
-
-            // setting fields
-            this._confirmationViewModel = confirmationViewModel;
-            this.DataContext = this._confirmationViewModel;
+            this.Owner = App.Current.Windows[0];
+            this._codeConfirmationVM = codeConfirmationViewModel;
+            this.DataContext = this._codeConfirmationVM;
         }
     }
 }

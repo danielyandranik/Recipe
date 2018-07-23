@@ -18,11 +18,174 @@ namespace Desktop.Views.Pages
     /// <summary>
     /// Interaction logic for Phamracies.xaml
     /// </summary>
-    public partial class Phamracies : Page
+    public partial class Pharmacies : Page
     {
-        public Phamracies()
+        public Pharmacies()
         {
             InitializeComponent();
+            this.pharmacies.ItemsSource = new[]
+            {
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                },
+                new Medicine
+                {
+                    Id = "Id_1",
+                    Name = "Ascofen",
+                    Maker = "John LLC",
+                    Country = "Armenia",
+                    Units = "Miligram",
+                    ShelfLife = 15,
+                    Description = "Empty"
+                }
+            };
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Desktop.Views
         {
             // initializing components
             InitializeComponent();
-            this._registerViewModel = new RegisterWindowViewModel(this);
+            this._registerViewModel = new RegisterWindowViewModel();
 
             // setting fields
             this.DataContext = this._registerViewModel;
@@ -41,11 +41,6 @@ namespace Desktop.Views
             if (passwordBox == this.password)
                 this._registerViewModel.Register.Password = passwordBox.Password;
             else this._registerViewModel.Register.ConfirmPassword = passwordBox.Password;
-        }
-
-        private void Close_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            this.InvalidInputPopup.IsOpen = false;
         }
     }
 }
