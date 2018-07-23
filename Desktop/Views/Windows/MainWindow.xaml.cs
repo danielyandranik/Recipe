@@ -185,5 +185,10 @@ namespace Desktop.Views
         {
             this.frame.NavigationService.Navigate(this.addHospitalAdministartorProfile);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.frame.NavigationService.Navigate(new Recipes());
+        }
     }
 }
