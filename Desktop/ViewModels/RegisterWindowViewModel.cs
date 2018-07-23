@@ -1,14 +1,7 @@
-﻿using System.Net.Http;
-using System.Windows.Input;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using Desktop.Interfaces;
-using Desktop.Validations;
-using Desktop.Services;
+﻿using System.Windows.Input;
 using Desktop.Views;
 using Desktop.Models;
 using Desktop.Commands;
-using UserManagementConsumer.Client;
 
 namespace Desktop.ViewModels
 {
@@ -18,70 +11,48 @@ namespace Desktop.ViewModels
     public class RegisterWindowViewModel: ViewModelBase
     {
         /// <summary>
-        /// Register info
+        /// Registration information
         /// </summary>
-        private Register _registerInfo;
+        private PatientInfo _register;        
 
         /// <summary>
-        /// Validation
+        /// Gets or sets Register command
         /// </summary>
-        private readonly IValidation _validation;
+        public ICommand RegisterCommand { get; private set; }
 
         /// <summary>
-        /// Registration service
+        /// Gets or sets Hyper link command
         /// </summary>
-        private readonly IService<Response<HttpResponseMessage>> _registrationService;
+        public ICommand HyperLinkCommand { get; private set; }
 
         /// <summary>
-        /// Register command
+        /// Gets or sets Register window
         /// </summary>
-        private readonly RegisterCommand _registerCommand;
+        public RegisterWindow RegisterWindow { get; private set; }
 
         /// <summary>
-        /// Hyper link command
+        /// Gets or sets Register information
         /// </summary>
-        private readonly RelayCommand _hyperlinkCommand;
-
-        /// <summary>
-        /// Hyper link service
-        /// </summary>
-        private readonly HyperLinkService _hyperLinkService;
-
-        /// <summary>
-        /// Gets or sets register info
-        /// </summary>
-        public Register Register
+        public PatientInfo Register
         {
-            // gets register info
-            get => this._registerInfo;
+            // gets register information
+            get => this._register;
 
-            // sets register info
-            set => this.Set("Register", ref this._registerInfo, value);
+            // sets register information
+            set => this.SetProperty(ref this._register, value);
         }
-
-        /// <summary>
-        /// Gets register commad
-        /// </summary>
-        public ICommand RegisterCommand => this._registerCommand;
-
-        /// <summary>
-        /// Gets hyper link command
-        /// </summary>
-        public ICommand HyperLinkCommand => this._hyperlinkCommand;
 
         /// <summary>
         /// Creates new instance of <see cref="RegisterWindowViewModel"/>
         /// </summary>
-        public RegisterWindowViewModel()
+        /// <param name="registerWindow">Register windoe</param>
+        public RegisterWindowViewModel(RegisterWindow registerWindow)
         {
-            // setting fields
-            this._registerInfo = new Register();
-            this._registerInfo.SexIndex = -1;
-            this._validation = new RegisterInfputValidation();
-            this._registrationService = new RegistrationService();
-            this._hyperLinkService = new HyperLinkService();
-            this._registerCommand = new RegisterCommand(this._registrationService.Execute,this._validation.Validate);
-            this._hyperlinkCommand = new RelayCommand(() => this._hyperLinkService.Navigate<SignIn>(),() => true);
+            // setting fields and properties
+            this._register = new PatientInfo();
+            this.RegisterWindow = registerWindow;
+            this.RegisterCommand = new RegisterCommand();
+            this.HyperLinkCommand = new HyperLinkCommand();
         }
     }
 }

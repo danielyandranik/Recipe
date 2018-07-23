@@ -1,63 +1,54 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using UserManagementConsumer.Client;
-using Desktop.Views.Windows;
+﻿using Desktop.ViewModels;
 using Desktop.Views;
+using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
 
 namespace Desktop.Commands
 {
-    /// <summary>
-    /// Command for verification code confirmation
-    /// </summary>
-    public class ConfirmCommand:AsyncCommand<UserVerificationInfo,Response<HttpResponseMessage>>
+    public class ConfirmCommand : CommandBase
     {
-        /// <summary>
-        /// Creates new instance of <see cref="ConfirmCommand"/>
-        /// </summary>
-        /// <param name="executeMethod">Execute method</param>
-        /// <param name="canExecuteMethod">Can execute method</param>
-        public ConfirmCommand(Func<UserVerificationInfo, Task<Response<HttpResponseMessage>>> executeMethod, 
-            Func<UserVerificationInfo, bool> canExecuteMethod):
-            base(executeMethod, canExecuteMethod)
-        { }
+        private ConfirmationViewModel _confirmationViewModel;
 
-        /// <summary>
-        /// Executes command asynchronously
-        /// </summary>
-        /// <param name="parameter">Command parameter</param>
-        public override async void Execute(object parameter)
+        private UserManagementApiClient _userManagementApiClient;
+
+        public ConfirmCommand(ConfirmationViewModel confirmationViewModel)
         {
-            try
-            {
-                var response = await this.ExecuteAsync((UserVerificationInfo)parameter);
-
-                if (response.Result.StatusCode == HttpStatusCode.BadRequest)
-                    RecipeMessageBox.Show("Invalid verification code");
-                else if (response.Result.StatusCode == HttpStatusCode.InternalServerError)
-                    RecipeMessageBox.Show("Something went wrong");
-                else this.ManageWindows();
-            }
-            catch
-            {
-                RecipeMessageBox.Show("Server is not responding");
-            }
+            this._confirmationViewModel = confirmationViewModel;
+            this._userManagementApiClient = new UserManagementApiClient();
         }
 
-        /// <summary>
-        /// Manages windows
-        /// </summary>
-        private void ManageWindows()
+        public override bool CanExecute(object parameter)
         {
-            var window = new SignIn();
-            window.Show();
+            if (parameter == null)
+                return false;
 
-            for(var counter = App.Current.Windows.Count - 2; counter >= 0; counter--)
+            return ((string)parameter).Length == 32;
+        }
+
+        public override async void ExecuteAsync(object parameter)
+        {
+            var code = (string)parameter;
+
+            try
             {
-                App.Current.Windows[counter].Close();
+                var response = await this._userManagementApiClient.VerifyAsync(
+                    new UserVerificationInfo
+                    {
+                        Username = this._confirmationViewModel.Username,
+                        VerifyKey = code
+                    });
+
+                if (response.Result.IsSuccessStatusCode)
+                {
+                    new SignIn().Show();
+
+                    for (var count = App.Current.Windows.Count - 2; count >= 0; count--)
+                    {
+                        App.Current.Windows[count].Close();
+                    }
+                }                
             }
+            catch { }
         }
     }
 }

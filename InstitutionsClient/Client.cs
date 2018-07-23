@@ -13,10 +13,10 @@ namespace InstitutionClient
     {
         private readonly HttpClient client;
 
-        public Client(string baseAddress)
+        public Client(string baseAddress, string token)
         {
-            // api.institutions? base address??
             this.client = new HttpClient() { BaseAddress = new Uri(baseAddress) };
+            this.client.SetBearerToken(token);
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
@@ -139,12 +139,12 @@ namespace InstitutionClient
 
         public async Task<ResponseMessage<string>> CreateInstitution(Institution institution)
         {
-            return await this.CreateAsync<Institution>("api/institutions",institution);
+            return await this.CreateAsync<Institution>("api/institutions", institution);
         }
 
         public async Task<ResponseMessage<string>> CreatePharmacyMedicine(PharmMedicine medicine)
         {
-            return await this.CreateAsync<PharmMedicine>( "api/pharmmeds",medicine);
+            return await this.CreateAsync<PharmMedicine>("api/pharmmeds", medicine);
         }
 
         public async Task<ResponseMessage<string>> UpdateInstitutionAsync(Institution institution)

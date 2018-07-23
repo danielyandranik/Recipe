@@ -59,7 +59,11 @@
             <Label Content="Username" HorizontalAlignment="Center" Margin="0,15,0,0" FontFamily="Comfortaa" FontSize="18" Foreground="#FF474747" FontWeight="Bold"/>
             <TextBox VerticalContentAlignment="Center" Height="40" TextWrapping="Wrap" Width="240" Margin="0,10,0,0" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" />
             <Label Content="Password" HorizontalAlignment="Center" Margin="0,20,0,0" FontFamily="Comfortaa" FontSize="18" Foreground="#FF474747" FontWeight="Bold"/>
-            <PasswordBox VerticalContentAlignment="Center" Height="40"  Width="240" Margin="0,10,0,0" FontSize="16" FontFamily="Consolas" Background="{x:Null}" BorderBrush="White" Foreground="White" SelectionBrush="White" CaretBrush="White" />
+            <PasswordBox VerticalContentAlignment="Center" Height="40"  
+                         Width="240" Margin="0,10,0,0" FontSize="16" 
+                         FontFamily="Consolas" Background="{x:Null}" BorderBrush="White" 
+                         Foreground="White" SelectionBrush="White" CaretBrush="White"
+                         PasswordChanged="PasswordBox_PasswordChanged"/>
             <Button Content="Sign in" Width="120" Margin="0,30,0,0" Height="40" FontFamily="Comfortaa" FontSize="20" FontWeight="Bold" Foreground="White" Background="{x:Null}" BorderBrush="White" BorderThickness="2">
             </Button>
             <TextBlock Margin="0,25,0,0" FontFamily="Comfortaa" FontWeight="Bold" Foreground="#FF474747" FontSize="14">
