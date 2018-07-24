@@ -23,14 +23,22 @@ namespace UserManagementAPI.Controllers
         private Verifier _verifier;
 
         /// <summary>
+        /// Password hash service
+        /// </summary>
+        private PasswordHashService _passwordHS;
+
+        /// <summary>
         /// Creates Register Controller
         /// </summary>
         /// <param name="dataManager">Data manager</param>
-        public RegisterController(DataManager dataManager,Verifier verifier)
+        /// <param name="verifier">Verifier</param>
+        /// <param name="passwordHashService">Password Hash Sevice</param>
+        public RegisterController(DataManager dataManager,Verifier verifier,PasswordHashService passwordHashService)
         {
             // setting fields
             this._dataManager = dataManager;
             this._verifier = verifier;
+            this._passwordHS = passwordHashService;
         }
 
         /// <summary>
@@ -41,11 +49,14 @@ namespace UserManagementAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]UserRegisterInfo userRegisterInfo)
         {
+            // hashing password
+            userRegisterInfo.Password = this._passwordHS.HashPassword(userRegisterInfo.Password);
+
             // register user
             var result = (int)this._dataManager.Operate<UserRegisterInfo, object>("CreateUser", userRegisterInfo);
              
             // if registration is not successful return Bad Request code
-            if (result == 0)
+            if (result == -1)
                 return new StatusCodeResult(400);
 
             // adding verification information

@@ -302,6 +302,9 @@
     <Compile Include="Views\Pages\CreateRecipe.xaml.cs">
       <DependentUpon>CreateRecipe.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\HospitalAdminApprovements.xaml.cs">
+      <DependentUpon>HospitalAdminApprovements.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\Hospitals.xaml.cs">
       <DependentUpon>Hospitals.xaml</DependentUpon>
     </Compile>
@@ -422,6 +425,10 @@
     <Page Include="Views\Pages\CreateRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Views\Pages\HospitalAdminApprovements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Hospitals.xaml">
       <SubType>Designer</SubType>
