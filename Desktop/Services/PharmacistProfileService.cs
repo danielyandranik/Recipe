@@ -1,11 +1,12 @@
 ﻿using Desktop.Interfaces;
+using System;
 using System.Threading.Tasks;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
 
 namespace Desktop.Services
 {
-    class PatientProfileService : IService<Response<string>>
+    public class PharmacistProfileService : IService<Response<string>>
     {
         /// <summary>
         /// User management API client
@@ -13,9 +14,9 @@ namespace Desktop.Services
         private readonly UserManagementApiClient _userManagementApiClient;
 
         /// <summary>
-        /// Creates new instance of <see cref="RegistrationService"/>
+        /// Creates new instance of <see cref="PharmacistProfileService"/>
         /// </summary>
-        public PatientProfileService()
+        public PharmacistProfileService()
         {
             this._userManagementApiClient = new UserManagementApiClient();
             this._userManagementApiClient.SignInAsync("sona", "sona");
@@ -28,7 +29,7 @@ namespace Desktop.Services
         /// <returns>result</returns>
         public async Task<Response<string>> Execute(object parameter)
         {
-            return await this._userManagementApiClient.PostPatientAsync((Patient)parameter);
+            return await this._userManagementApiClient.PostPharmacistAsync((PharmacistFullInfo)parameter);
         }
     }
 }

@@ -21,11 +21,6 @@ namespace Desktop.ViewModels
         private Patient _patient;
 
         /// <summary>
-        /// Patient id as a user
-        /// </summary>
-        private readonly int _userId;
-
-        /// <summary>
         /// Validation
         /// </summary>
         private readonly IValidation _validation;
@@ -46,10 +41,10 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Patient profile command
         /// </summary>
-        private readonly PatientProfileCommand _patientProfileCommand;
+        private readonly PharmacistProfileCommand _patientProfileCommand;
 
         /// <summary>
-        /// Gets register commad
+        /// Gets patient command
         /// </summary>
         public ICommand PatientProfileCommand => this._patientProfileCommand;
 
@@ -64,12 +59,11 @@ namespace Desktop.ViewModels
         public PatientProfileViewModel()
         {
             // setting fields
-            this._userId = 1;
             this._patient = new Patient();
             this.Patient.UserId = 1;
             this._validation = new PatientInputValidation();
             this._patientProfileService = new PatientProfileService();
-            this._patientProfileCommand = new PatientProfileCommand(this._patientProfileService.Execute, this._validation.Validate);
+            this._patientProfileCommand = new PharmacistProfileCommand(this._patientProfileService.Execute, this._validation.Validate);
         }
     }
 }
