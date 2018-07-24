@@ -11,7 +11,7 @@ using UserManagementConsumer.Models;
 namespace Desktop.ViewModels
 {
     /// <summary>
-    /// View model for patient sign up page
+    /// View model for adding patient profile page
     /// </summary>
     public class PatientProfileViewModel : ViewModelBase
     {
@@ -41,7 +41,7 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Patient profile command
         /// </summary>
-        private readonly PharmacistProfileCommand _patientProfileCommand;
+        private readonly PatientProfileCommand _patientProfileCommand;
 
         /// <summary>
         /// Gets patient command
@@ -59,11 +59,14 @@ namespace Desktop.ViewModels
         public PatientProfileViewModel()
         {
             // setting fields
-            this._patient = new Patient();
+
+            // TODO
             this.Patient.UserId = 1;
+
+            this._patient = new Patient();
             this._validation = new PatientInputValidation();
             this._patientProfileService = new PatientProfileService();
-            this._patientProfileCommand = new PharmacistProfileCommand(this._patientProfileService.Execute, this._validation.Validate);
+            this._patientProfileCommand = new PatientProfileCommand(this._patientProfileService.Execute, this._validation.Validate);
         }
     }
 }

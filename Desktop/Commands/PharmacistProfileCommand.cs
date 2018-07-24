@@ -6,15 +6,18 @@ using UserManagementConsumer.Models;
 
 namespace Desktop.Commands
 {
-    public class PatientProfileCommand : AsyncCommand<PharmacistFullInfo, Response<string>>
+    /// <summary>
+    /// Command for adding pharmacist profile
+    /// </summary>
+    public class PharmacistProfileCommand : AsyncCommand<PharmacistFullInfo, Response<string>>
     {
 
         /// <summary>
-        /// Creates new instance of <see cref="PatientProfileCommand"/>
+        /// Creates new instance of <see cref="PharmasistProfileCommand"/>
         /// </summary>
         /// <param name="executeMethod">Execute method</param>
         /// <param name="canExecuteMethod">Can execute method</param>
-        public PatientProfileCommand(Func<PharmacistFullInfo, Task<Response<string>>> executeMethod, Func<PharmacistFullInfo, bool> canExecuteMethod) :
+        public PharmacistProfileCommand(Func<PharmacistFullInfo, Task<Response<string>>> executeMethod, Func<PharmacistFullInfo, bool> canExecuteMethod) :
             base(executeMethod, canExecuteMethod)
         { }
 

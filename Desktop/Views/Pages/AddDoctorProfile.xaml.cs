@@ -20,6 +20,7 @@ namespace Desktop.Views.Pages
     /// </summary>
     public partial class AddDoctorProfile : Page
     {
+        
         public AddDoctorProfile()
         {
             InitializeComponent();

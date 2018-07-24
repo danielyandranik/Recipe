@@ -27,7 +27,9 @@ namespace Desktop.ViewModels
         /// </summary>
         private readonly IService<Response<string>> _pharmasistProfileService;
 
-        // Gets or sets patient info
+        /// <summary>
+        ///  Gets or sets patient info
+        /// </summary>
         public PharmacistFullInfo Pharmacist
         {
             get => this._pharmacist;

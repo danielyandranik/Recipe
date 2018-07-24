@@ -4,11 +4,11 @@ using UserManagementConsumer.Models;
 
 namespace Desktop.Services
 {
-    public class PatientProfileService : ProfileService
+    public class DoctorProfileService : ProfileService
     {
         public async override Task<Response<string>> Execute(object parameter)
         {
-            return await this._userManagementApiClient.PostPatientAsync((Patient)parameter);
+            return await this._userManagementApiClient.PostDoctorAsync((Doctor)parameter);
         }
     }
 }
