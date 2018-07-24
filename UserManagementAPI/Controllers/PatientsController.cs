@@ -138,7 +138,7 @@ namespace UserManagementAPI.Controllers
         /// <returns>return result</returns>
         private IActionResult GetActionResult(int result)
         {
-            if (result == 0)
+            if (result == 0 || result == -1)
                 return new StatusCodeResult(400);
 
             return new StatusCodeResult(200);

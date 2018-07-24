@@ -3,7 +3,12 @@
 	@type nvarchar(20)
 AS
 	begin
-		insert into UserProfile values(@userId, @type, GetDate(), 0)
+		if not exists (select [Type] from UserProfile where UserId = @userId and [Type] = @type)
+			begin
+				insert into UserProfile values(@userId, @type, GetDate(), 0)
+				return SCOPE_IDENTITY()
+			end
+		else
+			return 0
 	end
 
-RETURN SCOPE_IDENTITY()

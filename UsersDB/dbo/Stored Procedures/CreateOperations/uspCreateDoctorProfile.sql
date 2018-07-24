@@ -10,5 +10,8 @@ AS
 		declare @profileId int
 		execute @profileId = uspCreateProfile @userId, 'doctor'
 
-		insert into Doctors values(@profileId, @license, @hospitalName,@specification,@workStartYear,@graduatedYear)
+		if @profileId != 0
+			begin
+				insert into Doctors values(@profileId, @license, @hospitalName,@specification,@workStartYear,@graduatedYear)
+			end
 	end

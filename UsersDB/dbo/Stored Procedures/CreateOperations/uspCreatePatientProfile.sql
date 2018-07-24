@@ -10,10 +10,13 @@ AS
 		declare @profileId int
 		execute @profileId = uspCreateProfile @userId, 'patient'
 
-		update UserProfile
-			set UserProfile.IsApproved = 1
-			where UserProfile.ProfileId = @profileId and UserProfile.UserId = @userId
+		if @profileId != 0
+			begin
+			update UserProfile
+				set UserProfile.IsApproved = 1
+				where UserProfile.ProfileId = @profileId and UserProfile.UserId = @userId
 
-		insert into Patients
-			values(@profileId,@regionalDoctorName,@occupation,@address,@isAlcoholic,@isDrugAddicted)
+			insert into Patients
+				values(@profileId,@regionalDoctorName,@occupation,@address,@isAlcoholic,@isDrugAddicted)
+			end
 	end

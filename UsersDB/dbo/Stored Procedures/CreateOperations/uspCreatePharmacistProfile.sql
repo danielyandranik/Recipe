@@ -8,5 +8,8 @@ AS
 		declare @profileId int
 		execute @profileId = uspCreateProfile @userId, 'pharmacist'
 
-		insert into Pharmacists values(@profileId, @pharmacyId,@pharmacyName,@startedWorking)
+		if @profileId != 0
+			begin
+				insert into Pharmacists values(@profileId, @pharmacyId,@pharmacyName,@startedWorking)
+			end
 	end

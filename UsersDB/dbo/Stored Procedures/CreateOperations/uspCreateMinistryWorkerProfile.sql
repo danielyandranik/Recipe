@@ -7,6 +7,9 @@ AS
 		declare @profileId int
 		execute @profileId = dbo.uspCreateProfile @userId,'ministryWorker'
 
-		insert into MinistryWorkers 
-			values(@profileId,@position,@startedWorking)
+		if @profileId != 0
+			begin
+				insert into MinistryWorkers 
+					values(@profileId,@position,@startedWorking)
+			end
 	end
