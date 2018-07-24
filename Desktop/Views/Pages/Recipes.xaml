@@ -8,9 +8,70 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       MinHeight="609" MinWidth="902" 
-      Title="Recipes" Background="#FFE4E4E4">
+      Title="Recipes" Background="White">
 
     <Grid>
-        <ScrollViewer Name="recipes"></ScrollViewer>
+        <ListView Name="recipes">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    
+                    <Grid>
+                        
+                        <Grid.RowDefinitions>
+
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Height="40">
+
+                            <TextBlock Text="Recipe" Foreground="#FF182634" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,0" FontFamily="Comfortaa" FontSize="18"/>
+                            <TextBlock Text="Created date" Foreground="#FF182634" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,10,20,0" FontFamily="Comfortaa" FontSize="14"/>
+                            <Separator VerticalAlignment="Bottom" Margin="0" Background="#FF182634" />
+
+                        </Grid>
+
+                        <ListView Grid.Row="1"  Width="auto" Name="recipeItems">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="40" >
+
+                                        <Grid.ColumnDefinitions>
+
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="100" />
+
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Content="{Binding MedicineName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                                        <Label Grid.Column="1" Content="{Binding Count}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                                        <Label Grid.Column="2" Content="{Binding UseFrequencyUnit}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                                        <Label Grid.Column="3" Content="{Binding TimesPerUnit}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                                        <Label Grid.Column="4" Content="{Binding CountPerUse}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+
+                        <Grid Grid.Row="2" Height="40">
+
+                            <TextBlock Text="Doctor name" Foreground="#FF182634" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" FontFamily="Comfortaa" FontSize="14"/>
+                            <TextBlock Text="Hospital name" Foreground="#FF182634" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" FontFamily="Comfortaa" FontSize="14"/>
+                            <Separator VerticalAlignment="Top" Margin="0" Background="#FF182634" />
+
+                        </Grid>
+                    </Grid>
+                
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

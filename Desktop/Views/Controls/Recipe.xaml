@@ -23,7 +23,7 @@
         
         </Grid>
 
-        <ListView Grid.Row="1" HorizontalContentAlignment="Stretch" Height="{Binding Path=ActualHeight}" MinWidth="900" Width="auto" Name="recipeItems">
+        <ListView Grid.Row="1"  Width="auto" Name="recipeItems">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -42,8 +42,8 @@
                         <Label Grid.Column="0" Content="{Binding MedicineName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
                         <Label Grid.Column="1" Content="{Binding Count}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
                         <Label Grid.Column="2" Content="{Binding UseFrequencyUnit}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                        <Label Grid.Column="4" Content="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                        <Label Grid.Column="4" Content="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="3" Content="{Binding TimesPerUnit}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="4" Content="{Binding CountPerUse}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
                         
                     </Grid>
                 </DataTemplate>

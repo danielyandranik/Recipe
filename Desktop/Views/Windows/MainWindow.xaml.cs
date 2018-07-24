@@ -47,7 +47,7 @@ namespace Desktop.Views
         public MainWindow()
         {
             InitializeComponent();
-            this.addPatientProfile = new AddPatientProfile();
+           // this.addPatientProfile = new AddPatientProfile();
             this.addDoctorProfile = new AddDoctorProfile();
             this.addPharmacistProfile = new AddPharmacistProfile();
             this.addHospitalAdministartorProfile = new AddHospitalAdministartorProfile();
