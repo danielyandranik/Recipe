@@ -7,7 +7,7 @@ AS
 		declare @profileId int
 		
 		select @profileId = UserProfile.ProfileId 
-			from UserProfile where UserId = @userId and [Type] = 'ministryworker'
+			from UserProfile where UserId = @userId and [Type] = 'ministry_worker'
 		
 		update MinistryWorkers set
 			Position = @position,

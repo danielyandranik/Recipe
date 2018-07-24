@@ -5,7 +5,7 @@ AS
 		declare @profileId int
 
 		select @profileId = ProfileId from UserProfile 
-			where UserProfile.UserId = @userId and UserProfile.[Type] = 'hospitaldirector'
+			where UserProfile.UserId = @userId and UserProfile.[Type] = 'hospital_director'
 
 		delete from HospitalDirectors where HospitalDirectors.ProfileId = @profileId
 

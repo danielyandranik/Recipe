@@ -121,13 +121,21 @@ namespace UserManagementConsumer.Client
         /// </summary>
         /// <param name="username">username</param>
         /// <param name="password">password</param>
-        /// <returns>response</returns>
-        public async void SignInAsync(string username,string password)
+        /// <returns>access token</returns>
+        public async Task<string> SignInAsync(string username,string password)
         {
+            // setting fields
             this._username = username;
             this._password = password;
+
+            // getting access token
             this._accessToken = await this.GetAccessTokenAsync();
+
+            // constructing user http client
             this.ConstructUserApiHttpClient();
+
+            // returning access token
+            return this._accessToken;
         }
 
         /// <summary>
@@ -272,7 +280,7 @@ namespace UserManagementConsumer.Client
         /// <returns>response</returns>
         public async Task<Response<IEnumerable<HospitalDirector>>> GetHospitalDirectorsAsync()
         {
-            return await this.GetProfilesByTypeAsync<HospitalDirector>("hospitaldirectors");
+            return await this.GetProfilesByTypeAsync<HospitalDirector>("hospital-directors");
         }
 
         /// <summary>
@@ -282,7 +290,7 @@ namespace UserManagementConsumer.Client
         /// <returns>response</returns>
         public async Task<Response<HospitalDirector>> GetHospitalDirectorByIdAsync(int id)
         {
-            return await this.GetProfileByTypeAndIdAsync<HospitalDirector>("patients", id);
+            return await this.GetProfileByTypeAndIdAsync<HospitalDirector>("hospital-directors", id);
         }
 
         /// <summary>
@@ -291,7 +299,7 @@ namespace UserManagementConsumer.Client
         /// <returns>response</returns>
         public async Task<Response<IEnumerable<MinistryWorker>>> GetMinistryWorkersAsync()
         {
-            return await this.GetProfilesByTypeAsync<MinistryWorker>("ministryworkers");
+            return await this.GetProfilesByTypeAsync<MinistryWorker>("ministry-workers");
         }
 
         /// <summary>
@@ -301,7 +309,7 @@ namespace UserManagementConsumer.Client
         /// <returns>response</returns>
         public async Task<Response<MinistryWorker>> GetMinistryWorkerByIdAsync(int id)
         {
-            return await this.GetProfileByTypeAndIdAsync<MinistryWorker>("ministryworkers", id);
+            return await this.GetProfileByTypeAndIdAsync<MinistryWorker>("ministry-workers", id);
         }
 
         /// <summary>
@@ -340,7 +348,7 @@ namespace UserManagementConsumer.Client
         /// <returns>response</returns>
         public async Task<Response<string>> PostHospitalDirectorAsync(HospitalDirector hospitalDirector)
         {
-            return await this.PostProfileAsync("hospitalDirectors", hospitalDirector);
+            return await this.PostProfileAsync("hospital-directors", hospitalDirector);
         }
 
         /// <summary>
@@ -350,7 +358,7 @@ namespace UserManagementConsumer.Client
         /// <returns>response</returns>
         public async Task<Response<string>> PostMinistryWorkerAsync(MinistryWorker ministryWorker)
         {
-            return await this.PostProfileAsync("ministryworkers", ministryWorker);
+            return await this.PostProfileAsync("ministry-workers", ministryWorker);
         }
 
         /// <summary>
@@ -390,7 +398,7 @@ namespace UserManagementConsumer.Client
         /// <returns>response</returns>
         public async Task<Response<string>> PutHospitalDirectorAsync(HospitalDirector hospitalDirector)
         {
-            return await this.PutProfileAsync("hospitaldirectors", hospitalDirector);
+            return await this.PutProfileAsync("hospital-directors", hospitalDirector);
         }
 
         /// <summary>
@@ -400,7 +408,7 @@ namespace UserManagementConsumer.Client
         /// <returns>response</returns>
         public async Task<Response<string>> PutMinistryWorkerAsync(MinistryWorker ministryWorker)
         {
-            return await this.PutProfileAsync("ministryworkers", ministryWorker);
+            return await this.PutProfileAsync("ministry-workers", ministryWorker);
         }
 
         /// <summary>
@@ -438,7 +446,7 @@ namespace UserManagementConsumer.Client
         /// <returns>response</returns>
         public async Task<Response<string>> DeleteHospitalDirectorAsync()
         {
-            return await this.DeleteProfileAsync("hospitaldirectors");
+            return await this.DeleteProfileAsync("hospital-directors");
         }
 
         /// <summary>
@@ -447,7 +455,7 @@ namespace UserManagementConsumer.Client
         /// <returns>response</returns>
         public async Task<Response<string>> DeleteMinistryWorkerAsync()
         {
-            return await this.DeleteProfileAsync("ministryworkers");
+            return await this.DeleteProfileAsync("ministry-workers");
         }
 
         /// <summary>

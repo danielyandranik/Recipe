@@ -6,7 +6,7 @@
 AS
 	begin
 		declare @profileId int
-		execute @profileId = uspCreateProfile @userId, 'hospitaldirector'
+		execute @profileId = uspCreateProfile @userId, 'hospital_director'
 
 		if @profileId != 0
 			begin

@@ -12,7 +12,7 @@ namespace UserManagementAPI.Controllers
     /// Controller for ministry workers.
     /// </summary>
     [Produces("application/json")]
-    [Route("api/ministryworkers")]
+    [Route("api/ministry-workers")]
     public class MinistryWorkersController : Controller
     {
         /// <summary>

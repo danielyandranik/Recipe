@@ -5,7 +5,7 @@
 AS
 	begin
 		declare @profileId int
-		execute @profileId = dbo.uspCreateProfile @userId,'ministryWorker'
+		execute @profileId = dbo.uspCreateProfile @userId,'ministry_worker'
 
 		if @profileId != 0
 			begin

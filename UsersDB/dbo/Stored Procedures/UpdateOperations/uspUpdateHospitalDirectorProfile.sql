@@ -8,7 +8,7 @@ AS
 		declare @profileId int
 
 		select @profileId = UserProfile.ProfileId from UserProfile
-			where UserProfile.UserId = @userId and [Type] = 'hospitaldirector'
+			where UserProfile.UserId = @userId and [Type] = 'hospital_director'
 
 		update HospitalDirectors set
 			HospitalName = @hospitalName,
