@@ -11,7 +11,8 @@
 	@sex nchar(1)
 AS
 	begin
-	if not exists (select Username from dbo.Users where Username = @username)
+	if not exists (select Username from dbo.Users where Username = @username) and
+	   not exists (select Email from dbo.Users where Email = @email)
 		begin
 			insert into dbo.Users 
 				values (@firstName,

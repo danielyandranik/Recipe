@@ -31,6 +31,8 @@ namespace UserManagementAPI.Controllers
         /// Creates Register Controller
         /// </summary>
         /// <param name="dataManager">Data manager</param>
+        /// <param name="verifier">Verifier</param>
+        /// <param name="passwordHashService">Password Hash Sevice</param>
         public RegisterController(DataManager dataManager,Verifier verifier,PasswordHashService passwordHashService)
         {
             // setting fields
@@ -54,7 +56,7 @@ namespace UserManagementAPI.Controllers
             var result = (int)this._dataManager.Operate<UserRegisterInfo, object>("CreateUser", userRegisterInfo);
              
             // if registration is not successful return Bad Request code
-            if (result == 0)
+            if (result == -1)
                 return new StatusCodeResult(400);
 
             // adding verification information
