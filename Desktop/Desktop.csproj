@@ -287,6 +287,9 @@
     <Compile Include="Views\Pages\AddPharmacistProfile.xaml.cs">
       <DependentUpon>AddPharmacistProfile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\AddPharmacyAdminProfile.xaml.cs">
+      <DependentUpon>AddPharmacyAdminProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\CreateRecipe.xaml.cs">
       <DependentUpon>CreateRecipe.xaml</DependentUpon>
     </Compile>
@@ -402,6 +405,10 @@
     <Page Include="Views\Pages\AddPharmacistProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Views\Pages\AddPharmacyAdminProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\CreateRecipe.xaml">
       <SubType>Designer</SubType>

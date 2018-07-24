@@ -1,5 +1,4 @@
-﻿using Desktop.Views.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +16,13 @@ using System.Windows.Shapes;
 namespace Desktop.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for Recipes.xaml
+    /// Interaction logic for AddPharmacyAdmin.xaml
     /// </summary>
-    public partial class Recipes : Page
+    public partial class AddPharmacyAdminProfile : Page
     {
-        public Recipes()
+        public AddPharmacyAdminProfile()
         {
             InitializeComponent();
-            this.recipes.Children.Add(new Recipe());
-            this.recipes.Children.Add(new Recipe());
         }
     }
 }

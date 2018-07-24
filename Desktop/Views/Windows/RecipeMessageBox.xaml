@@ -21,7 +21,7 @@
                    Text=""
                    TextWrapping="Wrap"
                    Grid.Row="1"/>
-        <Button Content="OK" Width="60" Grid.Row="2" 
+        <Button Content="OK" Width="100" Grid.Row="2" 
                 Height="40" 
                 FontFamily="Comfortaa" FontSize="20" FontWeight="Bold" Foreground="White" 
                 Background="{x:Null}" BorderBrush="White" BorderThickness="2"
