@@ -6,18 +6,15 @@ using UserManagementConsumer.Models;
 
 namespace Desktop.Commands
 {
-    /// <summary>
-    /// Command for patient signing up
-    /// </summary>
-    public class PhatientProfileCommand : AsyncCommand<Patient, Response<string>>
+    public class PatientProfileCommand : AsyncCommand<PharmacistFullInfo, Response<string>>
     {
 
         /// <summary>
-        /// Creates new instance of <see cref="PhatientProfileCommand"/>
+        /// Creates new instance of <see cref="PatientProfileCommand"/>
         /// </summary>
         /// <param name="executeMethod">Execute method</param>
         /// <param name="canExecuteMethod">Can execute method</param>
-        public PhatientProfileCommand(Func<Patient, Task<Response<string>>> executeMethod, Func<Patient, bool> canExecuteMethod) :
+        public PatientProfileCommand(Func<PharmacistFullInfo, Task<Response<string>>> executeMethod, Func<PharmacistFullInfo, bool> canExecuteMethod) :
             base(executeMethod, canExecuteMethod)
         { }
 
@@ -29,13 +26,13 @@ namespace Desktop.Commands
         {
             try
             {
-                var patient = (Patient)parameter;
+                var pharmacist = (PharmacistFullInfo)parameter;
 
-                var response = await this.ExecuteAsync(patient);
+                var response = await this.ExecuteAsync(pharmacist);
 
                 if (response.Message.Equals("Success"))
                 {
-                    RecipeMessageBox.Show("Patient profile is added");
+                    RecipeMessageBox.Show("Pharmasist profile is added");
                 }
                 else
                 {

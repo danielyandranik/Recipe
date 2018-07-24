@@ -5,6 +5,7 @@ using IdentityModel;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
 using AuthAPI.UsersRepository;
+using System.Security.Cryptography;
 
 namespace AuthAPI.Validators
 {
@@ -44,7 +45,7 @@ namespace AuthAPI.Validators
                 if (user != null)
                 {
                     // if password is ok set
-                    if (user.Password == context.Password && user.IsVerified == true)
+                    if (this.CheckPassword(context.Password,user.Password) && user.IsVerified)
                     {
                         context.Result = new GrantValidationResult(
                             subject: user.Id.ToString(),
@@ -69,6 +70,37 @@ namespace AuthAPI.Validators
                 context.Result = new GrantValidationResult(
                     TokenRequestErrors.InvalidGrant, "Invalid username or password");
             }
+        }
+
+        /// <summary>
+        /// Checks password
+        /// </summary>
+        /// <param name="password">Password</param>
+        /// <param name="hashOfPassword">Hash of Password</param>
+        /// <returns>boolean value indicating the validity of password.</returns>
+        public bool CheckPassword(string password,string hashOfPassword)
+        {
+            // extracting the bytes
+            var hashBytes = Convert.FromBase64String(hashOfPassword);
+            
+            // getting salt
+            var salt = new byte[16];
+            Array.Copy(hashBytes, 0, salt, 0, 16);
+
+            // computing the hash on the password user entered with  password-based ket derivation function 2
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000);
+            var hash = pbkdf2.GetBytes(20);
+
+            // comparing hashes
+            for (int i = 0; i < 20; i++)
+            {
+                // return false if there is no-matching hash
+                if (hashBytes[i + 16] != hash[i])
+                    return false;
+            }
+
+            // otherwise return true
+            return true;
         }
 
         /// <summary>

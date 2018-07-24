@@ -308,9 +308,9 @@ namespace UserManagementConsumer.Client
         /// Gets pharmacists
         /// </summary>
         /// <returns>response</returns>
-        public async Task<Response<IEnumerable<Pharmacist>>> GetPharmacistsAsync()
+        public async Task<Response<IEnumerable<PharmacistFullInfo>>> GetPharmacistsAsync()
         {
-            return await this.GetProfilesByTypeAsync<Pharmacist>("pharmacists");
+            return await this.GetProfilesByTypeAsync<PharmacistFullInfo>("pharmacists");
         }
 
         /// <summary>

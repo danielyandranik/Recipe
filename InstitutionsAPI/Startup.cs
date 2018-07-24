@@ -40,42 +40,42 @@ namespace InstitutionsAPI
             services.AddAuthorization(options =>
             {
 
-                //options.AddPolicy("PharmacistProfile", policy =>
-                //{
-                //    policy.RequireClaim("current_profile", "pharmacist");
-                //});
+                options.AddPolicy("PharmacistProfile", policy =>
+                {
+                    policy.RequireClaim("current_profile", "pharmacist");
+                });
 
-                //options.AddPolicy("PharmacyAdminProfile", policy =>
-                //{
-                //    policy.RequireClaim("current_profile", "pharmacy_admin");
-                //});
+                options.AddPolicy("PharmacyAdminProfile", policy =>
+                {
+                    policy.RequireClaim("current_profile", "pharmacy_admin");
+                });
 
-                //options.AddPolicy("CanUpdateInstitution", policy =>
-                //{
-                //    policy.RequireClaim("current_profile",
-                //        new[]
-                //        {
-                //            "pharmacy_admin","hospital_admin", "ministry_worker", "admin"
-                //        });
-                //});
+                options.AddPolicy("CanUpdateInstitution", policy =>
+                {
+                    policy.RequireClaim("current_profile",
+                        new[]
+                        {
+                            "pharmacy_admin","hospital_admin", "ministry_worker", "admin"
+                        });
+                });
 
-                //options.AddPolicy("InstitutionAdminProfile", policy =>
-                //{
-                //    policy.RequireClaim("current_profile",
-                //        new[]
-                //        {
-                //            "pharmacy_admin","hospital_admin"
-                //        });
-                //});
+                options.AddPolicy("InstitutionAdminProfile", policy =>
+                {
+                    policy.RequireClaim("current_profile",
+                        new[]
+                        {
+                            "pharmacy_admin","hospital_admin"
+                        });
+                });
 
-                //options.AddPolicy("HighLevel", policy =>
-                //{
-                //    policy.RequireClaim("current_profile",
-                //        new[]
-                //        {
-                //            "MinistryWorker","Admin"
-                //        });
-                //});
+                options.AddPolicy("HighLevel", policy =>
+                {
+                    policy.RequireClaim("current_profile",
+                        new[]
+                        {
+                            "MinistryWorker","Admin"
+                        });
+                });
 
                 options.AddPolicy("PharmacistProfile", policy =>
                 {
