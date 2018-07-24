@@ -130,6 +130,7 @@ namespace UserManagementAPI
             services.AddTransient(typeof(DataManager));
             services.AddTransient(typeof(Verifier));
             services.AddTransient(typeof(MailService));
+            services.AddTransient(typeof(PasswordHashService));
         }
     }
 }
