@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 
 namespace Desktop.Services
 {
@@ -8,14 +9,20 @@ namespace Desktop.Services
     public class HyperLinkService
     {
         /// <summary>
-        /// Navigates to another window
+        /// Navigates between the windows.
         /// </summary>
-        /// <typeparam name="T">Type of Window</typeparam>
-        public void Navigate<T>() where T:Window,new()
+        /// <typeparam name="TFrom">Type of the window to navigate from.</typeparam>
+        /// <typeparam name="TTo">Type of the window to navigate to</typeparam>
+        public void Navigate<TFrom,TTo>() 
+            where TFrom:Window
+            where TTo:Window,new()
         {
-            var newWindow = new T();
-            newWindow.Show();
-            App.Current.Windows[0].Close();
+            // opening new window
+            var window = new TTo();
+            window.Show();
+
+            // closing the last window
+            App.Current.Windows.OfType<TFrom>().Last().Close();
         }
     }
 }
