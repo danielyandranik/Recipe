@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 using DatabaseAccess.Repository;
 using UserManagementAPI.Models;
 
@@ -39,7 +40,7 @@ namespace UserManagementAPI.Services
         public void AddVerificationInfo(string username,string mail)
         {
             // generating key
-            var key = this.GenerateVerifyKey();
+            var key = this.GenerateVerifyKey(32);
 
             // constructing verification info
             var verificationInfo = new UserVerificationInfo
@@ -75,28 +76,24 @@ namespace UserManagementAPI.Services
 
         /// <summary>
         /// Generates verification key.
+        /// Note that random key is now cryptographically more secure than in the previous version,
+        /// where System Random class is used.
         /// </summary>
+        /// <param name="length">Length of key</param>
         /// <returns>Verification key</returns>
-        private string GenerateVerifyKey()
+        private string GenerateVerifyKey(int length)
         {
-            var random = new Random();
-            var key = "";
-
-            // generating verification key
-            // this is not very secure 
-            // here we need changes
-            for(var counter = 0; counter < 32; counter++)
+            using (var rng = new RNGCryptoServiceProvider())
             {
-                var num = random.Next(65, 121);
+                // buffer for storing random bytes
+                var buffer = new byte[length];
 
-                if (num > 90 && num < 97)
-                    num += 10;
+                // getting random bytes
+                rng.GetBytes(buffer);
 
-                key += (char)num;
+                // converting to string
+                return Convert.ToBase64String(buffer);
             }
-
-            // returning key
-            return key;
         }
     }
 }
