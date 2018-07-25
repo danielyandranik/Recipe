@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using IdentityModel.Client;
+using AuthTokenService;
 using Newtonsoft.Json;
 using UserManagementConsumer.Models;
 
@@ -13,42 +13,22 @@ namespace UserManagementConsumer.Client
     /// <summary>
     /// Class for consuming User Management API
     /// </summary>
-    public class UserManagementApiClient
+    public class UserManagementApiClient : IDisposable
     {
-        /// <summary>
-        /// Username
-        /// </summary>
-        private string _username;
-
-        /// <summary>
-        /// Password
-        /// </summary>
-        private string _password;
-
-        /// <summary>
-        /// Auth API base address
-        /// </summary>
-        private string _authApiBaseAddress;
-
         /// <summary>
         /// User Management Base address
         /// </summary>
-        private string _userApiBaseAddress;
-
-        /// <summary>
-        /// Token client for getting access token from Auth API
-        /// </summary>
-        private TokenClient _tokenClient;
+        private readonly string _userApiBaseAddress;
 
         /// <summary>
         /// Http client for consuming User Management API
         /// </summary>
-        private HttpClient _userApiHttpClient;
+        private readonly HttpClient _userApiHttpClient;
 
         /// <summary>
         /// Http client for register requests
         /// </summary>
-        private HttpClient _registerClient;
+        private readonly HttpClient _registerClient;
 
         /// <summary>
         /// Access token
@@ -58,23 +38,24 @@ namespace UserManagementConsumer.Client
         /// <summary>
         /// Creates new instance of <see cref="UserManagementApiClient"/>
         /// </summary>
-        /// <param name="authApiAddress">Auth API address</param>
         /// <param name="userApiAddress">User Management API address</param>
-        public UserManagementApiClient(string authApiAddress, string userApiAddress)
+        public UserManagementApiClient(string userApiAddress)
         {
             // setting fields
-            this._authApiBaseAddress = authApiAddress;
             this._userApiBaseAddress = userApiAddress;
 
-            // constructing http clients
-            this.ConstructRegisterClient();
-            this.ConstructTokenClient();
-        }
+            // constructing register client
+            this._registerClient = new HttpClient();
+            this._registerClient.BaseAddress = new Uri(this._userApiBaseAddress);
+            this._registerClient.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
 
-        /// <summary>
-        /// Creates new instance of <see cref="UserManagementApiClient"/>
-        /// </summary>
-        public UserManagementApiClient():this("http://localhost:5700","http://localhost:5800") { }
+            // constructing user API client
+            this._userApiHttpClient = new HttpClient();
+            this._userApiHttpClient.BaseAddress = new Uri(this._userApiBaseAddress);
+            this._userApiHttpClient.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+        }
 
         /// <summary>
         /// Registers new user
@@ -114,28 +95,6 @@ namespace UserManagementConsumer.Client
 
             // returning response
             return this.ConstructResponse(response.ReasonPhrase, response);
-        }
-
-        /// <summary>
-        /// Sign in for user
-        /// </summary>
-        /// <param name="username">username</param>
-        /// <param name="password">password</param>
-        /// <returns>access token</returns>
-        public async Task<string> SignInAsync(string username,string password)
-        {
-            // setting fields
-            this._username = username;
-            this._password = password;
-
-            // getting access token
-            this._accessToken = await this.GetAccessTokenAsync();
-
-            // constructing user http client
-            this.ConstructUserApiHttpClient();
-
-            // returning access token
-            return this._accessToken;
         }
 
         /// <summary>
@@ -214,9 +173,7 @@ namespace UserManagementConsumer.Client
             var response = await this._userApiHttpClient.PutAsync("api/users/profile", this.ConstructContent(profileUpdateInfo));
 
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse("Error", response.ReasonPhrase);
-
-            this._accessToken = await this.GetAccessTokenAsync();
+                return this.ConstructResponse("Error", response.ReasonPhrase);            
 
             return this.ConstructResponse("Current profile is updated", await response.Content.ReadAsStringAsync());
         }
@@ -477,6 +434,26 @@ namespace UserManagementConsumer.Client
         }
 
         /// <summary>
+        /// Event handler for TokenProvider TokenUpdated class
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event argument</param>
+        public void UpdateToken(object sender,TokenEventArgs e)
+        {
+            this._accessToken = e.AccessToken;
+            this._userApiHttpClient.SetBearerToken(this._accessToken);
+        }
+
+        /// <summary>
+        /// Disposes User Management API client
+        /// </summary>
+        public void Dispose()
+        {
+            this._registerClient.Dispose();
+            this._userApiHttpClient.Dispose();
+        }
+
+        /// <summary>
         /// Puts profile
         /// </summary>
         /// <typeparam name="T">Type of profile object</typeparam>
@@ -563,45 +540,6 @@ namespace UserManagementConsumer.Client
         }
 
         /// <summary>
-        /// Constructs Token client
-        /// </summary>
-        private void ConstructTokenClient()
-        {
-            // discovering
-            var disco = DiscoveryClient.GetAsync(this._authApiBaseAddress).Result;
-
-            if (disco.IsError)
-                throw new Exception("Auth API error");
-
-            // request token
-            this._tokenClient = new TokenClient(disco.TokenEndpoint, "DefaultClient", "secret");
-        }
-
-        /// <summary>
-        /// Constructs register client
-        /// </summary>
-        private void ConstructRegisterClient()
-        {
-            this._registerClient = new HttpClient();
-            this._registerClient.BaseAddress = new Uri(this._userApiBaseAddress);
-            this._registerClient.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-        }
-
-        /// <summary>
-        /// Constructs the client for consuming User Management API
-        /// </summary>
-        private void ConstructUserApiHttpClient()
-        {
-            this._userApiHttpClient = new HttpClient();
-            this._userApiHttpClient.BaseAddress = new Uri(this._userApiBaseAddress);
-            this._userApiHttpClient.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-            this._userApiHttpClient.SetBearerToken(this._accessToken);
-
-        }
-
-        /// <summary>
         /// Constructs reponse
         /// </summary>
         /// <typeparam name="T">Type of result</typeparam>
@@ -629,23 +567,6 @@ namespace UserManagementConsumer.Client
             var serialized = JsonConvert.SerializeObject(entity);
 
             return new StringContent(serialized, Encoding.UTF8, "application/json");
-        }
-
-        /// <summary>
-        /// Gets access token
-        /// </summary>
-        /// <returns>access token</returns>
-        private async Task<string> GetAccessTokenAsync()
-        {
-            // getting response from Auth API
-            var response = await this._tokenClient.
-                RequestResourceOwnerPasswordAsync(this._username, this._password, "UserManagementAPI");
-
-            // if error occured inform about that
-            if (response.IsError)
-                throw new Exception("Invalid login or password");
-
-            return response.AccessToken;
         }
     }
 }
