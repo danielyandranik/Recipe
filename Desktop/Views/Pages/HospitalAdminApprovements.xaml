@@ -20,7 +20,7 @@
                 
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Height="40">
+            <Grid Grid.Row="0" Height="50">
 
                 <TextBlock Text="Waiting for approval" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="18" />
 
@@ -28,33 +28,55 @@
 
             <Grid Grid.Row="1">
 
-                <Grid Height="60" VerticalAlignment="Top" Margin="0,10,0,0" Background="#FFC0DE36" >
-
-                    <Grid.RowDefinitions>
-                        
-                        
-                        
-                    </Grid.RowDefinitions>
-                    
-                </Grid>
-
-                    <!--<ListView>
+                    <ListView VerticalAlignment="Top">
 
                         <ListView.ItemTemplate>
 
                             <DataTemplate>
 
-                                <Grid>
-                                    
-                                    
-                                    
-                                </Grid>
-                                
-                            </DataTemplate>
+                            <Grid Height="80" VerticalAlignment="Top" Background="#FF39B9B9" >
+
+                                <Grid.RowDefinitions>
+
+
+
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="FirstName MiddleName LastName" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="White" FontFamily="Comfortaa"/>
+
+                                <TextBlock Grid.Column="1" Text="License" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="White" FontFamily="Comfortaa"/>
+
+                                <TextBlock Grid.Column="2" Text="Specifiaction" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="White" FontFamily="Comfortaa"/>
+
+                                <TextBlock Grid.Column="3" Text="Started work" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="White" FontFamily="Comfortaa"/>
+
+                                <TextBlock Grid.Column="4" Text="Profile created" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="White" FontFamily="Comfortaa"/>
+
+                                <StackPanel Grid.Column="5">
+
+                                    <Button Content="Approve" BorderBrush="{x:Null}" Background="#FF29D617" Width="100" Height="30" Margin="0,5" />
+                                    <Button Content="Deny" BorderBrush="{x:Null}" Background="#FFFF2A2A" Width="100" Height="30" Margin="0,5" />
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </DataTemplate>
                             
                         </ListView.ItemTemplate>
                         
-                    </ListView>-->
+                    </ListView>
                     
                                
             </Grid>
