@@ -68,13 +68,13 @@ namespace UserManagementConsumer.Client
             var response = await this._registerClient.PostAsync("api/register",this.ConstructContent(userRegisterInfo));
 
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse(response.ReasonPhrase, response);
+                return this.ConstructResponse(Status.Error, response);
 
             // reading response
             var responseString = await response.Content.ReadAsStringAsync();
 
             // returning response
-            return this.ConstructResponse(response.ReasonPhrase, response);
+            return this.ConstructResponse(Status.Ok, response);
         }
 
         /// <summary>
@@ -88,13 +88,13 @@ namespace UserManagementConsumer.Client
             var response = await this._registerClient.PutAsync("api/register/verify",this.ConstructContent(userVerificationInfo));
 
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse(response.ReasonPhrase, response);
+                return this.ConstructResponse(Status.Error, response);
 
             // reading content
             var content = await response.Content.ReadAsStringAsync();
 
             // returning response
-            return this.ConstructResponse(response.ReasonPhrase, response);
+            return this.ConstructResponse(Status.Ok, response);
         }
 
         /// <summary>
@@ -108,18 +108,18 @@ namespace UserManagementConsumer.Client
 
             // if error occured inform about that
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse<IEnumerable<UserPublicInfo>>(response.ReasonPhrase, null);
+                return this.ConstructResponse<IEnumerable<UserPublicInfo>>(Status.Error ,null);
 
             // reading response
             var content = await response.Content.ReadAsStringAsync();
 
             // content is empty inform about that
             if (string.IsNullOrEmpty(content))
-                return this.ConstructResponse<IEnumerable<UserPublicInfo>>("No content", null);
+                return this.ConstructResponse<IEnumerable<UserPublicInfo>>(Status.Error, null);
 
             // returning result
             return this.ConstructResponse(
-                "Request is successfull", JsonConvert.DeserializeObject<IEnumerable<UserPublicInfo>>(content));
+                Status.Ok, JsonConvert.DeserializeObject<IEnumerable<UserPublicInfo>>(content));
         }
 
         /// <summary>
@@ -134,18 +134,18 @@ namespace UserManagementConsumer.Client
 
             // if error occured inform about that
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse<UserPublicInfo>(response.ReasonPhrase, null);
+                return this.ConstructResponse<UserPublicInfo>(Status.Error, null);
 
             // reading content
             var content = await response.Content.ReadAsStringAsync();
 
             // if no content inform about that
             if (string.IsNullOrEmpty(content))
-                return this.ConstructResponse<UserPublicInfo>("No content", null);
+                return this.ConstructResponse<UserPublicInfo>(Status.Error, null);
 
             // returning result
             return this.ConstructResponse(
-                "Request is successful", JsonConvert.DeserializeObject<UserPublicInfo>(content));
+                Status.Ok ,JsonConvert.DeserializeObject<UserPublicInfo>(content));
         }
 
         /// <summary>
@@ -158,9 +158,9 @@ namespace UserManagementConsumer.Client
             var response = await this._userApiHttpClient.PutAsync("api/users/password", this.ConstructContent(passwordUpdateInfo));
 
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse("Error occured", response.ReasonPhrase);
+                return this.ConstructResponse(Status.Error, response.ReasonPhrase);
 
-            return this.ConstructResponse("Password is updated", await response.Content.ReadAsStringAsync());
+            return this.ConstructResponse(Status.Ok, await response.Content.ReadAsStringAsync());
         }
 
         /// <summary>
@@ -173,9 +173,9 @@ namespace UserManagementConsumer.Client
             var response = await this._userApiHttpClient.PutAsync("api/users/profile", this.ConstructContent(profileUpdateInfo));
 
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse("Error", response.ReasonPhrase);            
+                return this.ConstructResponse(Status.Error, response.ReasonPhrase);            
 
-            return this.ConstructResponse("Current profile is updated", await response.Content.ReadAsStringAsync());
+            return this.ConstructResponse(Status.Ok, await response.Content.ReadAsStringAsync());
         }
 
         /// <summary>
@@ -188,9 +188,9 @@ namespace UserManagementConsumer.Client
             var response = await this._userApiHttpClient.DeleteAsync($"api/users/{id}");
 
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse("Error occured", response.ReasonPhrase);
+                return this.ConstructResponse(Status.Error, response.ReasonPhrase);
 
-            return this.ConstructResponse("User deleted", await response.Content.ReadAsStringAsync());
+            return this.ConstructResponse(Status.Ok, await response.Content.ReadAsStringAsync());
         }
 
         /// <summary>
@@ -465,9 +465,9 @@ namespace UserManagementConsumer.Client
             var response = await this._userApiHttpClient.PutAsync($"api/{type}", this.ConstructContent(profile));
 
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse("Error", response.ReasonPhrase);
+                return this.ConstructResponse(Status.Error, response.ReasonPhrase);
 
-            return this.ConstructResponse("Success", "Profile updated");
+            return this.ConstructResponse(Status.Ok, "Profile updated");
         }
 
         /// <summary>
@@ -482,9 +482,9 @@ namespace UserManagementConsumer.Client
             var response = await this._userApiHttpClient.PostAsync($"api/{type}", this.ConstructContent(profile));
 
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse("Error", response.ReasonPhrase);
+                return this.ConstructResponse(Status.Error, response.ReasonPhrase);
 
-            return this.ConstructResponse("Success", $"Profile of type {type} added");
+            return this.ConstructResponse(Status.Ok, $"Profile of type {type} added");
         }
 
         /// <summary>
@@ -498,11 +498,11 @@ namespace UserManagementConsumer.Client
             var response = await this._userApiHttpClient.GetAsync($"api/{type}");
 
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse<IEnumerable<T>>("Error", null);
+                return this.ConstructResponse<IEnumerable<T>>(Status.Error, null);
 
             var content = JsonConvert.DeserializeObject<IEnumerable<T>>(await response.Content.ReadAsStringAsync());
 
-            return this.ConstructResponse("Request is successful", content);
+            return this.ConstructResponse(Status.Ok, content);
         }
 
         /// <summary>
@@ -517,11 +517,11 @@ namespace UserManagementConsumer.Client
             var response = await this._userApiHttpClient.GetAsync($"api/{type}/{id}");
 
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse<T>("Error", null);
+                return this.ConstructResponse<T>(Status.Error, null);
 
             var content = JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
 
-            return this.ConstructResponse("Request is successfull", content);
+            return this.ConstructResponse(Status.Ok, content);
         }
 
         /// <summary>
@@ -534,9 +534,9 @@ namespace UserManagementConsumer.Client
             var response = await this._userApiHttpClient.DeleteAsync($"api/{type}");
 
             if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse("Error", response.ReasonPhrase);
+                return this.ConstructResponse(Status.Error, response.ReasonPhrase);
 
-            return this.ConstructResponse("Success", "Profile is deleted");
+            return this.ConstructResponse(Status.Ok, "Profile is deleted");
         }
 
         /// <summary>
@@ -546,12 +546,12 @@ namespace UserManagementConsumer.Client
         /// <param name="message">Message</param>
         /// <param name="result">Result</param>
         /// <returns>Response</returns>
-        private Response<T> ConstructResponse<T>(string message, T result)
+        private Response<T> ConstructResponse<T>(Status status, T result)
         {
             // returning response
             return new Response<T>
             {
-                Message = message,
+                Status = status,
                 Result = result
             };
         }
