@@ -8,7 +8,7 @@ namespace AuthTokenService
     /// <summary>
     /// Class for updating something periodically
     /// </summary>
-    internal class Updater
+    internal class Updater : IDisposable
     {
         /// <summary>
         /// Timer
@@ -41,7 +41,7 @@ namespace AuthTokenService
             this._updaterMethod = updateMethod;
 
             // creating timer
-            this._timer = new Timer(this._interval * 60000);
+            this._timer = new Timer(this._interval * 0xEA60);
             this._timer.Elapsed += this.ExecuteWhenTimerElapse;
 
             // creating background worker
@@ -49,7 +49,6 @@ namespace AuthTokenService
             this._backgroundWorker.DoWork += this.DoBackgroundWork;
         }
 
-        
         /// <summary>
         /// Starts update periodic process
         /// </summary>
@@ -57,6 +56,15 @@ namespace AuthTokenService
         {
             // start timer
             this._timer.Start();
+        }
+
+        /// <summary>
+        /// Dispose updater
+        /// </summary>
+        public void Dispose()
+        {
+            this._timer.Dispose();
+            this._backgroundWorker.Dispose();
         }
 
         /// <summary>

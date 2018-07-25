@@ -9,7 +9,7 @@ namespace AuthTokenService
     /// This class is also responsible for updating access tokens when they are expired or user claims are changed.
     /// TokenProvider is singleton
     /// </summary>
-    public sealed class TokenProvider
+    public sealed class TokenProvider : IDisposable
     {
         /// <summary>
         /// Token Provider instance
@@ -82,7 +82,7 @@ namespace AuthTokenService
                 {
                     if(instance == null)
                     {
-                        instance = new TokenProvider("http://localhost:5700",1);
+                        instance = new TokenProvider("http://localhost:5700",28);
                     }
 
                     return instance;
@@ -151,7 +151,11 @@ namespace AuthTokenService
             this._accessToken = response.AccessToken;
             this._refreshToken = response.RefreshToken;
 
+            // starting update periodic process
             this._updater.StartUpdatePeriod();
+
+            // rising token updated event
+            this.RiseTokenUpdatedEvent();
         }
 
         /// <summary>
@@ -171,6 +175,24 @@ namespace AuthTokenService
             // setting new access token
             this._accessToken = response.AccessToken;
 
+            // rising token updated event
+            this.RiseTokenUpdatedEvent();
+        }
+
+        /// <summary>
+        /// Dispose token provider
+        /// </summary>
+        public void Dispose()
+        {
+            this._updater.Dispose();
+            this._tokenClient.Dispose();
+        }
+
+        /// <summary>
+        /// Rises token updated event
+        /// </summary>
+        private void RiseTokenUpdatedEvent()
+        {
             // creating token update event argument
             var tokenUpdateEventArgs = new TokenEventArgs(this._accessToken);
 
