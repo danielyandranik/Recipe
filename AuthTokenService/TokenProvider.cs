@@ -7,20 +7,9 @@ namespace AuthTokenService
     /// <summary>
     /// Class for retrieving tokens from Auth API.
     /// This class is also responsible for updating access tokens when they are expired or user claims are changed.
-    /// TokenProvider is singleton
     /// </summary>
     public sealed class TokenProvider : IDisposable
     {
-        /// <summary>
-        /// Token Provider instance
-        /// </summary>
-        private static TokenProvider instance = null;
-
-        /// <summary>
-        /// Lock object
-        /// </summary>
-        private static readonly object _lockObject = new object();
-
         /// <summary>
         /// Token client
         /// </summary>
@@ -72,25 +61,6 @@ namespace AuthTokenService
         public int UpdateInterval => this._updateInterval;
 
         /// <summary>
-        /// Gets singleton instance
-        /// </summary>
-        public static TokenProvider Instance
-        {
-            get
-            {
-                lock(_lockObject)
-                {
-                    if(instance == null)
-                    {
-                        instance = new TokenProvider("http://localhost:5700",28);
-                    }
-
-                    return instance;
-                }
-            }
-        }
-
-        /// <summary>
         /// Delegate for Token update
         /// </summary>
         /// <typeparam name="TEventArgs">Type of event argument</typeparam>
@@ -107,8 +77,8 @@ namespace AuthTokenService
         /// Creates new instance of <see cref="TokenProvider"/>
         /// </summary>
         /// <param name="authApiAddress">Auth API base address</param>
-        /// <param name="updateInterval">Update interval</param>
-        private TokenProvider(string authApiAddress,int updateInterval)
+        /// <param name="updateInterval">Update interval in minutes</param>
+        public TokenProvider(string authApiAddress,int updateInterval)
         {
             // setting fields
             this._authApiAddress = authApiAddress;
@@ -135,7 +105,7 @@ namespace AuthTokenService
         /// <param name="username">Username</param>
         /// <param name="password">Password</param>
         /// <returns>task</returns>
-        public async Task SignInAsync(string username,string password)
+        public async Task<Status> SignInAsync(string username,string password)
         {
             // getting response
             var response = await this._tokenClient.RequestResourceOwnerPasswordAsync(
@@ -144,7 +114,7 @@ namespace AuthTokenService
             
             if(response.IsError)
             {
-                throw new Exception("Invalid username or password");
+                return Status.Error;
             }
 
             // setting tokens
@@ -156,20 +126,22 @@ namespace AuthTokenService
 
             // rising token updated event
             this.RiseTokenUpdatedEvent();
+
+            return Status.Ok;
         }
 
         /// <summary>
         /// Does refresh of access token
         /// </summary>
         /// <returns>task</returns>
-        public async Task RefreshAccessTokenAsync()
+        public async Task<Status> RefreshAccessTokenAsync()
         {
             // getting response
             var response = await this._tokenClient.RequestRefreshTokenAsync(this._refreshToken);
 
             if(response.IsError)
             {
-                throw new Exception("Invalid refresh token");
+                return Status.Error;
             }
 
             // setting new access token
@@ -177,6 +149,8 @@ namespace AuthTokenService
 
             // rising token updated event
             this.RiseTokenUpdatedEvent();
+
+            return Status.Ok;
         }
 
         /// <summary>
