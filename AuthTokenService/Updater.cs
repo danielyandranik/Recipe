@@ -41,7 +41,7 @@ namespace AuthTokenService
             this._updaterMethod = updateMethod;
 
             // creating timer
-            this._timer = new Timer(1 * 60000);
+            this._timer = new Timer(this._interval * 60000);
             this._timer.Elapsed += this.ExecuteWhenTimerElapse;
 
             // creating background worker
