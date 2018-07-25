@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstitutionsClient", "Insti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Desktop\Desktop.csproj", "{44E381BE-4290-4D4D-90D1-B282A82A91F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthTokenService", "AuthTokenService\AuthTokenService.csproj", "{9D514F4C-F10E-4E4E-B7F3-D8FF169B0B9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D514F4C-F10E-4E4E-B7F3-D8FF169B0B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D514F4C-F10E-4E4E-B7F3-D8FF169B0B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D514F4C-F10E-4E4E-B7F3-D8FF169B0B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D514F4C-F10E-4E4E-B7F3-D8FF169B0B9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
