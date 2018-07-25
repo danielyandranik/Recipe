@@ -48,7 +48,7 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Gets pharmasist profile command
         /// </summary>
-        public ICommand PharmacistProfileCommand => this._doctorProfileCommand;
+        public ICommand DoctorProfileCommand => this._doctorProfileCommand;
 
         /// <summary>
         /// Gets or sets Add patient profile page
@@ -61,11 +61,8 @@ namespace Desktop.ViewModels
         public DoctorProfileViewModel()
         {
             // setting fields
-
-            // TODO
-            this.Doctor.UserId = 1;
-
             this._doctor = new Doctor();
+            this._doctor.UserId = User.Default.Id;
             this._validation = new DoctorInputValidation();
             this._doctorProfileService = new DoctorProfileService();
             this._doctorProfileCommand = new DoctorProfileCommand(this._doctorProfileService.Execute, this._validation.Validate);

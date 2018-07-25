@@ -21,7 +21,7 @@ namespace Desktop.Services
         /// </summary>
         public CodeConfirmationService()
         {
-            this._client = new UserManagementApiClient();
+            this._client = ((App)App.Current).UserApiClient;
         }
 
         /// <summary>

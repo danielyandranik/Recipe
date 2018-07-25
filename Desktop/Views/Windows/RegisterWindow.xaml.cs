@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using Desktop.ViewModels;
 
-namespace Desktop.Views
+namespace Desktop.Views.Windows
 {
     /// <summary>
     /// Interaction logic for Register.xaml

@@ -1,6 +1,7 @@
 ﻿using Desktop.Views.Pages;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,7 +10,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 
-namespace Desktop.Views
+namespace Desktop.Views.Windows
 
 {
     public partial class MainWindow : Window
@@ -107,6 +108,12 @@ namespace Desktop.Views
         private void AddPharmacyAdminProfileButton_Click(object sender, RoutedEventArgs e)
         {
             this.frame.NavigationService.Navigate(this.addPharmacyAdminProfile);
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            App.Current.Shutdown();
         }
     }
 }

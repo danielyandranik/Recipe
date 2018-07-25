@@ -30,7 +30,7 @@ namespace Desktop.Commands
 
                 var response = await this.ExecuteAsync(doctor);
 
-                if (response.Message.Equals("Success"))
+                if (response.Status == Status.Ok)
                 {
                     RecipeMessageBox.Show("Doctor profile is added");
                 }

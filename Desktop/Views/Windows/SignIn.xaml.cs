@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Desktop.ViewModels;
 
-namespace Desktop.Views
+namespace Desktop.Views.Windows
 {
     /// <summary>
     /// Interaction logic for SignIn.xaml

@@ -7,9 +7,9 @@
     public class Response<T>
     {
         /// <summary>
-        /// Gets or sets message
+        /// Gets or sets status
         /// </summary>
-        public string Message { get; set; }
+        public Status Status { get; set; }
 
         /// <summary>
         /// Gets or sets result

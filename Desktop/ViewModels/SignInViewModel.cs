@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Desktop.Views;
+using Desktop.Views.Windows;
 using Desktop.Services;
 using Desktop.Models;
+using Desktop.Commands;
 
 namespace Desktop.ViewModels
 {
@@ -33,6 +29,11 @@ namespace Desktop.ViewModels
         private readonly HyperLinkService _hyperLinkService;
 
         /// <summary>
+        /// SignIn command
+        /// </summary>
+        private readonly SignInCommand _signInCommand;
+
+        /// <summary>
         /// Gets or sets sign in info
         /// </summary>
         public SignInInfo SignInInfo
@@ -50,6 +51,11 @@ namespace Desktop.ViewModels
         public ICommand HyperLinkCommand => this._hyperLinkCommand;
 
         /// <summary>
+        /// Gets sign in command
+        /// </summary>
+        public ICommand SignInCommand => this._signInCommand;
+
+        /// <summary>
         /// Creates new instance of <see cref="SignInViewModel"/>
         /// </summary>
         public SignInViewModel()
@@ -57,6 +63,7 @@ namespace Desktop.ViewModels
             this._signInInfo = new SignInInfo();
             this._hyperLinkService = new HyperLinkService();
             this._hyperLinkCommand = new RelayCommand(() => this._hyperLinkService.Navigate<SignIn,RegisterWindow>(),() => true);
+            this._signInCommand = new SignInCommand();
         }
     }
 }
