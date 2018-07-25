@@ -33,7 +33,7 @@ namespace Desktop.Commands
 
                 var response = await this.ExecuteAsync(pharmacist);
 
-                if (response.Message.Equals("Success"))
+                if (response.Status == Status.Ok)
                 {
                     RecipeMessageBox.Show("Pharmasist profile is added");
                 }

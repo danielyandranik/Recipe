@@ -33,7 +33,7 @@ namespace Desktop.Commands
 
                 var response = await this.ExecuteAsync(patient);
 
-                if (response.Message.Equals("Success"))
+                if (response.Status == Status.Ok)
                 {
                     RecipeMessageBox.Show("Patient profile is added");
                 }
