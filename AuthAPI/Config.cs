@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using IdentityServer4;
 using IdentityServer4.Models;
 
 namespace AuthAPI
@@ -39,9 +40,19 @@ namespace AuthAPI
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = {"UserManagementAPI", "RecipeApi", "InstitutionsAPI","MedicineAPI" },
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OfflineAccess,
+                        "UserManagementAPI",
+                        "RecipeAPI",
+                        "MedicineAPI",
+                        "InstitutionsAPI"
+                    },
                     UpdateAccessTokenClaimsOnRefresh = true,
-                    AccessTokenLifetime = 3600
+                    RefreshTokenUsage = TokenUsage.ReUse,
+                    AbsoluteRefreshTokenLifetime = 15552000,
+                    AccessTokenLifetime = 1800,
+                    AllowOfflineAccess = true
                 }
             };
         }
