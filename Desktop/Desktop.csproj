@@ -314,11 +314,17 @@
     <Compile Include="Views\Pages\Medicines.xaml.cs">
       <DependentUpon>Medicines.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\MinsitryWorkerApprovements.xaml.cs">
+      <DependentUpon>MinsitryWorkerApprovements.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\Pharmacies.xaml.cs">
       <DependentUpon>Pharmacies.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Recipes.xaml.cs">
       <DependentUpon>Recipes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\SellMedicines.xaml.cs">
+      <DependentUpon>SellMedicines.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\CodeConfirmation.xaml.cs">
       <DependentUpon>CodeConfirmation.xaml</DependentUpon>
@@ -442,11 +448,19 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="Views\Pages\MinsitryWorkerApprovements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Pharmacies.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Views\Pages\Recipes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\SellMedicines.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Desktop.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for MedicineManagement.xaml
+    /// Interaction logic for AddMedicine.xaml
     /// </summary>
-    public partial class MedicineManagement : Page
+    public partial class AddMedicine : Page
     {
-        public MedicineManagement()
+        public AddMedicine()
         {
             InitializeComponent();
         }
