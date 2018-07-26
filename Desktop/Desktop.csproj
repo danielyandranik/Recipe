@@ -252,6 +252,8 @@
     <Compile Include="Commands\SignInCommand.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IValidation.cs" />
+    <Compile Include="Models\Medicine.cs" />
+    <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\SignInInfo.cs" />
     <Compile Include="Services\CodeConfirmationService.cs" />
@@ -273,6 +275,7 @@
     <Compile Include="Validations\RegisterInfputValidation.cs" />
     <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
     <Compile Include="ViewModels\DoctorProfileViewModel.cs" />
+    <Compile Include="ViewModels\MedicinesViewModel.cs" />
     <Compile Include="ViewModels\PatientProfileViewModel.cs" />
     <Compile Include="ViewModels\PharmacistProfileViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
@@ -313,9 +316,6 @@
     </Compile>
     <Compile Include="Views\Pages\Hospitals.xaml.cs">
       <DependentUpon>Hospitals.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\MedicineManagement.xaml.cs">
-      <DependentUpon>MedicineManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Medicines.xaml.cs">
       <DependentUpon>Medicines.xaml</DependentUpon>
@@ -450,10 +450,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Hospitals.xaml">
-      <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
-    </Page>
-    <Page Include="Views\Pages\MedicineManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>

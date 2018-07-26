@@ -18,9 +18,9 @@ namespace Desktop.Views.Pages
     /// <summary>
     /// Interaction logic for MinsitryWorkerApprovements.xaml
     /// </summary>
-    public partial class MinsitryWorkerApprovements : Page
+    public partial class MinistryWorkerApprovements : Page
     {
-        public MinsitryWorkerApprovements()
+        public MinistryWorkerApprovements()
         {
             InitializeComponent();
         }

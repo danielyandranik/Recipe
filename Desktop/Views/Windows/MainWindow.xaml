@@ -39,7 +39,7 @@
 
                 <TextBlock Text="Andranik, patient" Foreground="White" FontSize="24" Margin="0,0,10,0" VerticalAlignment="Center"/>
                 <Image PreviewMouseDown="Toggle_menu" Cursor="Hand" Source="/Images/down_arrow.png" Width="24" Height="20" VerticalAlignment="Center" Margin="0,8,15,0" />
-                <Popup Name="menu" Margin="0" Placement="Right" VerticalOffset="71" HorizontalOffset="-151" PopupAnimation="Fade" AllowsTransparency="True" >
+                <Popup  Name="menu" Margin="0" Placement="Right" VerticalOffset="71" HorizontalOffset="-151" PopupAnimation="Fade" AllowsTransparency="True" SnapsToDevicePixels="False" ClipToBounds="False" Focusable="True" >
                     <StackPanel Background="#FF39B9B9" HorizontalAlignment="Right" Width="150">
 
                         <Label VerticalContentAlignment="Center" Content="Profiles" FontFamily="Comfortaa" FontWeight="Bold" FontSize="16" Foreground="#FF182634" Height="32" VerticalAlignment="Center"/>
