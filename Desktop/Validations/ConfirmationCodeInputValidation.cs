@@ -18,7 +18,7 @@ namespace Desktop.Validations
             if (parameter == null)
                 return false;
 
-            return ((UserVerificationInfo)parameter).VerifyKey.Length == 32;
+            return ((UserVerificationInfo)parameter).VerifyKey.Length > 31;
         }
     }
 }

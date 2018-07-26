@@ -59,11 +59,8 @@ namespace Desktop.ViewModels
         public PatientProfileViewModel()
         {
             // setting fields
-
-            // TODO
-            this.Patient.UserId = 1;
-
             this._patient = new Patient();
+            this._patient.UserId = User.Default.Id;
             this._validation = new PatientInputValidation();
             this._patientProfileService = new PatientProfileService();
             this._patientProfileCommand = new PatientProfileCommand(this._patientProfileService.Execute, this._validation.Validate);

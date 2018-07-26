@@ -23,7 +23,7 @@ namespace Desktop.Services
         /// </summary>
         public RegistrationService()
         {
-            this._userManagementApiClient = new UserManagementApiClient();
+            this._userManagementApiClient = ((App)App.Current).UserApiClient;
         }
 
         /// <summary>

@@ -176,6 +176,7 @@
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.4\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
@@ -260,6 +261,11 @@
     <Compile Include="Services\PharmacistProfileService.cs" />
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\RegistrationService.cs" />
+    <Compile Include="User.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>User.settings</DependentUpon>
+    </Compile>
     <Compile Include="Validations\ConfirmationCodeInputValidation.cs" />
     <Compile Include="Validations\DoctorInputValidation.cs" />
     <Compile Include="Validations\PatientInputValidation.cs" />
@@ -360,7 +366,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="settings.json" />
+    <None Include="User.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>User.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -381,6 +390,10 @@
     <Resource Include="Images\down_arrow.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AuthTokenService\AuthTokenService.csproj">
+      <Project>{9D514F4C-F10E-4E4E-B7F3-D8FF169B0B9D}</Project>
+      <Name>AuthTokenService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UserManagementConsumer\UserManagementConsumer.csproj">
       <Project>{8560FA8A-F884-4B92-B1D6-28C2CB511D56}</Project>
       <Name>UserManagementConsumer</Name>

@@ -9,7 +9,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 
-namespace Desktop.Views
+namespace Desktop.Views.Windows
 
 {
     public partial class MainWindow : Window

@@ -105,7 +105,7 @@ namespace AuthTokenService
         /// <param name="username">Username</param>
         /// <param name="password">Password</param>
         /// <returns>task</returns>
-        public async Task<Status> SignInAsync(string username,string password)
+        public async Task<TokenStatus> SignInAsync(string username,string password)
         {
             // getting response
             var response = await this._tokenClient.RequestResourceOwnerPasswordAsync(
@@ -114,7 +114,7 @@ namespace AuthTokenService
             
             if(response.IsError)
             {
-                return Status.Error;
+                return TokenStatus.Error;
             }
 
             // setting tokens
@@ -127,30 +127,34 @@ namespace AuthTokenService
             // rising token updated event
             this.RiseTokenUpdatedEvent();
 
-            return Status.Ok;
+            return TokenStatus.Ok;
         }
 
         /// <summary>
         /// Does refresh of access token
         /// </summary>
         /// <returns>task</returns>
-        public async Task<Status> RefreshAccessTokenAsync()
+        public async Task<TokenStatus> RefreshAccessTokenAsync()
         {
-            // getting response
-            var response = await this._tokenClient.RequestRefreshTokenAsync(this._refreshToken);
+            return await this.RequestRefreshTokenAsync(this._refreshToken);
+        }
 
-            if(response.IsError)
-            {
-                return Status.Error;
-            }
+        /// <summary>
+        /// Checks the given refresh token
+        /// </summary>
+        /// <param name="refreshToken">Refresh token</param>
+        /// <returns>task</returns>
+        public async Task<TokenStatus> CheckRefreshTokenAsync(string refreshToken)
+        {
+            // getting status
+            var status = await this.RequestRefreshTokenAsync(refreshToken);
 
-            // setting new access token
-            this._accessToken = response.AccessToken;
+            // if refresh token is valid then assign it
+            if (status == TokenStatus.Ok)
+                this._refreshToken = refreshToken;
 
-            // rising token updated event
-            this.RiseTokenUpdatedEvent();
-
-            return Status.Ok;
+            // returning status
+            return status;
         }
 
         /// <summary>
@@ -163,12 +167,36 @@ namespace AuthTokenService
         }
 
         /// <summary>
+        /// Requests new access token
+        /// </summary>
+        /// <param name="refreshToken">Refresh token</param>
+        /// <returns>Task</returns>
+        private async Task<TokenStatus> RequestRefreshTokenAsync(string refreshToken)
+        {
+            // getting response
+            var response = await this._tokenClient.RequestRefreshTokenAsync(refreshToken);
+
+            if (response.IsError)
+            {
+                return TokenStatus.Error;
+            }
+
+            // setting new access token
+            this._accessToken = response.AccessToken;
+
+            // rising token updated event
+            this.RiseTokenUpdatedEvent();
+
+            return TokenStatus.Ok;
+        }
+
+        /// <summary>
         /// Rises token updated event
         /// </summary>
         private void RiseTokenUpdatedEvent()
         {
             // creating token update event argument
-            var tokenUpdateEventArgs = new TokenEventArgs(this._accessToken);
+            var tokenUpdateEventArgs = new TokenEventArgs(this._accessToken,this._refreshToken);
 
             // rising token updated event
             this.TokenUpdated?.Invoke(this, tokenUpdateEventArgs);

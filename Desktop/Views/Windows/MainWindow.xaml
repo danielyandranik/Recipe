@@ -1,11 +1,12 @@
-﻿<Window x:Class="Desktop.Views.MainWindow"
+﻿<Window x:Class="Desktop.Views.Windows.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Recipe" MinWidth="1280" MinHeight="720" SizeToContent="WidthAndHeight" Background="White" WindowStartupLocation="CenterScreen">
+        Title="Recipe" MinWidth="1280" MinHeight="720" SizeToContent="WidthAndHeight" Background="White" WindowStartupLocation="CenterScreen"
+        >
     <Window.Resources>
         <!--<Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
@@ -58,19 +59,19 @@
                         <Popup Name="AddProfile" Margin="0" VerticalOffset="-80" PopupAnimation="Fade" AllowsTransparency="True" HorizontalOffset="-200">
                             <StackPanel Background="#FF39B9B9" HorizontalAlignment="Right" Width="200">
 
-                                <Button Width="200" Content="Patient" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddPatientProfileButton_Click"/>
+                                <Button Width="200" Content="Patient" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
                                 <Separator Width="150" Background="#FFFFFFFF" />
 
-                                <Button Width="200" Content="Doctor" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddDoctorProfileButton_Click"/>
+                                <Button Width="200" Content="Doctor" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
                                 <Separator Width="150" Background="#FFFFFFFF" />
 
-                                <Button Width="200" Content="Pharmacist" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddPharmacistProfileButton_Click" />
+                                <Button Width="200" Content="Pharmacist" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
                                 <Separator Width="150" Background="#FFFFFFFF" />
 
-                                <Button Width="200" Content="Pharmacy admin" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddPharmacyAdminProfileButton_Click"/>
+                                <Button Width="200" Content="Pharmacy admin" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
                                 <Separator Width="150" Background="#FFFFFFFF" />
                                 
-                                <Button Width="200" Content="Hospital admin" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="AddHospitalAdministartortProfileButton_Click"/>
+                                <Button Width="200" Content="Hospital admin" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
 
 
                             </StackPanel>

@@ -58,12 +58,8 @@ namespace Desktop.ViewModels
         public PharmacistProfileViewModel()
         {
             // setting fields
-
-            // TODO
-            this.Pharmacist.UserId = 1;
-            this.Pharmacist.PharmacyId = 1;
-
             this._pharmacist = new PharmacistFullInfo();
+            this._pharmacist.UserId = User.Default.Id;
             this._validation = new PatientInputValidation();
             this._pharmasistProfileService = new PharmacistProfileService();
             this._pharmacistProfileCommand = new PharmacistProfileCommand(this._pharmasistProfileService.Execute, this._validation.Validate);

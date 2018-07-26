@@ -5,7 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using Desktop.Interfaces;
 using Desktop.Validations;
 using Desktop.Services;
-using Desktop.Views;
+using Desktop.Views.Windows;
 using Desktop.Models;
 using Desktop.Commands;
 using UserManagementConsumer.Client;

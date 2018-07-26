@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using UserManagementConsumer.Client;
 using Desktop.Models;
-using Desktop.Views;
 using Desktop.Views.Windows;
 using Desktop.ViewModels;
 

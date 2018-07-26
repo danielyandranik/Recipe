@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using UserManagementConsumer.Client;
 using Desktop.Views.Windows;
-using Desktop.Views;
 using UserManagementConsumer.Models;
 
 namespace Desktop.Commands
@@ -51,8 +50,7 @@ namespace Desktop.Commands
         /// </summary>
         private void ManageWindows()
         {
-            var window = new SignIn();
-            window.Show();
+            ((App)App.Current).SignInWindow.Show();
 
             for (var counter = App.Current.Windows.Count - 2; counter >= 0; counter--)
             {

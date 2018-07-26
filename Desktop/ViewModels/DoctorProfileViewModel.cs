@@ -61,11 +61,8 @@ namespace Desktop.ViewModels
         public DoctorProfileViewModel()
         {
             // setting fields
-
-            // TODO
-            this.Doctor.UserId = 1;
-
             this._doctor = new Doctor();
+            this._doctor.UserId = User.Default.Id;
             this._validation = new DoctorInputValidation();
             this._doctorProfileService = new DoctorProfileService();
             this._doctorProfileCommand = new DoctorProfileCommand(this._doctorProfileService.Execute, this._validation.Validate);

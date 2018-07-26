@@ -1,6 +1,6 @@
 ﻿namespace AuthTokenService
 {
-    public enum Status
+    public enum TokenStatus
     {
         Ok,
         Error

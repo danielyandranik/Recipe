@@ -19,8 +19,7 @@ namespace Desktop.Services
         /// </summary>
         public ProfileService()
         {
-            this._userManagementApiClient = new UserManagementApiClient();
-            this._userManagementApiClient.SignInAsync("sona", "sona");
+            this._userManagementApiClient = ((App)App.Current).UserApiClient;
         }
 
         /// <summary>
