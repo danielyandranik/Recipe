@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desktop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,13 @@ namespace Desktop.Views.Pages
     /// </summary>
     public partial class AddDoctorProfile : Page
     {
-        
+        private readonly DoctorProfileViewModel doctorProfileViewModel;
+
         public AddDoctorProfile()
         {
             InitializeComponent();
+            this.doctorProfileViewModel = new DoctorProfileViewModel();
+            this.DataContext = this.doctorProfileViewModel;
         }
     }
 }

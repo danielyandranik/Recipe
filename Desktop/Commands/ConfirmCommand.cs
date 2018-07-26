@@ -50,7 +50,7 @@ namespace Desktop.Commands
         /// </summary>
         private void ManageWindows()
         {
-            ((App)App.Current).SignInWindow.Show();
+            new SignIn().Show();
 
             for (var counter = App.Current.Windows.Count - 2; counter >= 0; counter--)
             {

@@ -24,14 +24,9 @@ namespace Desktop
         private readonly UserManagementApiClient _userApiClient;
 
         /// <summary>
-        /// Sign In window
+        /// Boolean value indicating if app is ready for startup
         /// </summary>
-        private readonly SignIn _signInWindow;
-
-        /// <summary>
-        /// Register Window
-        /// </summary>
-        private readonly RegisterWindow _registerWindow;
+        private bool _isReadyForStartup;
 
         /// <summary>
         /// Gets token provider
@@ -44,33 +39,29 @@ namespace Desktop
         public UserManagementApiClient UserApiClient => this._userApiClient;
 
         /// <summary>
-        /// Gets SignIn Window 
-        /// </summary>
-        public SignIn SignInWindow => this._signInWindow;
-
-        /// <summary>
-        /// Gets Register window
-        /// </summary>
-        public RegisterWindow RegisterWindow => this._registerWindow;
-
-        /// <summary>
         /// Creates new instance of <see cref="App"/>
         /// </summary>
         public App()
         {
-            // setting fields
-            this._tokenProvider = new TokenProvider(
-                ConfigurationManager.AppSettings["AuthAPI"],
-                int.Parse(ConfigurationManager.AppSettings["UpdateInterval"]));
+            try
+            {
+                // setting fields
+                this._tokenProvider = new TokenProvider(
+                    ConfigurationManager.AppSettings["AuthAPI"],
+                    int.Parse(ConfigurationManager.AppSettings["UpdateInterval"]));
 
-            this._userApiClient = new UserManagementApiClient(
-                ConfigurationManager.AppSettings["UserManagementAPI"]);
+                this._userApiClient = new UserManagementApiClient(
+                    ConfigurationManager.AppSettings["UserManagementAPI"]);
 
-            this._signInWindow = new SignIn();
-            this._registerWindow = new RegisterWindow();
+                // configuring 
+                this.ConfigureEventHandlers();
 
-            // configuring 
-            this.ConfigureEventHandlers();
+                this._isReadyForStartup = true;
+            }
+            catch(Exception)
+            {
+                this._isReadyForStartup = false;
+            }
         }
 
         /// <summary>
@@ -78,15 +69,21 @@ namespace Desktop
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Event argument</param>
-        private async void Application_Startup(object sender, StartupEventArgs e)
+        private  async void Application_Startup(object sender, StartupEventArgs e)
         {
+            if(!this._isReadyForStartup)
+            {
+                RecipeMessageBox.Show("Server is not responding.\nUnable to start.");
+                return;
+            }
+
             // getting user settings
             var refreshToken = User.Default.RefreshToken;
             var username = User.Default.Username;
 
             if(string.IsNullOrEmpty(refreshToken) || string.IsNullOrEmpty(username))
             {
-                this._signInWindow.Show();
+                new SignIn().Show();
             }
             else
             {
@@ -96,7 +93,7 @@ namespace Desktop
 
                     if(status == TokenStatus.Error)
                     {
-                        this._signInWindow.Show();
+                        new SignIn().Show();
                         return;
                     }
 
@@ -104,7 +101,7 @@ namespace Desktop
 
                     if (response.Status == Status.Error)
                     {
-                        this._signInWindow.Show();
+                        new SignIn().Show();
                         return;
                     }
 
@@ -143,6 +140,9 @@ namespace Desktop
         /// <param name="e">Event argument</param>
         private void UpdateRefreshToken(object sender,TokenEventArgs e)
         {
+            if (e.RefreshToken == null)
+                return;
+
             User.Default.RefreshToken = e.RefreshToken;
             User.Default.Save();
         }

@@ -48,7 +48,7 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Gets pharmasist profile command
         /// </summary>
-        public ICommand PharmacistProfileCommand => this._doctorProfileCommand;
+        public ICommand DoctorProfileCommand => this._doctorProfileCommand;
 
         /// <summary>
         /// Gets or sets Add patient profile page

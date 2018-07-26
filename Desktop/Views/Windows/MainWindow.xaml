@@ -59,16 +59,24 @@
                         <Popup Name="AddProfile" Margin="0" VerticalOffset="-80" PopupAnimation="Fade" AllowsTransparency="True" HorizontalOffset="-200">
                             <StackPanel Background="#FF39B9B9" HorizontalAlignment="Right" Width="200">
 
-                                <Button Width="200" Content="Patient" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
+                                <Button Width="200" Content="Patient" BorderBrush="{x:Null}" 
+                                        Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"
+                                        Click="AddPatientProfileButton_Click"/>
                                 <Separator Width="150" Background="#FFFFFFFF" />
 
-                                <Button Width="200" Content="Doctor" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
+                                <Button Width="200" Content="Doctor" 
+                                        Click="AddDoctorProfileButton_Click"
+                                        BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
                                 <Separator Width="150" Background="#FFFFFFFF" />
 
-                                <Button Width="200" Content="Pharmacist" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
+                                <Button Width="200" Content="Pharmacist"
+                                        Click="AddPharmacistProfileButton_Click"
+                                        BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
                                 <Separator Width="150" Background="#FFFFFFFF" />
 
-                                <Button Width="200" Content="Pharmacy admin" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
+                                <Button Width="200" Content="Pharmacy admin"
+                                        Click="AddPharmacyAdminProfileButton_Click"
+                                        BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
                                 <Separator Width="150" Background="#FFFFFFFF" />
                                 
                                 <Button Width="200" Content="Hospital admin" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
