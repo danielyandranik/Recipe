@@ -43,7 +43,7 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Doctor profile command
         /// </summary>
-        private readonly DoctorProfileCommand doctorProfileCommand;
+        private readonly ProfileCommand<Doctor> doctorProfileCommand;
 
         /// <summary>
         /// Gets pharmasist profile command
@@ -65,7 +65,7 @@ namespace Desktop.ViewModels
             this.doctor.UserId = User.Default.Id;
             this.validation = new DoctorInputValidation();
             this.doctorProfileService = new DoctorProfileService();
-            this.doctorProfileCommand = new DoctorProfileCommand(this.doctorProfileService.Execute, this.validation.Validate);
+            this.doctorProfileCommand = new ProfileCommand<Doctor>(this.doctorProfileService.Execute, this.validation.Validate);
         }
     }
 }

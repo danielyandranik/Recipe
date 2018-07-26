@@ -41,7 +41,7 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Patient profile command
         /// </summary>
-        private readonly PatientProfileCommand patientProfileCommand;
+        private readonly ProfileCommand<Patient> patientProfileCommand;
 
         /// <summary>
         /// Gets patient command
@@ -63,7 +63,7 @@ namespace Desktop.ViewModels
             this.patient.UserId = User.Default.Id;
             this.validation = new PatientInputValidation();
             this.patientProfileService = new PatientProfileService();
-            this.patientProfileCommand = new PatientProfileCommand(this.patientProfileService.Execute, this.validation.Validate);
+            this.patientProfileCommand = new ProfileCommand<Patient>(this.patientProfileService.Execute, this.validation.Validate);
         }
     }
 }

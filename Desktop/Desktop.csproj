@@ -245,10 +245,7 @@
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\ConfirmCommand.cs" />
-    <Compile Include="Commands\DoctorProfileCommand.cs" />
-    <Compile Include="Commands\HospitalDirectorProfileCommand.cs" />
-    <Compile Include="Commands\PatientProfileCommand.cs" />
-    <Compile Include="Commands\PharmacistProfileCommand.cs" />
+    <Compile Include="Commands\ProfileCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
     <Compile Include="Commands\SignInCommand.cs" />
     <Compile Include="Interfaces\IService.cs" />

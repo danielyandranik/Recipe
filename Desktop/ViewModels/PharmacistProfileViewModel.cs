@@ -40,7 +40,7 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Pharmasist profile command
         /// </summary>
-        private readonly PharmacistProfileCommand pharmacistProfileCommand;
+        private readonly ProfileCommand<PharmacistFullInfo> pharmacistProfileCommand;
 
         /// <summary>
         /// Gets pharmasist profile command
@@ -62,7 +62,7 @@ namespace Desktop.ViewModels
             this.pharmacist.UserId = User.Default.Id;
             this.validation = new PatientInputValidation();
             this.pharmasistProfileService = new PharmacistProfileService();
-            this.pharmacistProfileCommand = new PharmacistProfileCommand(this.pharmasistProfileService.Execute, this.validation.Validate);
+            this.pharmacistProfileCommand = new ProfileCommand<PharmacistFullInfo>(this.pharmasistProfileService.Execute, this.validation.Validate);
         }
     }
 }
