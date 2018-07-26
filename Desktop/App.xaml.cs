@@ -24,6 +24,11 @@ namespace Desktop
         private readonly UserManagementApiClient _userApiClient;
 
         /// <summary>
+        /// Recipe client.
+        /// </summary>
+        private readonly RecipeClient.RecipeClient _recipeClient;
+
+        /// <summary>
         /// Boolean value indicating if app is ready for startup
         /// </summary>
         private bool _isReadyForStartup;
@@ -52,6 +57,8 @@ namespace Desktop
 
                 this._userApiClient = new UserManagementApiClient(
                     ConfigurationManager.AppSettings["UserManagementAPI"]);
+
+                this._recipeClient = new RecipeClient.RecipeClient(ConfigurationManager.AppSettings["RecipeAPI"]);
 
                 // configuring 
                 this.ConfigureEventHandlers();
@@ -155,6 +162,7 @@ namespace Desktop
             // adding event handlers for TokenUpdated event
             this._tokenProvider.TokenUpdated += this._userApiClient.UpdateToken;
             this._tokenProvider.TokenUpdated += this.UpdateRefreshToken;
+            this.TokenProvider.TokenUpdated += this._recipeClient.UpdateToken;
         }
     }
 }

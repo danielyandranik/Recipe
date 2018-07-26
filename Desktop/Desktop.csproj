@@ -251,7 +251,6 @@
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IValidation.cs" />
     <Compile Include="Models\Medicine.cs" />
-    <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\SignInInfo.cs" />
     <Compile Include="Services\CodeConfirmationService.cs" />
@@ -275,11 +274,7 @@
     <Compile Include="Validations\RegisterInfputValidation.cs" />
     <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
     <Compile Include="ViewModels\DoctorProfileViewModel.cs" />
-<<<<<<< HEAD
     <Compile Include="ViewModels\MedicinesViewModel.cs" />
-=======
-    <Compile Include="ViewModels\HospitalDirectorProfileViewModel.cs" />
->>>>>>> 663f0378497047833cc7bbca766f0872edf34804
     <Compile Include="ViewModels\PatientProfileViewModel.cs" />
     <Compile Include="ViewModels\PharmacistProfileViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
@@ -403,6 +398,10 @@
     <ProjectReference Include="..\AuthTokenService\AuthTokenService.csproj">
       <Project>{9D514F4C-F10E-4E4E-B7F3-D8FF169B0B9D}</Project>
       <Name>AuthTokenService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RecipeClient\RecipeClient.csproj">
+      <Project>{7af54324-aca3-49fe-9ccf-ead410b36c83}</Project>
+      <Name>RecipeClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\UserManagementConsumer\UserManagementConsumer.csproj">
       <Project>{8560FA8A-F884-4B92-B1D6-28C2CB511D56}</Project>

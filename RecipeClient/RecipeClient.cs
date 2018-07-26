@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AuthTokenService;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -12,22 +13,26 @@ namespace RecipeClient
     {
         private readonly HttpClient client;
 
+        private string _accessToken;
+
         public RecipeClient(string baseAddress)
-        {
+        { 
             this.client = new HttpClient() { BaseAddress = new Uri(baseAddress) };
+
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            this.client.SetBearerToken(this._accessToken);
         }
 
-        public AuthenticationHeaderValue Authurization
+        /// <summary>
+        /// Event handler for TokenProvider TokenUpdated class
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event argument</param>
+        public void UpdateToken(object sender, TokenEventArgs e)
         {
-            get
-            {
-                return this.client.DefaultRequestHeaders.Authorization;
-            }
-            set
-            {
-                this.client.DefaultRequestHeaders.Authorization = value;
-            }
+            this._accessToken = e.AccessToken;
+            this.client.SetBearerToken(this._accessToken);
         }
 
         public async Task<ResponseMessage<IEnumerable<T>>> GetAllAsync<T>(string requestUri)
