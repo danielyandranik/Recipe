@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 
 namespace Desktop.Services
@@ -22,6 +23,16 @@ namespace Desktop.Services
             window.Show();
 
             // closing the last window
+            App.Current.Windows.OfType<TFrom>().Last().Close();
+        }
+
+        public void Navigate<TFrom,TTo,TToParameter>(TToParameter toParameter)
+            where TFrom:Window
+            where TTo: Window
+        {
+            var window = (TTo)Activator.CreateInstance(typeof(TTo), toParameter);
+
+            window.Show();
             App.Current.Windows.OfType<TFrom>().Last().Close();
         }
     }

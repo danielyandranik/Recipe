@@ -149,6 +149,32 @@ namespace UserManagementConsumer.Client
         }
 
         /// <summary>
+        /// Gets user by id
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <returns>User personal info</returns>
+        public async Task<Response<UserPersonalInfo>> GetUserAsync(int id)
+        {
+            // getting response
+            var response = await this._userApiHttpClient.GetAsync($"api/users/{id}");
+
+            // if error occured inform about that
+            if (!response.IsSuccessStatusCode)
+                return this.ConstructResponse<UserPersonalInfo>(Status.Error, null);
+
+            // reading content
+            var content = await response.Content.ReadAsStringAsync();
+
+            // if no content inform about that
+            if (string.IsNullOrEmpty(content))
+                return this.ConstructResponse<UserPersonalInfo>(Status.Error, null);
+
+            // returning result
+            return this.ConstructResponse(
+                Status.Ok, JsonConvert.DeserializeObject<UserPersonalInfo>(content));
+        }
+
+        /// <summary>
         /// Updates password
         /// </summary>
         /// <param name="passwordUpdateInfo">password update info</param>

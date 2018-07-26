@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
-        Title="Recipe" MinWidth="1280" MinHeight="720" SizeToContent="WidthAndHeight" Background="White" WindowStartupLocation="CenterScreen"
-        >
+        Name="Main" Title="Recipe" MinWidth="1280" MinHeight="720" SizeToContent="WidthAndHeight" Background="White" WindowStartupLocation="CenterScreen"
+        LocationChanged="Main_LocationChanged"
+        SizeChanged="Main_SizeChanged">
     <Window.Resources>
         <!--<Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
@@ -37,9 +39,17 @@
 
             <StackPanel Orientation="Horizontal" Grid.Column="3">
 
-                <TextBlock Text="Andranik, patient" Foreground="White" FontSize="24" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                <Image PreviewMouseDown="Toggle_menu" Cursor="Hand" Source="/Images/down_arrow.png" Width="24" Height="20" VerticalAlignment="Center" Margin="0,8,15,0" />
-                <Popup  Name="menu" Margin="0" Placement="Right" VerticalOffset="71" HorizontalOffset="-151" PopupAnimation="Fade" AllowsTransparency="True" SnapsToDevicePixels="False" ClipToBounds="False" Focusable="True" >
+                <TextBlock Text="{Binding Username}" Foreground="White" FontSize="24" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding CurrentProfile}" Foreground="White" FontSize="24" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <Image  PreviewMouseDown="Toggle_menu" Cursor="Hand" Source="/Images/down_arrow.png" Width="24" Height="20" 
+                        VerticalAlignment="Center" Margin="0,8,15,0"
+                        Name="menu_opener"/>
+             
+                <Popup  Name="menu" Margin="0"
+                        Placement="Right" VerticalOffset="71" 
+                        HorizontalOffset="-151" PopupAnimation="Fade" AllowsTransparency="True" 
+                        SnapsToDevicePixels="False" ClipToBounds="False" Focusable="True"
+                        >
                     <StackPanel Background="#FF39B9B9" HorizontalAlignment="Right" Width="150">
 
                         <Label VerticalContentAlignment="Center" Content="Profiles" FontFamily="Comfortaa" FontWeight="Bold" FontSize="16" Foreground="#FF182634" Height="32" VerticalAlignment="Center"/>
@@ -129,8 +139,8 @@
 
                 <StackPanel Grid.Row="0">
 
-                    <TextBlock Text="Andranik Danielyan" Foreground="White" FontFamily="Comfortaa" FontSize="24" HorizontalAlignment="Center" Margin="0,20,0,0"/>
-                    <TextBlock Text="Ministry worker" Foreground="#FF39B9B9" FontFamily="Comfortaa" FontSize="18" HorizontalAlignment="Center" Margin="0,15,0,0"/>
+                    <TextBlock Text="{Binding FullName}" Foreground="White" FontFamily="Comfortaa" FontSize="24" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+                    <TextBlock Text="{Binding CurrentProfile}" Foreground="#FF39B9B9" FontFamily="Comfortaa" FontSize="18" HorizontalAlignment="Center" Margin="0,15,0,0"/>
                     <Separator Width="300" Background="White" Margin="0,10,0,0" />
                     <Separator Width="300" Background="White" Margin="0,200,0,0" />
                    

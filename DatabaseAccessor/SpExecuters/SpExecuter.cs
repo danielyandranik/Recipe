@@ -323,7 +323,7 @@ namespace DatabaseAccess.SpExecuters
                     }
                     catch (Exception ex)
                     {
-                        var aaa = reader[property.Name];
+                        property.SetValue(result, null);
                     }
                 }
             }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementAPI.Models;
 using DatabaseAccess.Repository;
+using UserManagementAPI.Services;
 
 namespace UserManagementAPI.Controllers
 {
@@ -21,11 +22,17 @@ namespace UserManagementAPI.Controllers
         private DataManager _dataManager;
 
         /// <summary>
+        /// Password hash service
+        /// </summary>
+        private PasswordHashService _passwordHashService;
+
+        /// <summary>
         /// Creates new instance of user controller
         /// </summary>
-        public UsersController(DataManager dataManager)
+        public UsersController(DataManager dataManager,PasswordHashService passwordHashService)
         {
             this._dataManager = dataManager;
+            this._passwordHashService = passwordHashService;
         }
 
         /// <summary>
@@ -98,6 +105,10 @@ namespace UserManagementAPI.Controllers
             // checking id
             if (passwordUpdateInfo.Id != this.GetUserId())
                 return new StatusCodeResult(401);
+
+            // hashing passwords
+            passwordUpdateInfo.OldPassword = this._passwordHashService.HashPassword(passwordUpdateInfo.OldPassword);
+            passwordUpdateInfo.NewPassword = this._passwordHashService.HashPassword(passwordUpdateInfo.NewPassword);
 
             // updating password
             var result = (int)this._dataManager.Operate<PasswordUpdateInfo, object>("UpdatePassword", passwordUpdateInfo);

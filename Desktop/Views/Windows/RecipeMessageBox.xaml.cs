@@ -12,18 +12,7 @@ namespace Desktop.Views.Windows
         /// </summary>
         public RecipeMessageBox()
         {
-            InitializeComponent();
-
-            var owner = App.Current.Windows[0];
-
-            if (this != owner)
-            {
-                this.Owner = owner;
-            }
-            else
-            {
-                this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            }
+            InitializeComponent();            
         }
 
         /// <summary>

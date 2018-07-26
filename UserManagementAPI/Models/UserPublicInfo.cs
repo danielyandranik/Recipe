@@ -29,5 +29,10 @@
         /// Gets or sets sex
         /// </summary>
         public string Sex { get; set; }
+
+        /// <summary>
+        /// Gets or sets current profile
+        /// </summary>
+        public string CurrentProfileType { get; set; }
     }
 }

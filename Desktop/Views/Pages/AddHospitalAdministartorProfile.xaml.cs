@@ -12,7 +12,7 @@ namespace Desktop.Views.Pages
 
         public AddHospitalAdministartorProfile()
         {
-            InitializeComponent();
+            //InitializeComponent();
 
             this.directorProfileViewModel = new HospitalDirectorProfileViewModel();
             this.DataContext = this.directorProfileViewModel;

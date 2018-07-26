@@ -5,6 +5,8 @@ using System.Windows.Threading;
 using AuthTokenService;
 using Desktop.Views.Windows;
 using UserManagementConsumer.Client;
+using Desktop.Models;
+using Desktop.ViewModels;
 
 namespace Desktop
 {
@@ -116,7 +118,15 @@ namespace Desktop
                     User.Default.Username = response.Result.Username;
                     User.Default.Save();
 
-                    var window = new MainWindow();
+                    var vmModel = new UserInitialInfo
+                    {
+                        Username = response.Result.Username,
+                        FullName = $"{response.Result.FirstName} {response.Result.LastName}",
+                        CurrentProfile = response.Result.CurrentProfileType,
+                        Profiles = null
+                    };
+
+                    var window = new MainWindow(new MainWindowViewModel(vmModel));
                     window.Show();
                 }
                 catch(Exception)
@@ -162,7 +172,7 @@ namespace Desktop
             // adding event handlers for TokenUpdated event
             this._tokenProvider.TokenUpdated += this._userApiClient.UpdateToken;
             this._tokenProvider.TokenUpdated += this.UpdateRefreshToken;
-            this.TokenProvider.TokenUpdated += this._recipeClient.UpdateToken;
+            this._tokenProvider.TokenUpdated += this._recipeClient.UpdateToken;
         }
     }
 }

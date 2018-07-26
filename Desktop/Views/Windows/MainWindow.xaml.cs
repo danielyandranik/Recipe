@@ -1,4 +1,5 @@
-﻿using Desktop.Views.Pages;
+﻿using Desktop.ViewModels;
+using Desktop.Views.Pages;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +27,7 @@ namespace Desktop.Views.Windows
         private readonly AddPharmacyAdminProfile addPharmacyAdminProfile;
         private static int menuButtonRotateAngle;
 
+        private readonly MainWindowViewModel _mainWindowVM;
 
         static MainWindow()
         {
@@ -35,7 +37,7 @@ namespace Desktop.Views.Windows
             menuButtonRotateAngle = 180;
         }
 
-        public MainWindow()
+        public MainWindow(MainWindowViewModel mainWindowVM)
         {
             InitializeComponent();
            // this.addPatientProfile = new AddPatientProfile();
@@ -44,6 +46,9 @@ namespace Desktop.Views.Windows
             this.addHospitalAdministartorProfile = new AddHospitalAdministartorProfile();
             this.addPharmacyAdminProfile = new AddPharmacyAdminProfile();
             //this.SourceInitialized += Window_SourceInitialized;
+
+            this._mainWindowVM = mainWindowVM;
+            this.DataContext = this._mainWindowVM;
         }
 
         private void Medicines_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -114,6 +119,23 @@ namespace Desktop.Views.Windows
         {
             base.OnClosing(e);
             App.Current.Shutdown();
+        }
+
+        private void Main_LocationChanged(object sender, EventArgs e)
+        {
+            this.ResetPopUp();
+        }
+
+        private void Main_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            this.ResetPopUp();
+        }
+
+        private void ResetPopUp()
+        {
+            var offset = this.menu.HorizontalOffset;
+            this.menu.HorizontalOffset = offset + 1;
+            this.menu.HorizontalOffset = offset;
         }
     }
 }

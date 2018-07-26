@@ -2,6 +2,7 @@
 using AuthTokenService;
 using Desktop.Models;
 using Desktop.Services;
+using Desktop.ViewModels;
 using Desktop.Views.Windows;
 using UserManagementConsumer.Client;
 
@@ -64,7 +65,15 @@ namespace Desktop.Commands
                 User.Default.Username = user.Username;
                 User.Default.Save();
 
-                this._hyperLinkService.Navigate<SignIn, MainWindow>();
+                var vmModel = new UserInitialInfo
+                {
+                    Username = user.Username,
+                    FullName = $"{user.FirstName} {user.LastName}",
+                    CurrentProfile = user.CurrentProfileType,
+                    Profiles = null
+                };
+
+                this._hyperLinkService.Navigate<SignIn, MainWindow, MainWindowViewModel>(new MainWindowViewModel(vmModel));
             }
             catch (Exception)
             {
