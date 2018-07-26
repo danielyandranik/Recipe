@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseAccessor", "Databas
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UsersDB", "UsersDB\UsersDB.sqlproj", "{CDA8A007-09A7-4D5F-A10F-9602AF77F19E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeClien", "RecipeClient\RecipeClien.csproj", "{42BCC20D-8EB3-446C-962D-985399F89A77}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthAPI", "AuthAPI\AuthAPI.csproj", "{0A3AB837-90EE-4803-982D-FA5F8381AB51}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagementAPI", "UserManagementAPI\UserManagementAPI.csproj", "{9479A46F-F571-4C0D-AA65-BC0E856A1FEB}"
@@ -37,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthTokenService", "AuthTok
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenProviderTest", "TokenProviderTest\TokenProviderTest.csproj", "{B69F040E-05CB-4AA2-8765-D94F83D3C0BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeClient", "RecipeClient\RecipeClient.csproj", "{7AF54324-ACA3-49FE-9CCF-EAD410B36C83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeClient", "RecipeClient\RecipeClient.csproj", "{7AF54324-ACA3-49FE-9CCF-EAD410B36C83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstitutionsClientTest", "InstitutionsClientTest\InstitutionsClientTest.csproj", "{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +55,6 @@ Global
 		{CDA8A007-09A7-4D5F-A10F-9602AF77F19E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDA8A007-09A7-4D5F-A10F-9602AF77F19E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CDA8A007-09A7-4D5F-A10F-9602AF77F19E}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{42BCC20D-8EB3-446C-962D-985399F89A77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42BCC20D-8EB3-446C-962D-985399F89A77}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42BCC20D-8EB3-446C-962D-985399F89A77}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42BCC20D-8EB3-446C-962D-985399F89A77}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0A3AB837-90EE-4803-982D-FA5F8381AB51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0A3AB837-90EE-4803-982D-FA5F8381AB51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A3AB837-90EE-4803-982D-FA5F8381AB51}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -117,6 +113,10 @@ Global
 		{7AF54324-ACA3-49FE-9CCF-EAD410B36C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AF54324-ACA3-49FE-9CCF-EAD410B36C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AF54324-ACA3-49FE-9CCF-EAD410B36C83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,5 @@
-﻿using InstitutionClient.Models;
+﻿using AuthTokenService;
+using InstitutionClient.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,14 +10,25 @@ using System.Threading.Tasks;
 
 namespace InstitutionClient
 {
-    public class Client
+    public class Client : IDisposable
     {
+        /// <summary>
+        /// Http client for consuming Institutions API
+        /// </summary>
         private readonly HttpClient client;
 
-        public Client(string baseAddress, string token)
+        /// <summary>
+        /// Access token
+        /// </summary>
+        private string accessToken;
+
+        /// <summary>
+        /// Creates new instance of <see cref="Client"/>
+        /// </summary>
+        /// <param name="baseAddress">Institutions API address</param>
+        public Client(string baseAddress)
         {
             this.client = new HttpClient() { BaseAddress = new Uri(baseAddress) };
-            this.client.SetBearerToken(token);
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
@@ -112,7 +124,7 @@ namespace InstitutionClient
             return await this.GetAllAsync<Institution>("api/institutions/hospital");
         }
 
-        public async Task<ResponseMessage<IEnumerable<Institution>>> GetAllPharmaciessAsync()
+        public async Task<ResponseMessage<IEnumerable<Institution>>> GetAllPharmaciesAsync()
         {
             return await this.GetAllAsync<Institution>("api/institutions/pharmacy");
         }
@@ -162,9 +174,33 @@ namespace InstitutionClient
             return await this.UpdateAsync<MedicineQuantityInfo>("api/pharmmeds/quantity", quantity);
         }
 
-        private async Task<ResponseMessage<string>> DeletePharmacyMedicineAsync(int id)
+        public async Task<ResponseMessage<string>> DeletePharmacyMedicineAsync(int id)
         {
             return await this.DeleteAsync($"api/pharmmeds/{id}");
+        }
+
+        public async Task<ResponseMessage<string>> DeleteInstitutionAsync(int id)
+        {
+            return await this.DeleteAsync($"api/institutions/{id}");
+        }
+
+        /// <summary>
+        /// Event handler for TokenProvider TokenUpdated class
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event argument</param>
+        public void UpdateToken(object sender, TokenEventArgs e)
+        {
+            this.accessToken = e.AccessToken;
+            this.client.SetBearerToken(this.accessToken);
+        }
+
+        /// <summary>
+        /// Disposes Institutions API client
+        /// </summary>
+        public void Dispose()
+        {
+            this.client.Dispose();
         }
     }
 }
