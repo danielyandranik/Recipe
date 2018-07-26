@@ -98,7 +98,7 @@
 
         </StackPanel>
 
-        <ListView Grid.Row="3" HorizontalContentAlignment="Stretch" Height="{Binding Path=ActualHeight}" MinWidth="900" Width="auto" Name="Tweets">
+        <ListView Grid.Row="3" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=Medicines}" MinWidth="900" Width="auto" Name="Tweets">
 
             <ListView.ContextMenu>
                 <ContextMenu Name="MedicineContextMenu" StaysOpen="true" Background="WhiteSmoke">
@@ -122,12 +122,12 @@
 
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Column="0" Content="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                        <Label Grid.Column="1" Content="{Binding Maker}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                        <Label Grid.Column="2" Content="{Binding Country}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                        <Label Grid.Column="3" Content="{Binding Units}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                        <Label Grid.Column="4" Content="{Binding ShelfLife}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                        <Label Grid.Column="5" Content="{Binding Description}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="0" Content="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="1" Content="{Binding Path=Maker}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="2" Content="{Binding Path=Country}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="3" Content="{Binding Path=Units}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="4" Content="{Binding Path=ShelfLife}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="5" Content="{Binding Path=Description}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
 
 
                     </Grid>
