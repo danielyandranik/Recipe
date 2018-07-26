@@ -245,9 +245,7 @@
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\ConfirmCommand.cs" />
-    <Compile Include="Commands\DoctorProfileCommand.cs" />
-    <Compile Include="Commands\PatientProfileCommand.cs" />
-    <Compile Include="Commands\PharmacistProfileCommand.cs" />
+    <Compile Include="Commands\ProfileCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
     <Compile Include="Commands\SignInCommand.cs" />
     <Compile Include="Interfaces\IService.cs" />
@@ -258,6 +256,7 @@
     <Compile Include="Models\SignInInfo.cs" />
     <Compile Include="Services\CodeConfirmationService.cs" />
     <Compile Include="Services\DoctorProfileService.cs" />
+    <Compile Include="Services\HospitalDirectorProfileService.cs" />
     <Compile Include="Services\HyperLinkService.cs" />
     <Compile Include="Services\PatientProfileService.cs" />
     <Compile Include="Services\PharmacistProfileService.cs" />
@@ -270,12 +269,17 @@
     </Compile>
     <Compile Include="Validations\ConfirmationCodeInputValidation.cs" />
     <Compile Include="Validations\DoctorInputValidation.cs" />
+    <Compile Include="Validations\HospitalDirectorInputValidation.cs" />
     <Compile Include="Validations\PatientInputValidation.cs" />
     <Compile Include="Validations\PharmacistInputValidation.cs" />
     <Compile Include="Validations\RegisterInfputValidation.cs" />
     <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
     <Compile Include="ViewModels\DoctorProfileViewModel.cs" />
+<<<<<<< HEAD
     <Compile Include="ViewModels\MedicinesViewModel.cs" />
+=======
+    <Compile Include="ViewModels\HospitalDirectorProfileViewModel.cs" />
+>>>>>>> 663f0378497047833cc7bbca766f0872edf34804
     <Compile Include="ViewModels\PatientProfileViewModel.cs" />
     <Compile Include="ViewModels\PharmacistProfileViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />

@@ -13,7 +13,8 @@ namespace Desktop.Validations
             var patient = (PharmacistFullInfo)parameter;
 
             int temp;
-            return (!string.IsNullOrEmpty(patient.PharmacyName) && int.TryParse(patient.StartedWorking, out temp));
+            return (!string.IsNullOrEmpty(patient.PharmacyName) &&
+                        int.TryParse(patient.StartedWorking, out temp));
 
         }
     }

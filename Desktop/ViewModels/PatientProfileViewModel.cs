@@ -18,35 +18,35 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Patient info
         /// </summary>
-        private Patient _patient;
+        private Patient patient;
 
         /// <summary>
         /// Validation
         /// </summary>
-        private readonly IValidation _validation;
+        private readonly IValidation validation;
 
         /// <summary>
         /// Patient profile service
         /// </summary>
-        private readonly IService<Response<string>> _patientProfileService;
+        private readonly IService<Response<string>> patientProfileService;
 
         // Gets or sets patient info
         public Patient Patient
         {
-            get => this._patient;
+            get => this.patient;
 
-            set => this.Set("Patient", ref this._patient, value);
+            set => this.Set("Patient", ref this.patient, value);
         }
 
         /// <summary>
         /// Patient profile command
         /// </summary>
-        private readonly PatientProfileCommand _patientProfileCommand;
+        private readonly ProfileCommand<Patient> patientProfileCommand;
 
         /// <summary>
         /// Gets patient command
         /// </summary>
-        public ICommand PatientProfileCommand => this._patientProfileCommand;
+        public ICommand PatientProfileCommand => this.patientProfileCommand;
 
         /// <summary>
         /// Gets or sets Add patient profile page
@@ -59,11 +59,11 @@ namespace Desktop.ViewModels
         public PatientProfileViewModel()
         {
             // setting fields
-            this._patient = new Patient();
-            this._patient.UserId = User.Default.Id;
-            this._validation = new PatientInputValidation();
-            this._patientProfileService = new PatientProfileService();
-            this._patientProfileCommand = new PatientProfileCommand(this._patientProfileService.Execute, this._validation.Validate);
+            this.patient = new Patient();
+            this.patient.UserId = User.Default.Id;
+            this.validation = new PatientInputValidation();
+            this.patientProfileService = new PatientProfileService();
+            this.patientProfileCommand = new ProfileCommand<Patient>(this.patientProfileService.Execute, this.validation.Validate);
         }
     }
 }

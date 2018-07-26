@@ -15,37 +15,37 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Pharmasist info
         /// </summary>
-        private PharmacistFullInfo _pharmacist;
+        private PharmacistFullInfo pharmacist;
 
         /// <summary>
         /// Validation
         /// </summary>
-        private readonly IValidation _validation;
+        private readonly IValidation validation;
 
         /// <summary>
         /// Pharmasist profile service
         /// </summary>
-        private readonly IService<Response<string>> _pharmasistProfileService;
+        private readonly IService<Response<string>> pharmasistProfileService;
 
         /// <summary>
         ///  Gets or sets patient info
         /// </summary>
         public PharmacistFullInfo Pharmacist
         {
-            get => this._pharmacist;
+            get => this.pharmacist;
 
-            set => this.Set("PharmacistFullInfo", ref this._pharmacist, value);
+            set => this.Set("PharmacistFullInfo", ref this.pharmacist, value);
         }
 
         /// <summary>
         /// Pharmasist profile command
         /// </summary>
-        private readonly PharmacistProfileCommand _pharmacistProfileCommand;
+        private readonly ProfileCommand<PharmacistFullInfo> pharmacistProfileCommand;
 
         /// <summary>
         /// Gets pharmasist profile command
         /// </summary>
-        public ICommand PharmacistProfileCommand => this._pharmacistProfileCommand;
+        public ICommand PharmacistProfileCommand => this.pharmacistProfileCommand;
 
         /// <summary>
         /// Gets or sets Add patient profile page
@@ -58,11 +58,11 @@ namespace Desktop.ViewModels
         public PharmacistProfileViewModel()
         {
             // setting fields
-            this._pharmacist = new PharmacistFullInfo();
-            this._pharmacist.UserId = User.Default.Id;
-            this._validation = new PatientInputValidation();
-            this._pharmasistProfileService = new PharmacistProfileService();
-            this._pharmacistProfileCommand = new PharmacistProfileCommand(this._pharmasistProfileService.Execute, this._validation.Validate);
+            this.pharmacist = new PharmacistFullInfo();
+            this.pharmacist.UserId = User.Default.Id;
+            this.validation = new PatientInputValidation();
+            this.pharmasistProfileService = new PharmacistProfileService();
+            this.pharmacistProfileCommand = new ProfileCommand<PharmacistFullInfo>(this.pharmasistProfileService.Execute, this.validation.Validate);
         }
     }
 }

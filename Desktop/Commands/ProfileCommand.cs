@@ -2,19 +2,21 @@
 using System;
 using System.Threading.Tasks;
 using UserManagementConsumer.Client;
-using UserManagementConsumer.Models;
 
 namespace Desktop.Commands
 {
-    public class DoctorProfileCommand : AsyncCommand<Doctor, Response<string>>
+    /// <summary>
+    /// Command for adding some type of profile
+    /// </summary>
+    public class ProfileCommand<T> : AsyncCommand<T, Response<string>> where T : class
     {
 
         /// <summary>
-        /// Creates new instance of <see cref="DoctorProfileCommand"/>
+        /// Creates new instance of <see cref="ProfileCommand<T>"/>
         /// </summary>
         /// <param name="executeMethod">Execute method</param>
         /// <param name="canExecuteMethod">Can execute method</param>
-        public DoctorProfileCommand(Func<Doctor, Task<Response<string>>> executeMethod, Func<Doctor, bool> canExecuteMethod) :
+        public ProfileCommand(Func<T, Task<Response<string>>> executeMethod, Func<T, bool> canExecuteMethod) :
             base(executeMethod, canExecuteMethod)
         { }
 
@@ -26,13 +28,13 @@ namespace Desktop.Commands
         {
             try
             {
-                var doctor = (Doctor)parameter;
+                var profileInfo = parameter as T;
 
-                var response = await this.ExecuteAsync(doctor);
+                var response = await this.ExecuteAsync(profileInfo);
 
                 if (response.Status == Status.Ok)
                 {
-                    RecipeMessageBox.Show("Doctor profile is added");
+                    RecipeMessageBox.Show("Profile is added");
                 }
                 else
                 {

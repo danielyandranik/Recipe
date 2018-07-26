@@ -8,7 +8,7 @@ namespace Desktop.Services
     {
         public async override Task<Response<string>> Execute(object parameter)
         {
-            return await this._userManagementApiClient.PostDoctorAsync((Doctor)parameter);
+            return await this.userManagementApiClient.PostDoctorAsync((Doctor)parameter);
         }
     }
 }
