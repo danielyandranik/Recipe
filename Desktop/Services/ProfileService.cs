@@ -12,14 +12,14 @@ namespace Desktop.Services
         /// <summary>
         /// User management API client
         /// </summary>
-        protected readonly UserManagementApiClient _userManagementApiClient;
+        protected readonly UserManagementApiClient userManagementApiClient;
 
         /// <summary>
         /// Creates new instance of <see cref="ProfileService"/>
         /// </summary>
         public ProfileService()
         {
-            this._userManagementApiClient = ((App)App.Current).UserApiClient;
+            this.userManagementApiClient = ((App)App.Current).UserApiClient;
         }
 
         /// <summary>

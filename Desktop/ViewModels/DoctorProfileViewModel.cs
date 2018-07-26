@@ -18,37 +18,37 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Doctor info
         /// </summary>
-        private Doctor _doctor;
+        private Doctor doctor;
 
         /// <summary>
         /// Validation
         /// </summary>
-        private IValidation _validation;
+        private IValidation validation;
 
         /// <summary>
         /// Doctor profile service
         /// </summary>
-        private readonly IService<Response<string>> _doctorProfileService;
+        private readonly IService<Response<string>> doctorProfileService;
 
         /// <summary>
         ///  Gets or sets doctor info
         /// </summary>
         public Doctor Doctor
         {
-            get => this._doctor;
+            get => this.doctor;
 
-            set => this.Set("Doctor", ref this._doctor, value);
+            set => this.Set("Doctor", ref this.doctor, value);
         }
 
         /// <summary>
         /// Doctor profile command
         /// </summary>
-        private readonly DoctorProfileCommand _doctorProfileCommand;
+        private readonly DoctorProfileCommand doctorProfileCommand;
 
         /// <summary>
         /// Gets pharmasist profile command
         /// </summary>
-        public ICommand DoctorProfileCommand => this._doctorProfileCommand;
+        public ICommand DoctorProfileCommand => this.doctorProfileCommand;
 
         /// <summary>
         /// Gets or sets Add patient profile page
@@ -61,11 +61,11 @@ namespace Desktop.ViewModels
         public DoctorProfileViewModel()
         {
             // setting fields
-            this._doctor = new Doctor();
-            this._doctor.UserId = User.Default.Id;
-            this._validation = new DoctorInputValidation();
-            this._doctorProfileService = new DoctorProfileService();
-            this._doctorProfileCommand = new DoctorProfileCommand(this._doctorProfileService.Execute, this._validation.Validate);
+            this.doctor = new Doctor();
+            this.doctor.UserId = User.Default.Id;
+            this.validation = new DoctorInputValidation();
+            this.doctorProfileService = new DoctorProfileService();
+            this.doctorProfileCommand = new DoctorProfileCommand(this.doctorProfileService.Execute, this.validation.Validate);
         }
     }
 }
