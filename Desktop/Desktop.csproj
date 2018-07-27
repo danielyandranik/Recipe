@@ -402,6 +402,10 @@
       <Project>{9D514F4C-F10E-4E4E-B7F3-D8FF169B0B9D}</Project>
       <Name>AuthTokenService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MedicineApiClient\MedicineApiClient.csproj">
+      <Project>{53a3194c-94c6-4d17-8ead-d321807c8065}</Project>
+      <Name>MedicineApiClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RecipeClient\RecipeClient.csproj">
       <Project>{7af54324-aca3-49fe-9ccf-ead410b36c83}</Project>
       <Name>RecipeClient</Name>
