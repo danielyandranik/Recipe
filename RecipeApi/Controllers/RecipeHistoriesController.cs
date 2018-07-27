@@ -61,62 +61,43 @@ namespace RecipeApi.Controllers
 			var history = await this._recipeHistoryRepository.GetRecipeHistoryByRecipe(recipeId);
 
 			Dictionary<string, int> sold = new Dictionary<string, int>();
-			
-			foreach (var medicine in recipeHistory.Sold)
-			{
-				if (sold.ContainsKey(medicine.MedicineId))
-				{
-					sold.TryGetValue(medicine.MedicineId, out var count);
-					sold[medicine.MedicineId] = count + medicine.Count;
-				}
-				else if (!sold.TryAdd(medicine.MedicineId, medicine.Count))
-					throw new System.Exception("Dictionary problem");
-			}
 
-			foreach (var historyIteam in history)
+            sold = recipeHistory.Sold;
+
+            var recipe = await this._recipeRepository.GetRecipe(recipeHistory.RecipeId);
+
+            if (recipe == null)
+            {
+                return new NotFoundResult();
+            }
+
+            foreach (var historyIteam in history)
 			{
-				foreach (var medicine in historyIteam.Sold)
+				foreach (var medicine in sold)
 				{
-					if (sold.ContainsKey(medicine.MedicineId))
+					if (historyIteam.Sold.ContainsKey(medicine.Key))
 					{
-						sold.TryGetValue(medicine.MedicineId, out var count);
-						sold[medicine.MedicineId] = count + medicine.Count;
+                        historyIteam.Sold.TryGetValue(medicine.Key, out var count);
+						sold[medicine.Key] = count + medicine.Value;
 					}
 				}
 			}
 
-			var recipe = await this._recipeRepository.GetRecipe(recipeHistory.RecipeId);
 
-			if (recipe == null)
+            bool isApproved = true;
+
+            foreach (var medicine in sold)
 			{
-				return new NotFoundResult();
-			}
-
-			Dictionary<string, int> recipeMedicines = new Dictionary<string, int>();
-
-			foreach (var medicine in recipe.RecipeItems)
-			{
-				if (recipeMedicines.ContainsKey(medicine.MedicineId))
+				if (medicine.Value > recipe.RecipeItems[medicine.Key].UnitCountPerUse)
 				{
-					recipeMedicines.TryGetValue(medicine.MedicineId, out var count);
-					recipeMedicines[medicine.MedicineId] = count + medicine.Count;
-				}
-				else recipeMedicines.Add(medicine.MedicineId, medicine.Count);
+                    recipeHistory.Sold[medicine.Key] = -1;
+                    isApproved = false;
+                }
 			}
 
-			 
+            if(isApproved)
+			    await this._recipeHistoryRepository.Create(recipeHistory);
 
-			foreach (var medicine in sold)
-			{
-				if (medicine.Value > recipeMedicines[medicine.Key])
-				{
-					// change RecipeHistory.Sold list to dict 
-					// change recipeHistory[medicine.Key] = -1
-					// retuen count = -1 in this cell
-				}
-			}
-
-			await this._recipeHistoryRepository.Create(recipeHistory);
             return new OkObjectResult(recipeHistory);
         }
 

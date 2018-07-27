@@ -45,6 +45,7 @@ namespace RecipeApi.Models
         /// <summary>
         /// A collection of RecipeItem instances.
         /// </summary>
-        public List<RecipeItem> RecipeItems { get; set; }
+        //public List<RecipeItem> RecipeItems { get; set; }
+        public Dictionary<string, RecipeItem> RecipeItems { get; set; }
     }
 }

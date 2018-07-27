@@ -8,7 +8,7 @@
         /// <summary>
         /// An identifier of the medicine.
         /// </summary>
-        public int MedicineId { get; set; }
+        //public string MedicineId { get; set; }
 
         /// <summary>
         /// A count of units.

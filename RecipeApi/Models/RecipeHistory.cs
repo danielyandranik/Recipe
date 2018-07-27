@@ -35,6 +35,8 @@ namespace RecipeApi.Models
         /// <summary>
         /// A collection of recipeItemHistory instances.
         /// </summary>
-        public List<RecipeHistoryItem> Sold { get; set; }
+        //public List<RecipeHistoryItem> Sold { get; set; }
+
+        public Dictionary<string,int > Sold { get; set; }
     }
 }
