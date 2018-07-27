@@ -2,23 +2,21 @@
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Desktop.ViewModels
 {
     /// <summary>
     /// Medicines ViewModel
     /// </summary>
-    class MedicinesViewModel : ViewModelBase
-    {
-        private IEnumerable<Medicine> medicines;
-    
-        public IEnumerable<Medicine> Medicines
+    class MedicinesViewModel
+    {  
+        public ObservableCollection<Medicine> Medicines { get; set; }
+
+        private void LoadMedicines()
         {
-            get => this.medicines;
-            set => Set("Medicines", ref this.medicines, value);
+            var medicines = new ObservableCollection<Medicine>();
+            var medicineClient = new MedicineApiClient.Client();
         }
     }
 }
