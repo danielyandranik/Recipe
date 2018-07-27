@@ -16,9 +16,9 @@ namespace Desktop.Views.Windows
 {
     public partial class MainWindow : Window
     {
-        private readonly static Medicines medicines;
-        private static readonly Hospitals hospitals;
-        private static readonly Pharmacies pharmacies;
+        private readonly Medicines medicines;
+        private readonly Hospitals hospitals;
+        private readonly Pharmacies pharmacies;
 
         private readonly AddPatientProfile addPatientProfile;
         private readonly AddDoctorProfile addDoctorProfile;
@@ -31,16 +31,16 @@ namespace Desktop.Views.Windows
 
         static MainWindow()
         {
-            medicines = new Medicines();
-            hospitals = new Hospitals();
-            pharmacies = new Pharmacies();
             menuButtonRotateAngle = 180;
         }
 
         public MainWindow(MainWindowViewModel mainWindowVM)
         {
             InitializeComponent();
-           // this.addPatientProfile = new AddPatientProfile();
+            // this.addPatientProfile = new AddPatientProfile();
+            this.medicines = new Medicines();
+            this.hospitals = new Hospitals();
+            this.pharmacies = new Pharmacies();
             this.addDoctorProfile = new AddDoctorProfile();
             this.addPharmacistProfile = new AddPharmacistProfile();
             this.addHospitalAdministartorProfile = new AddHospitalAdministartorProfile();

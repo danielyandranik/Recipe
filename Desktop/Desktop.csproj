@@ -238,7 +238,6 @@
     <Compile Include="Commands\SignInCommand.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IValidation.cs" />
-    <Compile Include="Models\Medicine.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\SignInInfo.cs" />
     <Compile Include="Models\UserInitialInfo.cs" />
@@ -278,7 +277,6 @@
     <Compile Include="ViewModels\DoctorProfileViewModel.cs" />
     <Compile Include="ViewModels\HospitalDirectorProfileViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\MedicinesViewModel.cs" />
     <Compile Include="ViewModels\PatientProfileViewModel.cs" />
     <Compile Include="ViewModels\PharmacistProfileViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
