@@ -16,7 +16,7 @@ namespace Desktop.ViewModels
         private void LoadMedicines()
         {
             var medicines = new ObservableCollection<Medicine>();
-            var medicineClient = new MedicineApiClient.Client();
+            ;
         }
     }
 }

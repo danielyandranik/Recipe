@@ -29,8 +29,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstitutionsAPI", "Institut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstitutionsClient", "InstitutionsClient\InstitutionsClient.csproj", "{D0634689-E80D-48AA-812E-C07451332815}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Desktop\Desktop.csproj", "{44E381BE-4290-4D4D-90D1-B282A82A91F2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthTokenService", "AuthTokenService\AuthTokenService.csproj", "{9D514F4C-F10E-4E4E-B7F3-D8FF169B0B9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenProviderTest", "TokenProviderTest\TokenProviderTest.csproj", "{B69F040E-05CB-4AA2-8765-D94F83D3C0BF}"
@@ -38,6 +36,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeClient", "RecipeClient\RecipeClient.csproj", "{7AF54324-ACA3-49FE-9CCF-EAD410B36C83}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstitutionsClientTest", "InstitutionsClientTest\InstitutionsClientTest.csproj", "{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Desktop\Desktop.csproj", "{F3645420-FF07-4E52-82C5-5D3E162E3C18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,10 +97,6 @@ Global
 		{D0634689-E80D-48AA-812E-C07451332815}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0634689-E80D-48AA-812E-C07451332815}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0634689-E80D-48AA-812E-C07451332815}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44E381BE-4290-4D4D-90D1-B282A82A91F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D514F4C-F10E-4E4E-B7F3-D8FF169B0B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D514F4C-F10E-4E4E-B7F3-D8FF169B0B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D514F4C-F10E-4E4E-B7F3-D8FF169B0B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -117,12 +113,16 @@ Global
 		{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3645420-FF07-4E52-82C5-5D3E162E3C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3645420-FF07-4E52-82C5-5D3E162E3C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3645420-FF07-4E52-82C5-5D3E162E3C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3645420-FF07-4E52-82C5-5D3E162E3C18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{44E381BE-4290-4D4D-90D1-B282A82A91F2} = {39ED7BC1-FCBE-4802-B783-AC9B9425A1E3}
+		{F3645420-FF07-4E52-82C5-5D3E162E3C18} = {39ED7BC1-FCBE-4802-B783-AC9B9425A1E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC9DDD84-600F-4E9F-8ADE-3F9225F4FCBC}
