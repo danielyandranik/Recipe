@@ -27,10 +27,5 @@ namespace Desktop.Views.Pages
             this.DataContext = medicinesViewModel;
             InitializeComponent();
         }
-
-        private void EditMedicineContextMenu_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

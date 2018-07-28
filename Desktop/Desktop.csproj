@@ -277,6 +277,7 @@
     <Compile Include="ViewModels\DoctorProfileViewModel.cs" />
     <Compile Include="ViewModels\HospitalDirectorProfileViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MedicinesViewModel.cs" />
     <Compile Include="ViewModels\PatientProfileViewModel.cs" />
     <Compile Include="ViewModels\PharmacistProfileViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
@@ -473,6 +474,10 @@
     <ProjectReference Include="..\InstitutionsClient\InstitutionsClient.csproj">
       <Project>{d0634689-e80d-48aa-812e-c07451332815}</Project>
       <Name>InstitutionsClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MedicineApiClient\MedicineApiClient.csproj">
+      <Project>{036158a8-71a3-4ea4-b55b-ac299101d28b}</Project>
+      <Name>MedicineApiClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\RecipeClient\RecipeClient.csproj">
       <Project>{7af54324-aca3-49fe-9ccf-ead410b36c83}</Project>

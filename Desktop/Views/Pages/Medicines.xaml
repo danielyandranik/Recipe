@@ -70,9 +70,8 @@
 
         </Grid>
 
-        <StackPanel Grid.Row="2">
 
-            <Grid Height="40">
+            <Grid Grid.Row="2" Height="40">
 
                 <Grid.ColumnDefinitions>
 
@@ -92,21 +91,10 @@
                 <Label Grid.Column="4" Content="Shelf life" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
                 <Label Grid.Column="5" Content="Description" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
 
+        </Grid>
 
-            </Grid>
-            <Separator />
-
-        </StackPanel>
-
-        <ListView Grid.Row="3" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=Medicines}" MinWidth="900" Width="auto" Name="Tweets">
-
-            <ListView.ContextMenu>
-                <ContextMenu Name="MedicineContextMenu" StaysOpen="true" Background="WhiteSmoke">
-                    <MenuItem Header="Edit" Name="EditMedicineContextMenu" Click="EditMedicineContextMenu_Click"/>
-                    <MenuItem Header="Remove" Name="RemoveMedicineContextMenu" />
-                </ContextMenu>
-            </ListView.ContextMenu>
-
+        <ListView Grid.Row="3" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=Medicines}" MinWidth="900" Width="auto">
+            
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid  Height="40" >
@@ -128,7 +116,6 @@
                         <Label Grid.Column="3" Content="{Binding Path=Units}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
                         <Label Grid.Column="4" Content="{Binding Path=ShelfLife}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
                         <Label Grid.Column="5" Content="{Binding Path=Description}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-
 
                     </Grid>
                 </DataTemplate>

@@ -29,11 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthTokenService", "AuthTok
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeClient", "RecipeClient\RecipeClient.csproj", "{7AF54324-ACA3-49FE-9CCF-EAD410B36C83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstitutionsClientTest", "InstitutionsClientTest\InstitutionsClientTest.csproj", "{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Desktop\Desktop.csproj", "{F3645420-FF07-4E52-82C5-5D3E162E3C18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicineApiClient", "MedicineApiClient\MedicineApiClient.csproj", "{036158A8-71A3-4EA4-B55B-AC299101D28B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicineApiClient", "MedicineApiClient\MedicineApiClient.csproj", "{036158A8-71A3-4EA4-B55B-AC299101D28B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,10 +91,6 @@ Global
 		{7AF54324-ACA3-49FE-9CCF-EAD410B36C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AF54324-ACA3-49FE-9CCF-EAD410B36C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AF54324-ACA3-49FE-9CCF-EAD410B36C83}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F092A9A-7D7C-46A1-A5B2-C4094AA55374}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F3645420-FF07-4E52-82C5-5D3E162E3C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F3645420-FF07-4E52-82C5-5D3E162E3C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3645420-FF07-4E52-82C5-5D3E162E3C18}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using AuthTokenService;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -12,27 +13,29 @@ namespace MedicineApiClient
     {
 		private readonly HttpClient client;
 
+        private string _accessToken;
+
 		public Client(string baseAddress)
 		{
 			this.client = new HttpClient() { BaseAddress = new Uri(baseAddress) };
 			this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-		}
-
-        public AuthenticationHeaderValue Authurization
-        {
-            get
-            {
-                return this.client.DefaultRequestHeaders.Authorization;
-            }
-            set
-            {
-                this.client.DefaultRequestHeaders.Authorization = value;
-            }
+            this.client.SetBearerToken(this._accessToken);
         }
 
-        public async Task<ResponseMessage<IEnumerable<Medicine>>> GetAllMedicinesAsync()
+        /// <summary>
+        /// Event handler for TokenProvider TokenUpdated class
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event argument</param>
+        public void UpdateToken(object sender, TokenEventArgs e)
+        {
+            this._accessToken = e.AccessToken;
+            this.client.SetBearerToken(this._accessToken);
+        }
+
+        public async Task<ResponseMessage<IEnumerable<Medicine>>> GetAllMedicinesAsync(string requestUri)
 		{
-            var httpResponse = await this.client.GetAsync(String.Empty);
+            var httpResponse = await this.client.GetAsync(requestUri);
 
             var content = await httpResponse.Content.ReadAsStringAsync();
 
