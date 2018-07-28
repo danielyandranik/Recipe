@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using IdentityModel.Client;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 
 namespace AuthTokenService
 {
@@ -16,9 +18,24 @@ namespace AuthTokenService
         private readonly TokenClient _tokenClient;
 
         /// <summary>
+        /// Token revocation client
+        /// </summary>
+        private readonly TokenRevocationClient _tokenRevocationClient;
+
+        /// <summary>
+        /// HTTP context
+        /// </summary>
+        private readonly HttpContext _httpContext;
+
+        /// <summary>
         /// Updater
         /// </summary>
         private readonly Updater _updater;
+
+        /// <summary>
+        /// Token endpoint
+        /// </summary>
+        private readonly string _tokenEndpoint;
 
         /// <summary>
         /// Update interval in minutes
@@ -84,7 +101,7 @@ namespace AuthTokenService
             this._authApiAddress = authApiAddress;
             this._updateInterval = updateInterval;
 
-            // getting token endpoint
+           // getting token endpoint
             var disco = DiscoveryClient.GetAsync(this.AuthApiAddress).Result;
 
             if(disco.IsError)
@@ -92,8 +109,12 @@ namespace AuthTokenService
                 throw new Exception("Auth API is not responding");
             }
 
-            // creating token client
+            // creating clients
             this._tokenClient = new TokenClient(disco.TokenEndpoint, "DefaultClient", "secret");
+            this._tokenRevocationClient = new TokenRevocationClient(disco.RevocationEndpoint, "DefaultClient", "secret");
+
+            // creating context
+            this._httpContext = new DefaultHttpContext();
 
             // creating updater with the given interval
             this._updater = new Updater(this._updateInterval, this.RefreshAccessTokenAsync);
@@ -158,12 +179,33 @@ namespace AuthTokenService
         }
 
         /// <summary>
+        /// Signs out revoking refresh token and clearing all cache from Identity server
+        /// </summary>
+        /// <returns>Token status</returns>
+        public async Task<TokenStatus> SignOutAsync()
+        {
+            // revoking refresh token
+            var response = await this._tokenRevocationClient.RevokeRefreshTokenAsync(this._refreshToken);
+
+            if (response.IsError)
+                return TokenStatus.Error;
+
+            // signing out
+            // which means removing authentication cache from Auth API
+            // TODO
+            // await this._httpContext.SignOutAsync();            
+
+            return TokenStatus.Ok;
+        }
+
+        /// <summary>
         /// Dispose token provider
         /// </summary>
         public void Dispose()
         {
             this._updater.Dispose();
             this._tokenClient.Dispose();
+            this._tokenRevocationClient.Dispose();
         }
 
         /// <summary>
