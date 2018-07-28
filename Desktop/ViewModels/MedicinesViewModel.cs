@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using Desktop.Commands;
+using GalaSoft.MvvmLight;
 using MedicineApiClient;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,10 @@ namespace Desktop.ViewModels
     {
         private ObservableCollection<Medicine> _medicines;
 
+        private bool _isVisible;
+
+        private DeleteMedicineCommand _deleteMedicineCommand;
+
         public ObservableCollection<Medicine> Medicines
         {
             get
@@ -27,15 +32,36 @@ namespace Desktop.ViewModels
             }
         }
 
+        public bool IsVisible
+        {
+            get
+            {
+                return this._isVisible;
+            }
+            set
+            {
+                this.Set("IsVisible", ref this._isVisible, value);
+            }
+        }
+
+
         public MedicinesViewModel()
         {
             this.LoadMedicines();
+            this._isVisible = User.Default.CurrentProfile == "ministry_worker" ? true : false;
+            this._deleteMedicineCommand = new DeleteMedicineCommand(this._medicines, this.deleteMedicine, _ => true);
         }
 
+        private async Task<bool> deleteMedicine(string uri)
+        {
+            return await ((App)App.Current).MedicineClient.DeleteMedicineAsync(uri);
+        }
+
+
+
         private void LoadMedicines()
-        { 
-            var client = new Client(ConfigurationSettings.AppSettings["MedicineAPI"]);
-            var response = client.GetAllMedicinesAsync("api/medicines").Result;
+        {
+            var response = ((App)App.Current).MedicineClient.GetAllMedicinesAsync("api/medicines").Result;
             if(!response.IsSuccessStatusCode)
             {
                 Debug.Write(response.StatusCode);

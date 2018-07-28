@@ -93,36 +93,58 @@
 
         </Grid>
 
-        <ListView Grid.Row="3" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=Medicines}" MinWidth="900" Width="auto">
+        <ListView Grid.Row="3" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=Medicines}"  MinWidth="900" Width="auto">
             
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid  Height="40" >
+                    <StackPanel>
 
-                        <Grid.ColumnDefinitions>
+                        <Grid  Height="40" >
 
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="2*" />
+                            <Grid.ColumnDefinitions>
 
-                        </Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2*" />
 
-                        <Label Grid.Column="0" Content="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                        <Label Grid.Column="1" Content="{Binding Path=Maker}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                        <Label Grid.Column="2" Content="{Binding Path=Country}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                        <Label Grid.Column="3" Content="{Binding Path=Units}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                        <Label Grid.Column="4" Content="{Binding Path=ShelfLife}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                        <Label Grid.Column="5" Content="{Binding Path=Description}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                            </Grid.ColumnDefinitions>
 
-                    </Grid>
+                            <Label Grid.Column="0" Content="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                            <Label Grid.Column="1" Content="{Binding Path=Maker}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                            <Label Grid.Column="2" Content="{Binding Path=Country}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                            <Label Grid.Column="3" Content="{Binding Path=Units}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                            <Label Grid.Column="4" Content="{Binding Path=ShelfLife}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                            <Label Grid.Column="5" Content="{Binding Path=Description}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+
+                        </Grid>
+                        <StackPanel Orientation="Horizontal">
+
+                            <Button Content="Edit" Visibility="{Binding IsVisible}" Click="EditMedicineClick" Tag="{Binding Id}"/>
+                            <Button Content="Delete" Visibility="{Binding IsVisible}" Command="{Binding DeleteMedicineCommand}" CommandParameter="{Binding Id}"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+                    
                 </DataTemplate>
             </ListView.ItemTemplate>
 
         </ListView>
 
+        <Popup Placement="Center" HorizontalOffset="-150">
+            <StackPanel Width="300" >
+                <TextBox />
+                <TextBox />
+                <TextBox />
+                <TextBox />
+                <TextBox />
+                <TextBox />
+            </StackPanel>
+        </Popup>
     </Grid>
+    
 
 </Page>

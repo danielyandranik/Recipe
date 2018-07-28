@@ -9,7 +9,7 @@ namespace Desktop.Commands
     /// </summary>
     /// <typeparam name="TIn">Input type</typeparam>
     /// <typeparam name="TOut">Output type</typeparam>
-    public class AsyncCommand<TIn,TOut>:ICommand
+    public class AsyncCommand<TIn, TOut> : ICommand
     {
         /// <summary>
         /// Execute delegate

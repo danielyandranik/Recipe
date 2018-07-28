@@ -9,7 +9,7 @@ using GalaSoft.MvvmLight.Command;
 
 namespace Desktop.ViewModels
 {
-    public class MainWindowViewModel:ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
         private string _username;
 

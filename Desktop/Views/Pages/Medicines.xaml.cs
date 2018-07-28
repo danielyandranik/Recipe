@@ -27,5 +27,15 @@ namespace Desktop.Views.Pages
             this.DataContext = medicinesViewModel;
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditMedicineClick(object sender, RoutedEventArgs e)
+        {
+            var id = (string)(sender as Button).Tag;
+        }
     }
 }

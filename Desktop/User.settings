@@ -11,5 +11,8 @@
     <Setting Name="RefreshToken" Type="System.String" Scope="User">
       <Value Profile="(Default)">"Aaa"</Value>
     </Setting>
+    <Setting Name="CurrentProfile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

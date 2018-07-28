@@ -31,6 +31,11 @@ namespace Desktop
         private readonly RecipeClient.RecipeClient _recipeClient;
 
         /// <summary>
+        /// Medicine api client.
+        /// </summary>
+        private readonly MedicineApiClient.Client _medicineClient;
+
+        /// <summary>
         /// Boolean value indicating if app is ready for startup
         /// </summary>
         private bool _isReadyForStartup;
@@ -45,6 +50,7 @@ namespace Desktop
         /// </summary>
         public UserManagementApiClient UserApiClient => this._userApiClient;
 
+        public MedicineApiClient.Client MedicineClient => this._medicineClient;
         /// <summary>
         /// Creates new instance of <see cref="App"/>
         /// </summary>
@@ -61,6 +67,8 @@ namespace Desktop
                     ConfigurationManager.AppSettings["UserManagementAPI"]);
 
                 this._recipeClient = new RecipeClient.RecipeClient(ConfigurationManager.AppSettings["RecipeAPI"]);
+
+                this._medicineClient = new MedicineApiClient.Client(ConfigurationManager.AppSettings["MedicineAPI"]);
 
                 // configuring 
                 this.ConfigureEventHandlers();
@@ -116,6 +124,7 @@ namespace Desktop
 
                     User.Default.Id = response.Result.Id;
                     User.Default.Username = response.Result.Username;
+                    User.Default.CurrentProfile = response.Result.CurrentProfileType;
                     User.Default.Save();
 
                     var vmModel = new UserInitialInfo
@@ -173,6 +182,7 @@ namespace Desktop
             this._tokenProvider.TokenUpdated += this._userApiClient.UpdateToken;
             this._tokenProvider.TokenUpdated += this.UpdateRefreshToken;
             this._tokenProvider.TokenUpdated += this._recipeClient.UpdateToken;
+            this._tokenProvider.TokenUpdated += this._medicineClient.UpdateToken;
         }
     }
 }
