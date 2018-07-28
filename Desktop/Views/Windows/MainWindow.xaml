@@ -64,7 +64,10 @@
                         <Button Content="Add new" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="Button_Click" />
 
                         <Separator Background="#FF182634" Margin="0,5" />
-                        <Button Content="Sign Out" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
+                        <Button Content="Sign Out" 
+                                BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" 
+                                Command="{Binding SignOutCommand}"
+                                CommandParameter="{Binding this}"/>
 
                         <Popup Name="AddProfile" Margin="0" VerticalOffset="-80" PopupAnimation="Fade" AllowsTransparency="True" HorizontalOffset="-200">
                             <StackPanel Background="#FF39B9B9" HorizontalAlignment="Right" Width="200">

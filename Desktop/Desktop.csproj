@@ -237,6 +237,7 @@
     <Compile Include="Commands\ProfileCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
     <Compile Include="Commands\SignInCommand.cs" />
+    <Compile Include="Commands\SignOutCommand.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IValidation.cs" />
     <Compile Include="Models\Register.cs" />

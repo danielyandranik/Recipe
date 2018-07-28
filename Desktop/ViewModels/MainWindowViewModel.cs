@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Desktop.Models;
+using Desktop.Commands;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
@@ -20,6 +17,8 @@ namespace Desktop.ViewModels
         private IEnumerable<string> _profiles;
 
         private readonly RelayCommand _popupReplace;
+
+        private readonly SignOutCommand _signOutCommand;
 
         public string Username
         {
@@ -51,12 +50,15 @@ namespace Desktop.ViewModels
 
         public RelayCommand PopupReplaceCommand => this._popupReplace;
 
+        public SignOutCommand SignOutCommand => this._signOutCommand;
+
         public MainWindowViewModel(UserInitialInfo user)
         {
             this._username = user.Username;
             this._fullName = user.FullName;
             this._currentProfile = user.CurrentProfile;
             this._profiles = user.Profiles;
+            this._signOutCommand = new SignOutCommand();
         }
     }
 }

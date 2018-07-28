@@ -1,8 +1,7 @@
-﻿using Desktop.ViewModels;
-using Desktop.Views.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +9,8 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using Desktop.ViewModels;
+using Desktop.Views.Pages;
 
 namespace Desktop.Views.Windows
 
@@ -38,13 +39,13 @@ namespace Desktop.Views.Windows
         {
             InitializeComponent();
             // this.addPatientProfile = new AddPatientProfile();
-            this.medicines = new Medicines();
-            this.hospitals = new Hospitals();
-            this.pharmacies = new Pharmacies();
-            this.addDoctorProfile = new AddDoctorProfile();
-            this.addPharmacistProfile = new AddPharmacistProfile();
-            this.addHospitalAdministartorProfile = new AddHospitalAdministartorProfile();
-            this.addPharmacyAdminProfile = new AddPharmacyAdminProfile();
+            //this.medicines = new Medicines();
+            //this.hospitals = new Hospitals();
+            //this.pharmacies = new Pharmacies();
+            //this.addDoctorProfile = new AddDoctorProfile();
+            //this.addPharmacistProfile = new AddPharmacistProfile();
+            //this.addHospitalAdministartorProfile = new AddHospitalAdministartorProfile();
+            //this.addPharmacyAdminProfile = new AddPharmacyAdminProfile();
             //this.SourceInitialized += Window_SourceInitialized;
 
             this._mainWindowVM = mainWindowVM;
@@ -113,12 +114,6 @@ namespace Desktop.Views.Windows
         private void AddPharmacyAdminProfileButton_Click(object sender, RoutedEventArgs e)
         {
             this.frame.NavigationService.Navigate(this.addPharmacyAdminProfile);
-        }
-
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            base.OnClosing(e);
-            App.Current.Shutdown();
         }
 
         private void Main_LocationChanged(object sender, EventArgs e)

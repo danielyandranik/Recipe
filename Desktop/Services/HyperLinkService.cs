@@ -23,7 +23,8 @@ namespace Desktop.Services
             window.Show();
 
             // closing the last window
-            App.Current.Windows.OfType<TFrom>().Last().Close();
+            var closingWindow = App.Current.Windows.OfType<TFrom>().Last();
+            closingWindow.Close();
         }
 
         public void Navigate<TFrom,TTo,TToParameter>(TToParameter toParameter)
