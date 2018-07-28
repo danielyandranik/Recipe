@@ -7,8 +7,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Name="Main" Title="Recipe" MinWidth="1280" MinHeight="720" SizeToContent="WidthAndHeight" Background="White" WindowStartupLocation="CenterScreen"
-        LocationChanged="Main_LocationChanged"
-        SizeChanged="Main_SizeChanged">
+        >
     <Window.Resources>
         <!--<Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
@@ -20,7 +19,6 @@
     </Window.Resources>
 
     <Grid>
-
         <Grid.RowDefinitions>
 
             <RowDefinition Height="Auto"/>
@@ -41,67 +39,37 @@
 
                 <TextBlock Text="{Binding Username}" Foreground="White" FontSize="24" Margin="0,0,10,0" VerticalAlignment="Center"/>
                 <TextBlock Text="{Binding CurrentProfile}" Foreground="White" FontSize="24" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                <Image  PreviewMouseDown="Toggle_menu" Cursor="Hand" Source="/Images/down_arrow.png" Width="24" Height="20" 
-                        VerticalAlignment="Center" Margin="0,8,15,0"
-                        Name="menu_opener"/>
-             
-                <Popup  Name="menu" Margin="0"
-                        Placement="Right" VerticalOffset="71" 
-                        HorizontalOffset="-151" PopupAnimation="Fade" AllowsTransparency="True" 
-                        SnapsToDevicePixels="False" ClipToBounds="False" Focusable="True"
-                        >
-                    <StackPanel Background="#FF39B9B9" HorizontalAlignment="Right" Width="150">
 
-                        <Label VerticalContentAlignment="Center" Content="Profiles" FontFamily="Comfortaa" FontWeight="Bold" FontSize="16" Foreground="#FF182634" Height="32" VerticalAlignment="Center"/>
+                <Menu Background="Transparent" Margin="0,20,0,0" FlowDirection="RightToLeft">
 
-                        <Separator Width="120" Background="#FFFFFFFF" />
-                        <Button Content="Patient" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
+                    <MenuItem  FontFamily="Comfortaa" Foreground="White"
+                               FontSize="14" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Name="Menu"
+                               >
+                        <MenuItem.Header>
 
-                        <Separator Width="120" Background="#FFFFFFFF" />
-                        <Button Content="Doctor" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
+                            <Image Cursor="Hand" Source="/Images/down_arrow.png" Width="24" Height="20" 
+                                   VerticalAlignment="Center" Stretch="UniformToFill"
+                                   Name="menu_opener" PreviewMouseDown="Toggle_menu"/>
 
-                        <Separator Width="120" Background="#FFFFFFFF" />
-                        <Button Content="Add new" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" Click="Button_Click" />
-
-                        <Separator Background="#FF182634" Margin="0,5" />
-                        <Button Content="Sign Out" 
-                                BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" 
-                                Command="{Binding SignOutCommand}"
-                                CommandParameter="{Binding this}"/>
-
-                        <Popup Name="AddProfile" Margin="0" VerticalOffset="-80" PopupAnimation="Fade" AllowsTransparency="True" HorizontalOffset="-200">
-                            <StackPanel Background="#FF39B9B9" HorizontalAlignment="Right" Width="200">
-
-                                <Button Width="200" Content="Patient" BorderBrush="{x:Null}" 
-                                        Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"
-                                        Click="AddPatientProfileButton_Click"/>
-                                <Separator Width="150" Background="#FFFFFFFF" />
-
-                                <Button Width="200" Content="Doctor" 
-                                        Click="AddDoctorProfileButton_Click"
-                                        BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
-                                <Separator Width="150" Background="#FFFFFFFF" />
-
-                                <Button Width="200" Content="Pharmacist"
-                                        Click="AddPharmacistProfileButton_Click"
-                                        BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35" />
-                                <Separator Width="150" Background="#FFFFFFFF" />
-
-                                <Button Width="200" Content="Pharmacy admin"
-                                        Click="AddPharmacyAdminProfileButton_Click"
-                                        BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
-                                <Separator Width="150" Background="#FFFFFFFF" />
-                                
-                                <Button Width="200" Content="Hospital admin" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Comfortaa" FontSize="14" Height="35"/>
+                        </MenuItem.Header>
+                        <MenuItem Header="Patient" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
+                        <MenuItem Header="Doctor" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
+                        <MenuItem Header="Add new profile" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18">
+                            <MenuItem Header="Doctor" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
+                            <MenuItem Header="Pharmacist" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
+                            <MenuItem Header="Pharmacy Admin" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
+                            <MenuItem Header="MinistryWorker" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
+                            <MenuItem Header="Hospital Admin" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
+                        </MenuItem>
+                        <MenuItem Header="SignOut" Background="#FF39B9B9" Foreground="White" 
+                                  FontFamily="Comfortaa" FontSize="18"
+                                  Command="{Binding SignOutCommand}"/>
+                    </MenuItem>
+                </Menu>
 
 
-                            </StackPanel>
-                        </Popup>
-
-                    </StackPanel>
 
 
-                </Popup>
 
             </StackPanel>
 
@@ -134,7 +102,7 @@
             </Grid.RowDefinitions>
 
             <Grid  Grid.Column="0" Background="#FF182634">
-               
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -146,7 +114,7 @@
                     <TextBlock Text="{Binding CurrentProfile}" Foreground="#FF39B9B9" FontFamily="Comfortaa" FontSize="18" HorizontalAlignment="Center" Margin="0,15,0,0"/>
                     <Separator Width="300" Background="White" Margin="0,10,0,0" />
                     <Separator Width="300" Background="White" Margin="0,200,0,0" />
-                   
+
                     <Button Content="Recipes" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="150" Margin="0,20,0,0" Click="Button_Click_1"/>
                     <Button Content="Create Recipe" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="150" Margin="0,20,0,0" Click="Button_Click_2"/>
 
@@ -159,6 +127,8 @@
 
         </Grid>
 
+
     </Grid>
+
 
 </Window>
