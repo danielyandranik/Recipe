@@ -44,6 +44,25 @@ namespace InstitutionClient
             }
         }
 
+        /// <summary>
+        /// Event handler for TokenProvider TokenUpdated class
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event argument</param>
+        public void UpdateToken(object sender, TokenEventArgs e)
+        {
+            this.accessToken = e.AccessToken;
+            this.client.SetBearerToken(this.accessToken);
+        }
+
+        /// <summary>
+        /// Disposes Institutions API client
+        /// </summary>
+        public void Dispose()
+        {
+            this.client.Dispose();
+        }
+
         private async Task<ResponseMessage<IEnumerable<T>>> GetAllAsync<T>(string requestUri)
         {
             var httpResponse = await this.client.GetAsync(requestUri);
@@ -149,58 +168,54 @@ namespace InstitutionClient
             return await this.GetAsync<PharmMedicine>($"api/pharmmeds/{id}");
         }
 
-        public async Task<ResponseMessage<string>> CreateInstitution(Institution institution)
+        public async Task<bool> CreateInstitution(Institution institution)
         {
-            return await this.CreateAsync<Institution>("api/institutions", institution);
+            var response = await this.CreateAsync<Institution>("api/institutions", institution);
+
+            return response.IsSuccessStatusCode;
         }
 
-        public async Task<ResponseMessage<string>> CreatePharmacyMedicine(PharmMedicine medicine)
+        public async Task<bool> CreatePharmacyMedicine(PharmMedicine medicine)
         {
-            return await this.CreateAsync<PharmMedicine>("api/pharmmeds", medicine);
+            var response = await this.CreateAsync<PharmMedicine>("api/pharmmeds", medicine);
+
+            return response.IsSuccessStatusCode;
         }
 
-        public async Task<ResponseMessage<string>> UpdateInstitutionAsync(Institution institution)
+        public async Task<bool> UpdateInstitutionAsync(Institution institution)
         {
-            return await this.UpdateAsync<Institution>("api/institutions", institution);
+            var response = await this.UpdateAsync<Institution>("api/institutions", institution);
+
+            return response.IsSuccessStatusCode;
         }
 
-        public async Task<ResponseMessage<string>> UpdateMedicinePriceAsync(MedicinePriceInfo price)
+        public async Task<bool> UpdateMedicinePriceAsync(MedicinePriceInfo price)
         {
-            return await this.UpdateAsync<MedicinePriceInfo>("api/pharmmeds/price", price);
+            var response = await this.UpdateAsync<MedicinePriceInfo>("api/pharmmeds/price", price);
+
+            return response.IsSuccessStatusCode;
         }
 
-        public async Task<ResponseMessage<string>> UpdateMedicineQuantityAsync(MedicineQuantityInfo quantity)
+        public async Task<bool> UpdateMedicineQuantityAsync(MedicineQuantityInfo quantity)
         {
-            return await this.UpdateAsync<MedicineQuantityInfo>("api/pharmmeds/quantity", quantity);
+            var response =  await this.UpdateAsync<MedicineQuantityInfo>("api/pharmmeds/quantity", quantity);
+
+            return response.IsSuccessStatusCode;
         }
 
-        public async Task<ResponseMessage<string>> DeletePharmacyMedicineAsync(int id)
+        public async Task<bool> DeletePharmacyMedicineAsync(int id)
         {
-            return await this.DeleteAsync($"api/pharmmeds/{id}");
+            var response = await this.DeleteAsync($"api/pharmmeds/{id}");
+
+            return response.IsSuccessStatusCode;
+
         }
 
-        public async Task<ResponseMessage<string>> DeleteInstitutionAsync(int id)
+        public async Task<bool> DeleteInstitutionAsync(int id)
         {
-            return await this.DeleteAsync($"api/institutions/{id}");
-        }
+            var response =  await this.DeleteAsync($"api/institutions/{id}");
 
-        /// <summary>
-        /// Event handler for TokenProvider TokenUpdated class
-        /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">Event argument</param>
-        public void UpdateToken(object sender, TokenEventArgs e)
-        {
-            this.accessToken = e.AccessToken;
-            this.client.SetBearerToken(this.accessToken);
-        }
-
-        /// <summary>
-        /// Disposes Institutions API client
-        /// </summary>
-        public void Dispose()
-        {
-            this.client.Dispose();
+            return response.IsSuccessStatusCode;
         }
     }
 }

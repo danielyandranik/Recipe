@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Desktop.ViewModels;
+using InstitutionClient.Models;
 
 namespace Desktop.Views.Pages
 {
@@ -22,7 +12,16 @@ namespace Desktop.Views.Pages
     {
         public Pharmacies()
         {
-            InitializeComponent();      
+            InitializeComponent();
+
+            var pharmaciesViewModel = new PharmaciesViewModel();
+            this.DataContext = pharmaciesViewModel;
+        }
+        
+        private void EditPharmacyClick(object sender, RoutedEventArgs e)
+        {
+            var pharmacy = (Institution)(sender as Button).Tag;
+            ((PharmaciesViewModel)this.DataContext).EditablePharmacy = pharmacy;
         }
     }
 }

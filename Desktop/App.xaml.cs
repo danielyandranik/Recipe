@@ -37,6 +37,11 @@ namespace Desktop
         private readonly MedicineApiClient.Client _medicineClient;
 
         /// <summary>
+        /// Institution api client.
+        /// </summary>
+        private readonly InstitutionClient.Client _institutionClient;
+
+        /// <summary>
         /// Profiles menu manager
         /// </summary>
         private ProfilesMenuManager _profilesMenuManager;
@@ -70,6 +75,11 @@ namespace Desktop
         /// Gets Medicine Api Client
         /// </summary>
         public MedicineApiClient.Client MedicineClient => this._medicineClient;
+
+        /// <summary>
+        /// Gets Institution Api Client
+        /// </summary>
+        public InstitutionClient.Client InstitutionClient => this._institutionClient;
 
         /// <summary>
         /// Creates new instance of <see cref="App"/>

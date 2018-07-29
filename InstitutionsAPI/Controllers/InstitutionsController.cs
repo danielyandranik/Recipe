@@ -25,7 +25,6 @@ namespace InstitutionsAPI.Controllers
             this._dataManager = dataManager;
         }
 
-
         /// <summary>
         /// Gets enumerable of certain type of institutions
         /// </summary>
