@@ -3,6 +3,8 @@ using Desktop.Models;
 using Desktop.Commands;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Desktop.Services;
+using Desktop.Views.Windows;
 
 namespace Desktop.ViewModels
 {
@@ -16,7 +18,9 @@ namespace Desktop.ViewModels
 
         private IEnumerable<string> _profiles;
 
-        private readonly RelayCommand _popupReplace;
+        private readonly HyperLinkService _hyperLinkService;
+
+        private readonly RelayCommand _hyperLinkCommand;
 
         private readonly SignOutCommand _signOutCommand;
 
@@ -48,7 +52,7 @@ namespace Desktop.ViewModels
             set => this.Set("Profiles", ref this._profiles, value);
         }
 
-        public RelayCommand PopupReplaceCommand => this._popupReplace;
+        public RelayCommand HyperLinkCommand => this._hyperLinkCommand;
 
         public SignOutCommand SignOutCommand => this._signOutCommand;
 
@@ -59,6 +63,8 @@ namespace Desktop.ViewModels
             this._currentProfile = user.CurrentProfile;
             this._profiles = user.Profiles;
             this._signOutCommand = new SignOutCommand();
+            this._hyperLinkService = new HyperLinkService();
+            this._hyperLinkCommand = new RelayCommand(this._hyperLinkService.Navigate<MainWindow,RegisterWindow>,() => true);
         }
     }
 }

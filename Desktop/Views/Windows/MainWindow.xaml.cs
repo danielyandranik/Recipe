@@ -1,104 +1,92 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media;
 using Desktop.ViewModels;
 using Desktop.Views.Pages;
+using Desktop.Services;
 
 namespace Desktop.Views.Windows
-
 {
     public partial class MainWindow : Window
     {
-        private readonly Medicines medicines;
-        private readonly Hospitals hospitals;
-        private readonly Pharmacies pharmacies;
+        private  Medicines _medicines;
 
-        private readonly AddPatientProfile addPatientProfile;
-        private readonly AddDoctorProfile addDoctorProfile;
-        private readonly AddPharmacistProfile addPharmacistProfile;
-        private readonly AddHospitalAdministartorProfile addHospitalAdministartorProfile;
-        private readonly AddPharmacyAdminProfile addPharmacyAdminProfile;
-        private static int menuButtonRotateAngle;
+        private  Hospitals _hospitals;
+
+        private  Pharmacies _pharmacies;
+
+        private  AddPatientProfile _addPatientProfile;
+
+        private  AddDoctorProfile _addDoctorProfile;
+
+        private  AddPharmacistProfile _addPharmacistProfile;
+
+        private  AddHospitalAdministartorProfile _addHospitalAdministartorProfile;
+
+        private  AddPharmacyAdminProfile _addPharmacyAdminProfile;
+
+        private readonly NavigateService _navigationService;
+
+        private readonly ProfilesMenuManager _profilesMenuManager;
+
+        private  int menuButtonRotateAngle;
 
         private readonly MainWindowViewModel _mainWindowVM;
 
-        static MainWindow()
-        {
-            menuButtonRotateAngle = 180;
-        }
-
         public MainWindow(MainWindowViewModel mainWindowVM)
         {
-            InitializeComponent();
-            // this.addPatientProfile = new AddPatientProfile();
-            //this.medicines = new Medicines();
-            //this.hospitals = new Hospitals();
-            //this.pharmacies = new Pharmacies();
-            //this.addDoctorProfile = new AddDoctorProfile();
-            //this.addPharmacistProfile = new AddPharmacistProfile();
-            //this.addHospitalAdministartorProfile = new AddHospitalAdministartorProfile();
-            //this.addPharmacyAdminProfile = new AddPharmacyAdminProfile();
-            //this.SourceInitialized += Window_SourceInitialized;
-
+            // initializing components
+            InitializeComponent();    
+            
+            // setting fields
             this._mainWindowVM = mainWindowVM;
             this.DataContext = this._mainWindowVM;
+            this._navigationService = new NavigateService(this.frame);
+            this._profilesMenuManager = new ProfilesMenuManager(this.add);
+            this._profilesMenuManager.AddProfiles(this._mainWindowVM.Profiles);
         }
 
         private void Medicines_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.frame.NavigationService.Navigate(medicines);
+            this._navigationService.Navigate(this._medicines);
         }
 
         private void Hospitals_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.frame.NavigationService.Navigate(hospitals);
+            this._navigationService.Navigate(this._hospitals);
         }
 
         private void Pharmacies_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.frame.NavigationService.Navigate(pharmacies);
-        }
-
-        private void Toggle_menu(object sender, MouseButtonEventArgs e)
-        {
-            var button = (Image)sender;
-
-            button.LayoutTransform = new RotateTransform(menuButtonRotateAngle);
-            menuButtonRotateAngle = (menuButtonRotateAngle == 180) ? 0 : 180;
-            this.menu.IsOpen = !this.menu.IsOpen;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.AddProfile.IsOpen = !this.AddProfile.IsOpen;
+            this._navigationService.Navigate(this._pharmacies);
         }
 
         private void AddPatientProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            this.frame.NavigationService.Navigate(this.addPatientProfile);
+            this._navigationService.Navigate(this._addPatientProfile);
         }
 
         private void AddDoctorProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            this.frame.NavigationService.Navigate(this.addDoctorProfile);
+            this._navigationService.Navigate(this._addDoctorProfile);
         }
 
         private void AddPharmacistProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            this.frame.NavigationService.Navigate(this.addPharmacistProfile);
+            this._navigationService.Navigate(this._addPharmacistProfile);
         }
 
         private void AddHospitalAdministartortProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            this.frame.NavigationService.Navigate(this.addHospitalAdministartorProfile);
+            this._navigationService.Navigate(this._addHospitalAdministartorProfile);
+        }
+
+        private void Toggle_menu(object sender, MouseButtonEventArgs e)
+        {
+            this.menu_opener.LayoutTransform = new RotateTransform(menuButtonRotateAngle);
+
+            menuButtonRotateAngle = (menuButtonRotateAngle == 180) ? 0 : 180;
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -113,24 +101,27 @@ namespace Desktop.Views.Windows
 
         private void AddPharmacyAdminProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            this.frame.NavigationService.Navigate(this.addPharmacyAdminProfile);
+            this._navigationService.Navigate(this._addPharmacyAdminProfile);
         }
 
-        private void Main_LocationChanged(object sender, EventArgs e)
+        private void Menu_Click(object sender, RoutedEventArgs e)
         {
-            this.ResetPopUp();
+            this.menu_opener.LayoutTransform = new RotateTransform(180);
         }
 
-        private void Main_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void MedicinesButtonClick(object sender, RoutedEventArgs e)
         {
-            this.ResetPopUp();
+            this._navigationService.Navigate(this._medicines);
         }
 
-        private void ResetPopUp()
+        private void HospitalsButtonClick(object sender, RoutedEventArgs e)
         {
-            var offset = this.menu.HorizontalOffset;
-            this.menu.HorizontalOffset = offset + 1;
-            this.menu.HorizontalOffset = offset;
+            this._navigationService.Navigate(this._hospitals);
+        }
+
+        private void PharmaciesButtonClick(object sender, RoutedEventArgs e)
+        {
+            this._navigationService.Navigate(this._pharmacies);
         }
     }
 }

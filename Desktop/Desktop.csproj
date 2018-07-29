@@ -260,10 +260,13 @@
     <Compile Include="Services\DoctorProfileService.cs" />
     <Compile Include="Services\HospitalDirectorProfileService.cs" />
     <Compile Include="Services\HyperLinkService.cs" />
+    <Compile Include="Services\NavigateService.cs" />
     <Compile Include="Services\PatientProfileService.cs" />
     <Compile Include="Services\PharmacistProfileService.cs" />
     <Compile Include="Services\ProfileService.cs" />
+    <Compile Include="Services\ProfilesMenuManager.cs" />
     <Compile Include="Services\RegistrationService.cs" />
+    <Compile Include="Services\UserInfoLoader.cs" />
     <Compile Include="User.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

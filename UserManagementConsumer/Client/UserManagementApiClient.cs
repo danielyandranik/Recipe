@@ -175,6 +175,31 @@ namespace UserManagementConsumer.Client
         }
 
         /// <summary>
+        /// Gets user profiles by id
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>profiles</returns>
+        public async Task<Response<IEnumerable<Profile>>> GetUserProfilesAsync(int id)
+        {
+            // getting response
+            var response = await this._userApiHttpClient.GetAsync($"api/profiles/{id}");
+
+            if (!response.IsSuccessStatusCode)
+                return this.ConstructResponse<IEnumerable<Profile>>(Status.Error, null);
+
+            // reading content
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (string.IsNullOrEmpty(content))
+                return this.ConstructResponse<IEnumerable<Profile>>(Status.Error, null);
+
+            // returning result
+            return this.ConstructResponse(
+                Status.Ok, JsonConvert.DeserializeObject<IEnumerable<Profile>>(content));
+
+        }
+
+        /// <summary>
         /// Updates password
         /// </summary>
         /// <param name="passwordUpdateInfo">password update info</param>

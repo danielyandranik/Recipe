@@ -12,7 +12,7 @@ namespace Desktop.Commands
     {
         private readonly TokenProvider _tokenProvider;
 
-        private readonly UserManagementApiClient _client;
+        private readonly UserInfoLoader _userInfoLoader;
 
         private readonly HyperLinkService _hyperLinkService;
 
@@ -20,7 +20,7 @@ namespace Desktop.Commands
         {
             var app = ((App)App.Current);
             this._tokenProvider = app.TokenProvider;
-            this._client = app.UserApiClient;
+            this._userInfoLoader = new UserInfoLoader();
             this._hyperLinkService = new HyperLinkService();
         }
 
@@ -51,29 +51,17 @@ namespace Desktop.Commands
                     return;
                 }
 
-                var response = await this._client.GetUserByUsernameAsync(signInInfo.Username);
+                var response = await this._userInfoLoader.Execute(null);
 
-                if(response.Status == Status.Error)
+                if(response == null)
                 {
-                    RecipeMessageBox.Show("Error occured");
+                    RecipeMessageBox.Show("Unable to sign in");
                     return;
                 }
 
-                var user = response.Result;
+                var vm = new MainWindowViewModel(response);
 
-                User.Default.Id = user.Id;
-                User.Default.Username = user.Username;
-                User.Default.Save();
-
-                var vmModel = new UserInitialInfo
-                {
-                    Username = user.Username,
-                    FullName = $"{user.FirstName} {user.LastName}",
-                    CurrentProfile = user.CurrentProfileType,
-                    Profiles = null
-                };
-
-                this._hyperLinkService.Navigate<SignIn, MainWindow, MainWindowViewModel>(new MainWindowViewModel(vmModel));
+                this._hyperLinkService.Navigate<SignIn, MainWindow, MainWindowViewModel>(vm);
             }
             catch (Exception)
             {

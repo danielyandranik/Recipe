@@ -44,7 +44,7 @@
 
                     <MenuItem  FontFamily="Comfortaa" Foreground="White"
                                FontSize="14" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Name="Menu"
-                               >
+                                PreviewMouseDown="Toggle_menu">
                         <MenuItem.Header>
 
                             <Image Cursor="Hand" Source="/Images/down_arrow.png" Width="24" Height="20" 
@@ -52,21 +52,35 @@
                                    Name="menu_opener" PreviewMouseDown="Toggle_menu"/>
 
                         </MenuItem.Header>
-                        <MenuItem Header="Patient" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
-                        <MenuItem Header="Doctor" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
-                        <MenuItem Header="Add new profile" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18">
+                        <MenuItem Header="Profiles" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18">
                             <MenuItem Header="Doctor" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
-                            <MenuItem Header="Pharmacist" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
-                            <MenuItem Header="Pharmacy Admin" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
-                            <MenuItem Header="MinistryWorker" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
-                            <MenuItem Header="Hospital Admin" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"/>
+                            <MenuItem Name="add"  Header="Add new profile" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18">
+                                <MenuItem Header="Patient" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                          Click="AddPatientProfileButton_Click"/>
+                                <MenuItem Header="Doctor" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                          Click="AddDoctorProfileButton_Click"/>
+                                <MenuItem Header="Pharmacist" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                          Click="AddPharmacistProfileButton_Click"/>
+                                <MenuItem Header="Pharmacy Admin" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                          Click="AddPharmacyAdminProfileButton_Click"/>
+                                <MenuItem Header="MinistryWorker" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                          />
+                                <MenuItem Header="Hospital Admin" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                          Click="AddHospitalAdministartortProfileButton_Click"/>
+                            </MenuItem>
                         </MenuItem>
+
+                        <MenuItem Header="Register" Background="#FF39B9B9" Foreground="White" 
+                                  FontFamily="Comfortaa" FontSize="18"
+                                  Command="{Binding HyperLinkCommand}"/>
+
                         <MenuItem Header="SignOut" Background="#FF39B9B9" Foreground="White" 
                                   FontFamily="Comfortaa" FontSize="18"
                                   Command="{Binding SignOutCommand}"/>
-                    </MenuItem>
-                </Menu>
 
+                    </MenuItem>
+
+                </Menu>
 
 
 
@@ -78,7 +92,7 @@
             <StackPanel Orientation="Horizontal" Grid.Column="1">
 
                 <TextBlock PreviewMouseDown="Medicines_PreviewMouseDown" Cursor="Hand" Text="Medicines" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
-                <TextBlock PreviewMouseDown="Hospitals_PreviewMouseDown" Cursor="Hand" Text="Hosptals" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
+                <TextBlock PreviewMouseDown="Hospitals_PreviewMouseDown" Cursor="Hand" Text="Hospitals" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
                 <TextBlock PreviewMouseDown="Pharmacies_PreviewMouseDown" Cursor="Hand" Text="Pharmacies" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
 
             </StackPanel>
