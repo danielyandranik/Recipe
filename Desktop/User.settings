@@ -3,15 +3,15 @@
   <Profiles />
   <Settings>
     <Setting Name="Id" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="Username" Type="System.String" Scope="User">
-      <Value Profile="(Default)">"A"</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="RefreshToken" Type="System.String" Scope="User">
-      <Value Profile="(Default)">"Aaa"</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="CurrentProfile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Username" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

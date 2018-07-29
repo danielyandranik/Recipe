@@ -32,6 +32,8 @@ namespace Desktop.Commands
                 return;
             }
 
+            User.Default.Reset();
+
             this._hyperlinkService.Navigate<MainWindow, SignIn>();            
         }
     }
