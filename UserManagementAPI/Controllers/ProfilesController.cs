@@ -88,7 +88,7 @@ namespace UserManagementAPI.Controllers
         /// </summary>
         /// <param name="type">type</param>
         /// <returns>action result</returns>
-        [HttpGet("{type}")]
+        [HttpGet(Name = "GetUnapproved")]
         [Authorize(Policy = "IsApprover")]
         [Route("unapproved")]
         public async Task<IActionResult> GetAUnapproved(string type)
