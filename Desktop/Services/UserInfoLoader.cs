@@ -29,9 +29,10 @@ namespace Desktop.Services
 
             if (profilesResponse.Status == Status.Error)
                 return null;
-
+            
             return new UserInitialInfo
             {
+                Id = response.Result.Id,
                 CurrentProfile = response.Result.CurrentProfileType,
                 FullName = $"{response.Result.FirstName} {response.Result.LastName}",
                 Username = response.Result.Username,

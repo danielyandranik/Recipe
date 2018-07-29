@@ -4,6 +4,7 @@ using System.Windows.Media;
 using Desktop.ViewModels;
 using Desktop.Views.Pages;
 using Desktop.Services;
+using Desktop.Commands;
 
 namespace Desktop.Views.Windows
 {
@@ -39,11 +40,9 @@ namespace Desktop.Views.Windows
             InitializeComponent();
 
             // setting fields
-            this._mainWindowVM = new MainWindowViewModel();
+            this._mainWindowVM = new MainWindowViewModel(this);
             this.DataContext = this._mainWindowVM;
-            this._navigationService = new NavigateService(this.frame);
-            this._profilesMenuManager = new ProfilesMenuManager(this.add);
-            this._profilesMenuManager.AddProfiles(this._mainWindowVM.Profiles);
+            this._navigationService = new NavigateService(this.frame);           
         }
 
         private void Medicines_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -122,6 +121,11 @@ namespace Desktop.Views.Windows
         private void PharmaciesButtonClick(object sender, RoutedEventArgs e)
         {
             this._navigationService.Navigate(this._pharmacies);
+        }
+
+        private void Main_Loaded(object sender, RoutedEventArgs e)
+        {
+            this._mainWindowVM.LoadCommand.Execute(null);
         }
     }
 }

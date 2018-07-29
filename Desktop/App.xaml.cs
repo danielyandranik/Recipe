@@ -127,15 +127,7 @@ namespace Desktop
                     User.Default.CurrentProfile = response.Result.CurrentProfileType;
                     User.Default.Save();
 
-                    var vmModel = new UserInitialInfo
-                    {
-                        Username = response.Result.Username,
-                        FullName = $"{response.Result.FirstName} {response.Result.LastName}",
-                        CurrentProfile = response.Result.CurrentProfileType,
-                        Profiles = null
-                    };
-
-                    var window = new MainWindow(new MainWindowViewModel(vmModel));
+                    var window = new MainWindow();
                     window.Show();
                 }
                 catch(Exception)

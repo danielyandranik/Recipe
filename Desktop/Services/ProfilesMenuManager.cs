@@ -1,14 +1,11 @@
-﻿using Desktop.Views.Windows;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
+using Desktop.Views.Windows;
 
 namespace Desktop.Services
 {
@@ -38,35 +35,34 @@ namespace Desktop.Services
 
                 this._menuItem.Items.Add(menuItem);
 
-                menuItem.Click += async (o, e) =>
-                {
-                    var item = (MenuItem)o;
+                menuItem.Click += this.AddProfile;
+            }
+        }
 
-                    if ((string)item.Header == this.Selector(User.Default.CurrentProfile))
-                        return;
+        public async void AddProfile(object sender, RoutedEventArgs e)
+        {
+            var item = (MenuItem)sender;
 
-                    var client = ((App)App.Current).UserApiClient;
+            if ((string)item.Header == this.Selector(User.Default.CurrentProfile))
+                return;
 
-                    var profileUpdateInfo = new ProfileUpdateInfo
-                    {
-                        Id = User.Default.Id,
-                        Profile = (string)item.Header
-                    };
+            var client = ((App)App.Current).UserApiClient;
 
-                    var response = await client.UpdateCurrentProfileAsync(profileUpdateInfo);
+            var profileUpdateInfo = new ProfileUpdateInfo
+            {
+                Id = User.Default.Id,
+                Profile = (string)item.Header
+            };
 
-                    if (response.Status == Status.Ok)
-                    {
-                        RecipeMessageBox.Show("Current profile is updated");
-                    }
-                    else
-                    {
-                        RecipeMessageBox.Show("Error occured");
-                    }
+            var response = await client.UpdateCurrentProfileAsync(profileUpdateInfo);
 
-                };
-       
-
+            if (response.Status == Status.Ok)
+            {
+                RecipeMessageBox.Show("Current profile is updated");
+            }
+            else
+            {
+                RecipeMessageBox.Show("Error occured");
             }
         }
 
