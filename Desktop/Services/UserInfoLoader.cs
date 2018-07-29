@@ -26,16 +26,14 @@ namespace Desktop.Services
                 return null;
 
             var profilesResponse = await this._client.GetUserProfilesAsync(User.Default.Id);
-
-            if (profilesResponse.Status == Status.Error)
-                return null;
-
+            
             return new UserInitialInfo
             {
+                Id = response.Result.Id,
                 CurrentProfile = response.Result.CurrentProfileType,
                 FullName = $"{response.Result.FirstName} {response.Result.LastName}",
                 Username = response.Result.Username,
-                Profiles = profilesResponse.Result.Select(profile => profile.Type)
+                Profiles = profilesResponse.Result?.Select(profile => profile.Type)
             };
         }
     }

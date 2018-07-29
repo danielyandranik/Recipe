@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Desktop.Services;
 using Desktop.Views.Windows;
+using System.Windows.Input;
 
 namespace Desktop.ViewModels
 {
@@ -20,9 +21,13 @@ namespace Desktop.ViewModels
 
         private readonly HyperLinkService _hyperLinkService;
 
+        private readonly MainWindow _mainWindow;
+
         private readonly RelayCommand _hyperLinkCommand;
 
         private readonly SignOutCommand _signOutCommand;
+
+        private readonly LoadCommand _loadCommand;
 
         public string Username
         {
@@ -56,11 +61,15 @@ namespace Desktop.ViewModels
 
         public SignOutCommand SignOutCommand => this._signOutCommand;
 
-        public MainWindowViewModel()
+        public ICommand LoadCommand => this._loadCommand;
+
+        public MainWindowViewModel(MainWindow mainWindow)
         {           
             this._signOutCommand = new SignOutCommand();
             this._hyperLinkService = new HyperLinkService();
             this._hyperLinkCommand = new RelayCommand(this._hyperLinkService.Navigate<MainWindow,RegisterWindow>,() => true);
+            this._mainWindow = mainWindow;
+            this._loadCommand = new LoadCommand(this._mainWindow.profiles, this);            
         }
     }
 }

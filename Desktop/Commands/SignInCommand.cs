@@ -45,23 +45,16 @@ namespace Desktop.Commands
             {
                 var status = await this._tokenProvider.SignInAsync(signInInfo.Username, signInInfo.Password);
 
-                if(status == TokenStatus.Error)
+                if (status == TokenStatus.Error)
                 {
                     RecipeMessageBox.Show("Invalid username or password");
                     return;
                 }
 
-                var response = await this._userInfoLoader.Execute(null);
+                User.Default.Username = signInInfo.Username;
+                User.Default.Save();
 
-                if(response == null)
-                {
-                    RecipeMessageBox.Show("Unable to sign in");
-                    return;
-                }
-
-                var vm = new MainWindowViewModel(response);
-
-                this._hyperLinkService.Navigate<SignIn, MainWindow, MainWindowViewModel>(vm);
+                this._hyperLinkService.Navigate<SignIn, MainWindow>();
             }
             catch (Exception)
             {

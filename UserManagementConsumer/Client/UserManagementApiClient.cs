@@ -191,7 +191,7 @@ namespace UserManagementConsumer.Client
             var content = await response.Content.ReadAsStringAsync();
 
             if (string.IsNullOrEmpty(content))
-                return this.ConstructResponse<IEnumerable<Profile>>(Status.Error, null);
+                return this.ConstructResponse<IEnumerable<Profile>>(Status.Ok, null);
 
             // returning result
             return this.ConstructResponse(

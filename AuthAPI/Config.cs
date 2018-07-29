@@ -17,6 +17,7 @@ namespace AuthAPI
         {
             return new List<ApiResource>
             {
+                new ApiResource("offline_access"),
                 new ApiResource("UserManagementAPI"),
                 new ApiResource("RecipeAPI"),
                 new ApiResource("InstitutionsAPI"),
