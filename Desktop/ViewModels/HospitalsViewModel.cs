@@ -31,7 +31,7 @@ namespace Desktop.ViewModels
             }
         }
 
-        public Institution EditablePharmacy
+        public Institution EditableHospital
         {
             get
             {

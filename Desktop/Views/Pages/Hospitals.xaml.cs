@@ -1,4 +1,5 @@
-﻿using InstitutionClient.Models;
+﻿using Desktop.ViewModels;
+using InstitutionClient.Models;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,8 +17,8 @@ namespace Desktop.Views.Pages
             var hospitalsViewModel = new HospitalsViewModel();
             this.DataContext = hospitalsViewModel;
         }
-
-        private void EditPharmacyClick(object sender, RoutedEventArgs e)
+        
+        private void EditHospitalClick(object sender, RoutedEventArgs e)
         {
             var hospital = (Institution)(sender as Button).Tag;
             ((HospitalsViewModel)this.DataContext).EditableHospital = hospital;
