@@ -200,6 +200,30 @@ namespace UserManagementConsumer.Client
         }
 
         /// <summary>
+        /// Gets user profiles by username
+        /// </summary>
+        /// <param name="username">Username</param>
+        /// <returns>action result</returns>
+        public async Task<Response<IEnumerable<Profile>>> GetUserProfilesAsync(string username)
+        {
+            // getting response
+            var response = await this._userApiHttpClient.GetAsync($"api/profiles/{username}");
+
+            if (!response.IsSuccessStatusCode)
+                return this.ConstructResponse<IEnumerable<Profile>>(Status.Error, null);
+
+            // reading content
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (string.IsNullOrEmpty(content))
+                return this.ConstructResponse<IEnumerable<Profile>>(Status.Ok, null);
+
+            // returning result
+            return this.ConstructResponse(
+                Status.Ok, JsonConvert.DeserializeObject<IEnumerable<Profile>>(content));
+        }
+
+        /// <summary>
         /// Updates password
         /// </summary>
         /// <param name="passwordUpdateInfo">password update info</param>

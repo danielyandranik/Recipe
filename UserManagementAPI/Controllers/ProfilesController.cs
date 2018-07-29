@@ -65,13 +65,33 @@ namespace UserManagementAPI.Controllers
         }
 
         /// <summary>
+        /// Gets profiles by username
+        /// </summary>
+        /// <param name="username">Username</param>
+        /// <returns>action result</returns>
+        [HttpGet("{username}")]
+        [Authorize]
+        public async Task<IActionResult> Get(string username)
+        {
+            if (this.GetUsername() != username)
+                return new StatusCodeResult(403);
+
+            // getting result
+            var result = await this._dataManager.OperateAsync<string, Profile>("GetProfilesByUsername", username);
+
+            // returning result
+            return this.GetActionResult(result);
+        }
+
+        /// <summary>
         /// Gets unapproved profiles by type.
         /// </summary>
         /// <param name="type">type</param>
         /// <returns>action result</returns>
         [HttpGet("{type}")]
         [Authorize(Policy = "IsApprover")]
-        public async Task<IActionResult> Get(string type)
+        [Route("unapproved")]
+        public async Task<IActionResult> GetAUnapproved(string type)
         {
             // getting result
             var result = await this._dataManager.OperateAsync<string, Profile>("GetUnapprovedProfiles", type);
@@ -90,6 +110,17 @@ namespace UserManagementAPI.Controllers
             return int.Parse(
                 ((ClaimsIdentity)this.User.Identity).Claims
                 .Where(claim => claim.Type == "user_id").First().Value);
+        }
+
+        /// <summary>
+        /// Gets username
+        /// </summary>
+        /// <returns>username</returns>
+        private string GetUsername()
+        {
+            // returning username
+            return ((ClaimsIdentity)this.User.Identity).Claims
+                .Where(claim => claim.Type == "name").First().Value;
         }
 
         /// <summary>

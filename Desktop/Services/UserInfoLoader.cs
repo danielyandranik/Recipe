@@ -25,7 +25,7 @@ namespace Desktop.Services
             if (response.Status == Status.Error)
                 return null;
 
-            var profilesResponse = await this._client.GetUserProfilesAsync(User.Default.Id);
+            var profilesResponse = await this._client.GetUserProfilesAsync(User.Default.Username);
             
             return new UserInitialInfo
             {

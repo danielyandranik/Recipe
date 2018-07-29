@@ -526,6 +526,16 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     </parameters>
     <returnDataType>Enumerable</returnDataType>
   </operation>
+  <operation name="GetProfilesByUsername">
+    <spName>uspGetProfilesByUsername</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>username</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
   <operation name="GetUnapprovedProfiles">
     <spName>uspGetUnapprovedProfilesByType</spName>
     <parameters>
