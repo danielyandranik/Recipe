@@ -23,47 +23,6 @@ namespace Desktop.Views.Controls
         public Recipe()
         {
             InitializeComponent();
-            this.recipeItems.ItemsSource = new[]
-            {
-                new RecipeItem
-                {
-                    MedicineName = "Ascofen",
-                    Count = 200,
-                    UseFrequencyUnit = "Daily",
-                    TimesPerUnit = 3,
-                    CountPerUse = 1
-                },
-                new RecipeItem
-                {
-                    MedicineName = "Aspirin",
-                    Count = 50,
-                    UseFrequencyUnit = "Weakly",
-                    TimesPerUnit = 1,
-                    CountPerUse = 2
-                },
-                new RecipeItem
-                {
-                    MedicineName = "Ascofen",
-                    Count = 200,
-                    UseFrequencyUnit = "Daily",
-                    TimesPerUnit = 3,
-                    CountPerUse = 1
-                },
-
-            };
         }
-    }
-
-    public class RecipeItem
-    {
-        public string MedicineName { get; set; }
-
-        public int Count { get; set; }
-
-        public string UseFrequencyUnit { get; set; }
-
-        public int TimesPerUnit { get; set; }
-
-        public int CountPerUse { get; set; }
     }
 }

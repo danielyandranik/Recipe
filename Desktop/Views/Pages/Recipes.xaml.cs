@@ -24,8 +24,6 @@ namespace Desktop.Views.Pages
         public Recipes()
         {
             InitializeComponent();
-            this.recipes.Children.Add(new Recipe());
-            this.recipes.Children.Add(new Recipe());
         }
     }
 }
