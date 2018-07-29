@@ -56,12 +56,8 @@ namespace Desktop.ViewModels
 
         public SignOutCommand SignOutCommand => this._signOutCommand;
 
-        public MainWindowViewModel(UserInitialInfo user)
-        {
-            this._username = user.Username;
-            this._fullName = user.FullName;
-            this._currentProfile = user.CurrentProfile;
-            this._profiles = user.Profiles;
+        public MainWindowViewModel()
+        {           
             this._signOutCommand = new SignOutCommand();
             this._hyperLinkService = new HyperLinkService();
             this._hyperLinkCommand = new RelayCommand(this._hyperLinkService.Navigate<MainWindow,RegisterWindow>,() => true);

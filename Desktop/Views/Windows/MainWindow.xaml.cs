@@ -33,13 +33,13 @@ namespace Desktop.Views.Windows
 
         private readonly MainWindowViewModel _mainWindowVM;
 
-        public MainWindow(MainWindowViewModel mainWindowVM)
+        public MainWindow()
         {
             // initializing components
-            InitializeComponent();    
-            
+            InitializeComponent();
+
             // setting fields
-            this._mainWindowVM = mainWindowVM;
+            this._mainWindowVM = new MainWindowViewModel();
             this.DataContext = this._mainWindowVM;
             this._navigationService = new NavigateService(this.frame);
             this._profilesMenuManager = new ProfilesMenuManager(this.add);

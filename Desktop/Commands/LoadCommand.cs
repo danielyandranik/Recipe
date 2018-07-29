@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Desktop.Commands
 {
-    class LoadCommand
+    public class LoadCommand : ICommand
     {
+        private readonly UserInfoLoader _userInfoLoader;
+
+        private readonly Si
     }
 }

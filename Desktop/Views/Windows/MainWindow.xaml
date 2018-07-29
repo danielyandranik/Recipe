@@ -8,6 +8,11 @@
         mc:Ignorable="d"
         Name="Main" Title="Recipe" MinWidth="1280" MinHeight="720" SizeToContent="WidthAndHeight" Background="White" WindowStartupLocation="CenterScreen"
         >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Window.Resources>
         <!--<Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
