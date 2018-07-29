@@ -32,9 +32,18 @@ namespace Desktop.Commands
                 return;
             }
 
-            User.Default.Reset();
+            this.ResetSettings();
 
             this._hyperlinkService.Navigate<MainWindow, SignIn>();            
+        }
+
+        private void ResetSettings()
+        {
+            User.Default.Id = 0;
+            User.Default.CurrentProfile = null;
+            User.Default.Username = null;
+            User.Default.RefreshToken = null;
+            User.Default.Save();
         }
     }
 }

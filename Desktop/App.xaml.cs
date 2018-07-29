@@ -7,6 +7,7 @@ using Desktop.Views.Windows;
 using UserManagementConsumer.Client;
 using Desktop.Models;
 using Desktop.ViewModels;
+using Desktop.Services;
 
 namespace Desktop
 {
@@ -36,6 +37,11 @@ namespace Desktop
         private readonly MedicineApiClient.Client _medicineClient;
 
         /// <summary>
+        /// Profiles menu manager
+        /// </summary>
+        private ProfilesMenuManager _profilesMenuManager;
+
+        /// <summary>
         /// Boolean value indicating if app is ready for startup
         /// </summary>
         private bool _isReadyForStartup;
@@ -50,7 +56,16 @@ namespace Desktop
         /// </summary>
         public UserManagementApiClient UserApiClient => this._userApiClient;
 
+        /// <summary>
+        /// Gets profile menu manager
+        /// </summary>
+        public ProfilesMenuManager ProfilesMenuManager => this._profilesMenuManager;
+
+        /// <summary>
+        /// Gets Medicine Api Client
+        /// </summary>
         public MedicineApiClient.Client MedicineClient => this._medicineClient;
+
         /// <summary>
         /// Creates new instance of <see cref="App"/>
         /// </summary>
@@ -128,6 +143,7 @@ namespace Desktop
                     User.Default.Save();
 
                     var window = new MainWindow();
+                    this._profilesMenuManager = new ProfilesMenuManager(window.profiles, window.Vm);
                     window.Show();
                 }
                 catch(Exception)

@@ -34,6 +34,8 @@ namespace Desktop.Views.Windows
 
         private readonly MainWindowViewModel _mainWindowVM;
 
+        public MainWindowViewModel Vm => this._mainWindowVM;
+
         public MainWindow()
         {
             // initializing components
@@ -125,7 +127,7 @@ namespace Desktop.Views.Windows
 
         private void Main_Loaded(object sender, RoutedEventArgs e)
         {
-            this._mainWindowVM.LoadCommand.Execute(null);
+           this._mainWindowVM.LoadCommand.Execute(null);
         }
     }
 }

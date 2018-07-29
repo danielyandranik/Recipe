@@ -6,6 +6,7 @@ using System.Windows.Media;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
 using Desktop.Views.Windows;
+using Desktop.ViewModels;
 
 namespace Desktop.Services
 {
@@ -13,33 +14,44 @@ namespace Desktop.Services
     {
         private readonly MenuItem _menuItem;
 
-        public ProfilesMenuManager(MenuItem menuItem)
+        private readonly MainWindowViewModel _vm;
+
+        public ProfilesMenuManager(MenuItem menuItem,MainWindowViewModel vm)
         {
             this._menuItem = menuItem;
+            this._vm = vm;
         }
 
         public void AddProfiles(IEnumerable<string> profiles)
         {
+            if (profiles == null)
+                return;
+
             var profileTypes = profiles.Select(this.Selector);
 
             foreach(var profile in profileTypes)
             {
-                var menuItem = new MenuItem
-                {
-                    Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x39, 0xB9, 0xB9)),
-                    Foreground = Brushes.White,
-                    FontFamily = new FontFamily("Comfortaa"),
-                    FontSize = 18,
-                    Header = profile
-                };
-
-                this._menuItem.Items.Add(menuItem);
-
-                menuItem.Click += this.AddProfile;
+                this.AddProfile(profile);
             }
         }
 
-        public async void AddProfile(object sender, RoutedEventArgs e)
+        public void AddProfile(string profile)
+        {
+            var menuItem = new MenuItem
+            {
+                Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x39, 0xB9, 0xB9)),
+                Foreground = Brushes.White,
+                FontFamily = new FontFamily("Comfortaa"),
+                FontSize = 18,
+                Header = profile
+            };
+
+            this._menuItem.Items.Add(menuItem);
+
+            menuItem.Click += this.AddProfileEventHandler;
+        }
+
+        public async void AddProfileEventHandler(object sender, RoutedEventArgs e)
         {
             var item = (MenuItem)sender;
 
@@ -59,6 +71,7 @@ namespace Desktop.Services
             if (response.Status == Status.Ok)
             {
                 RecipeMessageBox.Show("Current profile is updated");
+                this._vm.CurrentProfile = profileUpdateInfo.Profile;
             }
             else
             {

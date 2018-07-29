@@ -22,7 +22,7 @@ namespace Desktop.Commands
         {
             this._menuItem = menuItem;
             this._userInfoLoader = new UserInfoLoader();
-            this._profilesMenuManager = new ProfilesMenuManager(this._menuItem);
+            this._profilesMenuManager = ((App)App.Current).ProfilesMenuManager;
             this._vm = vm;
         }
 
