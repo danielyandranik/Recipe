@@ -27,7 +27,7 @@ namespace Desktop.ViewModels
 
         private readonly SignOutCommand _signOutCommand;
 
-        private readonly LoadCommand _loadCommand;
+        private readonly LoadService _loadService;
 
         public string Username
         {
@@ -61,7 +61,7 @@ namespace Desktop.ViewModels
 
         public SignOutCommand SignOutCommand => this._signOutCommand;
 
-        public ICommand LoadCommand => this._loadCommand;
+        public LoadService LoadService => this._loadService;
 
         public MainWindowViewModel(MainWindow mainWindow)
         {           
@@ -69,7 +69,7 @@ namespace Desktop.ViewModels
             this._hyperLinkService = new HyperLinkService();
             this._hyperLinkCommand = new RelayCommand(this._hyperLinkService.Navigate<MainWindow,RegisterWindow>,() => true);
             this._mainWindow = mainWindow;
-            this._loadCommand = new LoadCommand(this._mainWindow.profiles, this);            
+            this._loadService = new LoadService(this._mainWindow.profiles, this);            
         }
     }
 }

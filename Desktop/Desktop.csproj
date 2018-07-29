@@ -236,7 +236,7 @@
     <Compile Include="Commands\ConfirmCommand.cs" />
     <Compile Include="Commands\DeleteMedicineCommand.cs" />
     <Compile Include="Commands\EditMedicineCommand.cs" />
-    <Compile Include="Commands\LoadCommand.cs" />
+    <Compile Include="Services\LoadService.cs" />
     <Compile Include="Commands\ProfileCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
     <Compile Include="Commands\SignInCommand.cs" />

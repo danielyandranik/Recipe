@@ -59,7 +59,12 @@ namespace Desktop
         /// <summary>
         /// Gets profile menu manager
         /// </summary>
-        public ProfilesMenuManager ProfilesMenuManager => this._profilesMenuManager;
+        public ProfilesMenuManager ProfilesMenuManager
+        {
+            get => this._profilesMenuManager;
+
+            set => this._profilesMenuManager = value;
+        }
 
         /// <summary>
         /// Gets Medicine Api Client
@@ -143,8 +148,10 @@ namespace Desktop
                     User.Default.Save();
 
                     var window = new MainWindow();
-                    this._profilesMenuManager = new ProfilesMenuManager(window.profiles, window.Vm);
+
                     window.Show();
+
+
                 }
                 catch(Exception)
                 {

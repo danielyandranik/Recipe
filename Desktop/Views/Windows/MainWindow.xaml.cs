@@ -125,9 +125,9 @@ namespace Desktop.Views.Windows
             this._navigationService.Navigate(this._pharmacies);
         }
 
-        private void Main_Loaded(object sender, RoutedEventArgs e)
-        {
-           this._mainWindowVM.LoadCommand.Execute(null);
+        private async void Main_Loaded(object sender, RoutedEventArgs e)
+        {            
+            await this._mainWindowVM.LoadService.Execute();
         }
     }
 }

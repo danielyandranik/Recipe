@@ -13,10 +13,6 @@ namespace Desktop.ViewModels
     {
         private ObservableCollection<Recipe> recipes;
 
-        public ObservableCollection<Recipe> Recipes
-        {
-            get => this.recipes;
-            set => this.Set("Recipes", ref this.recipes, value);
-        }
+        //public ObservableCollection<Recipe> 
     }
 }
