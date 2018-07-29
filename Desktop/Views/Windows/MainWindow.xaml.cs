@@ -44,7 +44,9 @@ namespace Desktop.Views.Windows
             // setting fields
             this._mainWindowVM = new MainWindowViewModel(this);
             this.DataContext = this._mainWindowVM;
-            this._navigationService = new NavigateService(this.frame);           
+            this._navigationService = new NavigateService(this.frame);
+
+            this._medicines = new Medicines();
         }
 
         private void Medicines_PreviewMouseDown(object sender, MouseButtonEventArgs e)
