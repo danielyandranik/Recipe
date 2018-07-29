@@ -14,14 +14,14 @@ namespace Desktop.Views.Pages
         {
             InitializeComponent();
 
-            var pharmaciesViewModel = new PharmaciesViewModel();
+            var pharmaciesViewModel = new HospitalsViewModel();
             this.DataContext = pharmaciesViewModel;
         }
         
         private void EditPharmacyClick(object sender, RoutedEventArgs e)
         {
             var pharmacy = (Institution)(sender as Button).Tag;
-            ((PharmaciesViewModel)this.DataContext).EditablePharmacy = pharmacy;
+            ((HospitalsViewModel)this.DataContext).EditablePharmacy = pharmacy;
         }
     }
 }

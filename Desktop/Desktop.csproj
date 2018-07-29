@@ -237,12 +237,9 @@
     <Compile Include="Commands\DeleteMedicineCommand.cs" />
     <Compile Include="Commands\DeletePharmacyCommand.cs" />
     <Compile Include="Commands\EditMedicineCommand.cs" />
-<<<<<<< HEAD
     <Compile Include="Commands\EditPharmacyCommand.cs" />
     <Compile Include="Commands\LoadCommand.cs" />
-=======
     <Compile Include="Services\LoadService.cs" />
->>>>>>> d5f0d115553d676653af2682f5c1091fb39703e1
     <Compile Include="Commands\ProfileCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
     <Compile Include="Commands\SignInCommand.cs" />

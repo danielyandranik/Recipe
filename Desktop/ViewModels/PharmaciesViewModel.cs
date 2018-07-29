@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using System.Threading.Tasks;
 using Desktop.Commands;
-using MedicineApiClient;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using InstitutionClient.Models;
@@ -10,7 +9,6 @@ namespace Desktop.ViewModels
 {
     public class PharmaciesViewModel : ViewModelBase
     {
-
         private ObservableCollection<Institution> pharmacies;
 
         private Institution editablePharmacy;
@@ -57,13 +55,12 @@ namespace Desktop.ViewModels
             }
         }
 
-
         public PharmaciesViewModel()
         {
             this.LoadPharmacies();
 
             this.isVisible = (User.Default.CurrentProfile == "ministry_worker") || 
-                                    (User.Default.CurrentProfile == "hospital_admin") ? true : false;
+                                    (User.Default.CurrentProfile == "pharmacy_admin") ? true : false;
 
             this.deletePharmacyCommand = new DeletePharmacyCommand(this.pharmacies, this.deletePharmacy, _ => true);
 
