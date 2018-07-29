@@ -16,9 +16,13 @@ namespace Desktop.ViewModels
     {
         private ObservableCollection<Medicine> _medicines;
 
+        private Medicine _editableMedicine;
+
         private bool _isVisible;
 
         private DeleteMedicineCommand _deleteMedicineCommand;
+
+        private EditMedicineCommand _editMedicineCommand;
 
         public ObservableCollection<Medicine> Medicines
         {
@@ -29,6 +33,18 @@ namespace Desktop.ViewModels
             set
             {
                 this.Set("Medicines", ref this._medicines, value);
+            }
+        }
+
+        public Medicine EditableMedicine
+        {
+            get
+            {
+                return this._editableMedicine;
+            }
+            set
+            {
+                this.Set("EditableMedicine", ref this._editableMedicine, value);
             }
         }
 
@@ -50,6 +66,7 @@ namespace Desktop.ViewModels
             this.LoadMedicines();
             this._isVisible = User.Default.CurrentProfile == "ministry_worker" ? true : false;
             this._deleteMedicineCommand = new DeleteMedicineCommand(this._medicines, this.deleteMedicine, _ => true);
+            this._editMedicineCommand = new EditMedicineCommand(this._medicines, this.editMedicine, _ => true);
         }
 
         private async Task<bool> deleteMedicine(string uri)
@@ -57,7 +74,10 @@ namespace Desktop.ViewModels
             return await ((App)App.Current).MedicineClient.DeleteMedicineAsync(uri);
         }
 
-
+        private async Task<bool> editMedicine(Medicine medicine)
+        {
+            return await ((App)App.Current).MedicineClient.UpdateMedicineAsync(medicine);
+        }
 
         private void LoadMedicines()
         {

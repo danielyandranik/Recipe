@@ -7,10 +7,10 @@ using System.Windows.Input;
 
 namespace Desktop.Commands
 {
-    public class LoadCommand : ICommand
-    {
-        private readonly UserInfoLoader _userInfoLoader;
+    //public class LoadCommand : ICommand
+    //{
+    //    private readonly UserInfoLoader _userInfoLoader;
 
-        private readonly Si
-    }
+        
+    //}
 }

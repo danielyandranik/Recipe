@@ -1,4 +1,5 @@
 ﻿using Desktop.ViewModels;
+using MedicineApiClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,8 @@ namespace Desktop.Views.Pages
 
         private void EditMedicineClick(object sender, RoutedEventArgs e)
         {
-            var id = (string)(sender as Button).Tag;
+            var medicine = (Medicine)(sender as Button).Tag;
+            ((MedicinesViewModel)this.DataContext).EditableMedicine = medicine;
         }
     }
 }
