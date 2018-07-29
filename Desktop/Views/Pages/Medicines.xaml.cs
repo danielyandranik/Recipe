@@ -29,11 +29,6 @@ namespace Desktop.Views.Pages
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void EditMedicineClick(object sender, RoutedEventArgs e)
         {
             var medicine = (Medicine)(sender as Button).Tag;

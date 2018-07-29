@@ -61,12 +61,13 @@ namespace MedicineApiClient
             };
         }
 
-		public async Task CreateMedicineAsync(Medicine medicine)
+		public async Task<bool> CreateMedicineAsync(Medicine medicine)
 		{
             var json = JsonConvert.SerializeObject(medicine);
 
             var httpResponse = await this.client.PostAsync("api/medicines", new StringContent(json, Encoding.UTF8, "application/json"));
 
+            return httpResponse.IsSuccessStatusCode;
             //var content = await httpResponse.Content.ReadAsStringAsync();
         }
 

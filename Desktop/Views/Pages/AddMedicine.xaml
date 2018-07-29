@@ -5,22 +5,65 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Desktop.Views.Pages"
       mc:Ignorable="d" 
-      MinHeight="609" MinWidth="902"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="300" d:DesignWidth="300"
+      MinWidth="902" MinHeight="609"
       Title="AddMedicine" Background="White">
 
-    <Border BorderBrush="#FF182634" BorderThickness="2">
-        
-        <Grid>
+    <Page.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <!-- Modify default template, to change triggers -->
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,0,2" >
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-            <Grid.RowDefinitions>
+    </Page.Resources>
+    <Grid>
 
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+        <Grid.RowDefinitions>
 
-            </Grid.RowDefinitions>
-            
-        </Grid>
-        
-    </Border>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+
+            <TextBlock Text="Add patient profile" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
+            <Separator Background="#FF182634" Width="600" Margin="0,5" Foreground="#FF182634" />
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,20,0,0">
+
+            <Label Content="Name" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+            <TextBox Text="{Binding Medicine.Name, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
+
+            <Label Content="Maker" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+            <TextBox Text="{Binding Medicine.Maker, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
+
+            <Label Content="Country" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+            <TextBox Text="{Binding Medicine.Country, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
+
+            <Label Content="Units" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+            <TextBox Text="{Binding Medicine.Units, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
+
+            <Label Content="Shelf life" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+            <TextBox Text="{Binding Medicine.ShelfLife, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
+
+            <Label Content="Description" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+            <TextBox Text="{Binding Medicine.Description, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="75"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
+
+            <Button Grid.Row="2" Content="Done" Margin="0,10,0,0" BorderBrush="{x:Null}" Background="#FF39B9B9" Width="120" VerticalAlignment="Top" Command="{Binding EditMedicineCommand}" CommandParameter="{Binding Medicine}"/>
+
+        </StackPanel>
+
+    </Grid>
 </Page>

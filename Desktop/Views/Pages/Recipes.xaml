@@ -4,18 +4,27 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Desktop.Views.Pages"
-      xmlns:local1="clr-namespace:Desktop.Views.Controls"
+      xmlns:controls="clr-namespace:Desktop.Views.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       MinHeight="609" MinWidth="902" 
       Title="Recipes" Background="White">
 
-    <ScrollViewer>
-        
-        <WrapPanel Name="recipes">
+    <Grid>
+
+        <ListView HorizontalAlignment="Center" VerticalAlignment="Top" ItemsSource="{Binding Recipes}">
+
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <controls:Recipe></controls:Recipe>
+                    
+                </DataTemplate>
+                
+            </ListView.ItemTemplate>
             
-            
-        </WrapPanel>
+        </ListView>
         
-    </ScrollViewer>
+    </Grid>
 </Page>
