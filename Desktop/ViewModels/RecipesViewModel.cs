@@ -13,6 +13,6 @@ namespace Desktop.ViewModels
     {
         private ObservableCollection<Recipe> recipes;
 
-        public ObservableCollection<Recipe> 
+        //public ObservableCollection<Recipe> 
     }
 }

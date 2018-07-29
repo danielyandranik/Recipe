@@ -5,10 +5,11 @@ using Desktop.Services;
 using Desktop.Views.Windows;
 using Desktop.ViewModels;
 using Desktop.Models;
+using System.Threading.Tasks;
 
 namespace Desktop.Commands
 {
-    public class LoadCommand : ICommand
+    public class LoadService 
     {
         private readonly UserInfoLoader _userInfoLoader;
 
@@ -18,24 +19,19 @@ namespace Desktop.Commands
 
         private readonly MainWindowViewModel _vm;
 
-        public LoadCommand(MenuItem menuItem, MainWindowViewModel vm)
+        public LoadService(MenuItem menuItem, MainWindowViewModel vm)
         {
             this._menuItem = menuItem;
             this._userInfoLoader = new UserInfoLoader();
-            this._profilesMenuManager = ((App)App.Current).ProfilesMenuManager;
+            this._profilesMenuManager = new ProfilesMenuManager(this._menuItem, vm);
             this._vm = vm;
         }
 
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
+        public async Task Execute()
         {
-            return true;
-        }
+            ((App)App.Current).ProfilesMenuManager = this._profilesMenuManager;
 
-        public async void Execute(object parameter)
-        {
-            var load = await this._userInfoLoader.Execute(parameter);
+            var load = await this._userInfoLoader.Execute();
 
             if(load == null)
             {

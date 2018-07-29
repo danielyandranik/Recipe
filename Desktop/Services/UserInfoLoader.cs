@@ -9,7 +9,7 @@ using UserManagementConsumer.Client;
 
 namespace Desktop.Services
 {
-    public class UserInfoLoader : IService<UserInitialInfo>
+    public class UserInfoLoader 
     {
         private readonly UserManagementApiClient _client;
 
@@ -18,7 +18,7 @@ namespace Desktop.Services
             this._client = ((App)App.Current).UserApiClient;
         }
 
-        public async Task<UserInitialInfo> Execute(object parameter)
+        public async Task<UserInitialInfo> Execute()
         {
             var response = await this._client.GetUserByUsernameAsync(User.Default.Username);
 
