@@ -91,6 +91,24 @@ namespace InstitutionClient
             };
         }
 
+        private async Task<ResponseMessage<T>> GetSomeAsync<T>(string requestUri, T t)
+        {
+            var json = JsonConvert.SerializeObject(t);
+
+            //var httpResponse = await this.client.GetAsync(requestUri);
+
+            var httpResponse = await this.client.GetAsync(requestUri)
+
+            var content = await httpResponse.Content.ReadAsStringAsync();
+
+            return new ResponseMessage<T>
+            {
+                StatusCode = (int)httpResponse.StatusCode,
+                IsSuccessStatusCode = httpResponse.IsSuccessStatusCode,
+                Content = JsonConvert.DeserializeObject<T>(content)
+            };
+        }
+
         private async Task<ResponseMessage<string>> CreateAsync<T>(string requestUri, T t)
         {
             var json = JsonConvert.SerializeObject(t);
@@ -143,19 +161,40 @@ namespace InstitutionClient
             return await this.GetAllAsync<Institution>("api/institutions/hospital");
         }
 
+        public async Task<ResponseMessage<IEnumerable<Institution>>> GetHospitalsByNameAsync(string name)
+        {
+            return await this.GetAllAsync<Institution>($"api/institutions/?type=hospital&name={name}");
+        }
+
+        public async Task<ResponseMessage<IEnumerable<Institution>>> GetHospitalsByAddressAsync(string address)
+        {
+            var info = new AddressInfo { Type = "hopital", Address = address };
+            return await this.GetAllAsync<Institution>($"api/institutions");
+        }
+
         public async Task<ResponseMessage<IEnumerable<Institution>>> GetAllPharmaciesAsync()
         {
             return await this.GetAllAsync<Institution>("api/institutions/pharmacy");
         }
 
+        public async Task<ResponseMessage<IEnumerable<Institution>>> GetPharmaciesByNameAsync(string name)
+        {
+            return await this.GetAllAsync<Institution>($"api/institutions/?type=pharmacy&name={name}");
+        }
+
+        public async Task<ResponseMessage<IEnumerable<Institution>>> GetPharmaciesByAddressAsync(string address)
+        {
+            return await this.GetAllAsync<Institution>($"api/institutions/pharmacy/?type=pharmacy&address={address}");
+        }
+
         public async Task<ResponseMessage<IEnumerable<Institution>>> GetAllSuppliersAsync(int medicineId)
         {
-            return await this.GetAllAsync<Institution>($"api/institutions/pharmacy/?id={medicineId}");
+            return await this.GetAllAsync<Institution>($"api/institutions/pharmacy/?medicineId={medicineId}");
         }
 
         public async Task<ResponseMessage<IEnumerable<PharmMedicine>>> GetAllPharmacyMedicinesAsync(int pharmacyId)
         {
-            return await this.GetAllAsync<PharmMedicine>($"api/pharmmeds/{pharmacyId}");
+            return await this.GetAllAsync<PharmMedicine>($"api/pharmmeds/?pharmacyId={pharmacyId}");
         }
 
         public async Task<ResponseMessage<Institution>> GetInstitution(int id)

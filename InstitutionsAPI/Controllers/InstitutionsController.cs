@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using InstitutionsAPI.Models;
 using DatabaseAccess.Repository;
+using Microsoft.Extensions.Primitives;
 
 namespace InstitutionsAPI.Controllers
 {
@@ -83,13 +84,65 @@ namespace InstitutionsAPI.Controllers
             return new JsonResult(result);
         }
 
+        [HttpGet]
+        [Authorize(Policy = "has_profile")]
+        public async Task<IActionResult> GetPharmasy([FromBody] NameInfo info)
+        {
+            // getting result
+            var result = await this._dataManager.OperateAsync<NameInfo, Institution>("GetPharmaciesByMedicine", info);
+
+            // if no content retun 204
+            if (result == null)
+                return new StatusCodeResult(204);
+
+            // return JSON serialized content
+            return new JsonResult(result);
+        }
+
+        [HttpGet]
+        [Authorize(Policy = "has_profile")]
+        public async Task<IActionResult> GetPharmasy([FromBody] AddressInfo info)
+        {
+            // getting result
+            var result = await this._dataManager.OperateAsync<AddressInfo, Institution>("GetPharmaciesByMedicine", info);
+
+            // if no content retun 204
+            if (result == null)
+                return new StatusCodeResult(204);
+
+            // return JSON serialized content
+            return new JsonResult(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var query = this.Request.Query;
+            if (query.Count > 0)
+            {
+                StringValues type;
+                if (query.TryGetValue("type", out type))
+                {
+                    StringValues address;
+                    if (query.TryGetValue("address", out address))
+                    {
+
+                    }
+                    return new ObjectResult(await this._recipeRepository.GetAllRecipesByPatient(int.Parse(patientId[0])));
+                }
+                return new NotFoundResult();
+            }
+            return new ObjectResult(await this._recipeRepository.GetAllRecipes());
+        }
+
+
         /// <summary>
         /// Add institution
         /// </summary>
         /// <param name="user">Institution</param>
         /// <returns>Action result</returns>
         [HttpPost]
-        //[Authorize(Policy = "HighLevel")]
+        [Authorize(Policy = "ministry_worker")]
         public async Task<IActionResult> Post([FromBody]Institution institution)
         {
             // adding institution
@@ -110,9 +163,10 @@ namespace InstitutionsAPI.Controllers
         /// <param name="institution">Updating info</param>
         /// <returns></returns>
         [HttpPut]
-        //[Authorize(Policy = "CanUpdateInstitution")]
+        [Authorize(Policy = "institution_admin")]
         public async Task<IActionResult> Put([FromBody]Institution institution)
         {
+            // check if the institution exists
             var dbInstitution = await this._dataManager.OperateAsync<int, Institution>("GetInstitution", institution.Id);
 
             if (dbInstitution is null)
@@ -133,10 +187,10 @@ namespace InstitutionsAPI.Controllers
         /// <param name="id">Intitution id</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        //[Authorize(Policy = "HighLevel")]
+        [Authorize(Policy = "institution_admin")]
         public async Task<IActionResult> Delete(int id)
         {
-            var deletedInstitutions = await this._dataManager.OperateAsync<int, Object>("RemoveInstitution", id);
+            var deletedInstitutions = await this._dataManager.OperateAsync<int, object>("RemoveInstitution", id);
 
             // if deleting impossible return 'Conflict' code
             if ((int)deletedInstitutions == -1)

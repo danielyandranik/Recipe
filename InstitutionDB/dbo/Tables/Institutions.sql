@@ -10,7 +10,5 @@
     [Description] NVARCHAR(MAX) NULL,
     [OpenTime] NVARCHAR(100) NOT NULL, 
     [CloseTime] NVARCHAR(100) NOT NULL, 
-    [Type] NVARCHAR(100) NOT NULL, 
-
-	CONSTRAINT AK_Address UNIQUE(Address)
+    [Type] NVARCHAR(100) NOT NULL
 )
