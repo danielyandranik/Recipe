@@ -39,7 +39,8 @@
             <Grid Grid.Row="0" Background="#FF39B9B9">
 
                 <TextBlock Text="Create recipe" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="28" HorizontalAlignment="Center" Margin="0,20"/>
-                <Button Content="Done" Width="100" Height="32" HorizontalAlignment="Right" Margin="0,0,20,0" Background="White" BorderBrush="White" Foreground="#FF39B9B9" FontSize="14" FontWeight="Bold" FontFamily="Comfortaa"/>
+                <Button Content="Done" Width="100" Height="32" HorizontalAlignment="Right" Margin="0,0,20,0" Background="White" BorderBrush="White" Foreground="#FF39B9B9" FontSize="14" FontWeight="Bold" FontFamily="Comfortaa" Command="{Binding CreateRecipeComand}" CommandParameter="{Binding Recipe}"/>
+           
             </Grid>
         </Border>
         
@@ -47,7 +48,7 @@
         <StackPanel Grid.Row="1" Margin="0,10,0,0">
 
                 <Label Content="Who the recipe is for?" FontSize="16" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
-                <TextBox Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
+                <TextBox Height="25" Text="{Binding Recipe.Username}"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
                 <Separator Margin="0,8,0,2" Background="#FF182634" />
 
         </StackPanel>
@@ -83,6 +84,17 @@
 
                 </Grid.RowDefinitions>
 
+                <DataGrid Grid.Row="0" HeadersVisibility="None" CanUserAddRows="True" ItemsSource="{Binding Recipe.RecipeItems}" RowHeight="40">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding MedicineName}" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding Count}" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding UseFrequencyUnit}" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding TimesPerUnit}" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding CountPerUse}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                
+                
                 <Button Grid.Row="1" Content="Add" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF39B9B9" BorderBrush="#FF39B9B9" FontFamily="Comfortaa" FontWeight="Bold" Margin="0,20,20,0" />
                 
             </Grid>

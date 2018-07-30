@@ -19,12 +19,12 @@ namespace Desktop.ViewModels
             set => this.Set("Medicine", ref this.medicine, value);
         }
 
-        private AddMedicineCommand addMedicineCommand;
+        public AddMedicineCommand AddMedicineCommand { get; }
 
         public AddMedicineViewModel()
         {
             this.medicine = new Medicine();
-            this.addMedicineCommand = new AddMedicineCommand(this.addMedicine, _ => true);
+            this.AddMedicineCommand = new AddMedicineCommand(this.addMedicine, _ => true);
         }
 
         private async Task<bool> addMedicine(Medicine medicine)
