@@ -9,12 +9,8 @@
         mc:Ignorable="d"
         Name="Main" Title="Recipe" MinWidth="1280" MinHeight="720" SizeToContent="WidthAndHeight" Background="White" WindowStartupLocation="CenterScreen"
         Loaded="Main_Loaded">
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding LoadComman}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-    <Window.Resources>
+    
+        <Window.Resources>
         <!--<Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Comfortaa" />
@@ -75,11 +71,7 @@
                             </MenuItem>
                         </MenuItem>
 
-                        <MenuItem Header="Register" Background="#FF39B9B9" Foreground="White" 
-                                  FontFamily="Comfortaa" FontSize="18"
-                                  Command="{Binding HyperLinkCommand}"/>
-
-                        <MenuItem Header="SignOut" Background="#FF39B9B9" Foreground="White" 
+                        <MenuItem Header="Sign Out" Background="#FF39B9B9" Foreground="White" 
                                   FontFamily="Comfortaa" FontSize="18"
                                   Command="{Binding SignOutCommand}"/>
 

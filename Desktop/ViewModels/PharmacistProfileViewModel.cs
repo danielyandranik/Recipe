@@ -10,10 +10,13 @@ using UserManagementConsumer.Models;
 
 namespace Desktop.ViewModels
 {
+    /// <summary>
+    /// View model for adding doctor profile page
+    /// </summary>
     public class PharmacistProfileViewModel : ViewModelBase
     {
         /// <summary>
-        /// Pharmasist info
+        /// Doctor info
         /// </summary>
         private PharmacistFullInfo pharmacist;
 
@@ -23,29 +26,29 @@ namespace Desktop.ViewModels
         private readonly IValidation validation;
 
         /// <summary>
-        /// Pharmasist profile service
+        /// Doctor profile service
         /// </summary>
-        private readonly IService<Response<string>> pharmasistProfileService;
+        private readonly IService<Response<string>> pharmacistProfileService;
 
         /// <summary>
-        ///  Gets or sets patient info
+        ///  Gets or sets doctor info
         /// </summary>
         public PharmacistFullInfo Pharmacist
         {
             get => this.pharmacist;
 
-            set => this.Set("PharmacistFullInfo", ref this.pharmacist, value);
+            set => this.Set("Pharmacist", ref this.pharmacist, value);
         }
 
         /// <summary>
-        /// Pharmasist profile command
+        /// Doctor profile command
         /// </summary>
         private readonly ProfileCommand<PharmacistFullInfo> pharmacistProfileCommand;
 
         /// <summary>
         /// Gets pharmasist profile command
         /// </summary>
-        public ICommand PharmacistProfileCommand => this.pharmacistProfileCommand;
+        public ICommand DoctorProfileCommand => this.pharmacistProfileCommand;
 
         /// <summary>
         /// Gets or sets Add patient profile page
@@ -53,16 +56,19 @@ namespace Desktop.ViewModels
         public AddPharmacistProfile PharmacistProfile { get; private set; }
 
         /// <summary>
-        /// Creates new instance of <see cref="AddPharmacistProfile"/>
+        /// Creates new instance of <see cref="PharmacistProfileViewModel"/>
         /// </summary>
         public PharmacistProfileViewModel()
         {
             // setting fields
             this.pharmacist = new PharmacistFullInfo();
             this.pharmacist.UserId = User.Default.Id;
-            this.validation = new PatientInputValidation();
-            this.pharmasistProfileService = new PharmacistProfileService();
-            this.pharmacistProfileCommand = new ProfileCommand<PharmacistFullInfo>(this.pharmasistProfileService.Execute, this.validation.Validate);
+            this.validation = new PharmacistInputValidation();
+            this.pharmacistProfileService = new PharmacistProfileService();
+            this.pharmacistProfileCommand = new ProfileCommand<PharmacistFullInfo>(
+                this.pharmacistProfileService.Execute,
+                this.validation.Validate,
+                "PHARMACIST");
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Desktop.ViewModels
         {
             get => this.director;
 
-            set => this.Set("HospitalDirector", ref this.director, value);
+            set => this.Set("Hospital", ref this.director, value);
         }
 
         /// <summary>
@@ -63,7 +63,10 @@ namespace Desktop.ViewModels
             this.director = new HospitalDirector();
             this.validation = new HospitalDirectorInputValidation();
             this.directorProfileService = new HospitalDirectorProfileService();
-            this.directorProfileCommand = new ProfileCommand<HospitalDirector>(this.directorProfileService.Execute, this.validation.Validate);
+            this.directorProfileCommand = new ProfileCommand<HospitalDirector>(
+                this.directorProfileService.Execute, 
+                this.validation.Validate,
+                "Hospital Director");
         }
     }
 }

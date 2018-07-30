@@ -8,14 +8,14 @@ namespace Desktop.Views.Pages
     /// </summary>
     public partial class AddPharmacistProfile : Page
     {
-        private PharmacistProfileViewModel _pharmacistVM;
+        private readonly PharmacistProfileViewModel pharmacistVM;
 
         public AddPharmacistProfile()
         {
             InitializeComponent();
 
-            this._pharmacistVM = new PharmacistProfileViewModel();
-            this.DataContext = this._pharmacistVM;
+            this.pharmacistVM = new PharmacistProfileViewModel();
+            this.DataContext = this.pharmacistVM;
         }
     }
 }

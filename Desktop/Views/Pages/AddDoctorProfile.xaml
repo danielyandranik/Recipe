@@ -57,7 +57,7 @@
             <Label Content="Starting year of work" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
             <TextBox Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"
                      Text="{Binding Doctor.WorkStartYear, UpdateSourceTrigger=PropertyChanged}"/>
-            
+
             <Label Content="Graduation year" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
             <TextBox Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"
                       Text="{Binding Doctor.GraduatedYear, UpdateSourceTrigger=PropertyChanged}"/>
@@ -66,8 +66,6 @@
                     Command="{Binding DoctorProfileCommand}" CommandParameter="{Binding Doctor}"/>
 
         </StackPanel>
-
-
 
     </Grid>
 </Page>
