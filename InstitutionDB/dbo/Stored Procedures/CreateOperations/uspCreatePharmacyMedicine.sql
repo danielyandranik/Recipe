@@ -6,5 +6,9 @@
 	@price money
 AS
 	begin
-		insert into PharmacyMedicines values(@pharmacyId, @medicineId, @quantity, @price)
+		if not exists(select * from PharmacyMedicines where PharmacyId = @pharmacyId and MedicineId = @medicineId)
+			begin
+				insert into PharmacyMedicines 
+				values(@pharmacyId, @medicineId, @quantity, @price)
+			end
 	end

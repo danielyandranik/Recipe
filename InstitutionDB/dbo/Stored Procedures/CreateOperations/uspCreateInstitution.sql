@@ -8,32 +8,15 @@
     @openTime nvarchar(100), 
     @closeTime nvarchar(100) ,
 	@type nvarchar(100),
-	@country nvarchar(100),
-	@state nvarchar(100),
-	@city nvarchar(100),
-	@postalCode nvarchar(100),
-	@addressLine nvarchar(100)
+	@address nvarchar(MAX)
 AS
 	begin
-		declare @addressId int = -1
-
-		select @addressId = Id from [Addresses] where   
-					Country = @country 
-				and [State] = @state
-				and City = @city
-				and PostalCode = @postalCode
-				and AddressLine = @addressLine
-
-			if @addressId = -1
-				begin
-					insert into [Addresses] values (@country, @state, @city, @postalCode, @addressLine)
-					set @addressId =  SCOPE_IDENTITY()
-				end
-
-
-		insert into Institutions 
-			values(@name, @license, @owner, @addressId,
-					@phone, @email, @description, @openTime, @closeTime, @type)
+		if not exists(select * from Institutions where Address = @address)
+			begin 
+				insert into Institutions 
+				values(@name, @license, @owner, @address,
+						@phone, @email, @description, @openTime, @closeTime, @type)
+			end
 	end
 
 	
