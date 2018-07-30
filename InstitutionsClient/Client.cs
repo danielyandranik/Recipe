@@ -180,12 +180,12 @@ namespace InstitutionClient
 
         public async Task<ResponseMessage<Institution>> GetInstitution(int id)
         {
-            return await this.GetAsync<Institution>($"api/institutions/{id}");
+            return await this.GetAsync<Institution>($"api/institutions/?id={id}");
         }
 
         public async Task<ResponseMessage<PharmMedicine>> GetPharmacyMedicine(int id)
         {
-            return await this.GetAsync<PharmMedicine>($"api/pharmmeds/{id}");
+            return await this.GetAsync<PharmMedicine>($"api/pharmmeds/?id={id}");
         }
 
         public async Task<bool> CreateInstitution(Institution institution)

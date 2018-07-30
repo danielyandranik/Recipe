@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using InstitutionsAPI.Models;
 using DatabaseAccess.Repository;
+using Microsoft.Extensions.Primitives;
 
 namespace InstitutionsAPI.Controllers
 {
-    [Authorize(Policy = "has_profile")]
     [Produces("application/json")]
     [Route("api/pharmmeds")]
     public class PharmacyMedicinesController : Controller
@@ -29,29 +29,35 @@ namespace InstitutionsAPI.Controllers
         /// </summary>
         /// <param name="id">Medicine id</param>
         /// <returns></returns> 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
-        {
-            var result = await this._dataManager.OperateAsync<int, PharmMedicine>("GetPharmacyMedicine", id);
-
-            // if no content retun 204
-            if (result == null)
-                return new StatusCodeResult(204);
-
-            // return JSON serialized content
-            return new JsonResult(result);
-        }
-
-        /// <summary>
-        /// Get medicines by pharmacy id
-        /// </summary>
-        /// <param name="id">Pharmacy id</param>
-        /// <returns></returns>
         [HttpGet]
-        [ActionName("medicine")]
-        public async Task<IActionResult> GetMedicine(int id)
+        [Authorize(Policy = "has_profile")]
+        public async Task<IActionResult> Get()
         {
-            var result = await this._dataManager.OperateAsync<int, PharmMedicine>("GetPharmacyMedicines", id);
+
+            // the result
+            var result = default(object);
+
+            // request query
+            var query = this.Request.Query;
+
+            // get parameter
+            StringValues param;
+
+            // integer for parsing
+            int id;
+
+            // getting the result by given parameter
+            if (query.TryGetValue("id", out param))
+            {
+                int.TryParse(param, out id);
+                result = await this._dataManager.OperateAsync<int, Institution>("GetInstitution", id);
+
+            }
+            else if (query.TryGetValue("medicineId", out param))
+            {
+                int.TryParse(param, out id);
+                result = await this._dataManager.OperateAsync<int, PharmMedicine>("GetPharmacyMedicine", id);
+            }
 
             // if no content retun 204
             if (result == null)
