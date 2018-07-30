@@ -63,7 +63,6 @@ namespace Desktop.ViewModels
 
         public MedicinesViewModel()
         {
-            this.LoadMedicines();
             this._isVisible = User.Default.CurrentProfile == "ministry_worker" ? true : false;
             this._deleteMedicineCommand = new DeleteMedicineCommand(this._medicines, this.deleteMedicine, _ => true);
             this._editMedicineCommand = new EditMedicineCommand(this._medicines, this.editMedicine, _ => true);
@@ -78,18 +77,5 @@ namespace Desktop.ViewModels
         {
             return await ((App)App.Current).MedicineClient.UpdateMedicineAsync(medicine);
         }
-
-        private void LoadMedicines()
-        {
-            var response = ((App)App.Current).MedicineClient.GetAllMedicinesAsync("api/medicines").Result;
-            if(!response.IsSuccessStatusCode)
-            {
-                Debug.Write(response.StatusCode);
-                return;
-            }
-
-            this.Medicines = new ObservableCollection<Medicine>(response.Result);
-        }
-
     }
 }

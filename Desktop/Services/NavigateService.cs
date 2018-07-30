@@ -11,7 +11,7 @@ namespace Desktop.Services
             this._frame = frame;
         }
 
-        public void Navigate<TPage>(TPage page)  where TPage : Page, new()
+        public void Navigate<TPage>(ref TPage page)  where TPage : Page, new()
         {
             if (page == null)
                 page = new TPage();

@@ -49,39 +49,41 @@ namespace Desktop.Views.Windows
            // this._medicines = new Medicines();
         }
 
-        private void Medicines_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private async void Medicines_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this._navigationService.Navigate(this._medicines);
+            this._navigationService.Navigate(ref this._medicines);
+            var loadMedicinesService = new LoadMedicinesService(this._medicines.MedicinesViewModel);
+            await loadMedicinesService.Load();
         }
 
         private void Hospitals_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this._navigationService.Navigate(this._hospitals);
+            this._navigationService.Navigate(ref this._hospitals);
         }
 
         private void Pharmacies_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this._navigationService.Navigate(this._pharmacies);
+            this._navigationService.Navigate(ref this._pharmacies);
         }
 
         private void AddPatientProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            this._navigationService.Navigate(this._addPatientProfile);
+            this._navigationService.Navigate(ref this._addPatientProfile);
         }
 
         private void AddDoctorProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            this._navigationService.Navigate(this._addDoctorProfile);
+            this._navigationService.Navigate(ref this._addDoctorProfile);
         }
 
         private void AddPharmacistProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            this._navigationService.Navigate(this._addPharmacistProfile);
+            this._navigationService.Navigate(ref this._addPharmacistProfile);
         }
 
         private void AddHospitalAdministartortProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            this._navigationService.Navigate(this._addHospitalAdministartorProfile);
+            this._navigationService.Navigate(ref this._addHospitalAdministartorProfile);
         }
 
         private void Toggle_menu(object sender, MouseButtonEventArgs e)
@@ -104,27 +106,12 @@ namespace Desktop.Views.Windows
 
         private void AddPharmacyAdminProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            this._navigationService.Navigate(this._addPharmacyAdminProfile);
+            this._navigationService.Navigate(ref this._addPharmacyAdminProfile);
         }
 
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
             this.menu_opener.LayoutTransform = new RotateTransform(180);
-        }
-
-        private void MedicinesButtonClick(object sender, RoutedEventArgs e)
-        {
-            this._navigationService.Navigate(this._medicines);
-        }
-
-        private void HospitalsButtonClick(object sender, RoutedEventArgs e)
-        {
-            this._navigationService.Navigate(this._hospitals);
-        }
-
-        private void PharmaciesButtonClick(object sender, RoutedEventArgs e)
-        {
-            this._navigationService.Navigate(this._pharmacies);
         }
 
         private async void Main_Loaded(object sender, RoutedEventArgs e)

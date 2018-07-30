@@ -22,10 +22,12 @@ namespace Desktop.Views.Pages
     /// </summary>
     public partial class Medicines : Page
     {
+        public MedicinesViewModel MedicinesViewModel { get; private set; }
+
         public Medicines()
         {
-            var medicinesViewModel = new MedicinesViewModel();
-            this.DataContext = medicinesViewModel;
+            this.MedicinesViewModel = new MedicinesViewModel();
+            this.DataContext = this.MedicinesViewModel;
             InitializeComponent();
         }
 
