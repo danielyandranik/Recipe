@@ -82,6 +82,11 @@ namespace Desktop
         public InstitutionClient.Client InstitutionClient => this._institutionClient;
 
         /// <summary>
+        /// Gets the Recipe Api client.
+        /// </summary>
+        public RecipeClient.RecipeClient RecipeClient => this._recipeClient;
+
+        /// <summary>
         /// Creates new instance of <see cref="App"/>
         /// </summary>
         public App()

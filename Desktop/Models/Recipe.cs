@@ -21,10 +21,10 @@ namespace Desktop.Models
         /// </summary>
         public string DoctorName { get; set; }
 
-        /// <summary>
-        /// Checks whether the recipe is approved by chief.
-        /// </summary>
-        public bool IsApproved { get; set; }
+        ///// <summary>
+        ///// Checks whether the recipe is approved by chief.
+        ///// </summary>
+        //public bool IsApproved { get; set; }
 
         /// <summary>
         /// An identifier of the chief doctor.
