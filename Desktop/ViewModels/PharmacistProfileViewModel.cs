@@ -34,7 +34,7 @@ namespace Desktop.ViewModels
         {
             get => this.pharmacist;
 
-            set => this.Set("PharmacistFullInfo", ref this.pharmacist, value);
+            set => this.Set("Pharmacist", ref this.pharmacist, value);
         }
 
         /// <summary>

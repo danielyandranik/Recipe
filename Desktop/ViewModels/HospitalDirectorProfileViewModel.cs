@@ -35,7 +35,7 @@ namespace Desktop.ViewModels
         {
             get => this.director;
 
-            set => this.Set("HospitalDirector", ref this.director, value);
+            set => this.Set("Hospital", ref this.director, value);
         }
 
         /// <summary>
