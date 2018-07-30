@@ -2,6 +2,5 @@
 	@id int
 AS
 	begin
-		select*
-		from PharmacyMedicines where Id = @id
+		select* from PharmacyMedicines where Id = @id
 	end

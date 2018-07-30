@@ -66,7 +66,6 @@
     <Folder Include="dbo\Stored Procedures\ReadOperations" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\Addresses.sql" />
     <Build Include="dbo\Tables\Institutions.sql" />
     <Build Include="dbo\Stored Procedures\CreateOperations\uspCreateInstitution.sql" />
     <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeleteInstitution.sql" />
@@ -81,6 +80,8 @@
     <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateMedicineQuantity.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmaciesByMedicineId.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmacyMedicineById.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetInstitutionsByName.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetInstitutionsByAddress.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="dbo\InstitutionDB.refactorlog" />
