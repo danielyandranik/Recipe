@@ -23,8 +23,6 @@ namespace Desktop.ViewModels
 
         private readonly MainWindow _mainWindow;
 
-        private readonly RelayCommand _hyperLinkCommand;
-
         private readonly SignOutCommand _signOutCommand;
 
         private readonly LoadService _loadService;
@@ -57,8 +55,6 @@ namespace Desktop.ViewModels
             set => this.Set("Profiles", ref this._profiles, value);
         }
 
-        public RelayCommand HyperLinkCommand => this._hyperLinkCommand;
-
         public SignOutCommand SignOutCommand => this._signOutCommand;
 
         public LoadService LoadService => this._loadService;
@@ -67,7 +63,6 @@ namespace Desktop.ViewModels
         {           
             this._signOutCommand = new SignOutCommand();
             this._hyperLinkService = new HyperLinkService();
-            this._hyperLinkCommand = new RelayCommand(this._hyperLinkService.Navigate<MainWindow,RegisterWindow>,() => true);
             this._mainWindow = mainWindow;
             this._loadService = new LoadService(this._mainWindow.profiles, this);            
         }

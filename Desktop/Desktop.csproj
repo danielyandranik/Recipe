@@ -231,6 +231,7 @@
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\ConfirmCommand.cs" />
+    <Compile Include="Commands\CreateRecipeCommand.cs" />
     <Compile Include="Commands\DeleteHospitalCommand.cs" />
     <Compile Include="Commands\DeleteMedicineCommand.cs" />
     <Compile Include="Commands\DeletePharmacyCommand.cs" />
@@ -286,6 +287,7 @@
     <Compile Include="Validations\RegisterInfputValidation.cs" />
     <Compile Include="ViewModels\AddMedicineViewModel.cs" />
     <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\CreateRecipeViewModel.cs" />
     <Compile Include="ViewModels\DoctorProfileViewModel.cs" />
     <Compile Include="ViewModels\HospitalDirectorProfileViewModel.cs" />
     <Compile Include="ViewModels\HospitalsViewModel.cs" />

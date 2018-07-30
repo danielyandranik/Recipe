@@ -63,7 +63,10 @@ namespace Desktop.ViewModels
             this.director = new HospitalDirector();
             this.validation = new HospitalDirectorInputValidation();
             this.directorProfileService = new HospitalDirectorProfileService();
-            this.directorProfileCommand = new ProfileCommand<HospitalDirector>(this.directorProfileService.Execute, this.validation.Validate);
+            this.directorProfileCommand = new ProfileCommand<HospitalDirector>(
+                this.directorProfileService.Execute, 
+                this.validation.Validate,
+                "Hospital Director");
         }
     }
 }

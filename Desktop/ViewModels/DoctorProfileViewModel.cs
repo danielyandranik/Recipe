@@ -65,7 +65,7 @@ namespace Desktop.ViewModels
             this.doctor.UserId = User.Default.Id;
             this.validation = new DoctorInputValidation();
             this.doctorProfileService = new DoctorProfileService();
-            this.doctorProfileCommand = new ProfileCommand<Doctor>(this.doctorProfileService.Execute, this.validation.Validate);
+            this.doctorProfileCommand = new ProfileCommand<Doctor>(this.doctorProfileService.Execute, this.validation.Validate,"Doctor");
         }
     }
 }

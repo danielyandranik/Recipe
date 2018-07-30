@@ -62,7 +62,10 @@ namespace Desktop.ViewModels
             this.pharmacist.UserId = User.Default.Id;
             this.validation = new PatientInputValidation();
             this.pharmasistProfileService = new PharmacistProfileService();
-            this.pharmacistProfileCommand = new ProfileCommand<PharmacistFullInfo>(this.pharmasistProfileService.Execute, this.validation.Validate);
+            this.pharmacistProfileCommand = new ProfileCommand<PharmacistFullInfo>(
+                this.pharmasistProfileService.Execute, 
+                this.validation.Validate,
+                "Pharmacist");
         }
     }
 }
