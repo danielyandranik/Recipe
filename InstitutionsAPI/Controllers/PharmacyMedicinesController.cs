@@ -67,7 +67,7 @@ namespace InstitutionsAPI.Controllers
         /// <param name="id">Pharm medicine id</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        //[Authorize(Policy = "PharmacyAdminProfile")]
+        [Authorize(Policy = "pharmacy_admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var deletedMeds = await this._dataManager.OperateAsync<int, object>("RemovePharmacyMedicine", id);
@@ -80,7 +80,13 @@ namespace InstitutionsAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Add pharmacy medicine
+        /// </summary>
+        /// <param name="pharmMed"></param>
+        /// <returns></returns>
         [HttpPost]
+        [Authorize(Policy = "pharmacy_admin")]
         public async Task<IActionResult> Post([FromBody]PharmMedicine pharmMed)
         {
             // adding medicine
@@ -100,8 +106,8 @@ namespace InstitutionsAPI.Controllers
         /// <param name="medicine">Updated info</param>
         /// <returns></returns>
         [HttpPut]
-        //[Authorize(Policy = "PharmacistProfile")]
         [Route("quantity")]
+        [Authorize(Policy = "pharmacist")]
         public async Task<IActionResult> Put([FromBody]MedicineQuantityInfo medicine)
         {
             var result = await this._dataManager.OperateAsync<int, object>("GetPharmacyMedicine", medicine.Id);
@@ -124,8 +130,8 @@ namespace InstitutionsAPI.Controllers
         /// <param name="medicine">Updated info</param>
         /// <returns></returns>
         [HttpPut]
-        //[Authorize(Policy = "PharmacyAdminProfile")]
         [Route("price")]
+        [Authorize(Policy = "pharmacist")]
         public async Task<IActionResult> Put([FromBody]MedicinePriceInfo medicine)
         {
             var result = await this._dataManager.OperateAsync<int, object>("GetPharmacyMedicine", medicine.Id);

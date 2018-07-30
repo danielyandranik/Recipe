@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using InstitutionsAPI.Models;
@@ -8,7 +7,6 @@ using Microsoft.Extensions.Primitives;
 
 namespace InstitutionsAPI.Controllers
 {
-    [Authorize(Policy = "has_profile")]
     [Produces("application/json")]
     [Route("api/institutions")]
     public class InstitutionsController : Controller
@@ -27,114 +25,67 @@ namespace InstitutionsAPI.Controllers
         }
 
         /// <summary>
-        /// Gets enumerable of certain type of institutions
+        ///  Get istitutions of some category
         /// </summary>
-        /// <param name="type">Institution type</param>
         /// <returns></returns>
-        [HttpGet("{type}")]
-        public async Task<IActionResult> Get(string type)
-        {
-            // getting result
-            var result = await this._dataManager.OperateAsync<string, Institution>("GetInstitutions", type);
-
-            // if no content retun 204
-            if (result == null)
-                return new StatusCodeResult(204);
-
-            // return JSON serialized content
-            return new JsonResult(result);
-        }
-
-        /// <summary>
-        /// Get institution by id
-        /// </summary>
-        /// <param name="id">Institution id</param>
-        /// <returns></returns>
-        [HttpGet("{id:int}")]
-        public async Task<IActionResult> Get(int id)
-        {
-            // getting result
-            var result = await this._dataManager.OperateAsync<int, Institution>("GetInstitution", id);
-
-            // if no content retun 204
-            if (result == null)
-                return new StatusCodeResult(204);
-
-            // return JSON serialized content
-            return new JsonResult(result);
-        }
-
-        /// <summary>
-        /// Get pharmacies by medicine id
-        /// </summary>
-        /// <param name="id">Medicine id</param>
-        /// <returns></returns>
-        [HttpGet]
-        [ActionName("pharmacy")]
-        public async Task<IActionResult> GetPharmasy(int id)
-        {
-            // getting result
-            var result = await this._dataManager.OperateAsync<int, Institution>("GetPharmaciesByMedicine", id);
-
-            // if no content retun 204
-            if (result == null)
-                return new StatusCodeResult(204);
-
-            // return JSON serialized content
-            return new JsonResult(result);
-        }
-
         [HttpGet]
         [Authorize(Policy = "has_profile")]
-        public async Task<IActionResult> GetPharmasy([FromBody] NameInfo info)
-        {
-            // getting result
-            var result = await this._dataManager.OperateAsync<NameInfo, Institution>("GetPharmaciesByMedicine", info);
-
-            // if no content retun 204
-            if (result == null)
-                return new StatusCodeResult(204);
-
-            // return JSON serialized content
-            return new JsonResult(result);
-        }
-
-        [HttpGet]
-        [Authorize(Policy = "has_profile")]
-        public async Task<IActionResult> GetPharmasy([FromBody] AddressInfo info)
-        {
-            // getting result
-            var result = await this._dataManager.OperateAsync<AddressInfo, Institution>("GetPharmaciesByMedicine", info);
-
-            // if no content retun 204
-            if (result == null)
-                return new StatusCodeResult(204);
-
-            // return JSON serialized content
-            return new JsonResult(result);
-        }
-
-        [HttpGet]
         public async Task<IActionResult> Get()
         {
+            // the result
+            var result = default(object);
+
+            // get parameter
+            StringValues param;
+
+            // integer for parsing
+            int id;
+
+            // request query
             var query = this.Request.Query;
-            if (query.Count > 0)
+
+            // getting the result by given parameter
+            if (query.TryGetValue("id", out param))
+            {
+                int.TryParse(param, out id);
+                result = await this._dataManager.OperateAsync<int, Institution>("GetInstitution", id);
+
+            }
+            else if (query.TryGetValue("medicineId", out param))
+            {
+                int.TryParse(param, out id);
+                result = await this._dataManager.OperateAsync<int, Institution>("GetPharmaciesByMedicine", id);
+            }
+            else if (query.Count > 0)
             {
                 StringValues type;
                 if (query.TryGetValue("type", out type))
                 {
-                    StringValues address;
-                    if (query.TryGetValue("address", out address))
+                    if (query.TryGetValue("address", out param))
                     {
-
+                        var info = new AddressInfo { Type = type, Address = param };
+                        result = await this._dataManager.OperateAsync<AddressInfo, Institution>("GetInstitutionsByAddress", info);
                     }
-                    return new ObjectResult(await this._recipeRepository.GetAllRecipesByPatient(int.Parse(patientId[0])));
+                    else if (query.TryGetValue("name", out param))
+                    {
+                        var info = new NameInfo { Type = type, Name = param };
+                        result = await this._dataManager.OperateAsync<NameInfo, Institution>("GetInstitutionsByName", info);
+                    }
+                    else
+                    {
+                        result = await this._dataManager.OperateAsync<string, Institution>("GetInstitutions", type);
+                    }
                 }
-                return new NotFoundResult();
-            }
-            return new ObjectResult(await this._recipeRepository.GetAllRecipes());
-        }
 
+            }
+
+            // if no content retun 204
+            if (result == null)
+                return new StatusCodeResult(204);
+
+            // return JSON serialized content
+            return new JsonResult(result);
+        }
 
         /// <summary>
         /// Add institution
