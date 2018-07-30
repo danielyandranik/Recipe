@@ -10,4 +10,6 @@ AS
 		delete from HospitalDirectors where HospitalDirectors.ProfileId = @profileId
 
 		delete from UserProfile where UserProfile.ProfileId = @profileId
+
+		exec uspConfigureUserAfterProfileDeletion @userId
 	end

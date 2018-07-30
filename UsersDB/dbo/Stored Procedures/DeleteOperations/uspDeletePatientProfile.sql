@@ -9,5 +9,6 @@ begin
 	delete from Patients where Patients.ProfileId = @profileId
 
 	delete from UserProfile where UserProfile.ProfileId = @profileId
-
+	
+	exec uspConfigureUserAfterProfileDeletion @userId
 end
