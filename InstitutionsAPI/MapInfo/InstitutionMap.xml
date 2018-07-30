@@ -18,6 +18,10 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
         <spParameterName>owner</spParameterName>
       </parameter>
       <parameter>
+        <parameterName>Address</parameterName>
+        <spParameterName>address</spParameterName>
+      </parameter>
+      <parameter>
         <parameterName>Phone</parameterName>
         <spParameterName>phone</spParameterName>
       </parameter>
@@ -40,26 +44,6 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
       <parameter>
         <parameterName>Type</parameterName>
         <spParameterName>type</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>Country</parameterName>
-        <spParameterName>country</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>State</parameterName>
-        <spParameterName>state</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>City</parameterName>
-        <spParameterName>city</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>PostalCode</parameterName>
-        <spParameterName>postalCode</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>AddressLine</parameterName>
-        <spParameterName>addressLine</spParameterName>
       </parameter>
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
@@ -119,6 +103,26 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
       </parameter>
     </parameters>
     <returnDataType>Entity</returnDataType>
+  </operation>
+  <operation name="GetInstitutionsByAddress">
+    <spName>uspGetInstitutionsByAddress</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>address</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
+  <operation name="GetInstitutionsByName">
+    <spName>uspGetInstitutionsByName</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>name</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Enumerable</returnDataType>
   </operation>
   <operation name="GetInstitutions">
     <spName>uspGetInstitutionsByType</spName>
@@ -208,6 +212,10 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
         <spParameterName>owner</spParameterName>
       </parameter>
       <parameter>
+        <parameterName>Address</parameterName>
+        <spParameterName>address</spParameterName>
+      </parameter>
+      <parameter>
         <parameterName>Phone</parameterName>
         <spParameterName>phone</spParameterName>
       </parameter>
@@ -230,26 +238,6 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
       <parameter>
         <parameterName>Type</parameterName>
         <spParameterName>type</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>Country</parameterName>
-        <spParameterName>country</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>State</parameterName>
-        <spParameterName>state</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>City</parameterName>
-        <spParameterName>city</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>PostalCode</parameterName>
-        <spParameterName>postalCode</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>AddressLine</parameterName>
-        <spParameterName>addressLine</spParameterName>
       </parameter>
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
