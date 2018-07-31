@@ -16,7 +16,7 @@ namespace Desktop.ViewModels
             set => this.Set("Recipe", ref this.recipe, value);
         }
 
-        public CreateRecipeCommand CreateRecipeCommand { get; }
+        public CreateRecipeCommand CreateRecipeCommand { get; private set; }
 
         public CreateRecipeViewModel()
         {

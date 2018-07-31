@@ -75,7 +75,7 @@ namespace MedicineApiClient
 		{
             var json = JsonConvert.SerializeObject(medicine);
 
-            var httpResponse = await this.client.PutAsync($"api/medicines{medicine.Id}", new StringContent(json, Encoding.UTF8, "application/json"));
+            var httpResponse = await this.client.PutAsync($"api/medicines/{medicine.Id}", new StringContent(json, Encoding.UTF8, "application/json"));
 
             //var content = await httpResponse.Content.ReadAsStringAsync();
 

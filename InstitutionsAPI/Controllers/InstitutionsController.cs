@@ -114,7 +114,7 @@ namespace InstitutionsAPI.Controllers
         /// <param name="institution">Updating info</param>
         /// <returns></returns>
         [HttpPut]
-        [Authorize(Policy = "institution_admin")]
+        [Authorize(Policy = "has_privilege")]
         public async Task<IActionResult> Put([FromBody]Institution institution)
         {
             // check if the institution exists
@@ -138,7 +138,7 @@ namespace InstitutionsAPI.Controllers
         /// <param name="id">Intitution id</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        [Authorize(Policy = "institution_admin")]
+        [Authorize(Policy = "has_privilege")]
         public async Task<IActionResult> Delete(int id)
         {
             var deletedInstitutions = await this._dataManager.OperateAsync<int, object>("RemoveInstitution", id);

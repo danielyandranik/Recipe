@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Desktop.ViewModels
 {
@@ -23,7 +24,7 @@ namespace Desktop.ViewModels
 
         private DeleteMedicineCommand deleteMedicineCommand;
 
-        private EditMedicineCommand editMedicineCommand;
+        private  EditMedicineCommand editMedicineCommand;
 
         public ObservableCollection<Medicine> Medicines
         {
@@ -61,10 +62,19 @@ namespace Desktop.ViewModels
             }
         }
 
+        public DeleteMedicineCommand DeleteMedicineCommand
+        {
+            get => this.deleteMedicineCommand;
+        }
+
+        public EditMedicineCommand EditMedicineCommand
+        {
+            get => this.editMedicineCommand;
+        }
 
         public MedicinesViewModel()
         {
-            this.Visibility = Visibility.Collapsed;
+            this.Visibility = User.Default.CurrentProfile == "ministry_worker"? Visibility.Visible : Visibility.Collapsed;
             this.deleteMedicineCommand = new DeleteMedicineCommand(this.medicines, this.DeleteMedicine, _ => true);
             this.editMedicineCommand = new EditMedicineCommand(this.medicines, this.EditMedicine, _ => true);
         }

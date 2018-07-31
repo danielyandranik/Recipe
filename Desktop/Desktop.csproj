@@ -227,6 +227,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\AddInstitutionCommand.cs" />
     <Compile Include="Commands\AddMedicineCommand.cs" />
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
@@ -239,7 +240,10 @@
     <Compile Include="Commands\EditMedicineCommand.cs" />
     <Compile Include="Commands\EditPharmacyCommand.cs" />
     <Compile Include="Commands\LoadMedicinesCommand.cs" />
+    <Compile Include="Services\AddInstitutionService.cs" />
+    <Compile Include="Services\LoadHospitalsService.cs" />
     <Compile Include="Services\LoadMedicinesService.cs" />
+    <Compile Include="Services\LoadPharmaciesService.cs" />
     <Compile Include="Services\LoadService.cs" />
     <Compile Include="Commands\ProfileCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
@@ -284,9 +288,11 @@
     <Compile Include="Validations\ConfirmationCodeInputValidation.cs" />
     <Compile Include="Validations\DoctorInputValidation.cs" />
     <Compile Include="Validations\HospitalDirectorInputValidation.cs" />
+    <Compile Include="Validations\InstitutionInputValidation.cs" />
     <Compile Include="Validations\PatientInputValidation.cs" />
     <Compile Include="Validations\PharmacistInputValidation.cs" />
     <Compile Include="Validations\RegisterInfputValidation.cs" />
+    <Compile Include="ViewModels\AddInstitutionViewModel.cs" />
     <Compile Include="ViewModels\AddMedicineViewModel.cs" />
     <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
     <Compile Include="ViewModels\CreateRecipeViewModel.cs" />

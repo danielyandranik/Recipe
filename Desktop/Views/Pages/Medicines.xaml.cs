@@ -33,8 +33,16 @@ namespace Desktop.Views.Pages
 
         private void EditMedicineClick(object sender, RoutedEventArgs e)
         {
-            var medicine = (Medicine)(sender as Button).Tag;
-            ((MedicinesViewModel)this.DataContext).EditableMedicine = medicine;
+            var id = (string)(sender as Button).Tag;
+            this.MedicinesViewModel.EditableMedicine = new Medicine() { Id = id, Name="miban" };
+            this.EditPopup.IsOpen = true;
+            Application.Current.MainWindow.IsEnabled = false;
+        }
+
+        private void CloseEditMedicinePopup_Click(object sender, RoutedEventArgs e)
+        {
+            this.EditPopup.IsOpen = false;
+            Application.Current.MainWindow.IsEnabled = true;
         }
     }
 }

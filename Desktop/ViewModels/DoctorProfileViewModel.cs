@@ -46,17 +46,17 @@ namespace Desktop.ViewModels
         private readonly ProfileCommand<Doctor> doctorProfileCommand;
 
         /// <summary>
-        /// Gets pharmasist profile command
+        /// Gets doctor profile command
         /// </summary>
         public ICommand DoctorProfileCommand => this.doctorProfileCommand;
 
         /// <summary>
-        /// Gets or sets Add patient profile page
+        /// Gets or sets Add doctor profile page
         /// </summary>
         public AddDoctorProfile DoctorProfile { get; private set; }
 
         /// <summary>
-        /// Creates new instance of <see cref="AddDoctorProfile"/>
+        /// Creates new instance of <see cref="DoctorProfileViewModel"/>
         /// </summary>
         public DoctorProfileViewModel()
         {

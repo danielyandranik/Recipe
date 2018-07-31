@@ -10,7 +10,7 @@ namespace Desktop.Validations
             if (parameter == null)
                 return false;
 
-            var doctor = (Doctor)parameter;
+            var doctor = parameter as Doctor;
 
             int temp;
             return !(string.IsNullOrEmpty(doctor.License) ||

@@ -5,7 +5,7 @@
 		/// <summary>
 		/// Medicine ID.
 		/// </summary>
-		public string Id { get; set; } = null;
+		public string Id { get; set; }
 
 		/// <summary>
 		/// Name of the Medicine.

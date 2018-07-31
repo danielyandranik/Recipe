@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Desktop.Commands
 {
-    internal class EditMedicineCommand : AsyncCommand<Medicine, bool>
+    public class EditMedicineCommand : AsyncCommand<Medicine, bool>
     {
         private ObservableCollection<Medicine> _medicines;
 
