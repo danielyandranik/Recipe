@@ -9,30 +9,31 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Desktop.ViewModels
 {
     public class MedicinesViewModel : ViewModelBase
     {
-        private ObservableCollection<Medicine> _medicines;
+        private ObservableCollection<Medicine> medicines;
 
-        private Medicine _editableMedicine;
+        private Medicine editableMedicine;
 
-        private bool _isVisible;
+        private Visibility visibility;
 
-        private DeleteMedicineCommand _deleteMedicineCommand;
+        private DeleteMedicineCommand deleteMedicineCommand;
 
-        private EditMedicineCommand _editMedicineCommand;
+        private EditMedicineCommand editMedicineCommand;
 
         public ObservableCollection<Medicine> Medicines
         {
             get
             {
-                return this._medicines;
+                return this.medicines;
             }
             set
             {
-                this.Set("Medicines", ref this._medicines, value);
+                this.Set("Medicines", ref this.medicines, value);
             }
         }
 
@@ -40,40 +41,40 @@ namespace Desktop.ViewModels
         {
             get
             {
-                return this._editableMedicine;
+                return this.editableMedicine;
             }
             set
             {
-                this.Set("EditableMedicine", ref this._editableMedicine, value);
+                this.Set("EditableMedicine", ref this.editableMedicine, value);
             }
         }
 
-        public bool IsVisible
+        public Visibility Visibility 
         {
             get
             {
-                return this._isVisible;
+                return this.visibility;
             }
             set
             {
-                this.Set("IsVisible", ref this._isVisible, value);
+                this.Set("Visibility", ref this.visibility, value);
             }
         }
 
 
         public MedicinesViewModel()
         {
-            this._isVisible = User.Default.CurrentProfile == "ministry_worker" ? true : false;
-            this._deleteMedicineCommand = new DeleteMedicineCommand(this._medicines, this.deleteMedicine, _ => true);
-            this._editMedicineCommand = new EditMedicineCommand(this._medicines, this.editMedicine, _ => true);
+            this.Visibility = Visibility.Collapsed;
+            this.deleteMedicineCommand = new DeleteMedicineCommand(this.medicines, this.DeleteMedicine, _ => true);
+            this.editMedicineCommand = new EditMedicineCommand(this.medicines, this.EditMedicine, _ => true);
         }
 
-        private async Task<bool> deleteMedicine(string uri)
+        private async Task<bool> DeleteMedicine(string uri)
         {
             return await ((App)App.Current).MedicineClient.DeleteMedicineAsync(uri);
         }
 
-        private async Task<bool> editMedicine(Medicine medicine)
+        private async Task<bool> EditMedicine(Medicine medicine)
         {
             return await ((App)App.Current).MedicineClient.UpdateMedicineAsync(medicine);
         }
