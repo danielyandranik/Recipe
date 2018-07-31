@@ -75,6 +75,8 @@
                 <Label Content="Filter by:" Foreground="#DDFFFFFF" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" />
                 <Label Content="Medicine" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
                 <TextBox Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" />
+                <Label Content="Name" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
+                <TextBox Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" />
                 <Label Content="Country" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
                 <TextBox Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" />
 
@@ -93,12 +95,8 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
 
             </Grid.ColumnDefinitions>
 
@@ -107,21 +105,19 @@
             <Label Grid.Column="2" Content="Owner" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
             <Label Grid.Column="3" Content="Phone" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
             <Label Grid.Column="4" Content="Email" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="5" Content="Open Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="6" Content="Close Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="7" Content="Description" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="8" Content="Country" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="9" Content="State" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="10" Content="City" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="11" Content="Postal Code" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="12" Content="Address Line" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+            <Label Grid.Column="5" Content="Address" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+            <Label Grid.Column="6" Content="Open Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+            <Label Grid.Column="7" Content="Close Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+            <Label Grid.Column="8" Content="Description" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
 
         </Grid>
 
         <ListView Grid.Row="3" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=Pharmacies}"  MinWidth="900" Width="auto">
 
             <ListView.ItemTemplate>
+                
                 <DataTemplate>
+                    
                     <StackPanel>
 
                         <Grid  Height="40" >
@@ -135,12 +131,8 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
 
                             </Grid.ColumnDefinitions>
 
@@ -149,16 +141,13 @@
                             <Label Grid.Column="2" Content="Owner" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
                             <Label Grid.Column="3" Content="Phone" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
                             <Label Grid.Column="4" Content="Email" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                            <Label Grid.Column="5" Content="Open Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                            <Label Grid.Column="6" Content="Close Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                            <Label Grid.Column="7" Content="Description" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                            <Label Grid.Column="8" Content="Country" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                            <Label Grid.Column="9" Content="State" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                            <Label Grid.Column="10" Content="City" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                            <Label Grid.Column="11" Content="Postal Code" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                            <Label Grid.Column="12" Content="Address Line" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                            <Label Grid.Column="5" Content="Address" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                            <Label Grid.Column="6" Content="Open Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                            <Label Grid.Column="7" Content="Close Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                            <Label Grid.Column="8" Content="Description" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
 
                         </Grid>
+                        
                         <StackPanel Orientation="Horizontal">
 
                             <Button Content="Edit" Visibility="{Binding IsVisible}" Click="EditPharmacyClick" Tag="{Binding Pharmacy}"/>
@@ -169,6 +158,7 @@
                     </StackPanel>
 
                 </DataTemplate>
+                
             </ListView.ItemTemplate>
 
         </ListView>
@@ -192,6 +182,9 @@
                     <Label Content="Email" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditablePharmacy.Email, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
+                    <Label Content="Address" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditablePharmacy.Address, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
+                   
                     <Label Content="Open Time" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditablePharmacy.OpenTime, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
@@ -201,26 +194,13 @@
                     <Label Content="Description" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditablePharmacy.Description, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="75"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="Country" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
-                    <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditablePharmacy.Address.Country, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
-
-                    <Label Content="State" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
-                    <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditablePharmacy.Address.State, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
-
-                    <Label Content="City" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
-                    <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditablePharmacy.Address.City, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
-
-                    <Label Content="Postal Code" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
-                    <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditablePharmacy.Adress.PostalCode, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
-
-                    <Label Content="AddressLine" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
-                    <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditablePharmacy.Address.AddressLine, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
-
-                    <Button Grid.Row="2" Content="Done" Margin="0,10,0,0" BorderBrush="{x:Null}" Background="#FF39B9B9" Width="120" VerticalAlignment="Top" Command="{Binding EditPharmacyCommand}" CommandParameter="{Binding EditablePharmacy}"/>
+                    <Button Grid.Row="2" Content="Done" Margin="0,10,0,0" BorderBrush="{x:Null}" Background="#FF39B9B9" Width="120" VerticalAlignment="Top" 
+                            Command="{Binding EditPharmacyCommand}" CommandParameter="{Binding EditablePharmacy}"/>
                 </StackPanel>
             </Border>
 
         </Popup>
+        
     </Grid>
 
 </Page>

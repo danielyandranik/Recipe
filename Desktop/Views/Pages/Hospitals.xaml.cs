@@ -10,14 +10,15 @@ namespace Desktop.Views.Pages
     /// </summary>
     public partial class Hospitals : Page
     {
+        public HospitalsViewModel HospitalsViewModel { get; private set; }
+
         public Hospitals()
         {
+            this.HospitalsViewModel = new HospitalsViewModel();
+            this.DataContext = this.HospitalsViewModel; ;
             InitializeComponent();
-
-            var hospitalsViewModel = new HospitalsViewModel();
-            this.DataContext = hospitalsViewModel;
         }
-        
+
         private void EditHospitalClick(object sender, RoutedEventArgs e)
         {
             var hospital = (Institution)(sender as Button).Tag;

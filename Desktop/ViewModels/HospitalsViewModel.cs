@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Desktop.Commands;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using InstitutionClient.Models;
 
 namespace Desktop.ViewModels
@@ -57,13 +56,8 @@ namespace Desktop.ViewModels
 
         public HospitalsViewModel()
         {
-            this.LoadHospitals();
-
-            this.isVisible = (User.Default.CurrentProfile == "ministry_worker") ||
-                                    (User.Default.CurrentProfile == "hospital_admin") ? true : false;
-
+            this.isVisible = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "hospital_admin") ? true : false;
             this.deleteHospitalCommand = new DeleteHospitalCommand(this.hospitals, this.deleteHospital, _ => true);
-
             this.editHospitalCommand = new EditHospitalCommand(this.hospitals, this.editHospital, _ => true);
         }
 
@@ -76,17 +70,18 @@ namespace Desktop.ViewModels
         {
             return await ((App)App.Current).InstitutionClient.UpdateInstitutionAsync(hospital);
         }
-
-        private void LoadHospitals()
-        {
-            var response = ((App)App.Current).InstitutionClient.GetAllHospitalsAsync().Result;
-            if (!response.IsSuccessStatusCode)
-            {
-                Debug.Write(response.StatusCode);
-                return;
-            }
-
-            this.Hospitals = new ObservableCollection<Institution>(response.Content);
-        }
     }
 }
+
+
+//private void LoadHospitals()
+//{
+//    var response = ((App)App.Current).InstitutionClient.GetAllHospitalsAsync().Result;
+//    if (!response.IsSuccessStatusCode)
+//    {
+//        Debug.Write(response.StatusCode);
+//        return;
+//    }
+
+//    this.Hospitals = new ObservableCollection<Institution>(response.Content);
+//}

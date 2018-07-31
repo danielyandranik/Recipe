@@ -10,14 +10,15 @@ namespace Desktop.Views.Pages
     /// </summary>
     public partial class Pharmacies : Page
     {
+        public PharmaciesViewModel PharmaciesViewModel { get; private set; }
+
         public Pharmacies()
         {
+            this.PharmaciesViewModel = new PharmaciesViewModel();
+            this.DataContext = this.PharmaciesViewModel;
             InitializeComponent();
-
-            var pharmaciesViewModel = new PharmaciesViewModel();
-            this.DataContext = pharmaciesViewModel;
         }
-        
+
         private void EditPharmacyClick(object sender, RoutedEventArgs e)
         {
             var pharmacy = (Institution)(sender as Button).Tag;

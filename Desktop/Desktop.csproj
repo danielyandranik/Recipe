@@ -239,7 +239,9 @@
     <Compile Include="Commands\EditMedicineCommand.cs" />
     <Compile Include="Commands\EditPharmacyCommand.cs" />
     <Compile Include="Commands\LoadMedicinesCommand.cs" />
+    <Compile Include="Services\LoadHospitalsService.cs" />
     <Compile Include="Services\LoadMedicinesService.cs" />
+    <Compile Include="Services\LoadPharmaciesService.cs" />
     <Compile Include="Services\LoadService.cs" />
     <Compile Include="Commands\ProfileCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
