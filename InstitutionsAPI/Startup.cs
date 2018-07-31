@@ -52,12 +52,12 @@ namespace InstitutionsAPI
                 });
 
                 // Hospital or pharmacy admin policy
-                options.AddPolicy("institution_admin", policy =>
+                options.AddPolicy("has_privilege", policy =>
                 {
                     policy.RequireClaim("current_profile",
                         new[]
                         {
-                            "pharmacy_admin","hospital_admin"
+                            "pharmacy_admin","hospital_admin", "ministry_worker"
                         });
                 });
 

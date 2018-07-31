@@ -178,24 +178,24 @@ namespace InstitutionClient
             return await this.GetAllAsync<PharmMedicine>($"api/pharmmeds/?pharmacyId={pharmacyId}");
         }
 
-        public async Task<ResponseMessage<Institution>> GetInstitution(int id)
+        public async Task<ResponseMessage<Institution>> GetInstitutionAsync(int id)
         {
             return await this.GetAsync<Institution>($"api/institutions/?id={id}");
         }
 
-        public async Task<ResponseMessage<PharmMedicine>> GetPharmacyMedicine(int id)
+        public async Task<ResponseMessage<PharmMedicine>> GetPharmacyMedicineAsync(int id)
         {
             return await this.GetAsync<PharmMedicine>($"api/pharmmeds/?id={id}");
         }
 
-        public async Task<bool> CreateInstitution(Institution institution)
+        public async Task<bool> CreateInstitutionAsync(Institution institution)
         {
             var response = await this.CreateAsync<Institution>("api/institutions", institution);
 
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> CreatePharmacyMedicine(PharmMedicine medicine)
+        public async Task<bool> CreatePharmacyMedicineAsync(PharmMedicine medicine)
         {
             var response = await this.CreateAsync<PharmMedicine>("api/pharmmeds", medicine);
 
