@@ -105,6 +105,8 @@ namespace Desktop
 
                 this._medicineClient = new MedicineApiClient.Client(ConfigurationManager.AppSettings["MedicineAPI"]);
 
+                this._institutionClient = new InstitutionClient.Client(ConfigurationManager.AppSettings["InstitutionsAPI"]);
+
                 // configuring 
                 this.ConfigureEventHandlers();
 
@@ -213,6 +215,7 @@ namespace Desktop
             this._tokenProvider.TokenUpdated += this.UpdateRefreshToken;
             this._tokenProvider.TokenUpdated += this._recipeClient.UpdateToken;
             this._tokenProvider.TokenUpdated += this._medicineClient.UpdateToken;
+            this._tokenProvider.TokenUpdated += this._institutionClient.UpdateToken;
         }
     }
 }
