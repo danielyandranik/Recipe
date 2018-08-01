@@ -35,6 +35,7 @@
             <RowDefinition Height="*"/>
         
         </Grid.RowDefinitions>
+        
         <Border BorderThickness="0,2,0,0" BorderBrush="#FF182634">
             <Grid Grid.Row="0" Background="#FF39B9B9">
 
@@ -44,7 +45,6 @@
             </Grid>
         </Border>
         
-
         <StackPanel Grid.Row="1" Margin="0,10,0,0">
 
                 <Label Content="Who the recipe is for?" FontSize="16" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
@@ -84,7 +84,7 @@
 
                 </Grid.RowDefinitions>
 
-                <DataGrid Grid.Row="0" HeadersVisibility="None" CanUserAddRows="True" ItemsSource="{Binding Recipe.RecipeItems}" RowHeight="40">
+                <DataGrid Grid.Row="0" HeadersVisibility="None" CanUserAddRows="True" ItemsSource="{Binding Recipe.RecipeItems}" RowHeight="40" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding MedicineName}" Width="*"/>
                         <DataGridTextColumn Binding="{Binding Count}" Width="*"/>

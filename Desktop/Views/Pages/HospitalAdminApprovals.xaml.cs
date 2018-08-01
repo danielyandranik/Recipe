@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desktop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,15 @@ namespace Desktop.Views.Pages
     /// <summary>
     /// Interaction logic for HospitalAdminApprovements.xaml
     /// </summary>
-    public partial class HospitalAdminApprovements : Page
+    public partial class HospitalAdminApprovals : Page
     {
-        public HospitalAdminApprovements()
-        {
+        public readonly HospitalAdminApprovalViewModel ViewModel;
+
+        public HospitalAdminApprovals()
+        {        
             InitializeComponent();
+            this.ViewModel = new HospitalAdminApprovalViewModel();
+            this.DataContext = this.ViewModel;
         }
     }
 }

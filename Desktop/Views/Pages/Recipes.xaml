@@ -12,7 +12,23 @@
 
     <Grid>
 
-        <ListView HorizontalAlignment="Center" VerticalAlignment="Top" ItemsSource="{Binding Recipes}">
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+
+        <Border BorderThickness="0,0,0,2" BorderBrush="#FF182634">
+
+            <Grid Grid.Row="0" Height="50">
+
+                <TextBlock Text="Your recipes" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="18" />
+
+            </Grid>
+        </Border>
+
+        <ListView Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" ItemsSource="{Binding Recipes}">
 
             <ListView.ItemTemplate>
 

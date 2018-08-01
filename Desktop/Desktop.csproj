@@ -229,6 +229,7 @@
     </Compile>
     <Compile Include="Commands\AddInstitutionCommand.cs" />
     <Compile Include="Commands\AddMedicineCommand.cs" />
+    <Compile Include="Commands\ApproveDoctorCommand.cs" />
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\ConfirmCommand.cs" />
@@ -241,6 +242,7 @@
     <Compile Include="Commands\EditPharmacyCommand.cs" />
     <Compile Include="Commands\LoadMedicinesCommand.cs" />
     <Compile Include="Services\AddInstitutionService.cs" />
+    <Compile Include="Services\LoadHospitalAdminApprovals.cs" />
     <Compile Include="Services\LoadHospitalsService.cs" />
     <Compile Include="Services\LoadMedicinesService.cs" />
     <Compile Include="Services\LoadPharmaciesService.cs" />
@@ -297,6 +299,7 @@
     <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
     <Compile Include="ViewModels\CreateRecipeViewModel.cs" />
     <Compile Include="ViewModels\DoctorProfileViewModel.cs" />
+    <Compile Include="ViewModels\HospitalAdminApprovalViewModel.cs" />
     <Compile Include="ViewModels\HospitalDirectorProfileViewModel.cs" />
     <Compile Include="ViewModels\HospitalsViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -334,8 +337,8 @@
     <Compile Include="Views\Pages\CreateRecipe.xaml.cs">
       <DependentUpon>CreateRecipe.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\HospitalAdminApprovements.xaml.cs">
-      <DependentUpon>HospitalAdminApprovements.xaml</DependentUpon>
+    <Compile Include="Views\Pages\HospitalAdminApprovals.xaml.cs">
+      <DependentUpon>HospitalAdminApprovals.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Hospitals.xaml.cs">
       <DependentUpon>Hospitals.xaml</DependentUpon>
@@ -435,7 +438,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Pages\HospitalAdminApprovements.xaml">
+    <Page Include="Views\Pages\HospitalAdminApprovals.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
