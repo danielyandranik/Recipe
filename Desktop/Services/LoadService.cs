@@ -41,16 +41,24 @@ namespace Desktop.Commands
 
             this.InitializeVM(load);
             this.SaveSettings(load);
-           
-            this._profilesMenuManager.AddProfiles(this._vm.Profiles);
+
+            this._profilesMenuManager.AddProfiles(load.Profiles);
+
+            if (load.CurrentProfile == "none")
+            {
+                this._profilesMenuManager.CollapseAll();
+                return;
+            }
+
+            this._profilesMenuManager.UpdateButtonsVisibilities();
+            
         }
 
         private void InitializeVM(UserInitialInfo load)
         {
-            this._vm.CurrentProfile = load.CurrentProfile;
+            this._vm.CurrentProfile = this._profilesMenuManager.ApiToUi[load.CurrentProfile];
             this._vm.FullName = load.FullName;
             this._vm.Username = load.Username;
-            this._vm.Profiles = load.Profiles;
         }
 
         private void SaveSettings(UserInitialInfo load)

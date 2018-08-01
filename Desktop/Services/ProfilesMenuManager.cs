@@ -7,19 +7,32 @@ using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
 using Desktop.Views.Windows;
 using Desktop.ViewModels;
+using System.Xml.Linq;
+using System.Configuration;
 
 namespace Desktop.Services
 {
     public class ProfilesMenuManager
     {
+        private readonly Dictionary<string, string> _uiToApi;
+
+        private readonly Dictionary<string, string> _apiToUi;
+
         private readonly MenuItem _menuItem;
 
         private readonly MainWindowViewModel _vm;
+
+        public Dictionary<string, string> UiToApi => this._uiToApi;
+
+        public Dictionary<string, string> ApiToUi => this._apiToUi;
 
         public ProfilesMenuManager(MenuItem menuItem,MainWindowViewModel vm)
         {
             this._menuItem = menuItem;
             this._vm = vm;
+
+            this._apiToUi = this.ConstructMapInfo(ConfigurationManager.AppSettings["ApiToUi"]);
+            this._uiToApi = this.ConstructMapInfo(ConfigurationManager.AppSettings["UiToApi"]);
         }
 
         public void AddProfiles(IEnumerable<string> profiles)
@@ -27,7 +40,7 @@ namespace Desktop.Services
             if (profiles == null)
                 return;
 
-            var profileTypes = profiles.Select(this.Selector);
+            var profileTypes = profiles.Select(profile => this._apiToUi[profile]);
 
             foreach(var profile in profileTypes)
             {
@@ -48,7 +61,7 @@ namespace Desktop.Services
 
             this._menuItem.Items.Add(menuItem);
 
-            menuItem.Click += this.AddProfileEventHandler;
+            menuItem.Click += this.ChangeProfileEventHandler;
         }
 
         public void DeleteProfile(string profile)
@@ -57,42 +70,55 @@ namespace Desktop.Services
 
             var count = menuItems.Count();
 
+            var header = this._apiToUi[profile];
+
             for(var counter = 0; counter < count; counter++)
             {
-                if ((string)menuItems[counter].Header == profile)
+                if ((string)menuItems[counter].Header == header)
                 {
                     this._menuItem.Items.RemoveAt(counter);
 
-                    RecipeMessageBox.Show("Profile is deleted");
+                    this._vm.CurrentProfile = "None";
+
+                    this.CollapseAll();
+
+                    User.Default.CurrentProfile = "none";
+                    User.Default.Save();
 
                     break;
                 }
             }
-
-            RecipeMessageBox.Show("Error occured");
         }
 
-        public async void AddProfileEventHandler(object sender, RoutedEventArgs e)
+        public async void ChangeProfileEventHandler(object sender, RoutedEventArgs e)
         {
             var item = (MenuItem)sender;
 
-            if ((string)item.Header == this.Selector(User.Default.CurrentProfile))
+            if ((string)item.Header == this._apiToUi[User.Default.CurrentProfile])
                 return;
 
             var client = ((App)App.Current).UserApiClient;
 
+            var currentProfile = (string)item.Header;
+
             var profileUpdateInfo = new ProfileUpdateInfo
             {
                 Id = User.Default.Id,
-                Profile = (string)item.Header
+                Profile = this._uiToApi[currentProfile]
             };
 
             var response = await client.UpdateCurrentProfileAsync(profileUpdateInfo);
 
             if (response.Status == Status.Ok)
             {
-                RecipeMessageBox.Show("Current profile is updated");
-                this._vm.CurrentProfile = profileUpdateInfo.Profile;
+                this._vm.CurrentProfile = currentProfile;
+
+                User.Default.CurrentProfile = profileUpdateInfo.Profile;
+                User.Default.Save();
+
+                this.UpdateButtonsVisibilities();
+
+                RecipeMessageBox.Show("Current profile is updated");               
             }
             else
             {
@@ -100,20 +126,39 @@ namespace Desktop.Services
             }
         }
 
-        public string Selector(string profile)
+        private Dictionary<string, string> ConstructMapInfo(string path)
         {
-            if (profile == "doctor")
-                return "Doctor";
-            else if (profile == "patient")
-                return "Patient";
-            else if (profile == "hospital_director")
-                return "Hospital Admin";
-            else if (profile == "pharmacy_admin")
-                return "Pharmacy Admin";
-            else if (profile == "pharmacist")
-                return "Pharmacist";
-            else
-                return "Ministry Worker";
+            var xml = XDocument.Load(path);
+
+            var items = xml.Element("map").Elements("item");
+
+            return items.ToDictionary(
+                item => item.Attribute("key").Value,
+                item => item.Attribute("value").Value);
+        }
+
+        public void UpdateButtonsVisibilities()
+        {
+            var currentProfile = User.Default.CurrentProfile;
+
+            this._vm.CreateRecipeVisibility = (currentProfile == "doctor") ? Visibility.Visible : Visibility.Collapsed;
+            this._vm.SellMedicinesVisibility = (currentProfile == "pharmacist") ? Visibility.Visible : Visibility.Collapsed;
+            this._vm.AddMedicineVisibility = (currentProfile == "ministry_worker") ? Visibility.Visible : Visibility.Collapsed;
+            this._vm.AddInstitutionVisibility = (currentProfile == "ministry_worker") ? Visibility.Visible : Visibility.Collapsed;
+            this._vm.MyApprovalsVisibility = (currentProfile == "doctor" || currentProfile == "doctor") ? Visibility.Visible : Visibility.Collapsed;
+            this._vm.MyRecipesVisibility = (currentProfile == "patient") ? Visibility.Visible : Visibility.Collapsed;
+            this._vm.DeleteVisibility = Visibility.Visible;
+        }
+
+        public void CollapseAll()
+        {
+            this._vm.CreateRecipeVisibility = Visibility.Collapsed;
+            this._vm.SellMedicinesVisibility = Visibility.Collapsed;
+            this._vm.AddMedicineVisibility = Visibility.Collapsed;
+            this._vm.AddInstitutionVisibility = Visibility.Collapsed;
+            this._vm.MyApprovalsVisibility = Visibility.Collapsed;
+            this._vm.MyRecipesVisibility = Visibility.Collapsed;
+            this._vm.DeleteVisibility = Visibility.Collapsed;
         }
     }
 }

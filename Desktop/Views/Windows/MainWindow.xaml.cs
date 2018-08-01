@@ -30,9 +30,15 @@ namespace Desktop.Views.Windows
 
         private HospitalAdminApprovals _hospitalAdminApprovals;
 
-        private readonly NavigateService _navigationService;
+        private AddMedicine _addMedicine;
 
-        private readonly ProfilesMenuManager _profilesMenuManager;
+        private AddInstitution _addInstitution;
+
+        private SellMedicines _sellMedicines;
+
+        private CreateRecipe _createRecipe;
+
+        private readonly NavigateService _navigationService;
 
         private  int menuButtonRotateAngle;
 
@@ -49,7 +55,6 @@ namespace Desktop.Views.Windows
             this._mainWindowVM = new MainWindowViewModel(this);
             this.DataContext = this._mainWindowVM;
             this._navigationService = new NavigateService(this.frame);
-            this.UpdateButtonsVisibilities();
            // this._medicines = new Medicines();
         }
 
@@ -85,7 +90,7 @@ namespace Desktop.Views.Windows
             this._navigationService.Navigate(ref this._addPharmacistProfile);
         }
 
-        private void AddHospitalAdministartortProfileButton_Click(object sender, RoutedEventArgs e)
+        private void AddHospitalAdminProfileButton_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.Navigate(ref this._addHospitalAdministartorProfile);
         }
@@ -130,21 +135,31 @@ namespace Desktop.Views.Windows
             await loadHospitalApprovalsService.Load();
         }
 
+        private void CreateRecipeButton_Click(object sender,RoutedEventArgs e)
+        {
+            this._navigationService.Navigate(ref this._createRecipe);
+        }
+
+        private void AddInstitutionButton_Click(object sender,RoutedEventArgs e)
+        {
+            this._navigationService.Navigate(ref this._addInstitution);
+        }
+        
+        private void AddMedicineButton_Click(object sender,RoutedEventArgs e)
+        {
+            this._navigationService.Navigate(ref this._addMedicine);
+        }
+
+        private void SellMedicinesButton_Click(object sender,RoutedEventArgs e)
+        {
+            this._navigationService.Navigate(ref this._sellMedicines);
+        }
+
         private async void RecipesButton_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.Navigate(ref this._recipes);
             var loadRecipesService = new LoadRecipesService(this._recipes.ViewModel);
             await loadRecipesService.Load();
-        }
-
-        public void UpdateButtonsVisibilities()
-        {
-            this.CreaterecipeButton.Visibility = (User.Default.CurrentProfile == "doctor") ? Visibility.Visible : Visibility.Collapsed;
-            this.SellMedicinesButton.Visibility = (User.Default.CurrentProfile == "pharmacist") ? Visibility.Visible : Visibility.Collapsed;
-            this.AddMedicineButton.Visibility = (User.Default.CurrentProfile == "ministry_worker") ? Visibility.Visible : Visibility.Collapsed;
-            this.AddInstituitionButton.Visibility = (User.Default.CurrentProfile == "ministry_worker") ? Visibility.Visible : Visibility.Collapsed;
-            this.MyApprovalsButton.Visibility = (User.Default.CurrentProfile == "doctor" || User.Default.CurrentProfile == "doctor") ? Visibility.Visible : Visibility.Collapsed;
-            this.MyRecipesButton.Visibility = (User.Default.CurrentProfile == "patient") ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }
