@@ -48,7 +48,7 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Gets pharmasist profile command
         /// </summary>
-        public ICommand DoctorProfileCommand => this.pharmacistProfileCommand;
+        public ICommand PharmacistProfileCommand => this.pharmacistProfileCommand;
 
         /// <summary>
         /// Gets or sets Add patient profile page
@@ -68,7 +68,7 @@ namespace Desktop.ViewModels
             this.pharmacistProfileCommand = new ProfileCommand<PharmacistFullInfo>(
                 this.pharmacistProfileService.Execute,
                 this.validation.Validate,
-                "PHARMACIST");
+                "Pharmacist");
         }
     }
 }
