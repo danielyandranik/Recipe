@@ -51,6 +51,27 @@ namespace Desktop.Services
             menuItem.Click += this.AddProfileEventHandler;
         }
 
+        public void DeleteProfile(string profile)
+        {
+            var menuItems = this._menuItem.Items.Cast<MenuItem>().ToList();
+
+            var count = menuItems.Count();
+
+            for(var counter = 0; counter < count; counter++)
+            {
+                if ((string)menuItems[counter].Header == profile)
+                {
+                    this._menuItem.Items.RemoveAt(counter);
+
+                    RecipeMessageBox.Show("Profile is deleted");
+
+                    break;
+                }
+            }
+
+            RecipeMessageBox.Show("Error occured");
+        }
+
         public async void AddProfileEventHandler(object sender, RoutedEventArgs e)
         {
             var item = (MenuItem)sender;
