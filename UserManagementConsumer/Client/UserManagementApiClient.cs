@@ -553,6 +553,22 @@ namespace UserManagementConsumer.Client
         }
 
         /// <summary>
+        /// Deletes current profile
+        /// </summary>
+        /// <param name="currentProfileType">Current profile type</param>
+        /// <returns>response</returns>
+        public async Task<Response<string>> DeleteCurrentProfile(string currentProfileType)
+        {
+            var builder = new StringBuilder();
+
+            builder.Append(currentProfileType)
+                   .Append("s")
+                   .Replace('_', '-');
+
+            return await this.DeleteProfileAsync(builder.ToString());
+        }
+
+        /// <summary>
         /// Approves doctor profile of the user.
         /// </summary>
         /// <param name="userId">User Id</param>
