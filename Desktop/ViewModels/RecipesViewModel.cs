@@ -9,10 +9,15 @@ using System.Threading.Tasks;
 
 namespace Desktop.ViewModels
 {
-    class RecipesViewModel : ViewModelBase
+    public class RecipesViewModel : ViewModelBase
     {
         private ObservableCollection<Recipe> recipes;
 
-        //public ObservableCollection<Recipe> 
+        public ObservableCollection<Recipe> Recipes
+        {
+            get => this.recipes;
+            set => this.Set("Recipes", ref this.recipes, value);
+        }
+
     }
 }

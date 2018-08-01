@@ -16,6 +16,8 @@ namespace Desktop.Views.Windows
 
         private  Pharmacies _pharmacies;
 
+        private Recipes _recipes;
+
         private  AddPatientProfile _addPatientProfile;
 
         private  AddDoctorProfile _addDoctorProfile;
@@ -26,7 +28,7 @@ namespace Desktop.Views.Windows
 
         private  AddPharmacyAdminProfile _addPharmacyAdminProfile;
 
-        private HospitalAdminApprovements _hospitalAdminApprovals;
+        private HospitalAdminApprovals _hospitalAdminApprovals;
 
         private readonly NavigateService _navigationService;
 
@@ -126,6 +128,13 @@ namespace Desktop.Views.Windows
             this._navigationService.Navigate(ref this._hospitalAdminApprovals);
             var loadHospitalApprovalsService = new LoadHospitalAdminApprovals(this._hospitalAdminApprovals.ViewModel);
             await loadHospitalApprovalsService.Load();
+        }
+
+        private void RecipesButton_Click(object sender, RoutedEventArgs e)
+        {
+            this._navigationService.Navigate(ref this._recipes);
+            var loadRecipesService = new LoadRecipesService(this._recipes.ViewModel);
+            await loadRecipesService.Load();
         }
     }
 }
