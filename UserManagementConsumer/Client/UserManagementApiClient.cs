@@ -224,6 +224,30 @@ namespace UserManagementConsumer.Client
         }
 
         /// <summary>
+        /// Gets unapproved profiles by type
+        /// </summary>
+        /// <param name="type">Profile type.Should be in lowletters</param>
+        /// <returns>enumerable of profiles</returns>
+        public async Task<Response<IEnumerable<Profile>>> GetUnapprovedProfilesByTypeAsync(string type)
+        {
+            // getting response
+            var response = await this._userApiHttpClient.GetAsync($"api/profiles/unapproved/{type}");
+
+            if (!response.IsSuccessStatusCode)
+                return this.ConstructResponse<IEnumerable<Profile>>(Status.Error, null);
+
+            // reading content
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (string.IsNullOrEmpty(content))
+                return this.ConstructResponse<IEnumerable<Profile>>(Status.Ok, null);
+
+            // returning result
+            return this.ConstructResponse(
+                Status.Ok, JsonConvert.DeserializeObject<IEnumerable<Profile>>(content));
+        }
+
+        /// <summary>
         /// Updates password
         /// </summary>
         /// <param name="passwordUpdateInfo">password update info</param>
