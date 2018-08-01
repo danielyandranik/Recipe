@@ -27,11 +27,6 @@ namespace RecipeClient
         public bool IsApproved { get; set; }
 
         /// <summary>
-        /// An identifier of the chief doctor.
-        /// </summary>
-        public int ChiefDoctorId { get; set; }
-
-        /// <summary>
         /// An identifier of the patient for whom the recipe is created.
         /// </summary>
         public int PatientId { get; set; }
