@@ -8,6 +8,6 @@
 
         public string PharmacyName { get; set; }
 
-        public int StartedYearWorking { get; set; }
+        public string StartedYearWorking { get; set; }
     }
 }
