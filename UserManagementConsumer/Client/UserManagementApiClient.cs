@@ -395,7 +395,7 @@ namespace UserManagementConsumer.Client
         /// <returns>response</returns>
         public async Task<Response<string>> PostPharmacyAdmin(PharmacyAdmin pharmacyAdmin)
         {
-            return await this.PostProfileAsync("pharmacy-admin", pharmacyAdmin);
+            return await this.PostProfileAsync("pharmacy-admins", pharmacyAdmin);
         }
 
         /// <summary>

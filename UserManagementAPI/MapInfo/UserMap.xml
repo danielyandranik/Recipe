@@ -576,7 +576,7 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
         <spParameterName>pharmacyName</spParameterName>
       </parameter>
       <parameter>
-        <parameterName>StartedWorking</parameterName>
+        <parameterName>StartedWorkingYear</parameterName>
         <spParameterName>startedWorking</spParameterName>
       </parameter>
     </parameters>

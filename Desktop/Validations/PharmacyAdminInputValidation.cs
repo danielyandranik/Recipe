@@ -18,7 +18,7 @@ namespace Desktop.Validations
             var pharmacyAdmin = parameter as PharmacyAdmin;
 
             return !string.IsNullOrEmpty(pharmacyAdmin.PharmacyName) &&
-                int.TryParse(pharmacyAdmin.StartedYearWorking, out var temp);
+                int.TryParse(pharmacyAdmin.StartedWorkingYear, out var temp);
         }
     }
 }
