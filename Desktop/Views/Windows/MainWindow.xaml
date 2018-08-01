@@ -64,8 +64,6 @@
                                           Click="AddPharmacistProfileButton_Click"/>
                                 <MenuItem Header="Pharmacy Admin" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
                                           Click="AddPharmacyAdminProfileButton_Click"/>
-                                <MenuItem Header="MinistryWorker" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
-                                          />
                                 <MenuItem Header="Hospital Admin" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
                                           Click="AddHospitalAdministartortProfileButton_Click"/>
                             </MenuItem>
