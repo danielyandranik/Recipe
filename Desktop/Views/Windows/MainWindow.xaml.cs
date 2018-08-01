@@ -49,7 +49,7 @@ namespace Desktop.Views.Windows
             this._mainWindowVM = new MainWindowViewModel(this);
             this.DataContext = this._mainWindowVM;
             this._navigationService = new NavigateService(this.frame);
-
+            this.UpdateButtonsVisibilities();
            // this._medicines = new Medicines();
         }
 
@@ -130,11 +130,21 @@ namespace Desktop.Views.Windows
             await loadHospitalApprovalsService.Load();
         }
 
-        private void RecipesButton_Click(object sender, RoutedEventArgs e)
+        private async void RecipesButton_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.Navigate(ref this._recipes);
             var loadRecipesService = new LoadRecipesService(this._recipes.ViewModel);
             await loadRecipesService.Load();
+        }
+
+        public void UpdateButtonsVisibilities()
+        {
+            this.CreaterecipeButton.Visibility = (User.Default.CurrentProfile == "doctor") ? Visibility.Visible : Visibility.Collapsed;
+            this.SellMedicinesButton.Visibility = (User.Default.CurrentProfile == "pharmacist") ? Visibility.Visible : Visibility.Collapsed;
+            this.AddMedicineButton.Visibility = (User.Default.CurrentProfile == "ministry_worker") ? Visibility.Visible : Visibility.Collapsed;
+            this.AddInstituitionButton.Visibility = (User.Default.CurrentProfile == "ministry_worker") ? Visibility.Visible : Visibility.Collapsed;
+            this.MyApprovalsButton.Visibility = (User.Default.CurrentProfile == "doctor" || User.Default.CurrentProfile == "doctor") ? Visibility.Visible : Visibility.Collapsed;
+            this.MyRecipesButton.Visibility = (User.Default.CurrentProfile == "patient") ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }
