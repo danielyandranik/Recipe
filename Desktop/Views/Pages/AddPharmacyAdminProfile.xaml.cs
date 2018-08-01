@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Desktop.ViewModels;
 
 namespace Desktop.Views.Pages
 {
@@ -20,9 +21,13 @@ namespace Desktop.Views.Pages
     /// </summary>
     public partial class AddPharmacyAdminProfile : Page
     {
+        private readonly PharmacyAdminProfileViewModel _pharmacyAdminVM;
+
         public AddPharmacyAdminProfile()
         {
             InitializeComponent();
+            this._pharmacyAdminVM = new PharmacyAdminProfileViewModel();
+            this.DataContext = this._pharmacyAdminVM;
         }
     }
 }

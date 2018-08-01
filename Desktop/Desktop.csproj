@@ -279,6 +279,7 @@
     <Compile Include="Services\NavigateService.cs" />
     <Compile Include="Services\PatientProfileService.cs" />
     <Compile Include="Services\PharmacistProfileService.cs" />
+    <Compile Include="Services\PharmacyAdminProfileService.cs" />
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\ProfilesMenuManager.cs" />
     <Compile Include="Services\RegistrationService.cs" />
@@ -294,6 +295,7 @@
     <Compile Include="Validations\InstitutionInputValidation.cs" />
     <Compile Include="Validations\PatientInputValidation.cs" />
     <Compile Include="Validations\PharmacistInputValidation.cs" />
+    <Compile Include="Validations\PharmacyAdminInputValidation.cs" />
     <Compile Include="Validations\RegisterInfputValidation.cs" />
     <Compile Include="ViewModels\AddInstitutionViewModel.cs" />
     <Compile Include="ViewModels\AddMedicineViewModel.cs" />
@@ -308,6 +310,7 @@
     <Compile Include="ViewModels\PatientProfileViewModel.cs" />
     <Compile Include="ViewModels\PharmaciesViewModel.cs" />
     <Compile Include="ViewModels\PharmacistProfileViewModel.cs" />
+    <Compile Include="ViewModels\PharmacyAdminProfileViewModel.cs" />
     <Compile Include="ViewModels\RecipesViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />

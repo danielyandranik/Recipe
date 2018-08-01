@@ -549,7 +549,7 @@ namespace UserManagementConsumer.Client
         /// <returns>response</returns>
         public async Task<Response<string>> DeletePharmacyAdmin()
         {
-            return await this.DeleteProfileAsync("pharmacy-admins")
+            return await this.DeleteProfileAsync("pharmacy-admins");
         }
 
         /// <summary>
