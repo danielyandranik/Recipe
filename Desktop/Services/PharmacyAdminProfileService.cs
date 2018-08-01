@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
 
@@ -8,7 +9,20 @@ namespace Desktop.Services
     {
         public async override Task<Response<string>> Execute(object parameter)
         {
-            return await this.userManagementApiClient.PostPharmacyAdmin((PharmacyAdmin)parameter);
+            var pharmacyAdmin = (PharmacyAdmin)parameter;
+
+            var institutionResponse = await institutionClient.GetPharmaciesByNameAsync(pharmacyAdmin.PharmacyName);
+
+            if (!institutionResponse.IsSuccessStatusCode)
+                return new Response<string>
+                {
+                    Result = institutionResponse.StatusCode.ToString(),
+                    Status = Status.Error
+                };
+
+            pharmacyAdmin.PharmacyId = institutionResponse.Content.First().Id;
+
+            return await this.userManagementApiClient.PostPharmacyAdmin(pharmacyAdmin);
         }
     }
 }
