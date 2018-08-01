@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<map>
+  <item key="Doctor" value="doctor"/>
+  <item key="Patient" value="patient"/>
+  <item key="Pharmacist" value="patient"/>
+  <item key="Pharmacy Admin" value="pharmacy_admin"/>
+  <item key="Ministry Worker" value="ministry_worker"/>
+  <item key="Hospital Admin" value="hospital_director"/>
+  <item key="None" value="none"/>
+</map>
