@@ -34,7 +34,7 @@
 
         <StackPanel Grid.Row="0">
 
-            <TextBlock Text="Add hospital director profile" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
+            <TextBlock Text="Add hospital admin profile" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
             <Separator Background="#FF182634" Width="600" Margin="0,5" Foreground="#FF182634" />
 
         </StackPanel>

@@ -66,7 +66,7 @@ namespace Desktop.ViewModels
             this.directorProfileCommand = new ProfileCommand<HospitalDirector>(
                 this.directorProfileService.Execute, 
                 this.validation.Validate,
-                "Hospital Director");
+                "Hospital Admin");
         }
     }
 }
