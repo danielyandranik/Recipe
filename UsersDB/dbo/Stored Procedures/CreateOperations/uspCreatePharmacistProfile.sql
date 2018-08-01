@@ -10,6 +10,6 @@ AS
 
 		if @profileId != 0
 			begin
-				insert into Pharmacists values(@profileId, @pharmacyId,@pharmacyName,@startedWorking)
+				insert into Pharmacists values(@profileId, @pharmacyId, @pharmacyName,@startedWorking)
 			end
 	end
