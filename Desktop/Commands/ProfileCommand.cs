@@ -35,7 +35,7 @@ namespace Desktop.Commands
             try
             {
                 var profileInfo = parameter as T;
-
+                
                 var response = await this.ExecuteAsync(profileInfo);
 
                 if (response.Status == Status.Ok)
