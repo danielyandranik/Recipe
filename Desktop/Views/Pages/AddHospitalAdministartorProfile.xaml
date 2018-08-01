@@ -54,7 +54,7 @@
                      Text="{Binding Director.StartedWorking, UpdateSourceTrigger=PropertyChanged}"/>
             
             <Button Content="Done" Margin="0,20,0,0" BorderBrush="{x:Null}" Background="#FF39B9B9" Width="120"
-                    Command="{Binding DirectorProfileCommand}" CommandParameter="{Binding Director}"/>
+                    Command="{Binding DirectorProfileCommand}" CommandParameter="{Binding Director}" />
 
         </StackPanel>
 
