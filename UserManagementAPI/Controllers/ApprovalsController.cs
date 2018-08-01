@@ -9,7 +9,7 @@ namespace UserManagementAPI.Controllers
     /// Controller for approvals
     /// </summary>
     [Produces("application/json")]
-    [Route("api/Approvals")]
+    [Route("api/approvals")]
     public class ApprovalsController : Controller
     {
         /// <summary>
@@ -34,7 +34,7 @@ namespace UserManagementAPI.Controllers
         /// <param name="approval">approval</param>
         /// <returns>action result</returns>
         [HttpPut]
-        //[Authorize(Policy = "IsHospitalDirector")]
+        [Authorize(Policy = "IsHospitalDirector")]
         [Route("doctors")]
         public IActionResult PutDoctorApproval([FromBody]Approval approval)
         {
@@ -54,7 +54,7 @@ namespace UserManagementAPI.Controllers
         /// <param name="approval">approval</param>
         /// <returns>action result</returns>
         [HttpPut]
-        [Authorize(Policy = "IsPharmacistAdmin")]
+        [Authorize(Policy = "IsPharmacyAdmin")]
         [Route("pharmacists")]
         public IActionResult PutPharmacistApproval([FromBody]Approval approval)
         {
