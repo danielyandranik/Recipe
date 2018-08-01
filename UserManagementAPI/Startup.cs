@@ -89,7 +89,7 @@ namespace UserManagementAPI
                         new[]
                         {
                             "doctor","pharmacist","ministry_worker","patient",
-                            "admin","hospitald_irector"
+                            "admin","hospital_director"
                         });
                 });
 
@@ -102,9 +102,9 @@ namespace UserManagementAPI
                         });
                 });
 
-                options.AddPolicy("IsHospitalDirector", policy => policy.RequireClaim("current_profile", "hospitaldirector"));
+                options.AddPolicy("IsHospitalDirector", policy => policy.RequireClaim("current_profile", "hospital_director"));
 
-                options.AddPolicy("IsPharmacistAdmin", policy => policy.RequireClaim("current_profile", "pharmacistadmin"));
+                options.AddPolicy("IsPharmacistAdmin", policy => policy.RequireClaim("current_profile", "pharmacy_admin"));
             });
         }
 
