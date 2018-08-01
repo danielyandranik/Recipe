@@ -533,6 +533,26 @@ namespace UserManagementConsumer.Client
         }
 
         /// <summary>
+        /// Approves doctor profile of the user.
+        /// </summary>
+        /// <param name="userId">User Id</param>
+        /// <returns>response</returns>
+        public async Task<Response<string>> ApproveDoctorAsync(int userId)
+        {
+            return await this.ApproveProfileAsync(userId, "doctor", "doctors");
+        }
+
+        /// <summary>
+        /// Approves pharmacist profile of the user
+        /// </summary>
+        /// <param name="userId">User Id</param>
+        /// <returns>response</returns>
+        public async Task<Response<string>> ApprovePharmacistAsync(int userId)
+        {
+            return await this.ApproveProfileAsync(userId, "pharmacist", "pharmacists");
+        }
+
+        /// <summary>
         /// Event handler for TokenProvider TokenUpdated class
         /// </summary>
         /// <param name="sender">Sender</param>
@@ -636,6 +656,36 @@ namespace UserManagementConsumer.Client
                 return this.ConstructResponse(Status.Error, response.ReasonPhrase);
 
             return this.ConstructResponse(Status.Ok, "Profile is deleted");
+        }
+
+        /// <summary>
+        /// Approves profile by tyep
+        /// </summary>
+        /// <param name="userId">User Id</param>
+        /// <param name="type">type</param>
+        /// <param name="uri">Uri</param>
+        /// <returns>response</returns>
+        private async Task<Response<string>> ApproveProfileAsync(int userId,string type,string uri)
+        {
+            // constructing approval information
+            var approval = new Approval
+            {
+                UserId = userId,
+                Type = type
+            };
+
+            // serializing approval information
+            var serialized = this.ConstructContent(approval);
+
+            // getting response
+            var response = await this._userApiHttpClient.PutAsync(
+                $"api/approvals/{uri}", serialized);
+
+            if (!response.IsSuccessStatusCode)
+                return this.ConstructResponse(Status.Error, response.ReasonPhrase);
+
+            // returning result
+            return this.ConstructResponse(Status.Ok, "Profile is approved");
         }
 
         /// <summary>
