@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo.upsCreatePharmacyAdminProfile]
+﻿CREATE PROCEDURE [uspCreatePharmacyAdminProfile]
 	@userId int,
 	@pharmacyId int,
 	@pharmacyName nvarchar(100),

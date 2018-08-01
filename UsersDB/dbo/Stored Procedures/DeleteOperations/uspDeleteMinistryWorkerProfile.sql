@@ -10,5 +10,5 @@ AS
 		delete from MinistryWorkers where ProfileId = @profileId
 		delete from UserProfile where UserProfile.ProfileId = @profileId
 
-		exec uspConfigureUserAfterProfileDeletion @userId
+		exec uspConfigureUser @userId
 	end
