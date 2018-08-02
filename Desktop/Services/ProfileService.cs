@@ -1,7 +1,7 @@
-﻿using Desktop.Interfaces;
+﻿using System.Threading.Tasks;
 using InstitutionClient;
-using System.Threading.Tasks;
 using UserManagementConsumer.Client;
+using Desktop.Interfaces;
 
 namespace Desktop.Services
 {

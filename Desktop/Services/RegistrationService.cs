@@ -1,10 +1,9 @@
-﻿using Desktop.Interfaces;
-using Desktop.Models;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
+using Desktop.Interfaces;
+using Desktop.Models;
 
 namespace Desktop.Services
 {
