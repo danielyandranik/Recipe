@@ -1,7 +1,7 @@
-﻿using Desktop.Views.Windows;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using UserManagementConsumer.Client;
+using Desktop.Views.Windows;
 
 namespace Desktop.Commands
 {
