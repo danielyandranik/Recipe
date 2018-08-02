@@ -27,13 +27,18 @@ namespace Desktop.Models
         public string HospitalName { get; set; }
 
         /// <summary>
-        /// An identifier of the patient for whom the recipe is created.
+        /// The username of the patient for whom the recipe is created.
         /// </summary>
-        public int PatientId { get; set; }
+        public string PatientUserName { get; set; }
 
         /// <summary>
         /// A collection of RecipeItem instances.
         /// </summary>
         public ObservableCollection<RecipeItem> RecipeItems { get; set; }
+
+        public Recipe()
+        {
+            this.RecipeItems = new ObservableCollection<RecipeItem>();
+        }
     }
 }

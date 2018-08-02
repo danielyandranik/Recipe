@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicineApiClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Desktop.Models
         /// <summary>
         /// An identifier of the medicine.
         /// </summary>
-        public string MedicineName { get; set; }
+        public Medicine Medicine { get; set; }
 
         /// <summary>
         /// A count of units.
@@ -21,16 +22,16 @@ namespace Desktop.Models
         /// <summary>
         /// A unit of frequency.
         /// </summary>
-        public string FrequencyUnit { get; set; }
+        public string UseFrequencyUnit { get; set; }
 
         /// <summary>
         /// A Use frequency per frequency unit.
         /// </summary>
-        public int UseFrequencyPerFrequencyUnit { get; set; }
+        public int TimesPerUnit { get; set; }
 
         /// <summary>
         /// A count of units per use.
         /// </summary>
-        public int UnitCountPerUse { get; set; }
+        public int CountPerUse { get; set; }
     }
 }

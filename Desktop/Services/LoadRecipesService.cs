@@ -68,9 +68,9 @@ namespace Desktop.Services
                 {
                     MedicineName = medicineApiResponse.Result.Name,
                     Count = recipeItemFromApi.Count,
-                    FrequencyUnit = recipeItemFromApi.FrequencyUnit,
-                    UnitCountPerUse = recipeItemFromApi.UnitCountPerUse,
-                    UseFrequencyPerFrequencyUnit = recipeItemFromApi.UseFrequencyPerFrequencyUnit
+                    UseFrequencyUnit = recipeItemFromApi.FrequencyUnit,
+                    CountPerUse = recipeItemFromApi.UnitCountPerUse,
+                    TimesPerUnit = recipeItemFromApi.UseFrequencyPerFrequencyUnit
                 };
 
                 recipeItems.Add(recipeItem);

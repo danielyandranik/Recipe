@@ -25,7 +25,7 @@
 
     </Page.Resources>
 
-    <Grid>
+    <Grid Margin="0">
 
         <Grid.RowDefinitions>
 
@@ -41,7 +41,9 @@
             <Grid Grid.Row="0" Background="#FF39B9B9">
 
                 <TextBlock Text="Create recipe" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="28" HorizontalAlignment="Center" Margin="0,20"/>
-                <Button Content="Done" Width="100" Height="32" HorizontalAlignment="Right" Margin="0,0,20,0" Background="White" BorderBrush="White" Foreground="#FF39B9B9" FontSize="14" FontWeight="Bold" FontFamily="Comfortaa" Command="{Binding CreateRecipeComand}" CommandParameter="{Binding Recipe}"/>
+                <Button Content="Done" Width="100" Height="32" HorizontalAlignment="Right" Margin="0,0,20,0" 
+                        Background="White" BorderBrush="White" Foreground="#FF39B9B9" FontSize="14" FontWeight="Bold" 
+                        FontFamily="Comfortaa" Command="{Binding CreateRecipeCommand}" CommandParameter="{Binding Recipe}"/>
            
             </Grid>
         </Border>
@@ -49,7 +51,7 @@
         <StackPanel Grid.Row="1" Margin="0,10,0,0">
 
                 <Label Content="Who the recipe is for?" FontSize="16" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
-                <TextBox Height="25" Text="{Binding Recipe.Username}"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
+                <TextBox Height="25" Text="{Binding Recipe.PatientUsername}"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
                 <Separator Margin="0,8,0,2" Background="#FF182634" />
 
         </StackPanel>
@@ -74,9 +76,9 @@
 
         </Grid>
 
-        <ListView Grid.Row="3" ItemsSource="{Binding Recipe.RecipeItems}">
+        <ListView Grid.Row="3" ItemsSource="{Binding Recipe.RecipeItems}" HorizontalContentAlignment="Stretch" MinWidth="900" Width="Auto">
 
-            <ListViewItem>
+            <ListView.ItemTemplate>
 
                 <DataTemplate>
 
@@ -92,7 +94,7 @@
 
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Column="0" Content="{Binding MedicineName}" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+                        <Label Grid.Column="0" Content="{Binding Medicine.Name}" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
                         <Label Grid.Column="1" Content="{Binding Count}" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
                         <Label Grid.Column="2" Content="{Binding UseFrequencyUnit}" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
                         <Label Grid.Column="3" Content="{Binding TimesPerUnit}" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
@@ -102,40 +104,39 @@
 
                 </DataTemplate>
 
-            </ListViewItem>
+            </ListView.ItemTemplate>
 
         </ListView>
 
-        <Grid Grid.Row="4" Height="80" >
+        <Grid Grid.Row="4" Height="60" Margin="0,0,0,10">
+            
+            <Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="Auto" />
 
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+            </Grid.ColumnDefinitions>
 
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0" Height="40">
-
-                <Grid.ColumnDefinitions>
-
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-
-                </Grid.ColumnDefinitions>
-
-                <TextBox Grid.Column="0" Height="25" Text="{Binding AddingItem.MedicineName}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2"/>
-                <TextBox Grid.Column="1" Height="25" Text="{Binding AddingItem.Count}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2"/>
-                <TextBox Grid.Column="2" Height="25" Text="{Binding AddingItem.FrequencyUnit}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2"/>
-                <TextBox Grid.Column="3" Height="25" Text="{Binding AddingItem.TimesPerUnit}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2"/>
-                <TextBox Grid.Column="4" Height="25" Text="{Binding AddingItem.CountPerUse}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2"/>
-
-            </Grid>
-                        
-            <Button Grid.Row="1" Content="Add" BorderBrush="{x:Null}" Background="#FF39B9B9" Width="80" Click="AddItemButton_Click"/>
+            <TextBox Grid.Column="0" Height="25" Text="{Binding AddingItem.Medicine.Name}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2" Margin="20,5,10,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="0" Content="Medicine name" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
+            
+            <TextBox Grid.Column="1" Height="25" Text="{Binding AddingItem.Count}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2" Margin="10,5,10,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="1" Content="Count" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
+            
+            <TextBox Grid.Column="2" Height="25" Text="{Binding AddingItem.UseFrequencyUnit}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2" Margin="10,5,10,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="2" Content="Use frequency unit" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
+            
+            <TextBox Grid.Column="3" Height="25" Text="{Binding AddingItem.TimesPerUnit}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2" Margin="10,5,10,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="3" Content="Times per unit" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
+            
+            <TextBox Grid.Column="4" Height="25" Text="{Binding AddingItem.CountPerUse}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2" Margin="10,5,10,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="4" Content="Count per use" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
+            
+            <Button Grid.Column="5" Content="Add" BorderBrush="{x:Null}" Background="#FF39B9B9" Width="80" Click="AddItemButton_Click" Margin="10,0,20,0"/>
 
         </Grid>
 
