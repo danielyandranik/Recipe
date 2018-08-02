@@ -27,7 +27,7 @@ namespace Desktop.Services
         /// <returns>result</returns>
         public async Task<bool> Execute(object parameter)
         {
-            return await this.institutionClient.CreateInstitutionAsync((Institution)parameter);
+            return await this.institutionClient.CreateInstitutionAsync(parameter as Institution);
         }
     }
 }

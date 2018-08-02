@@ -47,12 +47,7 @@ namespace Desktop.ViewModels
         /// Gets patient command
         /// </summary>
         public ICommand PatientProfileCommand => this.patientProfileCommand;
-
-        /// <summary>
-        /// Gets or sets Add patient profile page
-        /// </summary>
-        public AddPatientProfile PatientProfile { get; private set; }
-
+        
         /// <summary>
         /// Creates new instance of <see cref="AddPatientProfile"/>
         /// </summary>

@@ -21,10 +21,10 @@ namespace Desktop.Validations
             var institution = parameter as Institution;
 
             return this.ValidateEmail(institution) &&
-                    this.ValidatePhone(institution) &&
-                    this.ValidateTimes(institution) &&
-                    this.ValidateType(institution) &&
-                    this.ValidateValues(institution);
+                      this.ValidatePhone(institution) &&
+                      this.ValidateTimes(institution) &&
+                      this.ValidateType(institution) &&
+                      this.ValidateValues(institution);
         }
 
         /// <summary>

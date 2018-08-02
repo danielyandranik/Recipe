@@ -31,6 +31,11 @@ namespace Desktop.ViewModels
         private readonly IService<Response<string>> doctorProfileService;
 
         /// <summary>
+        /// Doctor profile command
+        /// </summary>
+        private readonly ProfileCommand<Doctor> doctorProfileCommand;
+
+        /// <summary>
         ///  Gets or sets doctor info
         /// </summary>
         public Doctor Doctor
@@ -41,20 +46,10 @@ namespace Desktop.ViewModels
         }
 
         /// <summary>
-        /// Doctor profile command
-        /// </summary>
-        private readonly ProfileCommand<Doctor> doctorProfileCommand;
-
-        /// <summary>
         /// Gets doctor profile command
         /// </summary>
         public ICommand DoctorProfileCommand => this.doctorProfileCommand;
-
-        /// <summary>
-        /// Gets or sets Add doctor profile page
-        /// </summary>
-        public AddDoctorProfile DoctorProfile { get; private set; }
-
+        
         /// <summary>
         /// Creates new instance of <see cref="DoctorProfileViewModel"/>
         /// </summary>

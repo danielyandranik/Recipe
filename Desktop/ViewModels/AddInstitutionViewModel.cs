@@ -27,6 +27,11 @@ namespace Desktop.ViewModels
         private readonly IService<bool> institutionService;
 
         /// <summary>
+        /// Add institution command
+        /// </summary>
+        private readonly AddInstitutionCommand addInstitutionCommand;
+
+        /// <summary>
         /// Gets or sets institution info
         /// </summary>
         public Institution Institution
@@ -37,20 +42,10 @@ namespace Desktop.ViewModels
         }
 
         /// <summary>
-        /// Add institution command
-        /// </summary>
-        private readonly AddInstitutionCommand addInstitutionCommand;
-
-        /// <summary>
         /// Gets add institution command
         /// </summary>
         public ICommand AddInstitutionCommand => this.addInstitutionCommand;
-
-        /// <summary>
-        /// Gets or sets Add institution page
-        /// </summary>
-        public AddInstitution AddInstitution { get; private set; }
-
+        
         /// <summary>
         /// Creates new instance of <see cref="AddInstitutionViewModel"/>
         /// </summary>
@@ -58,7 +53,6 @@ namespace Desktop.ViewModels
         {
             // setting fields
             this.institution = new Institution();
-
             this.validation = new InstitutionInputValidation();
             this.institutionService = new AddInstitutionService();
             this.addInstitutionCommand = new AddInstitutionCommand(this.institutionService.Execute, this.validation.Validate);
