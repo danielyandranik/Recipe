@@ -11,5 +11,5 @@ AS
 
 		delete from UserProfile where UserProfile.ProfileId = @profileId
 
-		exec uspConfigureUserAfterProfileDeletion @userId
+		exec uspConfigureUser @userId
 	end

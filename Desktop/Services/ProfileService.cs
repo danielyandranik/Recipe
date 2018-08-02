@@ -1,4 +1,5 @@
 ﻿using Desktop.Interfaces;
+using InstitutionClient;
 using System.Threading.Tasks;
 using UserManagementConsumer.Client;
 
@@ -14,12 +15,18 @@ namespace Desktop.Services
         /// </summary>
         protected readonly UserManagementApiClient userManagementApiClient;
 
+        /// <summary> 
+        /// Institutions API client 
+        /// </summary>
+        protected readonly Client institutionClient;
+
         /// <summary>
         /// Creates new instance of <see cref="ProfileService"/>
         /// </summary>
         public ProfileService()
         {
             this.userManagementApiClient = ((App)App.Current).UserApiClient;
+            this.institutionClient = ((App)App.Current).InstitutionClient;
         }
 
         /// <summary>

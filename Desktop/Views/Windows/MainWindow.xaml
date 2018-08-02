@@ -7,7 +7,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:command="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
-        Name="Main" Title="Recipe" MinWidth="1280" MinHeight="720" SizeToContent="WidthAndHeight" Background="White" WindowStartupLocation="CenterScreen"
+        Name="Main" Title="Recipe" MinWidth="1280" MinHeight="780" SizeToContent="WidthAndHeight" Background="White" WindowStartupLocation="CenterScreen"
         Loaded="Main_Loaded">
     
         <Window.Resources>
@@ -64,10 +64,8 @@
                                           Click="AddPharmacistProfileButton_Click"/>
                                 <MenuItem Header="Pharmacy Admin" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
                                           Click="AddPharmacyAdminProfileButton_Click"/>
-                                <MenuItem Header="MinistryWorker" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
-                                          />
                                 <MenuItem Header="Hospital Admin" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
-                                          Click="AddHospitalAdministartortProfileButton_Click"/>
+                                          Click="AddHospitalAdminProfileButton_Click"/>
                             </MenuItem>
                         </MenuItem>
 
@@ -126,10 +124,28 @@
                     <Separator Width="300" Background="White" Margin="0,10,0,0" />
                     <Separator Width="300" Background="White" Margin="0,200,0,0" />
 
-                    <Button Content="Recipes" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="150" Margin="0,20,0,0" Click="RecipesButton_Click"/>
-                    <Button Content="Create Recipe" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="150" Margin="0,20,0,0" Click="Button_Click_2"/>
-                    <Button Content="Hospiatl admin approval" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" Click="HospitalAdminApprovalsButton_Click"/>
+                    
+                    <Button Content="My recipes" Name="MyRecipesButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
+                            Click="RecipesButton_Click" 
+                            Visibility="{Binding MyRecipesVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="Create recipe" Name="CreaterecipeButton"  Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
+                            Click="CreateRecipeButton_Click"
+                            Visibility="{Binding CreateRecipeVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="My approvals" Name="MyApprovalsButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
+                            Visibility="{Binding MyApprovalsVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="Add medicine" Name="AddMedicineButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
+                            Click="AddMedicineButton_Click"
+                            Visibility="{Binding AddMedicineVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="Add institution" Name="AddInstituitionButton"  Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
+                            Click="AddInstitutionButton_Click"
+                            Visibility="{Binding AddInstitutionVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="Sell medicines" Name="SellMedicinesButton"  Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
+                            Click="SellMedicinesButton_Click"
+                            Visibility="{Binding SellMedicinesVisibility, UpdateSourceTrigger=PropertyChanged}"/>
 
+                    <Button Content="Delete profile" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0"
+                            Visibility="{Binding DeleteVisibility,UpdateSourceTrigger=PropertyChanged}"
+                            Command="{Binding DeleteCommand}"/>
 
                 </StackPanel>
 

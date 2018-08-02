@@ -84,15 +84,6 @@
 
                 </Grid.RowDefinitions>
 
-                <DataGrid Grid.Row="0" HeadersVisibility="None" CanUserAddRows="True" ItemsSource="{Binding Recipe.RecipeItems}" RowHeight="40" >
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding MedicineName}" Width="*"/>
-                        <DataGridTextColumn Binding="{Binding Count}" Width="*"/>
-                        <DataGridTextColumn Binding="{Binding UseFrequencyUnit}" Width="*"/>
-                        <DataGridTextColumn Binding="{Binding TimesPerUnit}" Width="*"/>
-                        <DataGridTextColumn Binding="{Binding CountPerUse}" Width="*"/>
-                    </DataGrid.Columns>
-                </DataGrid>
                 
                 
                 <Button Grid.Row="1" Content="Add" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF39B9B9" BorderBrush="#FF39B9B9" FontFamily="Comfortaa" FontWeight="Bold" Margin="0,20,20,0" />

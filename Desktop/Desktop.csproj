@@ -34,6 +34,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>RecipeIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
@@ -208,6 +215,7 @@
     <Reference Include="System.Text.Encodings.Web, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encodings.Web.4.4.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -234,6 +242,7 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\ConfirmCommand.cs" />
     <Compile Include="Commands\CreateRecipeCommand.cs" />
+    <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Commands\DeleteHospitalCommand.cs" />
     <Compile Include="Commands\DeleteMedicineCommand.cs" />
     <Compile Include="Commands\DeletePharmacyCommand.cs" />
@@ -279,6 +288,7 @@
     <Compile Include="Services\NavigateService.cs" />
     <Compile Include="Services\PatientProfileService.cs" />
     <Compile Include="Services\PharmacistProfileService.cs" />
+    <Compile Include="Services\PharmacyAdminProfileService.cs" />
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\ProfilesMenuManager.cs" />
     <Compile Include="Services\RegistrationService.cs" />
@@ -294,6 +304,7 @@
     <Compile Include="Validations\InstitutionInputValidation.cs" />
     <Compile Include="Validations\PatientInputValidation.cs" />
     <Compile Include="Validations\PharmacistInputValidation.cs" />
+    <Compile Include="Validations\PharmacyAdminInputValidation.cs" />
     <Compile Include="Validations\RegisterInfputValidation.cs" />
     <Compile Include="ViewModels\AddInstitutionViewModel.cs" />
     <Compile Include="ViewModels\AddMedicineViewModel.cs" />
@@ -308,6 +319,7 @@
     <Compile Include="ViewModels\PatientProfileViewModel.cs" />
     <Compile Include="ViewModels\PharmaciesViewModel.cs" />
     <Compile Include="ViewModels\PharmacistProfileViewModel.cs" />
+    <Compile Include="ViewModels\PharmacyAdminProfileViewModel.cs" />
     <Compile Include="ViewModels\RecipesViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
@@ -509,6 +521,18 @@
       <Project>{8560fa8a-f884-4b92-b1d6-28c2cb511d56}</Project>
       <Name>UserManagementConsumer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UI_Map\ApiToUi.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UI_Map\UiToApi.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecipeIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RecipeIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

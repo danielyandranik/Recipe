@@ -8,7 +8,18 @@ namespace Desktop.Services
     {
         public async override Task<Response<string>> Execute(object parameter)
         {
-            return await this.userManagementApiClient.PostDoctorAsync((Doctor)parameter);
+            var doctor = (Doctor)parameter;
+
+            var institutionResponse = await this.institutionClient.GetHospitalsByNameAsync(doctor.HospitalName);
+
+            if (!institutionResponse.IsSuccessStatusCode)
+                return new Response<string>
+                {
+                    Result = institutionResponse.StatusCode.ToString(),
+                    Status = Status.Error
+                };
+
+            return await this.userManagementApiClient.PostDoctorAsync(doctor);
         }
     }
 }

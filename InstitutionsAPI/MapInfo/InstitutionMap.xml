@@ -118,7 +118,11 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <spName>uspGetInstitutionsByName</spName>
     <parameters>
       <parameter>
-        <parameterName>primitive</parameterName>
+        <parameterName>Type</parameterName>
+        <spParameterName>type</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Name</parameterName>
         <spParameterName>name</spParameterName>
       </parameter>
     </parameters>

@@ -29,7 +29,7 @@ namespace InstitutionsAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize(Policy = "has_profile")]
+        [Authorize]
         public async Task<IActionResult> Get()
         {
             // the result

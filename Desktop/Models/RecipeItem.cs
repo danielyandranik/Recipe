@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Desktop.Models
 {
-    internal class RecipeItem
+    public class RecipeItem
     {
         /// <summary>
         /// An identifier of the medicine.
         /// </summary>
-        public int MedicineName { get; set; }
+        public string MedicineName { get; set; }
 
         /// <summary>
         /// A count of units.

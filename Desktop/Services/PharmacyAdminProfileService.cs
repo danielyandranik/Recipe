@@ -5,13 +5,13 @@ using UserManagementConsumer.Models;
 
 namespace Desktop.Services
 {
-    class HospitalDirectorProfileService : ProfileService
+    public class PharmacyAdminProfileService : ProfileService
     {
         public async override Task<Response<string>> Execute(object parameter)
         {
-            var hospitalDirector = (HospitalDirector)parameter;
+            var pharmacyAdmin = (PharmacyAdmin)parameter;
 
-            var institutionResponse = await this.institutionClient.GetHospitalsByNameAsync(hospitalDirector.HospitalName);
+            var institutionResponse = await institutionClient.GetPharmaciesByNameAsync(pharmacyAdmin.PharmacyName);
 
             if (!institutionResponse.IsSuccessStatusCode)
                 return new Response<string>
@@ -20,9 +20,9 @@ namespace Desktop.Services
                     Status = Status.Error
                 };
 
-            hospitalDirector.HospitalName = institutionResponse.Content.First().Name;
+            pharmacyAdmin.PharmacyId = institutionResponse.Content.First().Id;
 
-            return await this.userManagementApiClient.PostHospitalDirectorAsync((HospitalDirector)parameter);
+            return await this.userManagementApiClient.PostPharmacyAdmin(pharmacyAdmin);
         }
     }
 }

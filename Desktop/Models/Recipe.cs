@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace Desktop.Models
 {
-    internal class Recipe
+    public class Recipe
     {
         /// <summary>
         /// An identifier of the recipe.
@@ -21,15 +21,10 @@ namespace Desktop.Models
         /// </summary>
         public string DoctorName { get; set; }
 
-        ///// <summary>
-        ///// Checks whether the recipe is approved by chief.
-        ///// </summary>
-        //public bool IsApproved { get; set; }
-
         /// <summary>
         /// An identifier of the chief doctor.
         /// </summary>
-        public int HospitalName { get; set; }
+        public string HospitalName { get; set; }
 
         /// <summary>
         /// An identifier of the patient for whom the recipe is created.

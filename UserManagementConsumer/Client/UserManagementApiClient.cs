@@ -387,6 +387,17 @@ namespace UserManagementConsumer.Client
             return await this.GetProfileByTypeAndIdAsync<PharmacistFullInfo>("patients", id);
         }
 
+        
+        /// <summary>
+        /// Posts pharmacy admin profile
+        /// </summary>
+        /// <param name="pharmacyAdmin">Pharmacy Admin</param>
+        /// <returns>response</returns>
+        public async Task<Response<string>> PostPharmacyAdmin(PharmacyAdmin pharmacyAdmin)
+        {
+            return await this.PostProfileAsync("pharmacy-admins", pharmacyAdmin);
+        }
+
         /// <summary>
         /// Posts doctor
         /// </summary>
@@ -530,6 +541,31 @@ namespace UserManagementConsumer.Client
         public async Task<Response<string>> DeletePharmacistAsync()
         {
             return await this.DeleteProfileAsync("pharmacists");
+        }
+
+        /// <summary>
+        /// Deletes pharmacy admin
+        /// </summary>
+        /// <returns>response</returns>
+        public async Task<Response<string>> DeletePharmacyAdmin()
+        {
+            return await this.DeleteProfileAsync("pharmacy-admins");
+        }
+
+        /// <summary>
+        /// Deletes current profile
+        /// </summary>
+        /// <param name="currentProfileType">Current profile type</param>
+        /// <returns>response</returns>
+        public async Task<Response<string>> DeleteCurrentProfile(string currentProfileType)
+        {
+            var builder = new StringBuilder();
+
+            builder.Append(currentProfileType)
+                   .Append("s")
+                   .Replace('_', '-');
+
+            return await this.DeleteProfileAsync(builder.ToString());
         }
 
         /// <summary>
