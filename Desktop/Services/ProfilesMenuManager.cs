@@ -85,6 +85,8 @@ namespace Desktop.Services
                     User.Default.CurrentProfile = "none";
                     User.Default.Save();
 
+                    this._vm.PhotoUrl = ConfigurationManager.AppSettings[this._vm.CurrentProfile];
+
                     break;
                 }
             }
