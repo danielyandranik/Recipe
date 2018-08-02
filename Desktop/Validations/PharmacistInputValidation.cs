@@ -3,8 +3,16 @@ using UserManagementConsumer.Models;
 
 namespace Desktop.Validations
 {
+    /// <summary>
+    /// Pharmacist input validation
+    /// </summary>
     public class PharmacistInputValidation : IValidation
     {
+        /// <summary>
+        /// Validates pharmacist input
+        /// </summary>
+        /// <param name="parameter">Command parameter</param>
+        /// <returns>boolean value indicating the validity of pharmacist input</returns>
         public bool Validate(object parameter)
         {
             if (parameter == null)
@@ -12,9 +20,8 @@ namespace Desktop.Validations
 
             var patient = (PharmacistFullInfo)parameter;
 
-            int temp;
             return (!string.IsNullOrEmpty(patient.PharmacyName) &&
-                        int.TryParse(patient.StartedWorking, out temp));
+                     int.TryParse(patient.StartedWorking, out var temp));
 
         }
     }
