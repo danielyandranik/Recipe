@@ -1,12 +1,10 @@
-﻿using Desktop.Commands;
-using Desktop.Models;
-using Desktop.Views.Windows;
-using GalaSoft.MvvmLight;
-using RecipeClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
+using Desktop.Commands;
+using Desktop.Views.Windows;
+using RecipeClient;
 using UserManagementConsumer.Client;
 
 namespace Desktop.ViewModels

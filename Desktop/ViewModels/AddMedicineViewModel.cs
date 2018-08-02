@@ -1,7 +1,7 @@
-﻿using Desktop.Commands;
+﻿using System.Threading.Tasks;
+using Desktop.Commands;
 using GalaSoft.MvvmLight;
 using MedicineApiClient;
-using System.Threading.Tasks;
 
 namespace Desktop.ViewModels
 {
