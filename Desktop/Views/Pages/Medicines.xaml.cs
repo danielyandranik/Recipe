@@ -26,9 +26,10 @@ namespace Desktop.Views.Pages
 
         public Medicines()
         {
+            InitializeComponent();
+
             this.MedicinesViewModel = new MedicinesViewModel();
             this.DataContext = this.MedicinesViewModel;
-            InitializeComponent();
         }
 
         private void EditMedicineClick(object sender, RoutedEventArgs e)
@@ -43,6 +44,15 @@ namespace Desktop.Views.Pages
         {
             this.EditPopup.IsOpen = false;
             Application.Current.MainWindow.IsEnabled = true;
+        }
+
+        private async void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textbox = (TextBox)sender;
+
+            if (textbox == this.name)
+                await this.MedicinesViewModel.Filter(medicine => medicine.Name.Contains(textbox.Text));
+            else await this.MedicinesViewModel.Filter(medicine => medicine.Country.Contains(textbox.Text));
         }
     }
 }
