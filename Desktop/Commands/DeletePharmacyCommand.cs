@@ -1,4 +1,5 @@
-﻿using InstitutionClient.Models;
+﻿using Desktop.Views.Windows;
+using InstitutionClient.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -16,14 +17,28 @@ namespace Desktop.Commands
 
         public async override void Execute(object parameter)
         {
-            var isSuccessed = await this.ExecuteAsync((int)parameter);
-            if (isSuccessed)
+            try
             {
-                var response = await ((App)App.Current).InstitutionClient.GetAllPharmaciesAsync();
-                if (response.IsSuccessStatusCode)
+                var isSuccessed = await this.ExecuteAsync((int)parameter);
+                
+                if (isSuccessed)
                 {
-                    this.pharmacies = new ObservableCollection<Institution>(response.Content);
+                    RecipeMessageBox.Show("Pharmacy removed successfully");
+
+                    var response = await ((App)App.Current).InstitutionClient.GetAllPharmaciesAsync();
+                    if (response.IsSuccessStatusCode)
+                    {
+                        this.pharmacies = new ObservableCollection<Institution>(response.Content);
+                    }
                 }
+                else
+                {
+                    RecipeMessageBox.Show("Unable to remove pharmacy");
+                }
+            }
+            catch (Exception)
+            {
+                RecipeMessageBox.Show("Server is not responding");
             }
         }
     }

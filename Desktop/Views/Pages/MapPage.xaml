@@ -9,6 +9,15 @@
       Title="Map" Background="White" MinHeight="609" MinWidth="902">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <ComboBox Grid.Row="0" Text="Choose Institutions"  Background="#FF39B9B9" Foreground="White" FontSize="20">
+            <ComboBoxItem Content="Hospitals" Background="#FF39B9B9" Foreground="White" FontSize="20"/>
+            <ComboBoxItem Content="Pharmacies" Background="#FF39B9B9" Foreground="White" FontSize="20"/>
+        </ComboBox>
+        <m:Map Grid.Row="1" CredentialsProvider=" EOnTRVd4HUO3jAbQVZes~hT8iS0wme8DOBnyr7lAJDA~AnhVYLJc5DzxhfKsllJY-P9mcE2oX0IuTrACvzjB9-nd8sRzlb3hrBEyXXufsVD0"
+               Center="40.1792, 44.4991" ZoomLevel="11"/>
     </Grid>
 </Page>
