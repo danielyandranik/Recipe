@@ -86,6 +86,7 @@
 
             <StackPanel Orientation="Horizontal" Grid.Column="1">
 
+                <TextBlock  Cursor="Hand" Text="Main" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0"/>
                 <TextBlock PreviewMouseDown="Medicines_PreviewMouseDown" Cursor="Hand" Text="Medicines" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
                 <TextBlock PreviewMouseDown="Hospitals_PreviewMouseDown" Cursor="Hand" Text="Hospitals" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
                 <TextBlock PreviewMouseDown="Pharmacies_PreviewMouseDown" Cursor="Hand" Text="Pharmacies" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
