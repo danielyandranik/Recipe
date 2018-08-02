@@ -155,6 +155,8 @@ namespace Desktop.Views.Windows
         private async void Main_Loaded(object sender, RoutedEventArgs e)
         {            
             await this._mainWindowVM.LoadService.Execute();
+
+            this._navigationService.Navigate(ref this._mapPage);
         }
 
         private async void HospitalAdminApprovalsButton_Click(object sender, RoutedEventArgs e)

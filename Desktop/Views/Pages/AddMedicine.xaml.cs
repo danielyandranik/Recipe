@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desktop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace Desktop.Views.Pages
     /// </summary>
     public partial class AddMedicine : Page
     {
+        private readonly AddMedicineViewModel _vm;
+
         public AddMedicine()
         {
             InitializeComponent();
+            this._vm = new AddMedicineViewModel();
+            this.DataContext = this._vm;
         }
     }
 }
