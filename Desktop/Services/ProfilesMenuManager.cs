@@ -122,7 +122,7 @@ namespace Desktop.Services
             }
             else
             {
-                RecipeMessageBox.Show("Error occured");
+                RecipeMessageBox.Show("Error occured.\nMaybe your profile is not approved yet.");
             }
         }
 
