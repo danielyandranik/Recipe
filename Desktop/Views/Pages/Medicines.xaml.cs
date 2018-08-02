@@ -34,7 +34,7 @@ namespace Desktop.Views.Pages
         private void EditMedicineClick(object sender, RoutedEventArgs e)
         {
             var id = (string)(sender as Button).Tag;
-            this.MedicinesViewModel.EditableMedicine = new Medicine() { Id = id, Name="miban" };
+            this.MedicinesViewModel.EditableMedicine = new Medicine() { Id = id };
             this.EditPopup.IsOpen = true;
             Application.Current.MainWindow.IsEnabled = false;
         }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Desktop.Commands;
 using System.Collections.ObjectModel;
 using InstitutionClient.Models;
+using System.Windows;
 
 namespace Desktop.ViewModels
 {
@@ -12,11 +13,12 @@ namespace Desktop.ViewModels
 
         private Institution editableHospital;
 
-        private bool isVisible;
+        private Visibility visibility;
 
         private DeleteHospitalCommand deleteHospitalCommand;
 
         private EditHospitalCommand editHospitalCommand;
+
 
         public ObservableCollection<Institution> Hospitals
         {
@@ -42,21 +44,31 @@ namespace Desktop.ViewModels
             }
         }
 
-        public bool IsVisible
+        public Visibility Visibility
         {
             get
             {
-                return this.isVisible;
+                return this.visibility;
             }
             set
             {
-                this.Set("IsVisible", ref this.isVisible, value);
+                this.Set("Visibility", ref this.visibility, value);
             }
+        }
+
+        public DeleteHospitalCommand DeleteHospitalCommand
+        {
+            get => this.deleteHospitalCommand;
+        }
+
+        public EditHospitalCommand EditMedicineCommand
+        {
+            get => this.editHospitalCommand;
         }
 
         public HospitalsViewModel()
         {
-            this.isVisible = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "hospital_admin") ? true : false;
+            this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "hospital_admin") ? Visibility.Visible : Visibility.Collapsed;
             this.deleteHospitalCommand = new DeleteHospitalCommand(this.hospitals, this.deleteHospital, _ => true);
             this.editHospitalCommand = new EditHospitalCommand(this.hospitals, this.editHospital, _ => true);
         }
@@ -72,16 +84,3 @@ namespace Desktop.ViewModels
         }
     }
 }
-
-
-//private void LoadHospitals()
-//{
-//    var response = ((App)App.Current).InstitutionClient.GetAllHospitalsAsync().Result;
-//    if (!response.IsSuccessStatusCode)
-//    {
-//        Debug.Write(response.StatusCode);
-//        return;
-//    }
-
-//    this.Hospitals = new ObservableCollection<Institution>(response.Content);
-//}

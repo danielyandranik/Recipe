@@ -59,9 +59,6 @@ namespace Desktop.ViewModels
             // setting fields
             this.institution = new Institution();
 
-            // TODO
-            this.institution.Id = User.Default.Id;
-
             this.validation = new InstitutionInputValidation();
             this.institutionService = new AddInstitutionService();
             this.addInstitutionCommand = new AddInstitutionCommand(this.institutionService.Execute, this.validation.Validate);

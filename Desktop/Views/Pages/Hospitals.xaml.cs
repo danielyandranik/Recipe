@@ -21,8 +21,16 @@ namespace Desktop.Views.Pages
 
         private void EditHospitalClick(object sender, RoutedEventArgs e)
         {
-            var hospital = (Institution)(sender as Button).Tag;
-            ((HospitalsViewModel)this.DataContext).EditableHospital = hospital;
+            var id = (int)(sender as Button).Tag;
+            this.HospitalsViewModel.EditableHospital = new Institution() { Id = id };
+            this.EditPopup.IsOpen = true;
+            Application.Current.MainWindow.IsEnabled = false;
+        }
+        
+        private void CloseEditHospitalPopup_Click(object sender, RoutedEventArgs e)
+        {
+            this.EditPopup.IsOpen = false;
+            Application.Current.MainWindow.IsEnabled = true;
         }
     }
 }

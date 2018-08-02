@@ -60,14 +60,18 @@ namespace Desktop.Views.Windows
             await loadMedicinesService.Load();
         }
 
-        private void Hospitals_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private async void Hospitals_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             this._navigationService.Navigate(ref this._hospitals);
+            var loadHospitalsService = new LoadHospitalsService(this._hospitals.HospitalsViewModel);
+            await loadHospitalsService.Load();
         }
 
-        private void Pharmacies_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private async void Pharmacies_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             this._navigationService.Navigate(ref this._pharmacies);
+            var loadPharmaciesService = new LoadPharmaciesService(this._pharmacies.PharmaciesViewModel);
+            await loadPharmaciesService.Load();
         }
 
         private void AddPatientProfileButton_Click(object sender, RoutedEventArgs e)
@@ -130,7 +134,7 @@ namespace Desktop.Views.Windows
             await loadHospitalApprovalsService.Load();
         }
 
-        private void RecipesButton_Click(object sender, RoutedEventArgs e)
+        private async void RecipesButton_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.Navigate(ref this._recipes);
             var loadRecipesService = new LoadRecipesService(this._recipes.ViewModel);
