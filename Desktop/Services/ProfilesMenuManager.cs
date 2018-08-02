@@ -118,6 +118,8 @@ namespace Desktop.Services
 
                 this.UpdateButtonsVisibilities();
 
+                this._vm.PhotoUrl = ConfigurationManager.AppSettings[User.Default.CurrentProfile];
+
                 RecipeMessageBox.Show("Current profile is updated");               
             }
             else

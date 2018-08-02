@@ -532,7 +532,14 @@
     <Resource Include="RecipeIcon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\RecipeIcon.ico" />
+    <Resource Include="Images\RecipeIcon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\doctor.png" />
+    <Resource Include="Images\pharmacist.jpg" />
+    <Resource Include="Images\patient.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

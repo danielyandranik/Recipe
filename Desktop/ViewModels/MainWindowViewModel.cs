@@ -18,6 +18,8 @@ namespace Desktop.ViewModels
 
         private string _fullName;
 
+        private string _photoUrl;
+
         private Visibility _myRecipesVisibility;
 
         private Visibility _createRecipeVisibility;
@@ -110,6 +112,13 @@ namespace Desktop.ViewModels
             get => this._deleteVisibility;
 
             set => this.Set("DeleteVisibility", ref this._deleteVisibility, value);
+        }
+
+        public string PhotoUrl
+        {
+            get => this._photoUrl;
+
+            set => this.Set("PhotoUrl", ref this._photoUrl, value);
         }
 
         public SignOutCommand SignOutCommand => this._signOutCommand;
