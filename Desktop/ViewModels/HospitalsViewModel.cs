@@ -61,7 +61,7 @@ namespace Desktop.ViewModels
             get => this.deleteHospitalCommand;
         }
 
-        public EditHospitalCommand EditMedicineCommand
+        public EditHospitalCommand EditHospitalCommand
         {
             get => this.editHospitalCommand;
         }
