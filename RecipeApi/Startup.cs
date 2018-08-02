@@ -58,16 +58,13 @@ namespace RecipeApi
                 {
                     policy.RequireClaim("current_profile", new[]
                     {
-                        "docotr", "pharmacist", "patient", "chief_doctor"
+                        "doctor", "pharmacist", "patient"
 					});
                 });
 
                 options.AddPolicy("CanChangeRecipe", policy =>
                 {
-                    policy.RequireClaim("current_profile", new[]
-                    {
-                        "chief_doctor", "docotr"
-					});
+                    policy.RequireClaim("current_profile", "doctor" );
                 });
 
                 options.AddPolicy("CanChangeRecipeHistory", policy => 

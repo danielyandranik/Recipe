@@ -240,6 +240,7 @@
     </Compile>
     <Compile Include="Commands\AddInstitutionCommand.cs" />
     <Compile Include="Commands\AddMedicineCommand.cs" />
+    <Compile Include="Commands\AddRecipeHistoryCommand.cs" />
     <Compile Include="Commands\ApproveDoctorCommand.cs" />
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
@@ -325,6 +326,7 @@
     <Compile Include="ViewModels\PharmacyAdminProfileViewModel.cs" />
     <Compile Include="ViewModels\RecipesViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
+    <Compile Include="ViewModels\SellMedicinesViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="Views\Controls\Recipe.xaml.cs">
       <DependentUpon>Recipe.xaml</DependentUpon>
