@@ -40,7 +40,7 @@ namespace Desktop.ViewModels
             }
             set
             {
-                this.Set("EditableHospitals", ref this.editableHospital, value);
+                this.Set("EditableHospital", ref this.editableHospital, value);
             }
         }
 

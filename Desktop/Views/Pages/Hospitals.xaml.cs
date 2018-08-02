@@ -15,7 +15,7 @@ namespace Desktop.Views.Pages
         public Hospitals()
         {
             this.HospitalsViewModel = new HospitalsViewModel();
-            this.DataContext = this.HospitalsViewModel; ;
+            this.DataContext = this.HospitalsViewModel;
             InitializeComponent();
         }
 

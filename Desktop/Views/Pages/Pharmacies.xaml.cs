@@ -21,9 +21,6 @@ namespace Desktop.Views.Pages
 
         private void EditPharmacyClick(object sender, RoutedEventArgs e)
         {
-            var pharmacy = (Institution)(sender as Button).Tag;
-            ((PharmaciesViewModel)this.DataContext).EditablePharmacy = pharmacy;
-
             var id = (int)(sender as Button).Tag;
             this.PharmaciesViewModel.EditablePharmacy = new Institution() { Id = id };
             this.EditPopup.IsOpen = true;
