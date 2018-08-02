@@ -85,6 +85,8 @@ namespace Desktop.Services
                     User.Default.CurrentProfile = "none";
                     User.Default.Save();
 
+                    this._vm.PhotoUrl = ConfigurationManager.AppSettings[this._vm.CurrentProfile];
+
                     break;
                 }
             }
@@ -117,6 +119,8 @@ namespace Desktop.Services
                 User.Default.Save();
 
                 this.UpdateButtonsVisibilities();
+
+                this._vm.PhotoUrl = ConfigurationManager.AppSettings[User.Default.CurrentProfile];
 
                 RecipeMessageBox.Show("Current profile is updated");               
             }
