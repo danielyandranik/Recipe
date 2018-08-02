@@ -6,6 +6,7 @@ using Desktop.Views.Windows;
 using Desktop.ViewModels;
 using Desktop.Models;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Desktop.Commands
 {
@@ -59,6 +60,7 @@ namespace Desktop.Commands
             this._vm.CurrentProfile = this._profilesMenuManager.ApiToUi[load.CurrentProfile];
             this._vm.FullName = load.FullName;
             this._vm.Username = load.Username;
+            this._vm.PhotoUrl = ConfigurationManager.AppSettings[load.CurrentProfile];
         }
 
         private void SaveSettings(UserInitialInfo load)
