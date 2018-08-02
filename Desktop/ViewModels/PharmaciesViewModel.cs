@@ -3,20 +3,23 @@ using System.Threading.Tasks;
 using Desktop.Commands;
 using System.Collections.ObjectModel;
 using InstitutionClient.Models;
+using System.Windows;
 
 namespace Desktop.ViewModels
 {
     public class PharmaciesViewModel : ViewModelBase
     {
+
         private ObservableCollection<Institution> pharmacies;
 
         private Institution editablePharmacy;
 
-        private bool isVisible;
+        private Visibility visibility;
 
         private DeletePharmacyCommand deletePharmacyCommand;
 
         private EditPharmacyCommand editPharmacyCommand;
+
 
         public ObservableCollection<Institution> Pharmacies
         {
@@ -42,21 +45,31 @@ namespace Desktop.ViewModels
             }
         }
 
-        public bool IsVisible
+        public Visibility Visibility
         {
             get
             {
-                return this.isVisible;
+                return this.visibility;
             }
             set
             {
-                this.Set("IsVisible", ref this.isVisible, value);
+                this.Set("Visibility", ref this.visibility, value);
             }
+        }
+
+        public DeletePharmacyCommand DeletePharmacyCommand
+        {
+            get => this.deletePharmacyCommand;
+        }
+
+        public EditPharmacyCommand EditPharmacyCommand
+        {
+            get => this.editPharmacyCommand;
         }
 
         public PharmaciesViewModel()
         {
-            this.isVisible = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "pharmacy_admin") ? true : false;
+            this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "pharmacy_admin") ? Visibility.Visible : Visibility.Collapsed;
             this.deletePharmacyCommand = new DeletePharmacyCommand(this.pharmacies, this.deletePharmacy, _ => true);
             this.editPharmacyCommand = new EditPharmacyCommand(this.pharmacies, this.editPharmacy, _ => true);
         }

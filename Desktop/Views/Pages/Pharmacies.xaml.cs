@@ -23,6 +23,17 @@ namespace Desktop.Views.Pages
         {
             var pharmacy = (Institution)(sender as Button).Tag;
             ((PharmaciesViewModel)this.DataContext).EditablePharmacy = pharmacy;
+
+            var id = (int)(sender as Button).Tag;
+            this.PharmaciesViewModel.EditablePharmacy = new Institution() { Id = id };
+            this.EditPopup.IsOpen = true;
+            Application.Current.MainWindow.IsEnabled = false;
+        }
+        
+        private void CloseEditPharmacyPopup_Click(object sender, RoutedEventArgs e)
+        {
+            this.EditPopup.IsOpen = false;
+            Application.Current.MainWindow.IsEnabled = true;
         }
     }
 }

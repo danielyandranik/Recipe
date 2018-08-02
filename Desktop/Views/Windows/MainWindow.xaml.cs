@@ -28,6 +28,14 @@ namespace Desktop.Views.Windows
 
         private  AddPharmacyAdminProfile _addPharmacyAdminProfile;
 
+        private AddInstitution _addInstitution;
+
+        private SellMedicines _sellMedicines;
+
+        private CreateRecipe _createRecipe;
+
+        private AddMedicine _addMedicine;
+
         private HospitalAdminApprovals _hospitalAdminApprovals;
 
         private readonly NavigateService _navigationService;
@@ -89,9 +97,29 @@ namespace Desktop.Views.Windows
             this._navigationService.Navigate(ref this._addPharmacistProfile);
         }
 
-        private void AddHospitalAdministartortProfileButton_Click(object sender, RoutedEventArgs e)
+        private void AddInstitutionButton_Click(object sender, RoutedEventArgs e)
+        {
+            this._navigationService.Navigate(ref this._addInstitution);
+        }
+
+        private void AddHospitalAdminProfileButton_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.Navigate(ref this._addHospitalAdministartorProfile);
+        }
+
+        private void SellMedicinesButton_Click(object sender, RoutedEventArgs e)
+        {
+            this._navigationService.Navigate(ref this._sellMedicines);
+        }
+
+        private void CreateRecipeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this._navigationService.Navigate(ref this._createRecipe);
+        }
+
+        private void AddMedicineButton_Click(object sender, RoutedEventArgs e)
+        {
+            this._navigationService.Navigate(ref this._addMedicine);
         }
 
         private void Toggle_menu(object sender, MouseButtonEventArgs e)
