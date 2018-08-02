@@ -104,11 +104,25 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     </parameters>
     <returnDataType>Entity</returnDataType>
   </operation>
+  <operation name="GetInstitutionId">
+    <spName>uspGetInstitutionId</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>name</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Scalar</returnDataType>
+  </operation>
   <operation name="GetInstitutionsByAddress">
     <spName>uspGetInstitutionsByAddress</spName>
     <parameters>
       <parameter>
-        <parameterName>primitive</parameterName>
+        <parameterName>Type</parameterName>
+        <spParameterName>type</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Address</parameterName>
         <spParameterName>address</spParameterName>
       </parameter>
     </parameters>

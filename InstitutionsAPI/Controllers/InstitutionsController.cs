@@ -35,9 +35,6 @@ namespace InstitutionsAPI.Controllers
             // the result
             var result = default(object);
 
-            // get parameter
-            StringValues param;
-
             // integer for parsing
             int id;
 
@@ -45,21 +42,23 @@ namespace InstitutionsAPI.Controllers
             var query = this.Request.Query;
 
             // getting the result by given parameter
-            if (query.TryGetValue("id", out param))
-            {
-                int.TryParse(param, out id);
-                result = await this._dataManager.OperateAsync<int, Institution>("GetInstitution", id);
-
-            }
-            else if (query.TryGetValue("medicineId", out param))
-            {
-                int.TryParse(param, out id);
-                result = await this._dataManager.OperateAsync<int, Institution>("GetPharmaciesByMedicine", id);
-            }
-            else if (query.Count > 0)
+            if (query.Count > 0)
             {
                 StringValues type;
-                if (query.TryGetValue("type", out type))
+                StringValues param;
+
+                if (query.TryGetValue("id", out param))
+                {
+                    int.TryParse(param, out id);
+                    result = await this._dataManager.OperateAsync<int, Institution>("GetInstitution", id);
+
+                }
+                else if (query.TryGetValue("medicineId", out param))
+                {
+                    int.TryParse(param, out id);
+                    result = await this._dataManager.OperateAsync<int, Institution>("GetPharmaciesByMedicine", id);
+                }
+                else if (query.TryGetValue("type", out type))
                 {
                     if (query.TryGetValue("address", out param))
                     {
@@ -76,7 +75,10 @@ namespace InstitutionsAPI.Controllers
                         result = await this._dataManager.OperateAsync<string, Institution>("GetInstitutions", type);
                     }
                 }
-
+                else if(query.TryGetValue("name", out param))
+                {
+                    result = await this._dataManager.OperateAsync<string, object>("GetInstitutionId", param);
+                }
             }
 
             // if no content retun 204

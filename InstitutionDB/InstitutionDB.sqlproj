@@ -82,6 +82,7 @@
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmacyMedicineById.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetInstitutionsByName.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetInstitutionsByAddress.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetInstitutionId.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="dbo\InstitutionDB.refactorlog" />
