@@ -1,12 +1,11 @@
-﻿using DatabaseAccess.Repository;
-using DatabaseAccess.SpExecuters;
+﻿using System.IO;
+using System.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.IO;
-using System.Net;
-using UserManagementAPI.Models;
+using DatabaseAccess.Repository;
+using DatabaseAccess.SpExecuters;
 using UserManagementAPI.Services;
 
 namespace UserManagementAPI
