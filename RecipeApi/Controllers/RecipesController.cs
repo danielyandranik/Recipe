@@ -29,12 +29,12 @@ namespace RecipeApi.Controllers
                 StringValues patientId;
                 if (query.TryGetValue("patientId", out patientId))
                 {
-                    if(User.FindFirst("current_profile").Value == "Patient")
-                    {
-                        // Get patientId from user managment
-                        // check if patiendIds are not equal
-                        return new UnauthorizedResult();
-                    }
+                    //if(User.FindFirst("current_profile").Value == "Patient")
+                    //{
+                    //    // Get patientId from user managment
+                    //    // check if patiendIds are not equal
+                    //    return new UnauthorizedResult();
+                    //}
                     return new ObjectResult(await this._recipeRepository.GetAllRecipesByPatient(int.Parse(patientId[0])));
                 }
                 return new NotFoundResult();

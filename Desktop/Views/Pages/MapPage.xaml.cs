@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desktop.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,19 @@ namespace Desktop.Views.Pages
     /// </summary>
     public partial class MapPage : Page
     {
+        private readonly PushPinService _pushPinService;
+
         public MapPage()
         {
             InitializeComponent();
+            this._pushPinService = new PushPinService(this.map.Children);
+        }
+
+        private async void ComboBoxItem_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var item = (ComboBoxItem)sender;
+
+            await this._pushPinService.AddPushPins((string)item.Content);
         }
     }
 }

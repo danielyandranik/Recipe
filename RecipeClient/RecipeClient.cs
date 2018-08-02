@@ -63,11 +63,11 @@ namespace RecipeClient
             };
         }
 
-        public async Task<ResponseMessage<string>> CreateAsync<T>(T t)
+        public async Task<ResponseMessage<string>> CreateAsync<T>(string requestUri, T t)
         {
             var json = JsonConvert.SerializeObject(t);
 
-            var httpResponse = await this.client.PostAsync(String.Empty, new StringContent(json, Encoding.UTF8, "application/json"));
+            var httpResponse = await this.client.PostAsync(requestUri, new StringContent(json, Encoding.UTF8, "application/json"));
 
             var content = await httpResponse.Content.ReadAsStringAsync();
 

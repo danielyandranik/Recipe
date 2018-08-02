@@ -1,17 +1,7 @@
-﻿using System;
+﻿using Desktop.ViewModels;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Desktop.Views.Pages
 {
@@ -20,9 +10,18 @@ namespace Desktop.Views.Pages
     /// </summary>
     public partial class SellMedicines : Page
     {
+        private readonly SellMedicinesViewModel ViewModel; 
         public SellMedicines()
         {
+            this.ViewModel = new SellMedicinesViewModel();
+            this.DataContext = this.ViewModel;
             InitializeComponent();
+        }
+
+        private void AddItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.SellingItems.Add(this.ViewModel.AddingItem);
+            this.ViewModel.AddingItem = new KeyValuePair<string, int>();
         }
     }
 }

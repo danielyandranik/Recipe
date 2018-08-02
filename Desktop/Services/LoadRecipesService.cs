@@ -31,7 +31,7 @@ namespace Desktop.Services
 
         public async Task Load()
         {
-            var response = await this.recipeClient.GetAllAsync<RecipeClient.Recipe>($"api/medicines?patientId={User.Default.Id}");
+            var response = await this.recipeClient.GetAllAsync<RecipeClient.Recipe>($"api/recipes?patientId={User.Default.Id}");
 
             if (!response.IsSuccessStatusCode)
             {

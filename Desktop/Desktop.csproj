@@ -240,6 +240,7 @@
     </Compile>
     <Compile Include="Commands\AddInstitutionCommand.cs" />
     <Compile Include="Commands\AddMedicineCommand.cs" />
+    <Compile Include="Commands\AddRecipeHistoryCommand.cs" />
     <Compile Include="Commands\ApproveDoctorCommand.cs" />
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="Commands\EditMedicineCommand.cs" />
     <Compile Include="Commands\EditPharmacyCommand.cs" />
     <Compile Include="Commands\LoadMedicinesCommand.cs" />
+    <Compile Include="Models\Point.cs" />
     <Compile Include="Services\AddInstitutionService.cs" />
     <Compile Include="Services\LoadHospitalAdminApprovals.cs" />
     <Compile Include="Services\LoadHospitalsService.cs" />
@@ -294,6 +296,7 @@
     <Compile Include="Services\PharmacyAdminProfileService.cs" />
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\ProfilesMenuManager.cs" />
+    <Compile Include="Services\PushPinService.cs" />
     <Compile Include="Services\RegistrationService.cs" />
     <Compile Include="Services\UserInfoLoader.cs" />
     <Compile Include="User.Designer.cs">
@@ -325,6 +328,7 @@
     <Compile Include="ViewModels\PharmacyAdminProfileViewModel.cs" />
     <Compile Include="ViewModels\RecipesViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
+    <Compile Include="ViewModels\SellMedicinesViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="Views\Controls\Recipe.xaml.cs">
       <DependentUpon>Recipe.xaml</DependentUpon>
@@ -396,6 +400,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -405,9 +410,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>User.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\add.png" />
