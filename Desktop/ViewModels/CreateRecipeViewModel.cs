@@ -35,7 +35,8 @@ namespace Desktop.ViewModels
 
         private async Task<ResponseMessage<string>> createRecipe(RecipeClient.Recipe recipe)
         {
-            return await ((App)App.Current).RecipeClient.CreateAsync<RecipeClient.Recipe>(recipe);
+            //return await ((App)App.Current).RecipeClient.CreateAsync<RecipeClient.Recipe>(recipe);
+            return null;
         }
     }
 }

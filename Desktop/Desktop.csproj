@@ -254,6 +254,7 @@
     <Compile Include="Commands\EditMedicineCommand.cs" />
     <Compile Include="Commands\EditPharmacyCommand.cs" />
     <Compile Include="Commands\LoadMedicinesCommand.cs" />
+    <Compile Include="Models\Point.cs" />
     <Compile Include="Services\AddInstitutionService.cs" />
     <Compile Include="Services\LoadHospitalAdminApprovals.cs" />
     <Compile Include="Services\LoadHospitalsService.cs" />
@@ -295,6 +296,7 @@
     <Compile Include="Services\PharmacyAdminProfileService.cs" />
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\ProfilesMenuManager.cs" />
+    <Compile Include="Services\PushPinService.cs" />
     <Compile Include="Services\RegistrationService.cs" />
     <Compile Include="Services\UserInfoLoader.cs" />
     <Compile Include="User.Designer.cs">
@@ -398,6 +400,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -407,9 +410,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>User.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\add.png" />

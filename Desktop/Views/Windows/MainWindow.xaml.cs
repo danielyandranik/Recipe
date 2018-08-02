@@ -36,6 +36,8 @@ namespace Desktop.Views.Windows
 
         private AddMedicine _addMedicine;
 
+        private MapPage _mapPage;
+
         private HospitalAdminApprovals _hospitalAdminApprovals;
 
         private readonly NavigateService _navigationService;
@@ -167,6 +169,11 @@ namespace Desktop.Views.Windows
             this._navigationService.Navigate(ref this._recipes);
             var loadRecipesService = new LoadRecipesService(this._recipes.ViewModel);
             await loadRecipesService.Load();
+        }
+
+        private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this._navigationService.Navigate(ref this._mapPage);
         }
     }
 }

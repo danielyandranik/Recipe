@@ -4,20 +4,30 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Desktop.Views.Pages"
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Map" Background="White" MinHeight="609" MinWidth="902">
+      Title="Map" Background="#FF39B9B9" MinHeight="609" MinWidth="902">
+    <Border BorderBrush="Black" BorderThickness="3">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"/>
-            <RowDefinition Height="1.5*"/>
-        </Grid.RowDefinitions>
-        <ComboBox Grid.Row="0" Text="Choose Institutions"  Background="#FF39B9B9" Foreground="White" FontSize="20">
-            <ComboBoxItem Content="Hospitals" Background="#FF39B9B9" Foreground="White" FontSize="20"/>
-            <ComboBoxItem Content="Pharmacies" Background="#FF39B9B9" Foreground="White" FontSize="20"/>
-        </ComboBox>
-        <m:Map Grid.Row="1" CredentialsProvider=" EOnTRVd4HUO3jAbQVZes~hT8iS0wme8DOBnyr7lAJDA~AnhVYLJc5DzxhfKsllJY-P9mcE2oX0IuTrACvzjB9-nd8sRzlb3hrBEyXXufsVD0"
+            <ComboBox Name="InstitutionsComboBox" Grid.Row="0"   Background="#FF39B9B9" Foreground="White" FontSize="20" MinWidth="800"
+                  VerticalAlignment="Center" BorderBrush="{x:Null}"
+                      IsEditable="True" IsReadOnly="True" Text="Select institution type"
+                      Focusable="False">
+                <ComboBoxItem Content="Hospitals" MinWidth="800"
+                          VerticalAlignment="Center" HorizontalAlignment="Center"
+                          Background="#FF39B9B9" Foreground="White" FontSize="20" PreviewMouseDown="ComboBoxItem_PreviewMouseDown"/>
+                <ComboBoxItem Content="Pharmacies" MinWidth="800"
+                          VerticalAlignment="Center" HorizontalAlignment="Center"
+                          Background="#FF39B9B9" Foreground="White" FontSize="20" PreviewMouseDown="ComboBoxItem_PreviewMouseDown"/>
+            </ComboBox>
+            <m:Map Name="map" Grid.Row="1" CredentialsProvider=" EOnTRVd4HUO3jAbQVZes~hT8iS0wme8DOBnyr7lAJDA~AnhVYLJc5DzxhfKsllJY-P9mcE2oX0IuTrACvzjB9-nd8sRzlb3hrBEyXXufsVD0"
                Center="40.1792, 44.4991" ZoomLevel="11"/>
-    </Grid>
+        </Grid>
+    </Border>
 </Page>
