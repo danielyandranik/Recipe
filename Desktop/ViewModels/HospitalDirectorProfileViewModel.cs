@@ -49,11 +49,6 @@ namespace Desktop.ViewModels
         public ICommand DirectorProfileCommand => this.directorProfileCommand;
 
         /// <summary>
-        /// Gets or sets Add Hospital director profile page
-        /// </summary>
-        public AddHospitalAdministartorProfile DirectorProfile { get; private set; }
-
-        /// <summary>
         /// Creates new instance of <see cref="AddHospitalAdministartorProfile"/>
         /// </summary>
         public HospitalDirectorProfileViewModel()

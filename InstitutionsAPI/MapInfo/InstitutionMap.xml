@@ -6,6 +6,10 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <spName>uspCreateInstitution</spName>
     <parameters>
       <parameter>
+        <parameterName>Id</parameterName>
+        <spParameterName>id</spParameterName>
+      </parameter>
+      <parameter>
         <parameterName>Name</parameterName>
         <spParameterName>name</spParameterName>
       </parameter>

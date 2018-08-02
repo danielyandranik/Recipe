@@ -1,4 +1,5 @@
-﻿using MedicineApiClient;
+﻿using Desktop.Views.Windows;
+using MedicineApiClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,11 @@ namespace Desktop.Commands
 
         public async override void Execute(object parameter)
         {
-            await this.ExecuteAsync((Medicine)parameter);
+            var added = await this.ExecuteAsync((Medicine)parameter);
+
+            if (added)
+                RecipeMessageBox.Show("Medicine is added");
+            else RecipeMessageBox.Show("Unable to add medicine");
         }
     }
 }

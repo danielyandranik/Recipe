@@ -7,6 +7,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       MinWidth="902" MinHeight="609"
       Title="AddInstitution" Background="White">
+    
     <Page.Resources>
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Template">
@@ -22,6 +23,7 @@
         </Style>
 
     </Page.Resources>
+    
     <Grid>
 
         <Grid.RowDefinitions>
@@ -54,16 +56,35 @@
             <StackPanel Grid.Column="1" HorizontalAlignment="Center" Margin="0,20,0,0">
 
                 <Label Content="Name" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-                <TextBox Text="{Binding Institution.Name, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
+                <TextBox Text="{Binding Institution.Name}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
 
                 <Label Content="License" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-                <TextBox Text="{Binding Institution.License, Mode=TwoWay}"  Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
+                <TextBox Text="{Binding Institution.License}"  Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
 
                 <Label Content="Owner" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-                <TextBox Text="{Binding Institution.Owner, Mode=TwoWay}"  Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
+                <TextBox Text="{Binding Institution.Owner}"  Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
 
                 <Label Content="Address" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-                <TextBox Text="{Binding Institution.Address, Mode=TwoWay}"  Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
+                <TextBox Text="{Binding Institution.Address}"  Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
+
+                <Label Content="Description" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Institution.Description}"  Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="3" HorizontalAlignment="Center" Margin="0,20,0,0">
+
+                <Label Content="Email" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Institution.Email}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
+
+                <Label Content="Phone" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Institution.Phone}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
+
+                <Label Content="Open time" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Institution.OpenTime}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
+
+                <Label Content="Close time" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Institution.CloseTime}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
 
                 <Label Content="Type" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                 <ComboBox Text="Select" Width="240" BorderBrush="{x:Null}" Foreground="#DD000000" 
@@ -82,23 +103,7 @@
                         </Style>
                     </ComboBox.Style>
                 </ComboBox>
-               
-            </StackPanel>
-
-            <StackPanel Grid.Column="3" HorizontalAlignment="Center" Margin="0,20,0,0">
-
-                <Label Content="Email" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-                <TextBox Text="{Binding Institution.Email, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
-
-                <Label Content="Phone" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-                <TextBox Text="{Binding Institution.Phone, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
-
-                <Label Content="Open time" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-                <TextBox Text="{Binding Institution.OpenTime, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
-
-                <Label Content="Close time" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-                <TextBox Text="{Binding Institution.CloseTime, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
-
+                
             </StackPanel>
 
         </Grid>

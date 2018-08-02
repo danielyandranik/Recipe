@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[uspCreateInstitution]
+	@id int,
 	@name nvarchar(100), 
 	@license nvarchar(100),
 	@owner nvarchar(100),

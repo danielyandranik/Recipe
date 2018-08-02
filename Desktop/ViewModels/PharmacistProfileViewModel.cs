@@ -49,12 +49,7 @@ namespace Desktop.ViewModels
         /// Gets pharmasist profile command
         /// </summary>
         public ICommand PharmacistProfileCommand => this.pharmacistProfileCommand;
-
-        /// <summary>
-        /// Gets or sets Add patient profile page
-        /// </summary>
-        public AddPharmacistProfile PharmacistProfile { get; private set; }
-
+        
         /// <summary>
         /// Creates new instance of <see cref="PharmacistProfileViewModel"/>
         /// </summary>
