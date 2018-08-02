@@ -35,7 +35,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>225_-_Medical_Chart-512.ico</ApplicationIcon>
+    <ApplicationIcon>RecipeIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
@@ -525,7 +529,10 @@
     <None Include="UI_Map\UiToApi.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="225_-_Medical_Chart-512.ico" />
+    <Resource Include="RecipeIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RecipeIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
