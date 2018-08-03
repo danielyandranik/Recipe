@@ -143,29 +143,9 @@ namespace InstitutionClient
             return await this.GetAllAsync<Institution>("api/institutions/?type=hospital");
         }
 
-        public async Task<ResponseMessage<IEnumerable<Institution>>> GetHospitalsByNameAsync(string name)
-        {
-            return await this.GetAllAsync<Institution>($"api/institutions/?type=hospital&name={name}");
-        }
-
-        public async Task<ResponseMessage<IEnumerable<Institution>>> GetHospitalsByAddressAsync(string address)
-        {
-            return await this.GetAllAsync<Institution>($"api/institutions/?type=hospital&name={address}");
-        }
-
         public async Task<ResponseMessage<IEnumerable<Institution>>> GetAllPharmaciesAsync()
         {
             return await this.GetAllAsync<Institution>("api/institutions/?type=pharmacy");
-        }
-
-        public async Task<ResponseMessage<IEnumerable<Institution>>> GetPharmaciesByNameAsync(string name)
-        {
-            return await this.GetAllAsync<Institution>($"api/institutions/?type=pharmacy&name={name}");
-        }
-
-        public async Task<ResponseMessage<IEnumerable<Institution>>> GetPharmaciesByAddressAsync(string address)
-        {
-            return await this.GetAllAsync<Institution>($"api/institutions/?type=pharmacy&address={address}");
         }
 
         public async Task<ResponseMessage<IEnumerable<Institution>>> GetAllSuppliersAsync(int medicineId)
@@ -181,6 +161,11 @@ namespace InstitutionClient
         public async Task<ResponseMessage<Institution>> GetInstitutionAsync(int id)
         {
             return await this.GetAsync<Institution>($"api/institutions/?id={id}");
+        }
+
+        public async Task<ResponseMessage<int>> GetInstitutionIdAsync(string name)
+        {
+            return await this.GetAsync<int>($"api/institutions/?name={name}");
         }
 
         public async Task<ResponseMessage<PharmMedicine>> GetPharmacyMedicineAsync(int id)

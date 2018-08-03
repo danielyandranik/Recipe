@@ -135,6 +135,6 @@
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmacyAdminByUserId.sql" />
   </ItemGroup>
   <ItemGroup>
-    <RefactorLog Include="UsersDB.refactorlog" />
+    <RefactorLog Include="dbo\UsersDB.refactorlog" />
   </ItemGroup>
 </Project>

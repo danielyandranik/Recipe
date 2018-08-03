@@ -18,7 +18,7 @@ namespace Desktop.Services
         {
             var doctor = (Doctor)parameter;
 
-            var institutionResponse = await this.institutionClient.GetHospitalsByNameAsync(doctor.HospitalName);
+            var institutionResponse = await this.institutionClient.GetInstitutionIdAsync(doctor.HospitalName);
 
             if (!institutionResponse.IsSuccessStatusCode)
                 return new Response<string>

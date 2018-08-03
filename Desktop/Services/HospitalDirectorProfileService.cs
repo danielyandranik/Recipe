@@ -19,7 +19,7 @@ namespace Desktop.Services
         {
             var hospitalDirector = (HospitalDirector)parameter;
 
-            var institutionResponse = await this.institutionClient.GetHospitalsByNameAsync(hospitalDirector.HospitalName);
+            var institutionResponse = await this.institutionClient.GetInstitutionIdAsync(hospitalDirector.HospitalName);
 
             if (!institutionResponse.IsSuccessStatusCode)
                 return new Response<string>
@@ -28,7 +28,10 @@ namespace Desktop.Services
                     Status = Status.Error
                 };
 
-            hospitalDirector.HospitalName = institutionResponse.Content.First().Name;
+            var id = (int)institutionResponse.Content;
+
+            var hospital = await this.institutionClient.GetInstitutionAsync(id);
+            hospitalDirector.HospitalName = hospital.Content.Name;
 
             return await this.userManagementApiClient.PostHospitalDirectorAsync((HospitalDirector)parameter);
         }

@@ -15,6 +15,8 @@ namespace Desktop.ViewModels
 
         private ObservableCollection<Institution> pharmacies;
 
+        private ObservableCollection<PharmMedicine> pharmMedicines;
+
         private Institution editablePharmacy;
 
         private Visibility visibility;
@@ -27,7 +29,6 @@ namespace Desktop.ViewModels
 
         private readonly EditPharmacyCommand editPharmacyCommand;
 
-
         public ObservableCollection<Institution> Pharmacies
         {
             get
@@ -37,6 +38,18 @@ namespace Desktop.ViewModels
             set
             {
                 this.Set("Pharmacies", ref this.pharmacies, value);
+            }
+        }
+
+        public ObservableCollection<PharmMedicine> PharmMedicines
+        {
+            get
+            {
+                return this.pharmMedicines;
+            }
+            set
+            {
+                this.Set("PharmMedicines", ref this.pharmMedicines, value);
             }
         }
 

@@ -18,7 +18,7 @@ namespace Desktop.Services
         {
             var pharmacist = (PharmacistFullInfo)parameter;
 
-            var institutionResponse = await this.institutionClient.GetPharmaciesByNameAsync(pharmacist.PharmacyName);
+            var institutionResponse = await this.institutionClient.GetInstitutionIdAsync(pharmacist.PharmacyName);
 
             if (!institutionResponse.IsSuccessStatusCode)
                 return new Response<string>

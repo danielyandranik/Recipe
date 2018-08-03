@@ -19,7 +19,7 @@ namespace Desktop.Services
         {
             var pharmacyAdmin = (PharmacyAdmin)parameter;
 
-            var institutionResponse = await institutionClient.GetPharmaciesByNameAsync(pharmacyAdmin.PharmacyName);
+            var institutionResponse = await institutionClient.GetInstitutionIdAsync(pharmacyAdmin.PharmacyName);
 
             if (!institutionResponse.IsSuccessStatusCode)
                 return new Response<string>
@@ -28,7 +28,10 @@ namespace Desktop.Services
                     Status = Status.Error
                 };
 
-            pharmacyAdmin.PharmacyId = institutionResponse.Content.First().Id;
+            int pharmacyId = institutionResponse.Content;
+
+            var pharmacy = await this.institutionClient.GetInstitutionAsync(pharmacyId);
+            pharmacyAdmin.PharmacyName = pharmacy.Content.Name;
 
             return await this.userManagementApiClient.PostPharmacyAdmin(pharmacyAdmin);
         }

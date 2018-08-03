@@ -34,7 +34,7 @@ namespace Desktop.Commands
                 }
                 else
                 {
-                    RecipeMessageBox.Show("Unable to add profile");
+                    RecipeMessageBox.Show("Unable to add institution");
                 }
             }
             catch (Exception)
