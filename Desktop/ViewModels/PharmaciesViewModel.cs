@@ -4,6 +4,8 @@ using Desktop.Commands;
 using System.Collections.ObjectModel;
 using InstitutionClient.Models;
 using System.Windows;
+using Desktop.Services;
+using System;
 
 namespace Desktop.ViewModels
 {
@@ -16,9 +18,11 @@ namespace Desktop.ViewModels
 
         private Visibility visibility;
 
-        private DeletePharmacyCommand deletePharmacyCommand;
+        private readonly FilterService<Institution> filterService;
 
-        private EditPharmacyCommand editPharmacyCommand;
+        private readonly DeletePharmacyCommand deletePharmacyCommand;
+
+        private readonly EditPharmacyCommand editPharmacyCommand;
 
 
         public ObservableCollection<Institution> Pharmacies
@@ -72,6 +76,14 @@ namespace Desktop.ViewModels
             this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "pharmacy_admin") ? Visibility.Visible : Visibility.Collapsed;
             this.deletePharmacyCommand = new DeletePharmacyCommand(this.pharmacies, this.deletePharmacy, _ => true);
             this.editPharmacyCommand = new EditPharmacyCommand(this.pharmacies, this.editPharmacy, _ => true);
+            this.filterService = new FilterService<Institution>();
+        }
+
+        public async Task Filter(Func<Institution, bool> predicate)
+        {
+            var pharmacies = await this.filterService.FilterAsync(this.Pharmacies, predicate);
+
+            this.Pharmacies = new ObservableCollection<Institution>(pharmacies);
         }
 
         private async Task<bool> deletePharmacy(int id)

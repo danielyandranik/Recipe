@@ -51,7 +51,6 @@ namespace InstitutionsAPI.Controllers
                 {
                     int.TryParse(param, out id);
                     result = await this._dataManager.OperateAsync<int, Institution>("GetInstitution", id);
-
                 }
                 else if (query.TryGetValue("medicineId", out param))
                 {
@@ -60,20 +59,7 @@ namespace InstitutionsAPI.Controllers
                 }
                 else if (query.TryGetValue("type", out type))
                 {
-                    if (query.TryGetValue("address", out param))
-                    {
-                        var info = new AddressInfo { Type = type, Address = param };
-                        result = await this._dataManager.OperateAsync<AddressInfo, Institution>("GetInstitutionsByAddress", info);
-                    }
-                    else if (query.TryGetValue("name", out param))
-                    {
-                        var info = new NameInfo { Type = type, Name = param };
-                        result = await this._dataManager.OperateAsync<NameInfo, Institution>("GetInstitutionsByName", info);
-                    }
-                    else
-                    {
-                        result = await this._dataManager.OperateAsync<string, Institution>("GetInstitutions", type);
-                    }
+                     result = await this._dataManager.OperateAsync<string, Institution>("GetInstitutions", type);
                 }
                 else if(query.TryGetValue("name", out param))
                 {

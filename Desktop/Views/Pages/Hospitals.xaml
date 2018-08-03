@@ -74,10 +74,9 @@
 
                 <Label Content="Filter by:" Foreground="#DDFFFFFF" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" />
                 <Label Content="Name" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
-                <TextBox Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" 
-                         />
+                <TextBox Name ="name" Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" TextChanged="TextBox_TextChanged" />
                 <Label Content="Address" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
-                <TextBox Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" />
+                <TextBox Name="address" Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" TextChanged="TextBox_TextChanged" />
 
             </StackPanel>
 

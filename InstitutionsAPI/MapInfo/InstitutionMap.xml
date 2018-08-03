@@ -118,34 +118,6 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     </parameters>
     <returnDataType>Scalar</returnDataType>
   </operation>
-  <operation name="GetInstitutionsByAddress">
-    <spName>uspGetInstitutionsByAddress</spName>
-    <parameters>
-      <parameter>
-        <parameterName>Type</parameterName>
-        <spParameterName>type</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>Address</parameterName>
-        <spParameterName>address</spParameterName>
-      </parameter>
-    </parameters>
-    <returnDataType>Enumerable</returnDataType>
-  </operation>
-  <operation name="GetInstitutionsByName">
-    <spName>uspGetInstitutionsByName</spName>
-    <parameters>
-      <parameter>
-        <parameterName>Type</parameterName>
-        <spParameterName>type</spParameterName>
-      </parameter>
-      <parameter>
-        <parameterName>Name</parameterName>
-        <spParameterName>name</spParameterName>
-      </parameter>
-    </parameters>
-    <returnDataType>Enumerable</returnDataType>
-  </operation>
   <operation name="GetInstitutions">
     <spName>uspGetInstitutionsByType</spName>
     <parameters>

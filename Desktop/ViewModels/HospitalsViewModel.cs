@@ -4,6 +4,8 @@ using Desktop.Commands;
 using System.Collections.ObjectModel;
 using InstitutionClient.Models;
 using System.Windows;
+using Desktop.Services;
+using System;
 
 namespace Desktop.ViewModels
 {
@@ -15,9 +17,11 @@ namespace Desktop.ViewModels
 
         private Visibility visibility;
 
-        private DeleteHospitalCommand deleteHospitalCommand;
+        private readonly FilterService<Institution> filterService;
 
-        private EditHospitalCommand editHospitalCommand;
+        private readonly DeleteHospitalCommand deleteHospitalCommand;
+
+        private readonly EditHospitalCommand editHospitalCommand;
 
 
         public ObservableCollection<Institution> Hospitals
@@ -71,6 +75,14 @@ namespace Desktop.ViewModels
             this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "hospital_admin") ? Visibility.Visible : Visibility.Collapsed;
             this.deleteHospitalCommand = new DeleteHospitalCommand(this.hospitals, this.deleteHospital, _ => true);
             this.editHospitalCommand = new EditHospitalCommand(this.hospitals, this.editHospital, _ => true);
+            this.filterService = new FilterService<Institution>();
+        }
+
+        public async Task Filter(Func<Institution,bool> predicate)
+        {
+            var hospitals = await this.filterService.FilterAsync(this.Hospitals, predicate);
+
+            this.Hospitals = new ObservableCollection<Institution>(hospitals);
         }
 
         private async Task<bool> deleteHospital(int id)
