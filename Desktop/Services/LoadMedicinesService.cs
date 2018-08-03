@@ -3,18 +3,19 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Desktop.ViewModels;
 using MedicineApiClient;
+using GalaSoft.MvvmLight;
 
 namespace Desktop.Services
 {
     class LoadMedicinesService
     {
-        private MedicinesViewModel medicinesViewModel;
+        private readonly ViewModelBase viewModel;
 
         private readonly Client client;
 
-        public LoadMedicinesService(MedicinesViewModel medicinesViewModel)
+        public LoadMedicinesService(ViewModelBase viewModel)
         {
-            this.medicinesViewModel = medicinesViewModel;
+            this.viewModel = viewModel;
             this.client = ((App)App.Current).MedicineClient;
         }
 
@@ -27,7 +28,14 @@ namespace Desktop.Services
                 throw new Exception();
             }
 
-            this.medicinesViewModel.Medicines =  new ObservableCollection<Medicine>(response.Result);
+            if(this.viewModel is MedicinesViewModel)
+            {
+                ((MedicinesViewModel)this.viewModel).Medicines = new ObservableCollection<Medicine>(response.Result);
+            }
+            else if(this.viewModel is CreateRecipeViewModel)
+            {
+                ((CreateRecipeViewModel)this.viewModel).Medicines = new ObservableCollection<Medicine>(response.Result);
+            }
         }
     }
 }

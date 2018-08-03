@@ -39,7 +39,7 @@ namespace RecipeApi
                 {
                     options.Authority = this.Configuration["Endpoints:AuthApi"];
                     options.RequireHttpsMetadata = false;
-                    options.ApiName = "RecipeApi";
+                    options.ApiName = "RecipeAPI";
                 });
 
             services.AddAuthorization(options =>

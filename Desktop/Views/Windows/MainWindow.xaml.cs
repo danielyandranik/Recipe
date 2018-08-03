@@ -114,9 +114,11 @@ namespace Desktop.Views.Windows
             this._navigationService.Navigate(ref this._sellMedicines);
         }
 
-        private void CreateRecipeButton_Click(object sender, RoutedEventArgs e)
+        private async void CreateRecipeButton_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.Navigate(ref this._createRecipe);
+            var loadMedicinesService = new LoadMedicinesService(this._createRecipe.ViewModel);
+            await loadMedicinesService.Load();
         }
 
         private void AddMedicineButton_Click(object sender, RoutedEventArgs e)

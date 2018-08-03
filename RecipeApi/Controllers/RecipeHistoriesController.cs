@@ -56,47 +56,47 @@ namespace RecipeApi.Controllers
 		[HttpPost]
         public async Task<IActionResult> Post([FromBody]RecipeHistory recipeHistory)
         {
-			var recipeId = recipeHistory.RecipeId;
+			//var recipeId = recipeHistory.RecipeId;
 
-			var history = await this._recipeHistoryRepository.GetRecipeHistoryByRecipe(recipeId);
+			//var history = await this._recipeHistoryRepository.GetRecipeHistoryByRecipe(recipeId);
 
-			Dictionary<string, int> sold = new Dictionary<string, int>();
+			//Dictionary<string, int> sold = new Dictionary<string, int>();
 
-            sold = recipeHistory.Sold;
+   //         sold = recipeHistory.Sold;
 
-            var recipe = await this._recipeRepository.GetRecipe(recipeHistory.RecipeId);
+   //         var recipe = await this._recipeRepository.GetRecipe(recipeHistory.RecipeId);
 
-            if (recipe == null)
-            {
-                return new NotFoundResult();
-            }
+   //         if (recipe == null)
+   //         {
+   //             return new NotFoundResult();
+   //         }
 
-            foreach (var historyIteam in history)
-			{
-				foreach (var medicine in sold)
-				{
-					if (historyIteam.Sold.ContainsKey(medicine.Key))
-					{
-                        historyIteam.Sold.TryGetValue(medicine.Key, out var count);
-						sold[medicine.Key] = count + medicine.Value;
-					}
-				}
-			}
+   //         foreach (var historyIteam in history)
+			//{
+			//	foreach (var medicine in sold)
+			//	{
+			//		if (historyIteam.Sold.ContainsKey(medicine.Key))
+			//		{
+   //                     historyIteam.Sold.TryGetValue(medicine.Key, out var count);
+			//			sold[medicine.Key] = count + medicine.Value;
+			//		}
+			//	}
+			//}
 
 
-            bool isApproved = true;
+   //         bool isApproved = true;
 
-            foreach (var medicine in sold)
-			{
-				if (medicine.Value > recipe.RecipeItems[medicine.Key].UnitCountPerUse)
-				{
-                    recipeHistory.Sold[medicine.Key] = -1;
-                    isApproved = false;
-                }
-			}
+   //         foreach (var medicine in sold)
+			//{
+			//	if (medicine.Value > recipe.RecipeItems[medicine.Key].UnitCountPerUse)
+			//	{
+   //                 recipeHistory.Sold[medicine.Key] = -1;
+   //                 isApproved = false;
+   //             }
+			//}
 
-            if(isApproved)
-			    await this._recipeHistoryRepository.Create(recipeHistory);
+   //         if(isApproved)
+			//    await this._recipeHistoryRepository.Create(recipeHistory);
 
             return new OkObjectResult(recipeHistory);
         }

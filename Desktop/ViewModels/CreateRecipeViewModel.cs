@@ -6,14 +6,17 @@ using Desktop.Commands;
 using Desktop.Views.Windows;
 using RecipeClient;
 using UserManagementConsumer.Client;
+using System.Collections.ObjectModel;
 
 namespace Desktop.ViewModels
 {
-    internal class CreateRecipeViewModel : ViewModelBase
+    public class CreateRecipeViewModel : ViewModelBase
     {
         private Models.Recipe recipe;
 
         private Models.RecipeItem addingItem;
+
+        private ObservableCollection<MedicineApiClient.Medicine> medicines;
 
         public Models.Recipe Recipe
         {
@@ -25,6 +28,13 @@ namespace Desktop.ViewModels
         {
             get => this.addingItem;
             set => this.Set("AddingItem", ref this.addingItem, value);
+        }
+
+        public ObservableCollection<MedicineApiClient.Medicine> Medicines
+        {
+            get => this.medicines;
+
+            set => this.Set("Medicines", ref this.medicines, value);
         }
 
         public CreateRecipeCommand CreateRecipeCommand { get; }

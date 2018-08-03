@@ -7,7 +7,7 @@ namespace Desktop.Commands
     /// <summary>
     /// Create Recipe command
     /// </summary>
-    class CreateRecipeCommand : AsyncCommand<Models.Recipe, ResponseMessage<string>>
+    public class CreateRecipeCommand : AsyncCommand<Models.Recipe, ResponseMessage<string>>
     {
         /// <summary>
         /// Creates new instance of <see cref="CreateRecipeCommand"/>
