@@ -16,7 +16,7 @@ AS
 			begin 
 				insert into Institutions 
 				values(@name, @license, @owner, @address,
-						@phone, @email, @description, @openTime, @closeTime, @type)
+						@phone, @email, @description, @openTime, @closeTime, SUBSTRING(@type, 39, 8))
 			end
 	end
 
