@@ -160,7 +160,7 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <spName>uspGetAllDoctors</spName>
     <returnDataType>Enumerable</returnDataType>
   </operation>
-  <operation name="GetDoctorByID">
+  <operation name="GetDoctorById">
     <spName>uspGetDoctorByUserId</spName>
     <parameters>
       <parameter>

@@ -1,4 +1,5 @@
 ﻿using Desktop.Commands;
+using Desktop.Models;
 using GalaSoft.MvvmLight;
 using RecipeClient;
 using System;
@@ -10,34 +11,33 @@ using System.Threading.Tasks;
 
 namespace Desktop.ViewModels
 {
-    class SellMedicinesViewModel : ViewModelBase
+    public class SellMedicinesViewModel : ViewModelBase
     {
-        private ObservableCollection<KeyValuePair<string, int>> sellingItems;
-
-        private KeyValuePair<string, int> addingItem;
-
         private readonly RecipeClient.RecipeClient client;
 
-        public ObservableCollection<KeyValuePair<string, int>> SellingItems
+        private Models.Recipe recipe;
+
+        public Models.Recipe Recipe
         {
-            get => this.sellingItems;
+            get => this.recipe;
 
-            set => this.Set("SellingItems", ref this.sellingItems, value);
-        }
-
-        public KeyValuePair<string, int> AddingItem
-        {
-            get => this.addingItem;
-
-            set => this.Set("AddingItem", ref this.addingItem, value);
+            set => this.Set("Recipe", ref this.recipe, value);
         }
 
         public AddRecipeHistoryCommand AddRecipeHistoryCommand { get; private set; }
 
+        public AsyncCommand<string, ResponseMessage<RecipeClient.Recipe>> FindRecipeCommand { get; private set; }
+
         public SellMedicinesViewModel()
         {
             this.client = ((App)App.Current).RecipeClient;
+            this.FindRecipeCommand = new AsyncCommand<string, ResponseMessage<RecipeClient.Recipe>>(this.GetRecipe, _ => true);
             this.AddRecipeHistoryCommand = new AddRecipeHistoryCommand(this, this.CreateRecipeHistory, _ => true);
+        }
+
+        private async Task<ResponseMessage<RecipeClient.Recipe>> GetRecipe(string id)
+        {
+            return await this.client.GetAsync<RecipeClient.Recipe>($"api/recipes/{id}");
         }
 
         private async Task<ResponseMessage<string>> CreateRecipeHistory(RecipeHistory recipeHistory)
