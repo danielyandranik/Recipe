@@ -256,6 +256,7 @@
     <Compile Include="Commands\LoadMedicinesCommand.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Services\AddInstitutionService.cs" />
+    <Compile Include="Services\FilterService.cs" />
     <Compile Include="Services\LoadHospitalAdminApprovals.cs" />
     <Compile Include="Services\LoadHospitalsService.cs" />
     <Compile Include="Services\LoadMedicinesService.cs" />

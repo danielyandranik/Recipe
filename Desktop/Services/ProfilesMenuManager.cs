@@ -1,40 +1,72 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Xml.Linq;
+using System.Configuration;
+using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Controls;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
 using Desktop.Views.Windows;
 using Desktop.ViewModels;
-using System.Xml.Linq;
-using System.Configuration;
 
 namespace Desktop.Services
 {
+    /// <summary>
+    /// Profiles menu manager
+    /// </summary>
     public class ProfilesMenuManager
     {
+        /// <summary>
+        /// UI to API current profile types mapping
+        /// </summary>
         private readonly Dictionary<string, string> _uiToApi;
 
+        /// <summary>
+        /// API to UI current profile types mapping
+        /// </summary>
         private readonly Dictionary<string, string> _apiToUi;
 
+        /// <summary>
+        /// Menu item
+        /// </summary>
         private readonly MenuItem _menuItem;
 
+        /// <summary>
+        /// Main window viewmode
+        /// </summary>
         private readonly MainWindowViewModel _vm;
 
+        /// <summary>
+        /// Gets UI to API current profile types mapping info
+        /// </summary>
         public Dictionary<string, string> UiToApi => this._uiToApi;
 
+        /// <summary>
+        /// Gets API to UI current profile types mapping info
+        /// </summary>
         public Dictionary<string, string> ApiToUi => this._apiToUi;
 
+        /// <summary>
+        /// Creates new instance of <see cref="ProfilesMenuManager"/>
+        /// </summary>
+        /// <param name="menuItem">Menu item</param>
+        /// <param name="vm">View model</param>
         public ProfilesMenuManager(MenuItem menuItem,MainWindowViewModel vm)
         {
+            // setting fields
             this._menuItem = menuItem;
             this._vm = vm;
 
+            // constructing map info
             this._apiToUi = this.ConstructMapInfo(ConfigurationManager.AppSettings["ApiToUi"]);
             this._uiToApi = this.ConstructMapInfo(ConfigurationManager.AppSettings["UiToApi"]);
         }
 
+        /// <summary>
+        /// Add profiles to menu.
+        /// </summary>
+        /// <param name="profiles">Profiles</param>
         public void AddProfiles(IEnumerable<string> profiles)
         {
             if (profiles == null)
@@ -48,6 +80,10 @@ namespace Desktop.Services
             }
         }
 
+        /// <summary>
+        /// Adds profile to menu item
+        /// </summary>
+        /// <param name="profile">Profile</param>
         public void AddProfile(string profile)
         {
             var menuItem = new MenuItem
@@ -64,6 +100,10 @@ namespace Desktop.Services
             menuItem.Click += this.ChangeProfileEventHandler;
         }
 
+        /// <summary>
+        /// Deletes profile from menu.
+        /// </summary>
+        /// <param name="profile">profile</param>
         public void DeleteProfile(string profile)
         {
             var menuItems = this._menuItem.Items.Cast<MenuItem>().ToList();
@@ -92,6 +132,12 @@ namespace Desktop.Services
             }
         }
 
+        /// <summary>
+        /// Event handler for menu item click.
+        /// After this operation user's current profile updates.
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Routed event argument</param>
         public async void ChangeProfileEventHandler(object sender, RoutedEventArgs e)
         {
             var item = (MenuItem)sender;
@@ -130,6 +176,11 @@ namespace Desktop.Services
             }
         }
 
+        /// <summary>
+        /// Constructs map info
+        /// </summary>
+        /// <param name="path">path</param>
+        /// <returns>map info</returns>
         private Dictionary<string, string> ConstructMapInfo(string path)
         {
             var xml = XDocument.Load(path);
@@ -141,6 +192,9 @@ namespace Desktop.Services
                 item => item.Attribute("value").Value);
         }
 
+        /// <summary>
+        /// Updates button visibilities
+        /// </summary>
         public void UpdateButtonsVisibilities()
         {
             var currentProfile = User.Default.CurrentProfile;
@@ -149,11 +203,14 @@ namespace Desktop.Services
             this._vm.SellMedicinesVisibility = (currentProfile == "pharmacist") ? Visibility.Visible : Visibility.Collapsed;
             this._vm.AddMedicineVisibility = (currentProfile == "ministry_worker") ? Visibility.Visible : Visibility.Collapsed;
             this._vm.AddInstitutionVisibility = (currentProfile == "ministry_worker") ? Visibility.Visible : Visibility.Collapsed;
-            this._vm.MyApprovalsVisibility = (currentProfile == "doctor" || currentProfile == "doctor") ? Visibility.Visible : Visibility.Collapsed;
+            this._vm.MyApprovalsVisibility = (currentProfile == "doctor" || currentProfile == "ministry_worker") ? Visibility.Visible : Visibility.Collapsed;
             this._vm.MyRecipesVisibility = (currentProfile == "patient") ? Visibility.Visible : Visibility.Collapsed;
             this._vm.DeleteVisibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Collapses all buttons
+        /// </summary>
         public void CollapseAll()
         {
             this._vm.CreateRecipeVisibility = Visibility.Collapsed;

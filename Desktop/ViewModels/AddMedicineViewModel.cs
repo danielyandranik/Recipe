@@ -1,7 +1,7 @@
-﻿using Desktop.Commands;
+﻿using System.Threading.Tasks;
+using Desktop.Commands;
 using GalaSoft.MvvmLight;
 using MedicineApiClient;
-using System.Threading.Tasks;
 
 namespace Desktop.ViewModels
 {
@@ -9,21 +9,23 @@ namespace Desktop.ViewModels
     {
         private Medicine medicine;
 
+        private readonly AddMedicineCommand _addMedicineCommand;
+
         public Medicine Medicine
         {
             get => this.medicine;
             set => this.Set("Medicine", ref this.medicine, value);
         }
 
-        public AddMedicineCommand AddMedicineCommand { get; }
+        public AddMedicineCommand AddMedicineCommand => this._addMedicineCommand;
 
         public AddMedicineViewModel()
         {
             this.medicine = new Medicine();
-            this.AddMedicineCommand = new AddMedicineCommand(this.addMedicine, _ => true);
+            this._addMedicineCommand = new AddMedicineCommand(this.AddMedicine, _ => true);
         }
 
-        private async Task<bool> addMedicine(Medicine medicine)
+        private async Task<bool> AddMedicine(Medicine medicine)
         {
             return await ((App)App.Current).MedicineClient.CreateMedicineAsync(medicine);
         }

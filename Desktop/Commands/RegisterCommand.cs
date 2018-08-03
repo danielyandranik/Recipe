@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Net.Http;
+using System.Threading.Tasks;
 using UserManagementConsumer.Client;
 using Desktop.Models;
 using Desktop.Views.Windows;

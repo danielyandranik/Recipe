@@ -1,7 +1,7 @@
-﻿using Desktop.Views.Windows;
-using InstitutionClient.Models;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using Desktop.Views.Windows;
+using InstitutionClient.Models;
 
 namespace Desktop.Commands
 {

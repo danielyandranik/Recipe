@@ -1,23 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using Desktop.Interfaces;
-using Desktop.Models;
 using UserManagementConsumer.Client;
+using Desktop.Models;
 
 namespace Desktop.Services
 {
+    /// <summary>
+    /// User info loader
+    /// </summary>
     public class UserInfoLoader 
     {
+        /// <summary>
+        /// User Management API client
+        /// </summary>
         private readonly UserManagementApiClient _client;
 
+        /// <summary>
+        /// Creates new instance of <see cref="UserInfoLoader"/>
+        /// </summary>
         public UserInfoLoader()
         {
+            // setting fields
             this._client = ((App)App.Current).UserApiClient;
         }
 
+        /// <summary>
+        /// Executes User info loader service operation
+        /// </summary>
+        /// <returns>user initial information</returns>
         public async Task<UserInitialInfo> Execute()
         {
             var response = await this._client.GetUserByUsernameAsync(User.Default.Username);

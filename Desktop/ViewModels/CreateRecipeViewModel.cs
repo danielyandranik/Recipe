@@ -1,9 +1,11 @@
-﻿using Desktop.Commands;
-using Desktop.Models;
-using GalaSoft.MvvmLight;
-using RecipeClient;
-using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
+using Desktop.Commands;
+using Desktop.Views.Windows;
+using RecipeClient;
+using UserManagementConsumer.Client;
 
 namespace Desktop.ViewModels
 {
@@ -30,13 +32,46 @@ namespace Desktop.ViewModels
         public CreateRecipeViewModel()
         {
             this.Recipe = new Models.Recipe();
-            this.CreateRecipeCommand = new CreateRecipeCommand(this.createRecipe, _ => true);
+            this.AddingItem = new Models.RecipeItem();
+           // this.RecipeItems = new ObservableCollection<Models.RecipeItem>();
+            this.CreateRecipeCommand = new CreateRecipeCommand(this.CreateRecipe, _ => true);
         }
 
-        private async Task<ResponseMessage<string>> createRecipe(RecipeClient.Recipe recipe)
+        private async Task<ResponseMessage<string>> CreateRecipe(Models.Recipe recipeModel)
         {
-            //return await ((App)App.Current).RecipeClient.CreateAsync<RecipeClient.Recipe>(recipe);
-            return null;
+            var userApiResponse = await ((App)App.Current).UserApiClient.GetUserByUsernameAsync(recipeModel.PatientUserName);
+
+            if(userApiResponse.Status == Status.Error)
+            {
+                RecipeMessageBox.Show("Couldn't get patient");
+                return null;
+            }
+
+            var patientId = userApiResponse.Result.Id;
+
+            var recipeItems = new List<RecipeClient.RecipeItem>();
+
+            foreach(var item in recipeModel.RecipeItems)
+            {
+                recipeItems.Add(new RecipeClient.RecipeItem
+                {
+                    Count = item.Count,
+                    MedicineId = item.Medicine.Id,
+                    UseFrequencyUnit = item.UseFrequencyUnit,
+                    TimesPerUnit = item.TimesPerUnit,
+                    CountPerUse =item.CountPerUse,
+                });
+            }
+
+            var recipe = new RecipeClient.Recipe
+            {
+                CreatedOn = DateTime.Now,
+                DoctorId = User.Default.Id,
+                PatientId = patientId,
+                RecipeItems = recipeItems
+            };
+
+            return await ((App)App.Current).RecipeClient.CreateAsync<RecipeClient.Recipe>("api/recipes", recipe);
         }
     }
 }

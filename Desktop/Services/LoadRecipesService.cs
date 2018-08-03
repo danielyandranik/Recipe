@@ -1,13 +1,10 @@
-﻿using Desktop.Models;
-using Desktop.ViewModels;
-using Desktop.Views.Windows;
-using System;
+﻿using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UserManagementConsumer.Client;
+using Desktop.Models;
+using Desktop.ViewModels;
+using Desktop.Views.Windows;
 
 namespace Desktop.Services
 {
@@ -66,11 +63,11 @@ namespace Desktop.Services
 
                 var recipeItem = new RecipeItem
                 {
-                    MedicineName = medicineApiResponse.Result.Name,
+                    //MedicineName = medicineApiResponse.Result.Name,
                     Count = recipeItemFromApi.Count,
-                    FrequencyUnit = recipeItemFromApi.FrequencyUnit,
-                    UnitCountPerUse = recipeItemFromApi.UnitCountPerUse,
-                    UseFrequencyPerFrequencyUnit = recipeItemFromApi.UseFrequencyPerFrequencyUnit
+                    //UseFrequencyUnit = recipeItemFromApi.FrequencyUnit,
+                    //CountPerUse = recipeItemFromApi.UnitCountPerUse,
+                    //TimesPerUnit = recipeItemFromApi.UseFrequencyPerFrequencyUnit
                 };
 
                 recipeItems.Add(recipeItem);
@@ -97,7 +94,7 @@ namespace Desktop.Services
                 CreatedOn = recipeFromApi.CreatedOn,
                 HospitalName = gettingHospitalNameResponse.Result.HospitalName,
                 Id = recipeFromApi.Id,
-                PatientId = recipeFromApi.PatientId,
+                //PatientId = recipeFromApi.PatientId,
                 DoctorName = gettingDoctorFullNameResponse.Result.FullName,
                 RecipeItems = new ObservableCollection<RecipeItem>(recipeItems)
             };

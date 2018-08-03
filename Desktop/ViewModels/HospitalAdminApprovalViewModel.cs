@@ -1,12 +1,7 @@
-﻿using Desktop.Commands;
-using GalaSoft.MvvmLight;
-using MedicineApiClient;
-using System;
-using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
+using Desktop.Commands;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
 

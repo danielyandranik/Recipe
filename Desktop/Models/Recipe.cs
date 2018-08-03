@@ -1,39 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Desktop.Models
 {
+    /// <summary>
+    /// Class for recipe
+    /// </summary>
     public class Recipe
     {
         /// <summary>
-        /// An identifier of the recipe.
+        /// Gets or sets the identifier of the recipe
         /// </summary>
         public string Id { get; set; } = null;
 
         /// <summary>
-        /// The date of creation of the recipe.
+        /// Gets or sets the date of creation of the recipe
         /// </summary>
         public DateTime CreatedOn { get; set; }
 
         /// <summary>
-        /// An identifier of the doctor that creates the recipe.
+        /// Gets or sets doctor name
         /// </summary>
         public string DoctorName { get; set; }
 
         /// <summary>
-        /// An identifier of the chief doctor.
+        /// Gets or sets hospital name
         /// </summary>
         public string HospitalName { get; set; }
 
         /// <summary>
-        /// An identifier of the patient for whom the recipe is created.
+        /// Gets or sets patient user name.
         /// </summary>
-        public int PatientId { get; set; }
+        public string PatientUserName { get; set; }
 
         /// <summary>
-        /// A collection of RecipeItem instances.
+        /// Gets or sets Recipe Items
         /// </summary>
         public ObservableCollection<RecipeItem> RecipeItems { get; set; }
+
+        /// <summary>
+        /// Creates new instance of <see cref="Recipe"/>
+        /// </summary>
+        public Recipe()
+        {
+            this.RecipeItems = new ObservableCollection<RecipeItem>();
+        }
     }
 }

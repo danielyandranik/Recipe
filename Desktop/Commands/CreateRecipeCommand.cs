@@ -1,25 +1,31 @@
-﻿using RecipeClient;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using RecipeClient;
 
 namespace Desktop.Commands
 {
-    class CreateRecipeCommand : AsyncCommand<Recipe, ResponseMessage<string>>
+    /// <summary>
+    /// Create Recipe command
+    /// </summary>
+    class CreateRecipeCommand : AsyncCommand<Models.Recipe, ResponseMessage<string>>
     {
-        public CreateRecipeCommand(Func<Recipe, Task<ResponseMessage<string>>> executeMethod, Func<Recipe, bool> canExecuteMethod) : base(executeMethod, canExecuteMethod)
+        /// <summary>
+        /// Creates new instance of <see cref="CreateRecipeCommand"/>
+        /// </summary>
+        /// <param name="executeMethod">Execute Method</param>
+        /// <param name="canExecuteMethod">CanExecute Method</param>
+        public CreateRecipeCommand(Func<Models.Recipe, Task<ResponseMessage<string>>> executeMethod, Func<Models.Recipe, bool> canExecuteMethod) : 
+            base(executeMethod, canExecuteMethod)
         {
         }
 
+        /// <summary>
+        /// Executes command operation
+        /// </summary>
+        /// <param name="parameter">Command parameter</param>
         public async override void Execute(object parameter)
         {
-            var recipe = await this.Map((Models.Recipe)parameter);
-            var response = await this.ExecuteAsync(recipe);
-        }
-
-        private async Task<RecipeClient.Recipe> Map(Models.Recipe recipe)
-        {
-            //map model.recipe to client.recipe
-            return new RecipeClient.Recipe();
+            await this.ExecuteAsync((Models.Recipe)parameter);
         }
     }
 }

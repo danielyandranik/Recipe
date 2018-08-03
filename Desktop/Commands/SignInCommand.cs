@@ -2,28 +2,49 @@
 using AuthTokenService;
 using Desktop.Models;
 using Desktop.Services;
-using Desktop.ViewModels;
 using Desktop.Views.Windows;
-using UserManagementConsumer.Client;
 
 namespace Desktop.Commands
 {
+    /// <summary>
+    /// Sign In Command
+    /// </summary>
     public class SignInCommand : CommandBase
     {
+        /// <summary>
+        /// Token provider
+        /// </summary>
         private readonly TokenProvider _tokenProvider;
 
+        /// <summary>
+        /// User info loader
+        /// </summary>
         private readonly UserInfoLoader _userInfoLoader;
 
+        /// <summary>
+        /// Hyper link service
+        /// </summary>
         private readonly HyperLinkService _hyperLinkService;
 
+        /// <summary>
+        /// Creates new instance of <see cref="SignInCommand"/>
+        /// </summary>
         public SignInCommand()
         {
+            // getting current app
             var app = ((App)App.Current);
+
+            // setting fields
             this._tokenProvider = app.TokenProvider;
             this._userInfoLoader = new UserInfoLoader();
             this._hyperLinkService = new HyperLinkService();
         }
 
+        /// <summary>
+        /// Determines if the command can be executes.
+        /// </summary>
+        /// <param name="parameter">Command parameter</param>
+        /// <returns>boolean value indicating whether the command can be executed.</returns>
         public override bool CanExecute(object parameter)
         {
             if (parameter == null)
@@ -37,6 +58,10 @@ namespace Desktop.Commands
             return signInInfo.Password.Length > 7;
         }
 
+        /// <summary>
+        /// Executes the command operation
+        /// </summary>
+        /// <param name="parameter">Command parameter</param>
         public override async void Execute(object parameter)
         {
             var signInInfo = (SignInInfo)parameter;

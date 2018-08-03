@@ -1,9 +1,9 @@
-﻿using Desktop.ViewModels;
+﻿using System;
+using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using Desktop.ViewModels;
 using InstitutionClient;
 using InstitutionClient.Models;
-using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace Desktop.Services
 {

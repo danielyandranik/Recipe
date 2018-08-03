@@ -1,4 +1,5 @@
 ﻿using Desktop.Commands;
+using Desktop.Services;
 using GalaSoft.MvvmLight;
 using MedicineApiClient;
 using System;
@@ -21,6 +22,8 @@ namespace Desktop.ViewModels
         private Medicine editableMedicine;
 
         private Visibility visibility;
+
+        private readonly FilterService _filterService;
 
         private DeleteMedicineCommand deleteMedicineCommand;
 
@@ -77,6 +80,14 @@ namespace Desktop.ViewModels
             this.Visibility = User.Default.CurrentProfile == "ministry_worker"? Visibility.Visible : Visibility.Collapsed;
             this.deleteMedicineCommand = new DeleteMedicineCommand(this.medicines, this.DeleteMedicine, _ => true);
             this.editMedicineCommand = new EditMedicineCommand(this.medicines, this.EditMedicine, _ => true);
+            this._filterService = new FilterService();
+        }
+
+        public async Task Filter(Func<Medicine,bool> predicate)
+        {
+            var medicines = await this._filterService.FilterAsync(this.Medicines, predicate);
+
+            this.Medicines = new ObservableCollection<Medicine>(medicines);
         }
 
         private async Task<bool> DeleteMedicine(string uri)

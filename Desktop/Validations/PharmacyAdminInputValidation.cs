@@ -1,15 +1,18 @@
 ﻿using Desktop.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UserManagementConsumer.Models;
 
 namespace Desktop.Validations
 {
+    /// <summary>
+    /// Pharmacy admin input validation
+    /// </summary>
     public class PharmacyAdminInputValidation : IValidation
     {
+        /// <summary>
+        /// Validates the pharmacy admin input
+        /// </summary>
+        /// <param name="parameter">Command parameter</param>
+        /// <returns>boolean value indicating the validity of pharmacy admin input.</returns>
         public bool Validate(object parameter)
         {
             if (parameter == null)
@@ -18,7 +21,7 @@ namespace Desktop.Validations
             var pharmacyAdmin = parameter as PharmacyAdmin;
 
             return !string.IsNullOrEmpty(pharmacyAdmin.PharmacyName) &&
-                int.TryParse(pharmacyAdmin.StartedWorkingYear, out var temp);
+                    int.TryParse(pharmacyAdmin.StartedWorkingYear, out var temp);
         }
     }
 }

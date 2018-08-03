@@ -1,20 +1,37 @@
-﻿using Desktop.Views.Windows;
-using InstitutionClient.Models;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Desktop.Views.Windows;
+using InstitutionClient.Models;
 
 namespace Desktop.Commands
 {
+    /// <summary>
+    /// Delete pharmacy command
+    /// </summary>
     public class DeletePharmacyCommand : AsyncCommand<int, bool>
     {
+        /// <summary>
+        /// Pharmacies
+        /// </summary>
         private ObservableCollection<Institution> pharmacies;
 
-        public DeletePharmacyCommand(ObservableCollection<Institution> pharmacies, Func<int, Task<bool>> executeMethod, Func<int, bool> canExecuteMethod) : base(executeMethod, canExecuteMethod)
+        /// <summary>
+        /// Creates new instance of <see cref="DeletePharmacyCommand"/>
+        /// </summary>
+        /// <param name="pharmacies">Pharmacies</param>
+        /// <param name="executeMethod">Execute method.</param>
+        /// <param name="canExecuteMethod">CanExecute method</param>
+        public DeletePharmacyCommand(ObservableCollection<Institution> pharmacies, Func<int, Task<bool>> executeMethod, Func<int, bool> canExecuteMethod) : 
+            base(executeMethod, canExecuteMethod)
         {
             this.pharmacies = pharmacies;
         }
 
+        /// <summary>
+        /// Executes the command operation.
+        /// </summary>
+        /// <param name="parameter">Command parameter</param>
         public async override void Execute(object parameter)
         {
             try

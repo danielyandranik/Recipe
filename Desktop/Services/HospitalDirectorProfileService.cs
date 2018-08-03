@@ -5,8 +5,16 @@ using UserManagementConsumer.Models;
 
 namespace Desktop.Services
 {
+    /// <summary>
+    /// Hospital director profile service
+    /// </summary>
     class HospitalDirectorProfileService : ProfileService
     {
+        /// <summary>
+        /// Executes the profile service operation.
+        /// </summary>
+        /// <param name="parameter">Command parameter</param>
+        /// <returns>response</returns>
         public async override Task<Response<string>> Execute(object parameter)
         {
             var hospitalDirector = (HospitalDirector)parameter;
