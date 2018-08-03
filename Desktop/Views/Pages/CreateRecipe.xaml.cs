@@ -8,7 +8,7 @@ namespace Desktop.Views.Pages
     /// </summary>
     public partial class CreateRecipe : Page
     {
-        private readonly CreateRecipeViewModel ViewModel;
+        public readonly CreateRecipeViewModel ViewModel;
 
         public CreateRecipe()
         {

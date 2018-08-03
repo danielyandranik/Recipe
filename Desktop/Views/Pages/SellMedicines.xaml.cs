@@ -17,11 +17,5 @@ namespace Desktop.Views.Pages
             this.DataContext = this.ViewModel;
             InitializeComponent();
         }
-
-        private void AddItemButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.ViewModel.SellingItems.Add(this.ViewModel.AddingItem);
-            this.ViewModel.AddingItem = new KeyValuePair<string, int>();
-        }
     }
 }

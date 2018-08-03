@@ -8,7 +8,7 @@ namespace Desktop.Commands
     /// <summary>
     /// Add recipe history command
     /// </summary>
-    internal class AddRecipeHistoryCommand : AsyncCommand<RecipeHistory, ResponseMessage<string>>
+    public class AddRecipeHistoryCommand : AsyncCommand<RecipeHistory, ResponseMessage<string>>
     {
         /// <summary>
         /// Sell medicines view model

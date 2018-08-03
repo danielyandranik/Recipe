@@ -18,9 +18,13 @@ namespace Desktop.Services
 
         private readonly UserManagementConsumer.Client.UserManagementApiClient userApiClient;
 
-        public LoadRecipesService(RecipesViewModel recipesViewModel)
+        public LoadRecipesService(RecipesViewModel recipesViewModel) : this()
         {
             this.recipesViewModel = recipesViewModel;
+        }
+
+        public LoadRecipesService()
+        {
             this.recipeClient = ((App)App.Current).RecipeClient;
             this.medicineClient = ((App)App.Current).MedicineClient;
             this.userApiClient = ((App)App.Current).UserApiClient;
@@ -47,7 +51,7 @@ namespace Desktop.Services
 
         }
 
-        private async Task<Recipe> Map(RecipeClient.Recipe recipeFromApi)
+        public async Task<Recipe> Map(RecipeClient.Recipe recipeFromApi)
         {
             var recipeItems = new List<RecipeItem>();
 
@@ -63,11 +67,11 @@ namespace Desktop.Services
 
                 var recipeItem = new RecipeItem
                 {
-                    //MedicineName = medicineApiResponse.Result.Name,
+                    Medicine = medicineApiResponse.Result,
                     Count = recipeItemFromApi.Count,
-                    //UseFrequencyUnit = recipeItemFromApi.FrequencyUnit,
-                    //CountPerUse = recipeItemFromApi.UnitCountPerUse,
-                    //TimesPerUnit = recipeItemFromApi.UseFrequencyPerFrequencyUnit
+                    CountPerUse = recipeItemFromApi.CountPerUse,
+                    TimesPerUnit = recipeItemFromApi.TimesPerUnit,
+                    UseFrequencyUnit = recipeItemFromApi.UseFrequencyUnit
                 };
 
                 recipeItems.Add(recipeItem);
@@ -85,7 +89,7 @@ namespace Desktop.Services
 
             if (gettingDoctorFullNameResponse.Status == Status.Error)
             {
-                RecipeMessageBox.Show("Something went wrong when getting the hospital name");
+                RecipeMessageBox.Show("Something went wrong when getting doctor");
                 return null;
             }
 
@@ -94,7 +98,6 @@ namespace Desktop.Services
                 CreatedOn = recipeFromApi.CreatedOn,
                 HospitalName = gettingHospitalNameResponse.Result.HospitalName,
                 Id = recipeFromApi.Id,
-                //PatientId = recipeFromApi.PatientId,
                 DoctorName = gettingDoctorFullNameResponse.Result.FullName,
                 RecipeItems = new ObservableCollection<RecipeItem>(recipeItems)
             };

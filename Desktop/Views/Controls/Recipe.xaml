@@ -23,7 +23,7 @@
         
         </Grid>
 
-        <ListView Grid.Row="1"  Width="auto" ItemsSource="{Binding RecipeItems}">
+        <ListView Grid.Row="1"  Width="auto" ItemsSource="{Binding RecipeItems}" HorizontalContentAlignment="Stretch">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
