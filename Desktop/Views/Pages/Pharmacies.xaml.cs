@@ -32,5 +32,23 @@ namespace Desktop.Views.Pages
             this.EditPopup.IsOpen = false;
             Application.Current.MainWindow.IsEnabled = true;
         }
+
+        private async void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textbox = sender as TextBox;
+
+            if (textbox == this.medicine)
+            {
+               // await this.PharmaciesViewModel.Filter(pharmacy => pharmacy.medicine.Contains(textbox.Text));
+            }
+            else if (textbox == this.name)
+            {
+                await this.PharmaciesViewModel.Filter(pharmacy => pharmacy.Name.Contains(textbox.Text));
+            }
+            else
+            {
+                await this.PharmaciesViewModel.Filter(pharmacy => pharmacy.Address.Contains(textbox.Text));
+            }
+        }
     }
 }

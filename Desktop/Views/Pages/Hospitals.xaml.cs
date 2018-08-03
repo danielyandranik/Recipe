@@ -32,5 +32,19 @@ namespace Desktop.Views.Pages
             this.EditPopup.IsOpen = false;
             Application.Current.MainWindow.IsEnabled = true;
         }
+
+        private  async void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textbox = sender as TextBox;
+
+            if (textbox == this.name)
+            {
+                await this.HospitalsViewModel.Filter(hospital => hospital.Name.Contains(textbox.Text));
+            }
+            else
+            {
+                await this.HospitalsViewModel.Filter(hospital => hospital.Address.Contains(textbox.Text));
+            }
+        }
     }
 }

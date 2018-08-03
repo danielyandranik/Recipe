@@ -3,15 +3,9 @@ using Desktop.Services;
 using GalaSoft.MvvmLight;
 using MedicineApiClient;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace Desktop.ViewModels
 {
@@ -23,7 +17,7 @@ namespace Desktop.ViewModels
 
         private Visibility visibility;
 
-        private readonly FilterService _filterService;
+        private readonly FilterService<Medicine> _filterService;
 
         private DeleteMedicineCommand deleteMedicineCommand;
 
@@ -80,7 +74,7 @@ namespace Desktop.ViewModels
             this.Visibility = User.Default.CurrentProfile == "ministry_worker"? Visibility.Visible : Visibility.Collapsed;
             this.deleteMedicineCommand = new DeleteMedicineCommand(this.medicines, this.DeleteMedicine, _ => true);
             this.editMedicineCommand = new EditMedicineCommand(this.medicines, this.EditMedicine, _ => true);
-            this._filterService = new FilterService();
+            this._filterService = new FilterService<Medicine>();
         }
 
         public async Task Filter(Func<Medicine,bool> predicate)

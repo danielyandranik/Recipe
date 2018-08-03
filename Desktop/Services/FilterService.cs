@@ -10,7 +10,7 @@ namespace Desktop.Services
     /// <summary>
     /// Filter service
     /// </summary>
-    public class FilterService
+    public class FilterService<T>
     {
         /// <summary>
         /// Cancellation token source for task
@@ -23,7 +23,7 @@ namespace Desktop.Services
         /// <param name="medicines">Medicines</param>
         /// <param name="predicate">Predicate</param>
         /// <returns>enumerable of medicines</returns>
-        public async Task<IEnumerable<Medicine>> FilterAsync(IEnumerable<Medicine> medicines, Func<Medicine, bool> predicate)
+        public async Task<IEnumerable<T>> FilterAsync(IEnumerable<T> obj, Func<T, bool> predicate)
         {
             // cancel the previous task if it exists
             this._cts?.Cancel();
@@ -34,7 +34,7 @@ namespace Desktop.Services
             this._cts = cts;
 
             // creating new task
-            var task = new Task<IEnumerable<Medicine>>(() => medicines.Where(predicate), ct);
+            var task = new Task<IEnumerable<T>>(() => obj.Where(predicate), ct);
 
             // starting task
             task.Start();

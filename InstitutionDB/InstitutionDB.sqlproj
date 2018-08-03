@@ -80,8 +80,6 @@
     <Build Include="dbo\Stored Procedures\UpdateOperations\uspUpdateMedicineQuantity.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmaciesByMedicineId.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmacyMedicineById.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetInstitutionsByName.sql" />
-    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetInstitutionsByAddress.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetInstitutionId.sql" />
   </ItemGroup>
   <ItemGroup>
