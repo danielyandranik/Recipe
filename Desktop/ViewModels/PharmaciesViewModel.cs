@@ -6,6 +6,7 @@ using InstitutionClient.Models;
 using System.Windows;
 using Desktop.Services;
 using System;
+using System.Collections.Generic;
 
 namespace Desktop.ViewModels
 {
@@ -19,6 +20,8 @@ namespace Desktop.ViewModels
         private Visibility visibility;
 
         private readonly FilterService<Institution> filterService;
+
+        public IEnumerable<Institution> data;
 
         private readonly DeletePharmacyCommand deletePharmacyCommand;
 
@@ -81,7 +84,7 @@ namespace Desktop.ViewModels
 
         public async Task Filter(Func<Institution, bool> predicate)
         {
-            var pharmacies = await this.filterService.FilterAsync(this.Pharmacies, predicate);
+            var pharmacies = await this.filterService.FilterAsync(this.data, predicate);
 
             this.Pharmacies = new ObservableCollection<Institution>(pharmacies);
         }

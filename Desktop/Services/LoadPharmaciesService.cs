@@ -29,6 +29,7 @@ namespace Desktop.Services
             }
 
             this.pharmaciesViewModel.Pharmacies = new ObservableCollection<Institution>(response.Content);
+            this.pharmaciesViewModel.data = this.pharmaciesViewModel.Pharmacies;
         }
     }
 }

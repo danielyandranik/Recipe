@@ -29,6 +29,7 @@ namespace Desktop.Services
             }
 
             this.hospitalsViewModel.Hospitals = new ObservableCollection<Institution>(response.Content);
+            this.hospitalsViewModel.data = this.hospitalsViewModel.Hospitals; 
         }
     }
 }

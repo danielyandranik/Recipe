@@ -6,6 +6,7 @@ using InstitutionClient.Models;
 using System.Windows;
 using Desktop.Services;
 using System;
+using System.Collections.Generic;
 
 namespace Desktop.ViewModels
 {
@@ -19,10 +20,11 @@ namespace Desktop.ViewModels
 
         private readonly FilterService<Institution> filterService;
 
+        public IEnumerable<Institution> data;
+
         private readonly DeleteHospitalCommand deleteHospitalCommand;
 
         private readonly EditHospitalCommand editHospitalCommand;
-
 
         public ObservableCollection<Institution> Hospitals
         {
@@ -33,6 +35,7 @@ namespace Desktop.ViewModels
             set
             {
                 this.Set("Hospitals", ref this.hospitals, value);
+
             }
         }
 
@@ -80,7 +83,7 @@ namespace Desktop.ViewModels
 
         public async Task Filter(Func<Institution,bool> predicate)
         {
-            var hospitals = await this.filterService.FilterAsync(this.Hospitals, predicate);
+            var hospitals = await this.filterService.FilterAsync(this.data, predicate);
 
             this.Hospitals = new ObservableCollection<Institution>(hospitals);
         }
