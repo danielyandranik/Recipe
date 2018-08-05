@@ -1,10 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.ComponentModel;
+using System.Windows.Controls;
 using Desktop.ViewModels;
 using Desktop.Views.Pages;
 using Desktop.Services;
-using Desktop.Commands;
 
 namespace Desktop.Views.Windows
 {
@@ -36,13 +37,9 @@ namespace Desktop.Views.Windows
 
         private AddMedicine _addMedicine;
 
-        private MapPage _mapPage;
-
         private HospitalAdminApprovals _hospitalAdminApprovals;
 
         private readonly NavigateService _navigationService;
-
-        private readonly ProfilesMenuManager _profilesMenuManager;
 
         private  int menuButtonRotateAngle;
 
@@ -59,8 +56,6 @@ namespace Desktop.Views.Windows
             this._mainWindowVM = new MainWindowViewModel(this);
             this.DataContext = this._mainWindowVM;
             this._navigationService = new NavigateService(this.frame);
-
-           // this._medicines = new Medicines();
         }
 
         private async void Medicines_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -158,7 +153,9 @@ namespace Desktop.Views.Windows
         {            
             await this._mainWindowVM.LoadService.Execute();
 
-            this._navigationService.Navigate(ref this._mapPage);
+            var mapPage = ((App)App.Current).MapPage;
+
+            this.frame.Navigate(mapPage);
         }
 
         private async void HospitalAdminApprovalsButton_Click(object sender, RoutedEventArgs e)
@@ -177,7 +174,29 @@ namespace Desktop.Views.Windows
 
         private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this._navigationService.Navigate(ref this._mapPage);
+            var mapPage = ((App)App.Current).MapPage;
+
+            this.frame.Navigate(mapPage);
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+
+            var menu = this.profiles.Items;
+
+            var manager = ((App)App.Current).ProfilesMenuManager;
+
+            foreach(var item in menu)
+            {
+                var menuItem = (MenuItem)item;
+
+                menuItem.Click -= manager.ChangeProfileEventHandler;
+            }
+
+            var app = (App)App.Current;
+
+            app.ProfilesMenuManager = null;
         }
     }
 }

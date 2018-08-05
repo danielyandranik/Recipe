@@ -8,6 +8,7 @@ using UserManagementConsumer.Client;
 using Desktop.Models;
 using Desktop.ViewModels;
 using Desktop.Services;
+using Desktop.Views.Pages;
 
 namespace Desktop
 {
@@ -52,6 +53,11 @@ namespace Desktop
         private bool _isReadyForStartup;
 
         /// <summary>
+        /// Map page
+        /// </summary>
+        private readonly MapPage _mapPage;
+
+        /// <summary>
         /// Gets token provider
         /// </summary>
         public TokenProvider TokenProvider => this._tokenProvider;
@@ -87,6 +93,11 @@ namespace Desktop
         public RecipeClient.RecipeClient RecipeClient => this._recipeClient;
 
         /// <summary>
+        /// Gets or sets map page
+        /// </summary>
+        public MapPage MapPage => this._mapPage;
+
+        /// <summary>
         /// Creates new instance of <see cref="App"/>
         /// </summary>
         public App()
@@ -106,6 +117,8 @@ namespace Desktop
                 this._medicineClient = new MedicineApiClient.Client(ConfigurationManager.AppSettings["MedicineAPI"]);
 
                 this._institutionClient = new InstitutionClient.Client(ConfigurationManager.AppSettings["InstitutionsAPI"]);
+
+                this._mapPage = new MapPage();
 
                 // configuring 
                 this.ConfigureEventHandlers();

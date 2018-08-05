@@ -118,8 +118,12 @@ namespace Desktop.Services
                 {
                     this._menuItem.Items.RemoveAt(counter);
 
-                    this._vm.CurrentProfile = "None";
+                    var deletingMenuItem = (MenuItem)menuItems[counter];
 
+                    deletingMenuItem.Click -= this.ChangeProfileEventHandler;
+
+                    this._vm.CurrentProfile = "None";
+                                
                     this.CollapseAll();
 
                     User.Default.CurrentProfile = "none";
