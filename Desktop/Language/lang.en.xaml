@@ -36,19 +36,21 @@
     
     <!-- Register Window -->
     <system:String x:Key="register">Register</system:String>
-    <system:String x:Key="first_name">First Name*</system:String>
-    <system:String x:Key="last_name">Last Name*</system:String>
-    <system:String x:Key="middle_name">Middle Name*</system:String>
-    <system:String x:Key="sex">Sex*</system:String>
-    <system:String x:Key="birthdate">Birthdate*</system:String>
+    <system:String x:Key="first_name">First Name *</system:String>
+    <system:String x:Key="last_name">Last Name *</system:String>
+    <system:String x:Key="middle_name">Middle Name *</system:String>
+    <system:String x:Key="sex">Sex *</system:String>
+    <system:String x:Key="male">Male</system:String>
+    <system:String x:Key="female">Female</system:String>
+    <system:String x:Key="birthdate">Birthdate *</system:String>
     <system:String x:Key="day">Day</system:String>
     <system:String x:Key="year">Year</system:String>
     <system:String x:Key="month">Month</system:String>
-    <system:String x:Key="email">Email*</system:String>
-    <system:String x:Key="phone">Phone*</system:String>
-    <system:String x:Key="username">Username*</system:String>
-    <system:String x:Key="password">Password*</system:String>
-    <system:String x:Key="confirm_password">Confirm Password*</system:String>
+    <system:String x:Key="email">Email *</system:String>
+    <system:String x:Key="phone">Phone *</system:String>
+    <system:String x:Key="username">Username *</system:String>
+    <system:String x:Key="password">Password *</system:String>
+    <system:String x:Key="confirm_password">Confirm Password *</system:String>
     <system:String x:Key="sign_up">Sign Up</system:String>
     <system:String x:Key="account_msg0">Already have an account?</system:String>
     <system:String x:Key="sign_in">Sign In</system:String>

@@ -6,7 +6,7 @@
     <!-- Main Window -->
     <system:String x:Key="main">Գլխավոր</system:String>
     <system:String x:Key="medicines">Դեղեր</system:String>
-    <system:String x:Key="hospitals">ՀԻվանդանոցներ</system:String>
+    <system:String x:Key="hospitals">Հիվանդանոցներ</system:String>
     <system:String x:Key="pharmacies">Դեղատներ</system:String>
     <system:String x:Key="profiles">Պրոֆիլներ</system:String>
     <system:String x:Key="add_profile">Ավելացներ նոր պրոֆիլ</system:String>
@@ -16,7 +16,7 @@
     <system:String x:Key="patient">Հիվանդ</system:String>
     <system:String x:Key="pharmacist">Դեղագործ</system:String>
     <system:String x:Key="pharmacy_admin">Դեղատան ադմին</system:String>
-    <system:String x:Key="hospital_admin">ՀԻվանդանողի ադմին</system:String>
+    <system:String x:Key="hospital_admin">Հիվանդանոցի ադմին</system:String>
     <system:String x:Key="my_recipes">Իմ դեղատոմսերը</system:String>
     <system:String x:Key="create_recipe">Ստեղծել դեղատոմս</system:String>
     <system:String x:Key="approvals">Հաստատումներ</system:String>
@@ -36,19 +36,21 @@
 
     <!-- Register Window -->
     <system:String x:Key="register">Գրանցում</system:String>
-    <system:String x:Key="first_name">Անուն*</system:String>
-    <system:String x:Key="last_name">Ազգանուն*</system:String>
-    <system:String x:Key="middle_name">Հայրանուն*</system:String>
-    <system:String x:Key="sex">Սեռ*</system:String>
-    <system:String x:Key="birthdate">Ծննդյան ամսաթիվ*</system:String>
+    <system:String x:Key="first_name">Անուն *</system:String>
+    <system:String x:Key="last_name">Ազգանուն *</system:String>
+    <system:String x:Key="middle_name">Հայրանուն *</system:String>
+    <system:String x:Key="sex">Սեռ *</system:String>
+    <system:String x:Key="male">Արական</system:String>
+    <system:String x:Key="female">Իգական</system:String>
+    <system:String x:Key="birthdate">Ծննդյան ամսաթիվ *</system:String>
     <system:String x:Key="day">Օր</system:String>
     <system:String x:Key="year">Ամիս</system:String>
     <system:String x:Key="month">Տարի</system:String>
-    <system:String x:Key="email">Էլեկտրոնային հասցե*</system:String>
-    <system:String x:Key="phone">Հեռախոս*</system:String>
+    <system:String x:Key="email">Էլեկտրոնային հասցե *</system:String>
+    <system:String x:Key="phone">Հեռախոս *</system:String>
     <system:String x:Key="username">Օգտատիրոջ անուն*</system:String>
-    <system:String x:Key="password">Գաղտնաբառ*</system:String>
-    <system:String x:Key="confirm_password">Հաստատե՛ք գաղտնաբառը*</system:String>
+    <system:String x:Key="password">Գաղտնաբառ *</system:String>
+    <system:String x:Key="confirm_password">Հաստատե՛ք գաղտնաբառը *</system:String>
     <system:String x:Key="sign_up">Գրանցվել</system:String>
     <system:String x:Key="account_msg0">Արդեն ունե՞ք հաշիվ։</system:String>
     <system:String x:Key="sign_in">Մուտք գործել</system:String>
