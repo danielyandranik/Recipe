@@ -84,6 +84,8 @@
     <system:String x:Key="inst_open">Open time</system:String>
     <system:String x:Key="inst_close">Close time</system:String>
     <system:String x:Key="inst_type">Type</system:String>
+    <system:String x:Key="inst_hospital">Hospital</system:String>
+    <system:String x:Key="inst_pharmacy">Pharmacy</system:String>
     
     <!-- Add medicine page -->
     <system:String x:Key="med_name">Name</system:String>

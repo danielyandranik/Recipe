@@ -84,6 +84,8 @@
     <system:String x:Key="inst_open">Բացվելու ժամը</system:String>
     <system:String x:Key="inst_close">Փակվելու ժամը</system:String>
     <system:String x:Key="inst_type">Հաստատության տեսակը</system:String>
+    <system:String x:Key="inst_hospital">Հիվանդանոց</system:String>
+    <system:String x:Key="inst_pharmacy">Դեղատուն</system:String>
 
     <!-- Add medicine page -->
     <system:String x:Key="med_name">Անուն</system:String>
