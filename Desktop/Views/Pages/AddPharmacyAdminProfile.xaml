@@ -35,7 +35,7 @@
 
         <StackPanel Grid.Row="0">
 
-            <TextBlock Text="{DynamicResource add_pharmacist}" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
+            <TextBlock Text="{DynamicResource add_pharmacy_admin}" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
             <Separator Background="#FF182634" Width="600" Margin="0,5" Foreground="#FF182634" />
 
         </StackPanel>
