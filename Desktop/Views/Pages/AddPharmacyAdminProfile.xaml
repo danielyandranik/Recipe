@@ -35,26 +35,26 @@
 
         <StackPanel Grid.Row="0">
 
-            <TextBlock Text="Add pharmacy admin profile" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
+            <TextBlock Text="{DynamicResource add_pharmacist}" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
             <Separator Background="#FF182634" Width="600" Margin="0,5" Foreground="#FF182634" />
 
         </StackPanel>
 
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,20,0,0">
 
-            <Label Content="Pharmacy name which admin you are" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+            <Label Content="{DynamicResource pharmacy}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
             <TextBox Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" 
                      Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"
                      Text="{Binding PharmacyAdmin.PharmacyName, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Content="Starting year of work" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+            <Label Content="{DynamicResource work_start_year}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
             <TextBox Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" 
                      Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" 
                      HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" 
                      TextWrapping="NoWrap" Width="240" Padding="5, 2"
                      Text="{Binding PharmacyAdmin.StartedWorkingYear, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Button Content="Done" Margin="0,20,0,0" BorderBrush="{x:Null}" 
+            <Button Content="{DynamicResource done}" Margin="0,20,0,0" BorderBrush="{x:Null}" 
                     Background="#FF39B9B9" Width="120"
                     Command="{Binding PharmacyAdminCommand}"
                     CommandParameter="{Binding PharmacyAdmin}"/>

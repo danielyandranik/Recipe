@@ -56,7 +56,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
-            <TextBlock Text="Hospitals" HorizontalAlignment="Center" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="24" Margin="0,20,0,0"/>
+            <TextBlock Text="{DynamicResource hospitals}" HorizontalAlignment="Center" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="24" Margin="0,20,0,0"/>
             <Separator Width="500"  HorizontalAlignment="Center" Margin="0,15" Background="#FF7A7979" Height="3" />
         </StackPanel>
 
@@ -72,10 +72,10 @@
 
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="1">
 
-                <Label Content="Filter by:" Foreground="#DDFFFFFF" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" />
-                <Label Content="Name" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
+                <Label Content="{DynamicResource filter}" Foreground="#DDFFFFFF" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" />
+                <Label Content="{DynamicResource inst_name}" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
                 <TextBox Name ="name" Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" TextChanged="TextBox_TextChanged" />
-                <Label Content="Address" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
+                <Label Content="{DynamicResource inst_address}" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
                 <TextBox Name="address" Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" TextChanged="TextBox_TextChanged" />
 
             </StackPanel>
@@ -98,15 +98,15 @@
 
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" Content="Name" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="1" Content="License" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="2" Content="Owner" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="3" Content="Phone" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="4" Content="Email" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="5" Content="Address" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="6" Content="Open Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="7" Content="Close Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-            <Label Grid.Column="8" Content="Description" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+            <Label Grid.Column="0" Content="{DynamicResource inst_name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+            <Label Grid.Column="1" Content="{DynamicResource inst_license}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+            <Label Grid.Column="2" Content="{DynamicResource inst_owner}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+            <Label Grid.Column="3" Content="{DynamicResource inst_phone}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+            <Label Grid.Column="4" Content="{DynamicResource hospitals_email}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+            <Label Grid.Column="5" Content="{DynamicResource inst_address}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+            <Label Grid.Column="6" Content="{DynamicResource inst_open}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+            <Label Grid.Column="7" Content="{DynamicResource inst_close}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+            <Label Grid.Column="8" Content="{DynamicResource inst_description}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
 
         </Grid>
 
@@ -148,12 +148,12 @@
                         
                         <StackPanel Orientation="Horizontal">
 
-                            <Button Content="Edit" Width="100" Height="30" 
+                            <Button Content="{DynamicResource edit}" Width="100" Height="30" 
                                     Visibility="{Binding DataContext.Visibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
                                     Click="EditHospitalClick" Tag="{Binding Path=Id }" Foreground="White" BorderBrush="#FF6FF522" Background="#FF6FF522" 
                                     FontFamily="Comfortaa" FontSize="14" Margin="0,0,10,0"/>
 
-                            <Button Content="Delete" Width="100" Height="30" 
+                            <Button Content="{DynamicResource delete}" Width="100" Height="30" 
                                     Visibility="{Binding DataContext.Visibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
                                     Command="{Binding Path=DataContext.DeleteHospitalCommand, RelativeSource={RelativeSource AncestorType=Page, Mode=FindAncestor}}"
                                     CommandParameter="{Binding Id}" Foreground="White" BorderBrush="#FFE82E2E" Background="#FFE82E2E" FontFamily="Comfortaa" 
@@ -173,36 +173,44 @@
             <Border BorderBrush="#FF182634" BorderThickness="3" Padding="20,20,20,18" Background="White" CornerRadius="5">
                 <StackPanel Width="300" HorizontalAlignment="Center" >
 
-                    <Label Content="Name" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource inst_name}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableHospital.Name, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="License" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource inst_license}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableHospital.License, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="Owner" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource inst_owner}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableHospital.Owner, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="Phone" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource inst_phone}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableHospital.Phone, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="Email" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource inst_email}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableHospital.Email, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="Address" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource inst_address}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableHospital.Address, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="Open Time" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource inst_open}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableHospital.OpenTime, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="Close Time" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource inst_close}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableHospital.CloseTime, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="Description" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource inst_description}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableHospital.Description, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="75"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Button Grid.Row="2" Content="Done" Margin="25,10,0,0" BorderBrush="{x:Null}" Background="#FF00C853" Width="90" VerticalAlignment="Top" 
+                    <Button Grid.Row="2" Margin="25,10,0,0" BorderBrush="{x:Null}" Background="#FF00C853" Width="90" VerticalAlignment="Top" 
                                 Command="{Binding Path=DataContext.EditHospitalCommand, RelativeSource={RelativeSource AncestorType=Page, Mode=FindAncestor}}"
-                                CommandParameter="{Binding EditableHospital}" Click="CloseEditHospitalPopup_Click"/>
+                                CommandParameter="{Binding EditableHospital}" Click="CloseEditHospitalPopup_Click">
+                        <Button.ContentTemplate>
+                            <DataTemplate>
+                                <Viewbox>
+                                    <TextBlock Text="{DynamicResource done}"/>
+                                </Viewbox>
+                            </DataTemplate>
+                        </Button.ContentTemplate>
+                    </Button>
                 </StackPanel>
             </Border>
         </Popup>

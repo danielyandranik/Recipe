@@ -40,8 +40,8 @@
         <Border BorderThickness="0,2,0,0" BorderBrush="#FF182634">
             <Grid Grid.Row="0" Background="#FF39B9B9">
 
-                <TextBlock Text="Create recipe" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="28" HorizontalAlignment="Center" Margin="0,20"/>
-                <Button Content="Done" Width="100" Height="32" HorizontalAlignment="Right" Margin="0,0,20,0" 
+                <TextBlock Text="{DynamicResource create_recipe}" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="28" HorizontalAlignment="Center" Margin="0,20"/>
+                <Button Content="{DynamicResource done}" Width="100" Height="32" HorizontalAlignment="Right" Margin="0,0,20,0" 
                         Background="White" BorderBrush="White" Foreground="#FF39B9B9" FontSize="14" FontWeight="Bold" 
                         FontFamily="Comfortaa" Command="{Binding CreateRecipeCommand}" CommandParameter="{Binding Recipe}"/>
            
@@ -50,7 +50,7 @@
         
         <StackPanel Grid.Row="1" Margin="0,10,0,0">
 
-                <Label Content="Who the recipe is for?" FontSize="16" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                <Label Content="{DynamicResource recipe_owner}" FontSize="16" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                 <TextBox Height="25" Text="{Binding Recipe.PatientUserName}"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
                 <Separator Margin="0,8,0,2" Background="#FF182634" />
 
@@ -67,13 +67,11 @@
                 <ColumnDefinition Width="*" />
 
             </Grid.ColumnDefinitions>
-
-            <Label Grid.Column="0" Content="Medicine" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
-            <Label Grid.Column="1" Content="Count" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
-            <Label Grid.Column="2" Content="Use frequency unit" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
-            <Label Grid.Column="3" Content="Times per unit" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
-            <Label Grid.Column="4" Content="Count per use" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
-
+            <Label Grid.Column="0" Content="{DynamicResource med}" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+                <Label Grid.Column="1" Content="{DynamicResource med_count}" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+                <Label Grid.Column="2" Content="{DynamicResource med_frequency}" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+                <Label Grid.Column="3" Content="{DynamicResource med_times}" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+            <Label Grid.Column="4" Content="{DynamicResource med_count_use}" HorizontalAlignment="Center" FontSize="16" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
         </Grid>
 
         <ListView Grid.Row="3" ItemsSource="{Binding Recipe.RecipeItems}" HorizontalContentAlignment="Stretch" MinWidth="900" Width="Auto">
@@ -138,21 +136,29 @@
                 </ComboBox.Style>
             </ComboBox>
 
-            <Label Grid.Column="0" Content="Medicine name" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
+            <Label Grid.Column="0" Content="{DynamicResource med_name}" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
             
             <TextBox Grid.Column="1" Height="25" Text="{Binding AddingItem.Count}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2" Margin="10,5,10,0" VerticalAlignment="Top"/>
-            <Label Grid.Column="1" Content="Count" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
+            <Label Grid.Column="1" Content="{DynamicResource med_count}" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
             
             <TextBox Grid.Column="2" Height="25" Text="{Binding AddingItem.UseFrequencyUnit}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2" Margin="10,5,10,0" VerticalAlignment="Top"/>
-            <Label Grid.Column="2" Content="Use frequency unit" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
+            <Label Grid.Column="2" Content="{DynamicResource med_frequency}" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
             
             <TextBox Grid.Column="3" Height="25" Text="{Binding AddingItem.TimesPerUnit}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2" Margin="10,5,10,0" VerticalAlignment="Top"/>
-            <Label Grid.Column="3" Content="Times per unit" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
+            <Label Grid.Column="3" Content="{DynamicResource med_times}" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
             
             <TextBox Grid.Column="4" Height="25" Text="{Binding AddingItem.CountPerUse}" BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2" Margin="10,5,10,0" VerticalAlignment="Top"/>
-            <Label Grid.Column="4" Content="Count per use" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
-            
-            <Button Grid.Column="5" Content="Add" BorderBrush="{x:Null}" Background="#FF39B9B9" Width="80" Click="AddItemButton_Click" Margin="10,0,20,0"/>
+            <Label Grid.Column="4" Content="{DynamicResource med_count_use}" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Bottom"/>
+
+            <Button Grid.Column="5" BorderBrush="{x:Null}" Background="#FF39B9B9" Width="80" Click="AddItemButton_Click" Margin="10,0,20,0">
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <Viewbox>
+                            <TextBlock Text="{DynamicResource add}"/>
+                        </Viewbox>
+                    </DataTemplate>
+                </Button.ContentTemplate>
+            </Button>
 
         </Grid>
 

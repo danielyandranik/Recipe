@@ -36,32 +36,32 @@
 
         <StackPanel Grid.Row="0">
 
-            <TextBlock Text="Add patient profile" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
+            <TextBlock Text="{DynamicResource add_patient}" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
             <Separator Background="#FF182634" Width="600" Margin="0,5" Foreground="#FF182634" />
 
         </StackPanel>
 
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,20,0,0">
 
-            <Label Content="Your regional doctor name" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+            <Label Content="{DynamicResource reg_doctor}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
             <TextBox Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"
                      Text="{Binding Patient.RegionalDoctorName, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Content="Your ocupation" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+            <Label Content="{DynamicResource occupation}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
             <TextBox Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"
                      Text="{Binding Patient.Occupation, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Content="Your address" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+            <Label Content="{DynamicResource patient_address}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
             <TextBox Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"
                      Text="{Binding Patient.Address, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Content="Dependency from" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-            <CheckBox  Content="Alcohol" FontSize="14" HorizontalAlignment="Left" Margin="20,5,0,0" FontFamily="Comfortaa" Background="#FF39B9B9" BorderBrush="#FF39B9B9"
+            <Label Content="{DynamicResource dependency}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+            <CheckBox  Content="{DynamicResource alcohol}" FontSize="14" HorizontalAlignment="Left" Margin="20,5,0,0" FontFamily="Comfortaa" Background="#FF39B9B9" BorderBrush="#FF39B9B9"
                        IsChecked="{Binding Patient.IsAlcoholic, UpdateSourceTrigger=PropertyChanged}"/>
-            <CheckBox  Content="Drugs" FontSize="14" HorizontalAlignment="Left" Margin="20,5,0,0" FontFamily="Comfortaa" Background="#FF39B9B9" BorderBrush="#FF39B9B9"
+            <CheckBox  Content="{DynamicResource drugs}" FontSize="14" HorizontalAlignment="Left" Margin="20,5,0,0" FontFamily="Comfortaa" Background="#FF39B9B9" BorderBrush="#FF39B9B9"
                        IsChecked="{Binding Patient.IsDrugAddicted, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Button Content="Done" Margin="0,20,0,0" BorderBrush="{x:Null}" Background="#FF39B9B9" Width="120"
+            <Button Content="{DynamicResource done}" Margin="0,20,0,0" BorderBrush="{x:Null}" Background="#FF39B9B9" Width="120"
                      Command="{Binding PatientProfileCommand}" CommandParameter="{Binding Patient}"/>
 
         </StackPanel>

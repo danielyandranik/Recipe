@@ -72,10 +72,10 @@
 
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="1">
 
-                <Label Content="Filter by:" Foreground="#DDFFFFFF" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" />
-                <Label Content="Name" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
+                <Label Content="{DynamicResource filter}" Foreground="#DDFFFFFF" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" />
+                <Label Content="{DynamicResource med_name}" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
                 <TextBox Name="name" Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" TextChanged="TextBox_TextChanged" />
-                <Label Content="Country" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
+                <Label Content="{DynamicResource med_country}" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
                 <TextBox Name="country" Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" TextChanged="TextBox_TextChanged"/>
 
             </StackPanel>
@@ -96,12 +96,12 @@
 
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Content="Name" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                <Label Grid.Column="1" Content="Maker" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                <Label Grid.Column="2" Content="Country" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                <Label Grid.Column="3" Content="Units" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                <Label Grid.Column="4" Content="Shelf life" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                <Label Grid.Column="5" Content="Description" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                <Label Grid.Column="0" Content="{DynamicResource med_name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                <Label Grid.Column="1" Content="{DynamicResource med_maker}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                <Label Grid.Column="2" Content="{DynamicResource med_country}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                <Label Grid.Column="3" Content="{DynamicResource med_units}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                <Label Grid.Column="4" Content="{DynamicResource med_shelf_life}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                <Label Grid.Column="5" Content="{DynamicResource med_description}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
 
         </Grid>
 
@@ -134,12 +134,12 @@
                         </Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                            <Button Content="Edit" Width="100" Height="30" 
+                            <Button Content="{DynamicResource edit}" Width="100" Height="30" 
                                     Visibility="{Binding DataContext.Visibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
                                     Click="EditMedicineClick" Tag="{Binding Path=Id }" Foreground="White" BorderBrush="#FF6FF522" Background="#FF6FF522" 
                                     FontFamily="Comfortaa" FontSize="14" Margin="0,0,10,0"/>
                             
-                            <Button Content="Delete" Width="100" Height="30" 
+                            <Button Content="{DynamicResource delete}" Width="100" Height="30" 
                                     Visibility="{Binding DataContext.Visibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
                                     Command="{Binding Path=DataContext.DeleteMedicineCommand, RelativeSource={RelativeSource AncestorType=Page, Mode=FindAncestor}}"
                                     CommandParameter="{Binding Id}" Foreground="White" BorderBrush="#FFE82E2E" Background="#FFE82E2E" FontFamily="Comfortaa" 
@@ -158,29 +158,29 @@
             <Border BorderBrush="#FF182634" BorderThickness="3" Padding="20,20,20,18" Background="White" CornerRadius="5">
                 <StackPanel Width="300" HorizontalAlignment="Center" >
                     
-                    <Label Content="Name" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource med_name}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableMedicine.Name, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="Maker" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource med_maker}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableMedicine.Maker, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="Country" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource med_country}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableMedicine.Country, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="Units" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource med_units}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableMedicine.Units, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="Shelf life" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource med_shelf_life}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableMedicine.ShelfLife, Mode=TwoWay}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
-                    <Label Content="Description" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                    <Label Content="{DynamicResource med_description}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
                     <TextBox Style="{StaticResource EditInputs}" Text="{Binding EditableMedicine.Description, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="75"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                        <Button Grid.Row="2" Content="Cancel" Margin="0,10,25,0" BorderBrush="{x:Null}" Background="#FFEF5350" Width="100" VerticalAlignment="Top" Click="CloseEditMedicinePopup_Click"/>
+                        <Button Grid.Row="2" Content="{DynamicResource med_cancel}" Margin="0,10,25,0" BorderBrush="{x:Null}" Background="#FFEF5350" Width="100" VerticalAlignment="Top" Click="CloseEditMedicinePopup_Click"/>
 
-                        <Button Grid.Row="2" Content="Done" Margin="25,10,0,0" BorderBrush="{x:Null}" Background="#FF00C853" Width="90" VerticalAlignment="Top" 
+                        <Button Grid.Row="2" Content="{DynamicResource done}" Margin="25,10,0,0" BorderBrush="{x:Null}" Background="#FF00C853" Width="97" VerticalAlignment="Top" 
                                 Command="{Binding Path=DataContext.EditMedicineCommand, RelativeSource={RelativeSource AncestorType=Page, Mode=FindAncestor}}"
                                 CommandParameter="{Binding EditableMedicine}" Click="CloseEditMedicinePopup_Click"/>
 

@@ -36,7 +36,7 @@
 
         <StackPanel Grid.Row="0">
 
-            <TextBlock Text="Add institution" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
+            <TextBlock Text="{DynamicResource add_inst}" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
             <Separator Background="#FF182634" Width="600" Margin="0,5" Foreground="#FF182634" />
 
         </StackPanel>
@@ -55,44 +55,46 @@
 
             <StackPanel Grid.Column="1" HorizontalAlignment="Center" Margin="0,20,0,0">
 
-                <Label Content="Name" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <Label Content="{DynamicResource inst_name}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                 <TextBox Text="{Binding Institution.Name}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
 
-                <Label Content="License" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <Label Content="{DynamicResource inst_license}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                 <TextBox Text="{Binding Institution.License}"  Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
 
-                <Label Content="Owner" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <Label Content="{DynamicResource inst_owner}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                 <TextBox Text="{Binding Institution.Owner}"  Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
 
-                <Label Content="Address" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <Label Content="{DynamicResource inst_address}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                 <TextBox Text="{Binding Institution.Address}"  Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
 
-                <Label Content="Description" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <Label Content="{DynamicResource inst_description}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                 <TextBox Text="{Binding Institution.Description}"  Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
 
             </StackPanel>
 
             <StackPanel Grid.Column="3" HorizontalAlignment="Center" Margin="0,20,0,0">
 
-                <Label Content="Email" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <Label Content="{DynamicResource inst_email}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                 <TextBox Text="{Binding Institution.Email}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
 
-                <Label Content="Phone" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <Label Content="{DynamicResource inst_phone}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                 <TextBox Text="{Binding Institution.Phone}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
 
-                <Label Content="Open time" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <Label Content="{DynamicResource inst_open}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                 <TextBox Text="{Binding Institution.OpenTime}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
 
-                <Label Content="Close time" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <Label Content="{DynamicResource inst_close}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                 <TextBox Text="{Binding Institution.CloseTime}" Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"/>
 
-                <Label Content="Type" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                <Label Content="{DynamicResource inst_type}" FontSize="16" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                 <ComboBox Text="Select" Width="240" BorderBrush="{x:Null}" Foreground="#DD000000" 
                           FontFamily="Comfortaa" FontSize="16" Height="40" VerticalAlignment="Center" 
                           Background="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                           SelectedValue="{Binding Institution.Type, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="40" FontWeight="Bold" FontSize="16">Hospital</ComboBoxItem>
-                    <ComboBoxItem VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="40" FontWeight="Bold" FontSize="16">Pharmacy</ComboBoxItem>
+                    <ComboBoxItem VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="40" FontWeight="Bold" FontSize="16" 
+                                  Content="{DynamicResource inst_hospital}"/>
+                    <ComboBoxItem VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="40" FontWeight="Bold" FontSize="16"
+                                  Content="{DynamicResource inst_pharmacy}"/>
                     <ComboBox.Style>
                         <Style TargetType="ComboBox">
                             <Style.Triggers>
@@ -108,7 +110,7 @@
 
         </Grid>
         
-        <Button Grid.Row="2" Content="Done" Margin="0,20,0,0" BorderBrush="{x:Null}" Background="#FF39B9B9" Width="120" VerticalAlignment="Top"
+        <Button Grid.Row="2" Content="{DynamicResource done}" Margin="0,20,0,0" BorderBrush="{x:Null}" Background="#FF39B9B9" Width="120" VerticalAlignment="Top"
                 Command="{Binding AddInstitutionCommand}" CommandParameter="{Binding Institution}"/>
 
     </Grid>
