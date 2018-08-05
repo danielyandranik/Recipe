@@ -7,14 +7,15 @@
              mc:Ignorable="d" 
              Width="300" Height="200" Background="#FF39B9B9" ResizeMode="NoResize"
              WindowStartupLocation="CenterScreen"
-             Title="{DynamicResource recipe_message}">
+             Title="{DynamicResource recipe_message}"
+             ShowInTaskbar="False">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.8*"/>
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
         <TextBlock Foreground="White" Name="message"
-                   FontSize="20"
+                   FontSize="18"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Text=""
