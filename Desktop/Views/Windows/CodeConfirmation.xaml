@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desktop"
         mc:Ignorable="d"
-        Title="Confirmation" Height="320" Width="360" Background="#FF39B9B9" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+        Title="{DynamicResource confirmation}" Height="320" Width="360" Background="#FF39B9B9" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Window.Resources>
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Template">
@@ -32,16 +32,24 @@
         </Style>
     </Window.Resources>
     <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Top">
-        <TextBlock Text="Confirmation" HorizontalAlignment="Center" Margin="0,20,0,0" Foreground="White" FontFamily="Comfortaa" FontSize="40"/>
-        <Label Content="Enter code" Foreground="#FF474747" FontSize="18" FontFamily="Comfortaa" Margin="0,20,0,0" HorizontalAlignment="Center" />
+        <TextBlock Text="{DynamicResource confirmation}" HorizontalAlignment="Center" Margin="0,20,0,0" Foreground="White" FontFamily="Comfortaa" FontSize="40"/>
+        <Label Content="{DynamicResource enter_code}" Foreground="#FF474747" FontSize="18" FontFamily="Comfortaa" Margin="0,20,0,0" HorizontalAlignment="Center" />
         <TextBox Padding="2" VerticalContentAlignment="Center" 
                  Height="40" TextWrapping="Wrap" Width="240" 
                  Margin="0,10,0,0" FontSize="16" FontFamily="Consolas" 
                  BorderBrush="White" CaretBrush="White" 
                  Foreground="White" SelectionBrush="White" 
                  Text="{Binding VerificationInfo.VerifyKey, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-        <Button BorderThickness="2" Content="Confirm" Background="{x:Null}" 
+        <Button BorderThickness="2"  Background="{x:Null}" 
                 BorderBrush="White" Height="40" Width="120" FontFamily="Comfortaa" FontSize="20" Margin="0,30,0,0" 
-                Command="{Binding ConfirmCommand}" CommandParameter="{Binding VerificationInfo}"/>
+                Command="{Binding ConfirmCommand}" CommandParameter="{Binding VerificationInfo}">
+            <Button.ContentTemplate>
+                <DataTemplate>
+                    <Viewbox>
+                        <TextBlock Text="{DynamicResource confirm}"/>
+                    </Viewbox>
+                </DataTemplate>
+            </Button.ContentTemplate>
+        </Button>
     </StackPanel>
 </Window>

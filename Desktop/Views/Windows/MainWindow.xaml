@@ -9,16 +9,6 @@
         mc:Ignorable="d"
         Name="Main" Title="Recipe" MinWidth="1280" MinHeight="780" SizeToContent="WidthAndHeight" Background="White" WindowStartupLocation="CenterScreen"
         Loaded="Main_Loaded">
-    
-        <Window.Resources>
-        <!--<Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Comfortaa" />
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="20,0,20,0" />
-        </Style>-->
-    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -54,22 +44,30 @@
                                    Name="menu_opener" PreviewMouseDown="Toggle_menu"/>
 
                         </MenuItem.Header>
-                        <MenuItem Name="profiles" Header="Profiles" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18">
-                            <MenuItem Name="add"  Header="Add new profile" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18">
-                                <MenuItem Header="Patient" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                        <MenuItem Name="profiles" Header="{DynamicResource profiles}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18">
+                            <MenuItem Name="add"  Header="{DynamicResource add_profile}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18">
+                                <MenuItem Header="{DynamicResource patient}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
                                           Click="AddPatientProfileButton_Click"/>
-                                <MenuItem Header="Doctor" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                <MenuItem Header="{DynamicResource doctor}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
                                           Click="AddDoctorProfileButton_Click"/>
-                                <MenuItem Header="Pharmacist" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                <MenuItem Header="{DynamicResource pharmacist}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
                                           Click="AddPharmacistProfileButton_Click"/>
-                                <MenuItem Header="Pharmacy Admin" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                <MenuItem Header="{DynamicResource pharmacy_admin}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
                                           Click="AddPharmacyAdminProfileButton_Click"/>
-                                <MenuItem Header="Hospital Admin" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                <MenuItem Header="{DynamicResource hospital_admin}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
                                           Click="AddHospitalAdminProfileButton_Click"/>
                             </MenuItem>
                         </MenuItem>
 
-                        <MenuItem Header="Sign Out" Background="#FF39B9B9" Foreground="White" 
+                        <MenuItem Header="{DynamicResource language}" Background="#FF39B9B9" Foreground="White"
+                                  FontFamily="Comfortaa" FontSize="18">
+                            <MenuItem Header="English" Background="#FF39B9B9" Foreground="White"
+                                  FontFamily="Comfortaa" FontSize="18" Click="MenuItem_Click_1"/>
+                            <MenuItem Header="Հայերեն" Background="#FF39B9B9" Foreground="White"
+                                  FontFamily="Comfortaa" FontSize="18"/>
+                        </MenuItem>
+                        
+                        <MenuItem Header="{DynamicResource sign_out}" Background="#FF39B9B9" Foreground="White" 
                                   FontFamily="Comfortaa" FontSize="18"
                                   Command="{Binding SignOutCommand}"/>
 
@@ -86,10 +84,10 @@
 
             <StackPanel Orientation="Horizontal" Grid.Column="1">
 
-                <TextBlock PreviewMouseDown="TextBlock_PreviewMouseDown" Cursor="Hand" Text="Main" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0"/>
-                <TextBlock PreviewMouseDown="Medicines_PreviewMouseDown" Cursor="Hand" Text="Medicines" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
-                <TextBlock PreviewMouseDown="Hospitals_PreviewMouseDown" Cursor="Hand" Text="Hospitals" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
-                <TextBlock PreviewMouseDown="Pharmacies_PreviewMouseDown" Cursor="Hand" Text="Pharmacies" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
+                <TextBlock PreviewMouseDown="TextBlock_PreviewMouseDown" Cursor="Hand" Text="{DynamicResource main}" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0"/>
+                <TextBlock PreviewMouseDown="Medicines_PreviewMouseDown" Cursor="Hand" Text="{DynamicResource medicines}" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
+                <TextBlock PreviewMouseDown="Hospitals_PreviewMouseDown" Cursor="Hand" Text="{DynamicResource hospitals}" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
+                <TextBlock PreviewMouseDown="Pharmacies_PreviewMouseDown" Cursor="Hand" Text="{DynamicResource pharmacies}" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
 
             </StackPanel>
 
@@ -134,25 +132,33 @@
 
                    
 
-                    <Button Content="My recipes" Name="MyRecipesButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
+                    <Button Content="{DynamicResource my_recipes}" Name="MyRecipesButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
                             Click="RecipesButton_Click" 
                             Visibility="{Binding MyRecipesVisibility, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button Content="Create recipe" Name="CreaterecipeButton"  Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
+                    <Button Content="{DynamicResource create_recipe}" Name="CreaterecipeButton"  Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
                             Click="CreateRecipeButton_Click"
                             Visibility="{Binding CreateRecipeVisibility, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button Content="My approvals" Name="MyApprovalsButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
+                    <Button Content="{DynamicResource approvals}" Name="MyApprovalsButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
                             Visibility="{Binding MyApprovalsVisibility, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button Content="Add medicine" Name="AddMedicineButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
+                    <Button Content="{DynamicResource add_med}" Name="AddMedicineButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
                             Click="AddMedicineButton_Click"
                             Visibility="{Binding AddMedicineVisibility, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button Content="Add institution" Name="AddInstituitionButton"  Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
+                    <Button Name="AddInstituitionButton"  Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
                             Click="AddInstitutionButton_Click"
-                            Visibility="{Binding AddInstitutionVisibility, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button Content="Sell medicines" Name="SellMedicinesButton"  Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
+                            Visibility="{Binding AddInstitutionVisibility, UpdateSourceTrigger=PropertyChanged}">
+                        <Button.ContentTemplate>
+                            <DataTemplate>
+                                <Viewbox>
+                                    <TextBlock Text="{DynamicResource add_inst}"/>
+                                </Viewbox>
+                            </DataTemplate>
+                        </Button.ContentTemplate>
+                    </Button>
+                    <Button Content="{DynamicResource sell_med}" Name="SellMedicinesButton"  Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
                             Click="SellMedicinesButton_Click"
                             Visibility="{Binding SellMedicinesVisibility, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <Button Content="Delete profile" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0"
+                    <Button Content="{DynamicResource dell_profile}" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0"
                             Visibility="{Binding DeleteVisibility,UpdateSourceTrigger=PropertyChanged}"
                             Command="{Binding DeleteCommand}"/>
 

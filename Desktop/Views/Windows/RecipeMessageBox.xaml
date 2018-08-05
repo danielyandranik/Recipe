@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Width="300" Height="200" Background="#FF39B9B9" ResizeMode="NoResize"
              WindowStartupLocation="CenterScreen"
-             Title="Recipe Message">
+             Title="{DynamicResource recipe_message}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.8*"/>
@@ -20,7 +20,7 @@
                    Text=""
                    TextWrapping="Wrap"
                    Grid.Row="0"/>
-        <Button Content="OK" Width="100" Grid.Row="1" 
+        <Button Content="{DynamicResource ok}" Width="100" Grid.Row="1" 
                 Height="40" 
                 FontFamily="Comfortaa" FontSize="20" FontWeight="Bold" Foreground="White" 
                 Background="{x:Null}" BorderBrush="White" BorderThickness="2"
