@@ -1,0 +1,129 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Desktop.Language"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Main Window -->
+    <system:String x:Key="main">Գլխավոր</system:String>
+    <system:String x:Key="medicines">Դեղեր</system:String>
+    <system:String x:Key="hospitals">ՀԻվանդանոցներ</system:String>
+    <system:String x:Key="pharmacies">Դեղատներ</system:String>
+    <system:String x:Key="profiles">Պրոֆիլներ</system:String>
+    <system:String x:Key="add_profile">Ավելացներ նոր պրոֆիլ</system:String>
+    <system:String x:Key="language">Լեզու</system:String>
+    <system:String x:Key="sign_out">Դուրս գալ</system:String>
+    <system:String x:Key="doctor">Բժիշկ</system:String>
+    <system:String x:Key="patient">Հիվանդ</system:String>
+    <system:String x:Key="pharmacist">Դեղագործ</system:String>
+    <system:String x:Key="pharmacy_admin">Դեղատան ադմին</system:String>
+    <system:String x:Key="hospital_admin">ՀԻվանդանողի ադմին</system:String>
+    <system:String x:Key="my_recipes">Իմ դեղատոմսերը</system:String>
+    <system:String x:Key="create_recipe">Ստեղծել դեղատոմս</system:String>
+    <system:String x:Key="approvals">Հաստատումներ</system:String>
+    <system:String x:Key="add_med">Ավելացնել դեղ</system:String>
+    <system:String x:Key="add_inst">Ավելացնել հաստատություն</system:String>
+    <system:String x:Key="sell_med">Վաճառել դեղեր</system:String>
+    <system:String x:Key="dell_profile">Ջնջել պրոֆիլը</system:String>
+
+    <!-- Confirmation Window -->
+    <system:String x:Key="confirmation">Հաստատում</system:String>
+    <system:String x:Key="enter_code">Մուտգագրե՛ք կոդը</system:String>
+    <system:String x:Key="confirm">Հաստատել</system:String>
+
+    <!-- Recipe Message Box -->
+    <system:String x:Key="recipe_message">Recipe հաղորրդագրություն</system:String>
+    <system:String x:Key="ok">Լավ</system:String>
+
+    <!-- Register Window -->
+    <system:String x:Key="register">Գրանցում</system:String>
+    <system:String x:Key="first_name">Անուն*</system:String>
+    <system:String x:Key="last_name">Ազգանուն*</system:String>
+    <system:String x:Key="middle_name">Հայրանուն*</system:String>
+    <system:String x:Key="sex">Սեռ*</system:String>
+    <system:String x:Key="birthdate">Ծննդյան ամսաթիվ*</system:String>
+    <system:String x:Key="day">Օր</system:String>
+    <system:String x:Key="year">Ամիս</system:String>
+    <system:String x:Key="month">Տարի</system:String>
+    <system:String x:Key="email">Էլեկտրոնային հասցե*</system:String>
+    <system:String x:Key="phone">Հեռախոս*</system:String>
+    <system:String x:Key="username">Օգտատիրոջ անուն*</system:String>
+    <system:String x:Key="password">Գաղտնաբառ*</system:String>
+    <system:String x:Key="confirm_password">Հաստատե՛ք գաղտնաբառը*</system:String>
+    <system:String x:Key="sign_up">Գրանցվել</system:String>
+    <system:String x:Key="account_msg0">Արդեն ունե՞ք հաշիվ։</system:String>
+    <system:String x:Key="sign_in">Մուտք գործել</system:String>
+
+    <!-- Sign In Window -->
+    <system:String x:Key="s_username">Օգտատիրոջ անուն</system:String>
+    <system:String x:Key="s_password">Գաղտնաբառ</system:String>
+    <system:String x:Key="account_msg1">Չունե՞ք հաշիվ։</system:String>
+
+    <!-- Add doctor profile page -->
+    <system:String x:Key="add_doc">Ավելացնել բժիշկի պրոֆիլ</system:String>
+    <system:String x:Key="license">Ձեր լիցնեզիան</system:String>
+    <system:String x:Key="hospital">Հիվանդանոցի անունը, որտեղ աշխատում եք</system:String>
+    <system:String x:Key="spec">Ձեր մասնագիտացումը</system:String>
+    <system:String x:Key="work_start_year">Աշխատանքի անցնելու տարին</system:String>
+    <system:String x:Key="grad">Համալսարանն ավարտելու տարին</system:String>
+    <system:String x:Key="done">Ավարտել</system:String>
+
+    <!-- Add hospital admin profile page -->
+    <system:String x:Key="add_hospital_admin">Ավելացնել հիվանդանոցի ադմինի պրոֆիլ</system:String>
+    <system:String x:Key="occupation">Ձեր մասնագիտությունը</system:String>
+
+    <!-- Add institution page-->
+    <system:String x:Key="inst_name">Անուն</system:String>
+    <system:String x:Key="inst_license">Լիցենզիա</system:String>
+    <system:String x:Key="inst_owner">Սեփականատեր</system:String>
+    <system:String x:Key="inst_address">Հասցե</system:String>
+    <system:String x:Key="inst_description">Նկարագրություն</system:String>
+    <system:String x:Key="inst_email">Էլեկտրոնային հասցե</system:String>
+    <system:String x:Key="inst_phone">Հեռախոս</system:String>
+    <system:String x:Key="inst_open">Բացվելու ժամը</system:String>
+    <system:String x:Key="inst_close">Փակվելու ժամը</system:String>
+    <system:String x:Key="inst_type">Հաստատության տեսակը</system:String>
+
+    <!-- Add medicine page -->
+    <system:String x:Key="med_name">Անուն</system:String>
+    <system:String x:Key="med_maker">Արտադրող</system:String>
+    <system:String x:Key="med_country">Երկիր</system:String>
+    <system:String x:Key="med_units">Միավորներ</system:String>
+    <system:String x:Key="med_shelf_life">Պիտանի է մինչև</system:String>
+    <system:String x:Key="med_description">Նկարագրություն</system:String>
+
+    <!-- Add patient profile page -->
+    <system:String x:Key="add_patient">Ավելացնել հիվանդի պրոֆիլ</system:String>
+    <system:String x:Key="reg_doctor">Տարածաշրջանային բժիշկի անունը</system:String>
+    <system:String x:Key="patient_address">Ձեր հասցեն</system:String>
+    <system:String x:Key="dependency">Կախվածություն</system:String>
+    <system:String x:Key="alcohol">Ալկոհոլ</system:String>
+    <system:String x:Key="drugs">Թմրանյութեր</system:String>
+
+    <!-- Add pharmacist profile page -->
+    <system:String x:Key="add_pharmacist">Ավելացնել դեղագործի պրոֆիլ</system:String>
+    <system:String x:Key="pharmacy">Դեղատան անունը, որտեղ աշխատում եք</system:String>
+
+    <!-- Add pharmacy admin profile page -->
+    <system:String x:Key="add_pharmacy_admin">Ավելացնել դեղատան ադմինի պրոֆիլ</system:String>
+
+    <!-- Create recipe page -->
+    <system:String x:Key="recipe_owner">Ու՞մ համար է դեղատոմսը</system:String>
+    <system:String x:Key="med">Դեղ</system:String>
+    <system:String x:Key="med_count">Քանակ</system:String>
+    <system:String x:Key="med_frequency">Հաճախականության միավոր</system:String>
+    <system:String x:Key="med_times">Հաճախականություն միավորի համար</system:String>
+    <system:String x:Key="med_count_use">Օգտագործման քանակ</system:String>
+    <system:String x:Key="medicine_name">Դեղի անուն</system:String>
+    <system:String x:Key="add_medicine">Ավելացնել</system:String>
+
+    <!-- Hospitals page -->
+    <system:String x:Key="filter">Ֆիլտրել ըստ</system:String>
+
+    <!-- Map page -->
+    <system:String x:Key="select_inst">Ընտրել հաստատության տեսակը</system:String>
+    <system:String x:Key="map_hospitals">Հիվանդանոցներ</system:String>
+    <system:String x:Key="map_pharmacies">Դեղատներ</system:String>
+
+    <!-- Sell medicines page -->
+    <system:String x:Key="recipe_id">Դեղատոմսի ID</system:String>
+</ResourceDictionary>
