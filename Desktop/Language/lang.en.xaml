@@ -160,4 +160,39 @@
     <system:String x:Key="Hospital Admin">hospital_director</system:String>
     <system:String x:Key="Ministry Worker">ministry_worker</system:String>
     <system:String x:Key="None">none</system:String>
+
+    <!-- Messages -->
+    <system:String x:Key="inst_add_success">Institution added successfully․</system:String>
+    <system:String x:Key="inst_add_fail">Unable to add institution․</system:String>
+    <system:String x:Key="server_error">Server is not responding․</system:String>
+    <system:String x:Key="med_add_success">Medicine is added․</system:String>
+    <system:String x:Key="med_add_fail">Unable to add medicine․</system:String>
+    <system:String x:Key="ver_code_fail">Invalid verification code․</system:String>
+    <system:String x:Key="ver_server_error">Something went wrong․</system:String>
+    <system:String x:Key="profile_del_fail">Error occured while deleting profile․</system:String>
+    <system:String x:Key="profile_del_success">Profile is deleted․</system:String>
+    <system:String x:Key="hospital_del_success">Hospital is removed successfully․</system:String>
+    <system:String x:Key="hospital_del_fail">Unable to remove hospital․</system:String>
+    <system:String x:Key="pharmacy_del_success">Pharmacy is removed successfully․</system:String>
+    <system:String x:Key="pharmacy_del_fail">Unable to remove pharmacy․</system:String>
+    <system:String x:Key="hospital_edit_success">Hospital is updated successfully․</system:String>
+    <system:String x:Key="hospital_edit_fail">Unable to update hospital․</system:String>
+    <system:String x:Key="pharmacy_edit_success">Pharmacy is updated successfully․</system:String>
+    <system:String x:Key="pharmacy_edit_fail">Unable to update pharmacy․</system:String>
+    <system:String x:Key="recipe_find_fail">Couldn't find recipe․</system:String>
+    <system:String x:Key="profile_add_success">Profile is added․</system:String>
+    <system:String x:Key="profile_add_fail">Unable to add profile․</system:String>
+    <system:String x:Key="register_fail">Unable to register․</system:String>
+    <system:String x:Key="invalid_credentials">Invalid username or password․</system:String>
+    <system:String x:Key="sign_out_fail">Error occured while signing out․</system:String>
+    <system:String x:Key="recipe_load_fail">Couldn't get recipes․</system:String>
+    <system:String x:Key="med_name_fail">Something went wrong when getting the medicine name․</system:String>
+    <system:String x:Key="hospital_name_fail">Something went wrong when getting the hospital name․</system:String>
+    <system:String x:Key="doc_fail">Something went wrong when getting doctor infomation․</system:String>
+    <system:String x:Key="load_fail">Unable to load․</system:String>
+    <system:String x:Key="current_update_success">Current profile is updated․</system:String>
+    <system:String x:Key="current_update_fail">Error occured.Maybe your profile is not approved yet․</system:String>
+    <system:String x:Key="patient_fail">Couldn't get patient․</system:String>
+    <system:String x:Key="start_fail">Server is not responding.Unable to start․</system:String>
+    <system:String x:Key="unhandled_exception">Something went wrong.Sorry for inconvenience.</system:String>
 </ResourceDictionary>

@@ -13,7 +13,7 @@
     <system:String x:Key="language">Լեզու</system:String>
     <system:String x:Key="sign_out">Դուրս գալ</system:String>
     <system:String x:Key="_doctor">Բժիշկ</system:String>
-    <system:String x:Key="_patient">Հիվանդ</system:String>
+    <system:String x:Key="_patient">Պացիենտ</system:String>
     <system:String x:Key="_pharmacist">Դեղագործ</system:String>
     <system:String x:Key="_pharmacy_admin">Դեղատան ադմին</system:String>
     <system:String x:Key="_hospital_admin">Հիվանդանոցի ադմին</system:String>
@@ -97,7 +97,7 @@
     <system:String x:Key="add">Ավելացնել</system:String>
 
     <!-- Add patient profile page -->
-    <system:String x:Key="add_patient">Ավելացնել հիվանդի պրոֆիլ</system:String>
+    <system:String x:Key="add_patient">Ավելացնել պացիենտի պրոֆիլ</system:String>
     <system:String x:Key="reg_doctor">Տարածաշրջանային բժիշկի անունը</system:String>
     <system:String x:Key="patient_address">Ձեր հասցեն</system:String>
     <system:String x:Key="dependency">Կախվածություն</system:String>
@@ -144,7 +144,7 @@
     <!-- Profiles mapping -->
 
     <!-- API to UI -->
-    <system:String x:Key="patient">Հիվանդ</system:String>
+    <system:String x:Key="patient">Պացիենտ</system:String>
     <system:String x:Key="doctor">Բժիշկ</system:String>
     <system:String x:Key="hospital_director">Հիվանդանոցի ադմին</system:String>
     <system:String x:Key="pharmacist">Դեղագործ</system:String>
@@ -154,10 +154,45 @@
 
     <!-- UI to API-->
     <system:String x:Key="Բժիշկ">doctor</system:String>
-    <system:String x:Key="Հիվանդ">patient</system:String>
+    <system:String x:Key="Պացիենտ">patient</system:String>
     <system:String x:Key="Դեղագործ">pharmacist</system:String>
     <system:String x:Key="Դեղատան ադմին">pharmacy_admin</system:String>
     <system:String x:Key="Հիվանդանոցի ադմին">hospital_director</system:String>
     <system:String x:Key="Նախարար">ministry_worker</system:String>
     <system:String x:Key="Չկա">none</system:String>
+
+    <!-- Messages -->
+    <system:String x:Key="inst_add_success">Հաստատությունը հաջողությամբ ավելացվել է։</system:String>
+    <system:String x:Key="inst_add_fail">Տեղի է ունեցել սխալ հաստատություն ավելացնելիս։</system:String>
+    <system:String x:Key="server_error">Սերվերը չի պատասխանում։</system:String>
+    <system:String x:Key="med_add_success">Դեղը ավելացվել է։</system:String>
+    <system:String x:Key="med_add_fail">Տեղի է ունեցել սխալ դեղը ավելացնելիս։</system:String>
+    <system:String x:Key="ver_code_fail">Հաստատման սխալ կոդ։</system:String>
+    <system:String x:Key="ver_server_error">Տեղի է ունեցել սխալ։</system:String>
+    <system:String x:Key="profile_del_fail">Տեղի է ունեցել սխալ պրոֆիլը ավելացնելիս։</system:String>
+    <system:String x:Key="profile_del_success">Պրոֆիլը ջնջված է։</system:String>
+    <system:String x:Key="hospital_del_success">Հիվանդանոցը հաջողությամբ ջնջվել է։</system:String>
+    <system:String x:Key="hospital_del_fail">Տեղի է ունեցել սխալ հիվանդանոցը ջնջելիս։</system:String>
+    <system:String x:Key="pharmacy_del_success">Դեղատունը հաջողությամբ ջնջվել է։</system:String>
+    <system:String x:Key="pharmacy_del_fail">Տեղի է ունեցել սխալ հիվանդանոցը ջնջելիս։</system:String>
+    <system:String x:Key="hospital_edit_success">Հիվանդանոցը հաջողությամբ թարմացված է։</system:String>
+    <system:String x:Key="hospital_edit_fail">Տեղի է ունեցել սխալ հիվանդանոցը թարմացնելիս։</system:String>
+    <system:String x:Key="pharmacy_edit_success">Դեղատունը հաջողությամբ թարմացված է։</system:String>
+    <system:String x:Key="pharmacy_edit_fail">Տեղի է ունեցել սխալ դեղատունը թարմացնելիս։</system:String>
+    <system:String x:Key="recipe_find_fail">Դեղատոմսը չի գտնվել։</system:String>
+    <system:String x:Key="profile_add_success">Պրոֆիլը ավելացված է։</system:String>
+    <system:String x:Key="profile_add_fail">Տեղի է ունեցել սխալ պրոֆիլը ավելացնելիս։</system:String>
+    <system:String x:Key="register_fail">Տեղի է ունեցել սխալ գրանցվելիս։</system:String>
+    <system:String x:Key="invalid_credentials">Օգտատիրոջ սխալ անուն կամ գաղտնաբառ։</system:String>
+    <system:String x:Key="sign_out_fail">Տեղի է ունեցել սխալ դուրս գալիս։</system:String>
+    <system:String x:Key="recipe_load_fail">Դեղատոմսերը չեն գտնվել։</system:String>
+    <system:String x:Key="med_name_fail">Տեղի է ունեցել սխալը դեղը փնտրելիս։</system:String>
+    <system:String x:Key="hospital_name_fail">Տեղի է ունեցել սխալ հիվանդանոցը փնտրելիս։</system:String>
+    <system:String x:Key="doc_fail">Տեղի է ունեցել սխալ բժշկին փնտրելիս։</system:String>
+    <system:String x:Key="load_fail">Բեռնման սխալ։</system:String>
+    <system:String x:Key="current_update_success">Ընթացիկ պրոֆիլը թարմացված է։</system:String>
+    <system:String x:Key="current_update_fail">Տեղի է ունեցել սխալ։Հավանաբար ձեր պրոֆիլը դեռևս հաստատված չէ։</system:String>
+    <system:String x:Key="patient_fail">Տեղի է ունեցել սխալ պացիենտին փնտրելիս։</system:String>
+    <system:String x:Key="start_fail">Սերվերը չի պատասխանում։Բեռնման սխալ։</system:String>
+    <system:String x:Key="unhandled_exception">Անհայտ սխալ։Ներողություն ենք խնդրում անհարմարության համար։</system:String>
 </ResourceDictionary>
