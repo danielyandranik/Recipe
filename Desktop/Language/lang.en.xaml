@@ -88,12 +88,13 @@
     <system:String x:Key="inst_pharmacy">Pharmacy</system:String>
     
     <!-- Add medicine page -->
-    <system:String x:Key="med_name">Name</system:String>
+    <system:String x:Key="med_name">Medicine name</system:String>
     <system:String x:Key="med_maker">Maker</system:String>
     <system:String x:Key="med_country">Country</system:String>
     <system:String x:Key="med_units">Units</system:String>
     <system:String x:Key="med_shelf_life">Shelf life</system:String>
     <system:String x:Key="med_description">Description</system:String>
+    <system:String x:Key="add">Add</system:String>
     
     <!-- Add patient profile page -->
     <system:String x:Key="add_patient">Add patient profile</system:String>
@@ -120,8 +121,17 @@
     <system:String x:Key="medicine_name">Medicine name</system:String>
     <system:String x:Key="add_medicine">Add</system:String>
     
+    <!-- Medicines page -->
+    <system:String x:Key="med_cancel">Cancel</system:String>
+
     <!-- Hospitals page -->
     <system:String x:Key="filter">Filter by</system:String>
+    <system:String x:Key="hospitals_email">Email</system:String>
+    <system:String x:Key="edit">Edit</system:String>
+    <system:String x:Key="delete">Delete</system:String>
+    
+    <!-- Pharmacies-->
+    <system:String x:Key="pharmacies_email">Email</system:String>
     
     <!-- Map page -->
     <system:String x:Key="select_inst">Select institution type</system:String>

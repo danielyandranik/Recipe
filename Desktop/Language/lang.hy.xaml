@@ -88,12 +88,13 @@
     <system:String x:Key="inst_pharmacy">Դեղատուն</system:String>
 
     <!-- Add medicine page -->
-    <system:String x:Key="med_name">Անուն</system:String>
+    <system:String x:Key="med_name">Դեղի անուն</system:String>
     <system:String x:Key="med_maker">Արտադրող</system:String>
     <system:String x:Key="med_country">Երկիր</system:String>
     <system:String x:Key="med_units">Միավորներ</system:String>
     <system:String x:Key="med_shelf_life">Պիտանի է մինչև</system:String>
     <system:String x:Key="med_description">Նկարագրություն</system:String>
+    <system:String x:Key="add">Ավելացնել</system:String>
 
     <!-- Add patient profile page -->
     <system:String x:Key="add_patient">Ավելացնել հիվանդի պրոֆիլ</system:String>
@@ -122,7 +123,16 @@
 
     <!-- Hospitals page -->
     <system:String x:Key="filter">Ֆիլտրել ըստ</system:String>
+    <system:String x:Key="hospitals_email">Էլ․ հասցե</system:String>
+    <system:String x:Key="edit">Փոփոխել</system:String>
+    <system:String x:Key="delete">Ջնջել</system:String>
+    
+    <!-- Pharmacies page -->
+    <system:String x:Key="pharmacies_email">Էլ․ հասցե</system:String>
 
+    <!-- Medicines page-->
+    <system:String x:Key="med_cancel">Չեղարկել</system:String>
+    
     <!-- Map page -->
     <system:String x:Key="select_inst">Ընտրել հաստատության տեսակը</system:String>
     <system:String x:Key="map_hospitals">Հիվանդանոցներ</system:String>
