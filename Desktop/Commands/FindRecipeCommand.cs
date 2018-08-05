@@ -29,7 +29,7 @@ namespace Desktop.Commands
 
             if (!response.IsSuccessStatusCode)
             {
-                RecipeMessageBox.Show("Couldn't find recipe");
+                RecipeMessageBox.Show((string)App.Current.Resources["recipe_find_fail"]);
                 return;
             }
 

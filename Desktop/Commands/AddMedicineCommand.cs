@@ -28,9 +28,11 @@ namespace Desktop.Commands
         {
             var added = await this.ExecuteAsync((Medicine)parameter);
 
+            var dictionary = App.Current.Resources;
+
             if (added)
-                RecipeMessageBox.Show("Medicine is added");
-            else RecipeMessageBox.Show("Unable to add medicine");
+                RecipeMessageBox.Show((string)dictionary["med_add_success"]);
+            else RecipeMessageBox.Show((string)dictionary["med_add_fail"]);
         }
     }
 }

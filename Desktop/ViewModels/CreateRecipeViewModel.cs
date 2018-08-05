@@ -53,7 +53,7 @@ namespace Desktop.ViewModels
 
             if(userApiResponse.Status == Status.Error)
             {
-                RecipeMessageBox.Show("Couldn't get patient");
+                RecipeMessageBox.Show((string)App.Current.Resources["patient_fail"]);
                 return null;
             }
 

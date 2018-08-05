@@ -66,13 +66,15 @@ namespace Desktop.Commands
         {
             var signInInfo = (SignInInfo)parameter;
 
+            var dictionary = App.Current.Resources;
+
             try
             {
                 var status = await this._tokenProvider.SignInAsync(signInInfo.Username, signInInfo.Password);
 
                 if (status == TokenStatus.Error)
                 {
-                    RecipeMessageBox.Show("Invalid username or password");
+                    RecipeMessageBox.Show((string)dictionary["invalid_credentials"]);
                     return;
                 }
 
@@ -83,7 +85,7 @@ namespace Desktop.Commands
             }
             catch (Exception)
             {
-                RecipeMessageBox.Show("Server is not responding");
+                RecipeMessageBox.Show((string)dictionary["server_error"]);
             }
         }
     }

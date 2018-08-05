@@ -85,7 +85,7 @@ namespace Desktop.Services
 
             var count = menuItems.Count();
 
-            var dictionary = ((App)App.Current).Resources.MergedDictionaries[4];
+            var dictionary = App.Current.Resources;
 
             var header = (string)dictionary[profile];
 
@@ -123,7 +123,7 @@ namespace Desktop.Services
         {
             var item = (MenuItem)sender;
 
-            var dictionary = ((App)App.Current).Resources.MergedDictionaries[4];
+            var dictionary = App.Current.Resources;
 
             if (item.Header == dictionary[User.Default.CurrentProfile])
                 return;
@@ -151,11 +151,11 @@ namespace Desktop.Services
 
                 this._vm.PhotoUrl = ConfigurationManager.AppSettings[User.Default.CurrentProfile];
 
-                RecipeMessageBox.Show("Current profile is updated");               
+                RecipeMessageBox.Show((string)dictionary["current_update_success"]);               
             }
             else
             {
-                RecipeMessageBox.Show("Error occured.\nMaybe your profile is not approved yet.");
+                RecipeMessageBox.Show((string)dictionary["current_update_fail"]);
             }
         }
 

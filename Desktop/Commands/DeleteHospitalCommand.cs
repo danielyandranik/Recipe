@@ -34,12 +34,14 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter.</param>
         public async override void Execute(object parameter)
         {
+            var dictionary = App.Current.Resources;
+
             try
             {
                 var isSuccessed = await this.ExecuteAsync((int)parameter);
                 if (isSuccessed)
                 {
-                    RecipeMessageBox.Show("Hospital removed successfully");
+                    RecipeMessageBox.Show((string)dictionary["hospital_del_success"]);
 
                     var response = await ((App)App.Current).InstitutionClient.GetAllHospitalsAsync();
                     if (response.IsSuccessStatusCode)
@@ -49,12 +51,12 @@ namespace Desktop.Commands
                 }
                 else
                 {
-                    RecipeMessageBox.Show("Unable to remove hospital");
+                    RecipeMessageBox.Show((string)dictionary["hospital_del_fail"]);
                 }
             }
             catch (Exception)
             {
-                RecipeMessageBox.Show("Server is not responding");
+                RecipeMessageBox.Show((string)dictionary["server_error"]);
             }
         }
     }

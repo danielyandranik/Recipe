@@ -22,6 +22,8 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter</param>
         public override async void Execute(object parameter)
         {
+            var dictionary = ((App)App.Current).Resources;
+            
             try
             {
                 var institution = parameter as Institution;
@@ -30,16 +32,16 @@ namespace Desktop.Commands
 
                 if (isSucceed)
                 {
-                    RecipeMessageBox.Show("Institution added successfully");
+                    RecipeMessageBox.Show((string)dictionary["inst_add_success"]);
                 }
                 else
                 {
-                    RecipeMessageBox.Show("Unable to add institution");
+                    RecipeMessageBox.Show((string)dictionary["inst_add_fail"]) ;
                 }
             }
             catch (Exception)
             {
-                RecipeMessageBox.Show("Server is not responding");
+                RecipeMessageBox.Show((string)dictionary["server_error"]);
             }
         }
     }

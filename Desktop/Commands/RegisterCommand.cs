@@ -28,6 +28,8 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter</param>
         public override async void Execute(object parameter)
         {
+            var dictionary = App.Current.Resources;
+
             try
             {
                 var register = (Register)parameter;
@@ -42,12 +44,12 @@ namespace Desktop.Commands
                 }
                 else
                 {
-                    RecipeMessageBox.Show("Unable to register");
+                    RecipeMessageBox.Show((string)dictionary["register_fail"]);
                 }
             }
             catch (Exception)
             {
-                RecipeMessageBox.Show("Server is not responding");
+                RecipeMessageBox.Show((string)dictionary["server_error"]);
             }
         }
     }

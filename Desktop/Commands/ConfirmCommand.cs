@@ -29,19 +29,21 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter</param>
         public override async void Execute(object parameter)
         {
+            var dictionary = App.Current.Resources;
+
             try
             {
                 var response = await this.ExecuteAsync((UserVerificationInfo)parameter);
 
                 if (response.Result.StatusCode == HttpStatusCode.BadRequest)
-                    RecipeMessageBox.Show("Invalid verification code");
+                    RecipeMessageBox.Show((string)dictionary["ver_code_fail"]);
                 else if (response.Result.StatusCode == HttpStatusCode.InternalServerError)
-                    RecipeMessageBox.Show("Something went wrong");
+                    RecipeMessageBox.Show((string)dictionary["ver_server_error"]);
                 else this.ManageWindows();
             }
             catch
             {
-                RecipeMessageBox.Show("Server is not responding");
+                RecipeMessageBox.Show((string)dictionary["server_error"]);
             }
         }
 

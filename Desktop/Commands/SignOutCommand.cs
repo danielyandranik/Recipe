@@ -53,7 +53,7 @@ namespace Desktop.Commands
 
             if(response == TokenStatus.Error)
             {
-                RecipeMessageBox.Show("Error occured while signing out.");
+                RecipeMessageBox.Show((string)App.Current.Resources["sign_out_fail"]);
                 return;
             }
 

@@ -29,9 +29,7 @@ namespace Desktop.Commands
         {
             var tag = (string)parameter;
 
-            var app = ((App)App.Current);
-
-            var merged = app.Resources.MergedDictionaries;
+            var merged = App.Current.Resources.MergedDictionaries;
 
             var uri = new Uri($"/Language/lang.{tag}.xaml",UriKind.Relative);
 

@@ -32,6 +32,8 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter</param>
         public override async void Execute(object parameter)
         {
+            var dictionary = App.Current.Resources;
+
             try
             {
                 var profileInfo = parameter as T;
@@ -40,7 +42,7 @@ namespace Desktop.Commands
 
                 if (response.Status == Status.Ok)
                 {
-                    RecipeMessageBox.Show("Profile is added");
+                    RecipeMessageBox.Show((string)dictionary["profile_add_success"]);
 
                     var manager = ((App)App.Current).ProfilesMenuManager;
 
@@ -48,12 +50,12 @@ namespace Desktop.Commands
                 }
                 else
                 {
-                    RecipeMessageBox.Show("Unable to add profile");
+                    RecipeMessageBox.Show((string)dictionary["profile_add_fail"]);
                 }
             }
             catch (Exception)
             {
-                RecipeMessageBox.Show("Server is not responding");
+                RecipeMessageBox.Show((string)dictionary["server_error"]);
             }
         }
     }

@@ -34,13 +34,15 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter</param>
         public async override void Execute(object parameter)
         {
+            var dictionary = App.Current.Resources;
+
             try
             {
                 var isSucceed = await this.ExecuteAsync(parameter as Institution);
 
                 if (isSucceed)
                 {
-                    RecipeMessageBox.Show("Pharmacy updated successfully");
+                    RecipeMessageBox.Show((string)dictionary["pharmacy_edit_success"]);
 
                     var response = await ((App)App.Current).InstitutionClient.GetAllPharmaciesAsync();
                     if (response.IsSuccessStatusCode)
@@ -50,12 +52,12 @@ namespace Desktop.Commands
                 }
                 else
                 {
-                    RecipeMessageBox.Show("Unable to update pharmacy");
+                    RecipeMessageBox.Show((string)dictionary["pharmacy_edit_fail"]);
                 }
             }
             catch (Exception)
             {
-                RecipeMessageBox.Show("Server is not responding");
+                RecipeMessageBox.Show((string)dictionary["server_error"]);
             }
         }
     }

@@ -138,9 +138,11 @@ namespace Desktop
         /// <param name="e">Event argument</param>
         private  async void Application_Startup(object sender, StartupEventArgs e)
         {
+            var dictionary = App.Current.Resources;
+
             if(!this._isReadyForStartup)
             {
-                RecipeMessageBox.Show("Server is not responding.\nUnable to start.");
+                RecipeMessageBox.Show((string)dictionary["start_fail"]);
                 return;
             }
 
@@ -185,7 +187,7 @@ namespace Desktop
                 }
                 catch(Exception)
                 {
-                    RecipeMessageBox.Show("Server is not responding");
+                    RecipeMessageBox.Show((string)dictionary["server_error"]);
                 }
             }
         }
@@ -201,7 +203,7 @@ namespace Desktop
             e.Handled = true;
 
             // showing message to the user
-            RecipeMessageBox.Show("Something went wrong.\nSorry for inconvenience.");
+            RecipeMessageBox.Show((string)App.Current.Resources["unhandled_exception"]);
         }
 
         /// <summary>

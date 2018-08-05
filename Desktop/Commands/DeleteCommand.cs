@@ -52,15 +52,17 @@ namespace Desktop.Commands
 
             var response = await this._client.DeleteCurrentProfile(User.Default.CurrentProfile);
 
+            var dictionary = App.Current.Resources;
+
             if(response.Status == Status.Error)
             {
-                RecipeMessageBox.Show("Error occured while deleting profile");
+                RecipeMessageBox.Show((string)dictionary["profile_del_error"]);
                 return;
             }
 
             manager.DeleteProfile(User.Default.CurrentProfile);
 
-            RecipeMessageBox.Show("Profile is deleted");
+            RecipeMessageBox.Show((string)dictionary["profile_del_success"]);
         }
     }
 }

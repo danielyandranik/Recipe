@@ -36,7 +36,7 @@ namespace Desktop.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                RecipeMessageBox.Show("Couldn't get recipes");
+                RecipeMessageBox.Show((string)App.Current.Resources["recipe_load_fail"]);
                 return;
             }
 
@@ -55,13 +55,15 @@ namespace Desktop.Services
         {
             var recipeItems = new List<RecipeItem>();
 
+            var dictionary = App.Current.Resources;
+
             foreach (var recipeItemFromApi in recipeFromApi.RecipeItems)
             {
                 var medicineApiResponse = await this.medicineClient.GetMedicineAsync($"api/medicines/{recipeItemFromApi.MedicineId}");
 
                 if (!medicineApiResponse.IsSuccessStatusCode)
                 {
-                    RecipeMessageBox.Show("Something went wrong when getting the medicine name");
+                    RecipeMessageBox.Show((string)dictionary["med_name_fail"]);
                     return null;
                 }
 
@@ -81,7 +83,7 @@ namespace Desktop.Services
 
             if (gettingHospitalNameResponse.Status == Status.Error)
             {
-                RecipeMessageBox.Show("Something went wrong when getting the hospital name");
+                RecipeMessageBox.Show((string)dictionary["hospital_name_fail"]);
                 return null;
             }
 
@@ -89,7 +91,7 @@ namespace Desktop.Services
 
             if (gettingDoctorFullNameResponse.Status == Status.Error)
             {
-                RecipeMessageBox.Show("Something went wrong when getting doctor");
+                RecipeMessageBox.Show((string)dictionary["doc_fail"]);
                 return null;
             }
 

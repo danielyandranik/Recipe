@@ -57,9 +57,9 @@ namespace Desktop.Commands
 
             var load = await this._userInfoLoader.Execute();
 
-            if(load == null)
+            if (load == null)
             {
-                RecipeMessageBox.Show("Unable to load");
+                RecipeMessageBox.Show((string)App.Current.Resources["load_fail"]);
                 return;
             }
 
