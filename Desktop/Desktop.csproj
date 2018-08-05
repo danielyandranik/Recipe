@@ -243,6 +243,7 @@
     <Compile Include="Commands\AddRecipeHistoryCommand.cs" />
     <Compile Include="Commands\ApproveDoctorCommand.cs" />
     <Compile Include="Commands\AsyncCommand.cs" />
+    <Compile Include="Commands\ChangeLangCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\ConfirmCommand.cs" />
     <Compile Include="Commands\CreateRecipeCommand.cs" />

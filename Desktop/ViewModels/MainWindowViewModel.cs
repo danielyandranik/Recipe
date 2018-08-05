@@ -44,6 +44,8 @@ namespace Desktop.ViewModels
 
         private readonly DeleteCommand _deleteCommand;
 
+        private readonly ChangeLangCommand _changeLangCommand;
+
         public string Username
         {
             get => this._username;
@@ -127,6 +129,8 @@ namespace Desktop.ViewModels
 
         public DeleteCommand DeleteCommand => this._deleteCommand;
 
+        public ChangeLangCommand ChangeLangCommand => this._changeLangCommand;
+
         public MainWindowViewModel(MainWindow mainWindow)
         {
             this._signOutCommand = new SignOutCommand();
@@ -134,6 +138,7 @@ namespace Desktop.ViewModels
             this._mainWindow = mainWindow;
             this._loadService = new LoadService(this._mainWindow.profiles, this);
             this._deleteCommand = new DeleteCommand();
+            this._changeLangCommand = new ChangeLangCommand();
         }
     }
 }

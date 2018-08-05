@@ -144,6 +144,8 @@ namespace Desktop
                 return;
             }
 
+            this.LoadLanguagePack();
+
             // getting user settings
             var refreshToken = User.Default.RefreshToken;
             var username = User.Default.Username;
@@ -180,8 +182,6 @@ namespace Desktop
                     var window = new MainWindow();
 
                     window.Show();
-
-
                 }
                 catch(Exception)
                 {
@@ -229,6 +229,27 @@ namespace Desktop
             this._tokenProvider.TokenUpdated += this._recipeClient.UpdateToken;
             this._tokenProvider.TokenUpdated += this._medicineClient.UpdateToken;
             this._tokenProvider.TokenUpdated += this._institutionClient.UpdateToken;
+        }
+
+        /// <summary>
+        /// Loads language pack
+        /// </summary>
+        private void LoadLanguagePack()
+        {
+            if (User.Default.Language == "en")
+                return;
+
+            var uri = new Uri($"/Language/lang.{User.Default.Language}.xaml", UriKind.Relative);
+
+            var dictionary = new ResourceDictionary
+            {
+                Source = uri
+            };
+
+            var dictionaries = App.Current.Resources.MergedDictionaries;
+
+            dictionaries.RemoveAt(4);
+            dictionaries.Add(dictionary);
         }
     }
 }

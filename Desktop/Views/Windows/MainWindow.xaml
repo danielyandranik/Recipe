@@ -61,10 +61,17 @@
 
                         <MenuItem Header="{DynamicResource language}" Background="#FF39B9B9" Foreground="White"
                                   FontFamily="Comfortaa" FontSize="18">
-                            <MenuItem Header="English" Background="#FF39B9B9" Foreground="White"
-                                  FontFamily="Comfortaa" FontSize="18" Click="MenuItem_Click_1"/>
-                            <MenuItem Header="Հայերեն" Background="#FF39B9B9" Foreground="White"
-                                  FontFamily="Comfortaa" FontSize="18"/>
+                            <MenuItem Name="en_item" Header="English" Background="#FF39B9B9" Foreground="White"
+                                      FontFamily="Comfortaa" FontSize="18" Tag="en" Command="{Binding ChangeLangCommand}"
+                                      CommandParameter="{Binding ElementName=en_item, Path=Tag}"/>
+                            <MenuItem Name="hy_item" Header="Հայերեն" Background="#FF39B9B9" Foreground="White"
+                                      FontFamily="Comfortaa" FontSize="18" Tag="hy"
+                                      Command="{Binding ChangeLangCommand}"
+                                      CommandParameter="{Binding ElementName=hy_item,Path=Tag}"/>
+                            <MenuItem Name="ru_item" Header="Русский" Background="#FF39B9B9" Foreground="White"
+                                      FontFamily="Comfortta" FontSize="18" Tag="ru"
+                                      Command="{Binding ChangeLangCommand}"
+                                      CommandParameter="{Binding ElementName=ru_item, Path=Tag}"/>
                         </MenuItem>
                         
                         <MenuItem Header="{DynamicResource sign_out}" Background="#FF39B9B9" Foreground="White" 

@@ -57,21 +57,9 @@ namespace Desktop.Commands
                 return;
             }
 
-            this.ResetSettings();
+            User.Default.Reset();
 
             this._hyperlinkService.Navigate<MainWindow, SignIn>();            
-        }
-
-        /// <summary>
-        /// Resets User default setting
-        /// </summary>
-        private void ResetSettings()
-        {
-            User.Default.Id = 0;
-            User.Default.CurrentProfile = null;
-            User.Default.Username = null;
-            User.Default.RefreshToken = null;
-            User.Default.Save();
         }
     }
 }
