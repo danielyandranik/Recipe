@@ -84,8 +84,10 @@ namespace Desktop.Commands
         /// <param name="load">user's loaded information</param>
         private void InitializeVM(UserInitialInfo load)
         {
+            var dict = ((App)App.Current).Resources.MergedDictionaries[4];
+
             // setting viewmodel properties
-            this._vm.CurrentProfile = this._profilesMenuManager.ApiToUi[load.CurrentProfile];
+            this._vm.CurrentProfile = (string)dict[load.CurrentProfile];
             this._vm.FullName = load.FullName;
             this._vm.Username = load.Username;
             this._vm.PhotoUrl = ConfigurationManager.AppSettings[load.CurrentProfile];

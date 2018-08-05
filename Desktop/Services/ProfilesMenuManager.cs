@@ -18,16 +18,6 @@ namespace Desktop.Services
     public class ProfilesMenuManager
     {
         /// <summary>
-        /// UI to API current profile types mapping
-        /// </summary>
-        private readonly Dictionary<string, string> _uiToApi;
-
-        /// <summary>
-        /// API to UI current profile types mapping
-        /// </summary>
-        private readonly Dictionary<string, string> _apiToUi;
-
-        /// <summary>
         /// Menu item
         /// </summary>
         private readonly MenuItem _menuItem;
@@ -36,16 +26,6 @@ namespace Desktop.Services
         /// Main window viewmode
         /// </summary>
         private readonly MainWindowViewModel _vm;
-
-        /// <summary>
-        /// Gets UI to API current profile types mapping info
-        /// </summary>
-        public Dictionary<string, string> UiToApi => this._uiToApi;
-
-        /// <summary>
-        /// Gets API to UI current profile types mapping info
-        /// </summary>
-        public Dictionary<string, string> ApiToUi => this._apiToUi;
 
         /// <summary>
         /// Creates new instance of <see cref="ProfilesMenuManager"/>
@@ -57,10 +37,6 @@ namespace Desktop.Services
             // setting fields
             this._menuItem = menuItem;
             this._vm = vm;
-
-            // constructing map info
-            this._apiToUi = this.ConstructMapInfo(ConfigurationManager.AppSettings["ApiToUi"]);
-            this._uiToApi = this.ConstructMapInfo(ConfigurationManager.AppSettings["UiToApi"]);
         }
 
         /// <summary>
@@ -72,9 +48,7 @@ namespace Desktop.Services
             if (profiles == null)
                 return;
 
-            var profileTypes = profiles.Select(profile => this._apiToUi[profile]);
-
-            foreach(var profile in profileTypes)
+            foreach(var profile in profiles)
             {
                 this.AddProfile(profile);
             }
@@ -91,13 +65,14 @@ namespace Desktop.Services
                 Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x39, 0xB9, 0xB9)),
                 Foreground = Brushes.White,
                 FontFamily = new FontFamily("Comfortaa"),
-                FontSize = 18,
-                Header = profile
+                FontSize = 18
             };
 
-            this._menuItem.Items.Add(menuItem);
+            menuItem.SetResourceReference(MenuItem.HeaderProperty, profile);
 
             menuItem.Click += this.ChangeProfileEventHandler;
+
+            this._menuItem.Items.Add(menuItem);
         }
 
         /// <summary>
@@ -110,7 +85,9 @@ namespace Desktop.Services
 
             var count = menuItems.Count();
 
-            var header = this._apiToUi[profile];
+            var dictionary = ((App)App.Current).Resources.MergedDictionaries[4];
+
+            var header = (string)dictionary[profile];
 
             for(var counter = 0; counter < count; counter++)
             {
@@ -122,14 +99,14 @@ namespace Desktop.Services
 
                     deletingMenuItem.Click -= this.ChangeProfileEventHandler;
 
-                    this._vm.CurrentProfile = "None";
+                    this._vm.CurrentProfile = (string)dictionary["none"];
                                 
                     this.CollapseAll();
 
                     User.Default.CurrentProfile = "none";
                     User.Default.Save();
 
-                    this._vm.PhotoUrl = ConfigurationManager.AppSettings[this._vm.CurrentProfile];
+                    this._vm.PhotoUrl = ConfigurationManager.AppSettings[User.Default.CurrentProfile];
 
                     break;
                 }
@@ -146,7 +123,9 @@ namespace Desktop.Services
         {
             var item = (MenuItem)sender;
 
-            if ((string)item.Header == this._apiToUi[User.Default.CurrentProfile])
+            var dictionary = ((App)App.Current).Resources.MergedDictionaries[4];
+
+            if (item.Header == dictionary[User.Default.CurrentProfile])
                 return;
 
             var client = ((App)App.Current).UserApiClient;
@@ -156,7 +135,7 @@ namespace Desktop.Services
             var profileUpdateInfo = new ProfileUpdateInfo
             {
                 Id = User.Default.Id,
-                Profile = this._uiToApi[currentProfile]
+                Profile = (string)dictionary[currentProfile]
             };
 
             var response = await client.UpdateCurrentProfileAsync(profileUpdateInfo);
@@ -178,22 +157,6 @@ namespace Desktop.Services
             {
                 RecipeMessageBox.Show("Error occured.\nMaybe your profile is not approved yet.");
             }
-        }
-
-        /// <summary>
-        /// Constructs map info
-        /// </summary>
-        /// <param name="path">path</param>
-        /// <returns>map info</returns>
-        private Dictionary<string, string> ConstructMapInfo(string path)
-        {
-            var xml = XDocument.Load(path);
-
-            var items = xml.Element("map").Elements("item");
-
-            return items.ToDictionary(
-                item => item.Attribute("key").Value,
-                item => item.Attribute("value").Value);
         }
 
         /// <summary>

@@ -548,16 +548,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="UI_Map\ApiToUi.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="UI_Map\UiToApi.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="RecipeIcon.ico" />
   </ItemGroup>
   <ItemGroup>

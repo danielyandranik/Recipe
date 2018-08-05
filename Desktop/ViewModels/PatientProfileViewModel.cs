@@ -61,7 +61,7 @@ namespace Desktop.ViewModels
             this.patientProfileCommand = new ProfileCommand<Patient>(
                 this.patientProfileService.Execute, 
                 this.validation.Validate,
-                "Patient");
+                "patient");
         }
     }
 }

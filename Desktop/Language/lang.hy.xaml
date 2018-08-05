@@ -12,11 +12,11 @@
     <system:String x:Key="add_profile">Ավելացներ նոր պրոֆիլ</system:String>
     <system:String x:Key="language">Լեզու</system:String>
     <system:String x:Key="sign_out">Դուրս գալ</system:String>
-    <system:String x:Key="doctor">Բժիշկ</system:String>
-    <system:String x:Key="patient">Հիվանդ</system:String>
-    <system:String x:Key="pharmacist">Դեղագործ</system:String>
-    <system:String x:Key="pharmacy_admin">Դեղատան ադմին</system:String>
-    <system:String x:Key="hospital_admin">Հիվանդանոցի ադմին</system:String>
+    <system:String x:Key="_doctor">Բժիշկ</system:String>
+    <system:String x:Key="_patient">Հիվանդ</system:String>
+    <system:String x:Key="_pharmacist">Դեղագործ</system:String>
+    <system:String x:Key="_pharmacy_admin">Դեղատան ադմին</system:String>
+    <system:String x:Key="_hospital_admin">Հիվանդանոցի ադմին</system:String>
     <system:String x:Key="my_recipes">Իմ դեղատոմսերը</system:String>
     <system:String x:Key="create_recipe">Ստեղծել դեղատոմս</system:String>
     <system:String x:Key="approvals">Հաստատումներ</system:String>
@@ -140,4 +140,24 @@
 
     <!-- Sell medicines page -->
     <system:String x:Key="recipe_id">Դեղատոմսի ID</system:String>
+
+    <!-- Profiles mapping -->
+
+    <!-- API to UI -->
+    <system:String x:Key="patient">Հիվանդ</system:String>
+    <system:String x:Key="doctor">Բժիշկ</system:String>
+    <system:String x:Key="hospital_director">Հիվանդանոցի ադմին</system:String>
+    <system:String x:Key="pharmacist">Դեղագործ</system:String>
+    <system:String x:Key="pharmacy_admin">Դեղատան ադմին</system:String>
+    <system:String x:Key="ministry_worker">Նախարար</system:String>
+    <system:String x:Key="none">Չկա</system:String>
+
+    <!-- UI to API-->
+    <system:String x:Key="Բժիշկ">doctor</system:String>
+    <system:String x:Key="Հիվանդ">patient</system:String>
+    <system:String x:Key="Դեղագործ">pharmacist</system:String>
+    <system:String x:Key="Դեղատան ադմին">pharmacy_admin</system:String>
+    <system:String x:Key="Հիվանդանոցի ադմին">hospital_director</system:String>
+    <system:String x:Key="Նախարար">ministry_worker</system:String>
+    <system:String x:Key="Չկա">none</system:String>
 </ResourceDictionary>

@@ -133,12 +133,12 @@ namespace Desktop.ViewModels
 
         public MainWindowViewModel(MainWindow mainWindow)
         {
+            this._mainWindow = mainWindow;
             this._signOutCommand = new SignOutCommand();
             this._hyperLinkService = new HyperLinkService();
-            this._mainWindow = mainWindow;
             this._loadService = new LoadService(this._mainWindow.profiles, this);
             this._deleteCommand = new DeleteCommand();
-            this._changeLangCommand = new ChangeLangCommand();
+            this._changeLangCommand = new ChangeLangCommand(this);
         }
     }
 }

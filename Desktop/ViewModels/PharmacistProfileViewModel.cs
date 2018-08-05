@@ -62,7 +62,7 @@ namespace Desktop.ViewModels
             this.pharmacistProfileCommand = new ProfileCommand<PharmacistFullInfo>(
                 this.pharmacistProfileService.Execute,
                 this.validation.Validate,
-                "Pharmacist");
+                "pharmacist");
         }
     }
 }

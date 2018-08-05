@@ -12,11 +12,11 @@
     <system:String x:Key="add_profile">Add new profile</system:String>
     <system:String x:Key="language">Language</system:String>
     <system:String x:Key="sign_out">Sign Out</system:String>
-    <system:String x:Key="doctor">Doctor</system:String>
-    <system:String x:Key="patient">Patient</system:String>
-    <system:String x:Key="pharmacist">Pharmacist</system:String>
-    <system:String x:Key="pharmacy_admin">Pharmacy admin</system:String>
-    <system:String x:Key="hospital_admin">Hospital Admin</system:String>
+    <system:String x:Key="_doctor">Doctor</system:String>
+    <system:String x:Key="_patient">Patient</system:String>
+    <system:String x:Key="_pharmacist">Pharmacist</system:String>
+    <system:String x:Key="_pharmacy_admin">Pharmacy admin</system:String>
+    <system:String x:Key="_hospital_admin">Hospital Admin</system:String>
     <system:String x:Key="my_recipes">My Recipes</system:String>
     <system:String x:Key="create_recipe">Create recipe</system:String>
     <system:String x:Key="approvals">Approvals</system:String>
@@ -140,4 +140,24 @@
     
     <!-- Sell medicines page -->
     <system:String x:Key="recipe_id">Recipe id</system:String>
+    
+    <!-- Profiles mapping -->
+    
+    <!-- API to UI -->
+    <system:String x:Key="patient">Patient</system:String>
+    <system:String x:Key="doctor">Doctor</system:String>
+    <system:String x:Key="hospital_director">Hospital Admin</system:String>
+    <system:String x:Key="pharmacist">Pharmacist</system:String>
+    <system:String x:Key="pharmacy_admin">Pharmacy Admin</system:String>
+    <system:String x:Key="ministry_worker">Ministry Worker</system:String>
+    <system:String x:Key="none">None</system:String>
+    
+    <!-- UI to API-->
+    <system:String x:Key="Doctor">doctor</system:String>
+    <system:String x:Key="Patient">patient</system:String>
+    <system:String x:Key="Pharmacist">pharmacist</system:String>
+    <system:String x:Key="Pharmacy Admin">pharmacy_admin</system:String>
+    <system:String x:Key="Hospital Admin">hospital_director</system:String>
+    <system:String x:Key="Ministry Worker">ministry_worker</system:String>
+    <system:String x:Key="None">none</system:String>
 </ResourceDictionary>

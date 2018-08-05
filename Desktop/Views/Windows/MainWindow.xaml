@@ -46,28 +46,28 @@
                         </MenuItem.Header>
                         <MenuItem Name="profiles" Header="{DynamicResource profiles}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18">
                             <MenuItem Name="add"  Header="{DynamicResource add_profile}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18">
-                                <MenuItem Header="{DynamicResource patient}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                <MenuItem Header="{DynamicResource _patient}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
                                           Click="AddPatientProfileButton_Click"/>
-                                <MenuItem Header="{DynamicResource doctor}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                <MenuItem Header="{DynamicResource _doctor}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
                                           Click="AddDoctorProfileButton_Click"/>
-                                <MenuItem Header="{DynamicResource pharmacist}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                <MenuItem Header="{DynamicResource _pharmacist}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
                                           Click="AddPharmacistProfileButton_Click"/>
-                                <MenuItem Header="{DynamicResource pharmacy_admin}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                <MenuItem Header="{DynamicResource _pharmacy_admin}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
                                           Click="AddPharmacyAdminProfileButton_Click"/>
-                                <MenuItem Header="{DynamicResource hospital_admin}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                <MenuItem Header="{DynamicResource _hospital_admin}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
                                           Click="AddHospitalAdminProfileButton_Click"/>
                             </MenuItem>
                         </MenuItem>
 
                         <MenuItem Header="{DynamicResource language}" Background="#FF39B9B9" Foreground="White"
                                   FontFamily="Comfortaa" FontSize="18">
-                            <MenuItem Name="en_item" Header="English" Background="#FF39B9B9" Foreground="White"
-                                      FontFamily="Comfortaa" FontSize="18" Tag="en" Command="{Binding ChangeLangCommand}"
-                                      CommandParameter="{Binding ElementName=en_item, Path=Tag}"/>
                             <MenuItem Name="hy_item" Header="Հայերեն" Background="#FF39B9B9" Foreground="White"
                                       FontFamily="Comfortaa" FontSize="18" Tag="hy"
                                       Command="{Binding ChangeLangCommand}"
                                       CommandParameter="{Binding ElementName=hy_item,Path=Tag}"/>
+                            <MenuItem Name="en_item" Header="English" Background="#FF39B9B9" Foreground="White"
+                                      FontFamily="Comfortaa" FontSize="18" Tag="en" Command="{Binding ChangeLangCommand}"
+                                      CommandParameter="{Binding ElementName=en_item, Path=Tag}"/>
                             <MenuItem Name="ru_item" Header="Русский" Background="#FF39B9B9" Foreground="White"
                                       FontFamily="Comfortta" FontSize="18" Tag="ru"
                                       Command="{Binding ChangeLangCommand}"

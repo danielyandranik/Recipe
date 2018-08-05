@@ -59,7 +59,7 @@ namespace Desktop.ViewModels
             this._pharmacyAdminCommand = new ProfileCommand<PharmacyAdmin>(
                 this._pharmacyAdminService.Execute, 
                 this._pharmacyInputValidation.Validate,
-                "Pharmacy Admin");
+                "pharmacy_admin");
         }
     }
 }
