@@ -35,12 +35,13 @@
                 <DataTemplate>
 
                     <controls:Recipe></controls:Recipe>
-                    
+
                 </DataTemplate>
-                
+
             </ListView.ItemTemplate>
-            
+
         </ListView>
-        
+
     </Grid>
+    
 </Page>

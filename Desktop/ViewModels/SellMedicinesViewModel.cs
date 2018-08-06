@@ -2,11 +2,7 @@
 using Desktop.Models;
 using GalaSoft.MvvmLight;
 using RecipeClient;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Desktop.ViewModels
@@ -17,6 +13,8 @@ namespace Desktop.ViewModels
 
         private Models.Recipe recipe;
 
+        private ObservableCollection<RecipeHistoryItem> historyItems;
+
         public Models.Recipe Recipe
         {
             get => this.recipe;
@@ -24,14 +22,22 @@ namespace Desktop.ViewModels
             set => this.Set("Recipe", ref this.recipe, value);
         }
 
+        public ObservableCollection<RecipeHistoryItem> HistoryItems
+        {
+            get => this.historyItems;
+
+            set => this.Set("HistoryItems", ref this.historyItems, value);
+        }
+
         public AddRecipeHistoryCommand AddRecipeHistoryCommand { get; private set; }
 
-        public AsyncCommand<string, ResponseMessage<RecipeClient.Recipe>> FindRecipeCommand { get; private set; }
+        public FindRecipeCommand FindRecipeCommand { get; private set; }
 
         public SellMedicinesViewModel()
         {
             this.client = ((App)App.Current).RecipeClient;
-            this.FindRecipeCommand = new AsyncCommand<string, ResponseMessage<RecipeClient.Recipe>>(this.GetRecipe, _ => true);
+            this.HistoryItems = new ObservableCollection<RecipeHistoryItem>();
+            this.FindRecipeCommand = new FindRecipeCommand(this, this.GetRecipe, _ => true);
             this.AddRecipeHistoryCommand = new AddRecipeHistoryCommand(this, this.CreateRecipeHistory, _ => true);
         }
 

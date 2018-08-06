@@ -5,7 +5,7 @@ using System.Text;
 namespace RecipeClient
 {
     /// <summary>
-    /// Describes a recipe history model.
+    /// Describes a recipe history.
     /// </summary>
     public class RecipeHistory
     {
