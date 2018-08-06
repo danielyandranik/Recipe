@@ -27,6 +27,7 @@ namespace Desktop.Commands
             try
             {
                 var institution = parameter as Institution;
+                institution.Type = (string)dictionary[institution.Type];
 
                 var isSucceed = await this.ExecuteAsync(institution);
 
