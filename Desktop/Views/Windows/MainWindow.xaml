@@ -47,15 +47,15 @@
                         <MenuItem Name="profiles" Header="{DynamicResource profiles}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18">
                             <MenuItem Name="add"  Header="{DynamicResource add_profile}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18">
                                 <MenuItem Header="{DynamicResource _patient}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
-                                          Click="AddPatientProfileButton_Click"/>
+                                          Command="{Binding AddPatient}"/>
                                 <MenuItem Header="{DynamicResource _doctor}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
-                                          Click="AddDoctorProfileButton_Click"/>
+                                          Command="{Binding AddDoc}"/>
                                 <MenuItem Header="{DynamicResource _pharmacist}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
-                                          Click="AddPharmacistProfileButton_Click"/>
+                                          Command="{Binding AddPharmacist}"/>
                                 <MenuItem Header="{DynamicResource _pharmacy_admin}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
-                                          Click="AddPharmacyAdminProfileButton_Click"/>
+                                          Command="{Binding AddPharmacyAdmin}"/>
                                 <MenuItem Header="{DynamicResource _hospital_admin}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18"
-                                          Click="AddHospitalAdminProfileButton_Click"/>
+                                          Command="{Binding AddHospitalAdmin}"/>
                             </MenuItem>
                         </MenuItem>
 

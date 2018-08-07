@@ -19,16 +19,6 @@ namespace Desktop.Views.Windows
 
         private Recipes _recipes;
 
-        private  AddPatientProfile _addPatientProfile;
-
-        private  AddDoctorProfile _addDoctorProfile;
-
-        private  AddPharmacistProfile _addPharmacistProfile;
-
-        private  AddHospitalAdministartorProfile _addHospitalAdministartorProfile;
-
-        private  AddPharmacyAdminProfile _addPharmacyAdminProfile;
-
         private AddInstitution _addInstitution;
 
         private SellMedicines _sellMedicines;
@@ -79,29 +69,9 @@ namespace Desktop.Views.Windows
             await loadPharmaciesService.Load();
         }
 
-        private void AddPatientProfileButton_Click(object sender, RoutedEventArgs e)
-        {
-            this._navigationService.Navigate(ref this._addPatientProfile);
-        }
-
-        private void AddDoctorProfileButton_Click(object sender, RoutedEventArgs e)
-        {
-            this._navigationService.Navigate(ref this._addDoctorProfile);
-        }
-
-        private void AddPharmacistProfileButton_Click(object sender, RoutedEventArgs e)
-        {
-            this._navigationService.Navigate(ref this._addPharmacistProfile);
-        }
-
         private void AddInstitutionButton_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.Navigate(ref this._addInstitution);
-        }
-
-        private void AddHospitalAdminProfileButton_Click(object sender, RoutedEventArgs e)
-        {
-            this._navigationService.Navigate(ref this._addHospitalAdministartorProfile);
         }
 
         private void SellMedicinesButton_Click(object sender, RoutedEventArgs e)
@@ -137,11 +107,6 @@ namespace Desktop.Views.Windows
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             this.frame.NavigationService.Navigate(new CreateRecipe());
-        }
-
-        private void AddPharmacyAdminProfileButton_Click(object sender, RoutedEventArgs e)
-        {
-            this._navigationService.Navigate(ref this._addPharmacyAdminProfile);
         }
 
         private void Menu_Click(object sender, RoutedEventArgs e)

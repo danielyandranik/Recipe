@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using Desktop.Models;
-using Desktop.Commands;
+﻿using System.Windows;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using Desktop.Commands;
 using Desktop.Services;
 using Desktop.Views.Windows;
-using System.Windows.Input;
-using System.Windows;
+using Desktop.Views.Pages;
 
 namespace Desktop.ViewModels
 {
@@ -45,6 +43,20 @@ namespace Desktop.ViewModels
         private readonly DeleteCommand _deleteCommand;
 
         private readonly ChangeLangCommand _changeLangCommand;
+
+        private readonly NavigateCommand<AddMedicine> _addMed;
+
+        private readonly NavigateCommand<AddPatientProfile> _addPatient;
+
+        private readonly NavigateCommand<AddPharmacistProfile> _addPharmacist;
+
+        private readonly NavigateCommand<AddInstitution> _addInst;
+
+        private readonly NavigateCommand<AddDoctorProfile> _addDoc;
+
+        private readonly NavigateCommand<AddHospitalAdministartorProfile> _addHospAdmin;
+
+        private readonly NavigateCommand<AddPharmacyAdminProfile> _addPharmacyAdmin;
 
         public string Username
         {
@@ -123,13 +135,23 @@ namespace Desktop.ViewModels
             set => this.Set("PhotoUrl", ref this._photoUrl, value);
         }
 
-        public SignOutCommand SignOutCommand => this._signOutCommand;
-
         public LoadService LoadService => this._loadService;
 
-        public DeleteCommand DeleteCommand => this._deleteCommand;
+        public ICommand SignOutCommand => this._signOutCommand;
 
-        public ChangeLangCommand ChangeLangCommand => this._changeLangCommand;
+        public ICommand DeleteCommand => this._deleteCommand;
+
+        public ICommand ChangeLangCommand => this._changeLangCommand;
+
+        public ICommand AddDoc => this._addDoc;
+
+        public ICommand AddPatient => this._addPatient;
+
+        public ICommand AddPharmacist => this._addPharmacist;
+
+        public ICommand AddPharmacyAdmin => this._addPharmacyAdmin;
+
+        public ICommand AddHospitalAdmin => this._addHospAdmin;
 
         public MainWindowViewModel(MainWindow mainWindow)
         {
@@ -139,6 +161,11 @@ namespace Desktop.ViewModels
             this._loadService = new LoadService(this._mainWindow.profiles, this);
             this._deleteCommand = new DeleteCommand();
             this._changeLangCommand = new ChangeLangCommand(this);
+            this._addDoc = new NavigateCommand<AddDoctorProfile>(this._mainWindow.frame);
+            this._addPatient = new NavigateCommand<AddPatientProfile>(this._mainWindow.frame);
+            this._addPharmacist = new NavigateCommand<AddPharmacistProfile>(this._mainWindow.frame);
+            this._addPharmacyAdmin = new NavigateCommand<AddPharmacyAdminProfile>(this._mainWindow.frame);
+            this._addHospAdmin = new NavigateCommand<AddHospitalAdministartorProfile>(this._mainWindow.frame);
         }
     }
 }
