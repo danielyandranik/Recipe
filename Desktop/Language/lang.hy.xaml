@@ -21,7 +21,7 @@
     <system:String x:Key="create_recipe">Ստեղծել դեղատոմս</system:String>
     <system:String x:Key="approvals">Հաստատումներ</system:String>
     <system:String x:Key="add_med">Ավելացնել դեղ</system:String>
-    <system:String x:Key="add_inst">Ավելացնել հաստատություն</system:String>
+    <system:String x:Key="add_inst">Ավելացնել հաստատ...</system:String>
     <system:String x:Key="sell_med">Վաճառել դեղեր</system:String>
     <system:String x:Key="dell_profile">Ջնջել պրոֆիլը</system:String>
 

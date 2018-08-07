@@ -13,19 +13,11 @@ namespace Desktop.Views.Windows
     {
         private  Medicines _medicines;
 
-        private  Hospitals _hospitals;
-
-        private  Pharmacies _pharmacies;
-
         private Recipes _recipes;
-
-        private AddInstitution _addInstitution;
 
         private SellMedicines _sellMedicines;
 
         private CreateRecipe _createRecipe;
-
-        private AddMedicine _addMedicine;
 
         private HospitalAdminApprovals _hospitalAdminApprovals;
 
@@ -55,25 +47,6 @@ namespace Desktop.Views.Windows
             await loadMedicinesService.Load();
         }
 
-        private async void Hospitals_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this._navigationService.Navigate(ref this._hospitals);
-            var loadHospitalsService = new LoadHospitalsService(this._hospitals.HospitalsViewModel);
-            await loadHospitalsService.Load();
-        }
-
-        private async void Pharmacies_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this._navigationService.Navigate(ref this._pharmacies);
-            var loadPharmaciesService = new LoadPharmaciesService(this._pharmacies.PharmaciesViewModel);
-            await loadPharmaciesService.Load();
-        }
-
-        private void AddInstitutionButton_Click(object sender, RoutedEventArgs e)
-        {
-            this._navigationService.Navigate(ref this._addInstitution);
-        }
-
         private void SellMedicinesButton_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.Navigate(ref this._sellMedicines);
@@ -84,11 +57,6 @@ namespace Desktop.Views.Windows
             this._navigationService.Navigate(ref this._createRecipe);
             var loadMedicinesService = new LoadMedicinesService(this._createRecipe.ViewModel);
             await loadMedicinesService.Load();
-        }
-
-        private void AddMedicineButton_Click(object sender, RoutedEventArgs e)
-        {
-            this._navigationService.Navigate(ref this._addMedicine);
         }
 
         private void Toggle_menu(object sender, MouseButtonEventArgs e)

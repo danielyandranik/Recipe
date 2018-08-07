@@ -2,12 +2,13 @@
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Desktop.ViewModels;
+using Desktop.Interfaces;
 using InstitutionClient;
 using InstitutionClient.Models;
 
 namespace Desktop.Services
 {
-    public class LoadHospitalsService
+    public class LoadHospitalsService : ILoadService
     {
         private HospitalsViewModel hospitalsViewModel;
 

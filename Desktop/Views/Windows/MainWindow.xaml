@@ -89,8 +89,20 @@
 
                 <TextBlock PreviewMouseDown="TextBlock_PreviewMouseDown" Cursor="Hand" Text="{DynamicResource main}" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0"/>
                 <TextBlock PreviewMouseDown="Medicines_PreviewMouseDown" Cursor="Hand" Text="{DynamicResource medicines}" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
-                <TextBlock PreviewMouseDown="Hospitals_PreviewMouseDown" Cursor="Hand" Text="{DynamicResource hospitals}" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
-                <TextBlock PreviewMouseDown="Pharmacies_PreviewMouseDown" Cursor="Hand" Text="{DynamicResource pharmacies}" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0" />
+                <TextBlock Cursor="Hand" Text="{DynamicResource hospitals}" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction Command="{Binding ShowHospitals}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+                <TextBlock Cursor="Hand" Text="{DynamicResource pharmacies}" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction Command="{Binding ShowPharmacies}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
 
             </StackPanel>
 
@@ -144,19 +156,12 @@
                     <Button Content="{DynamicResource approvals}" Name="MyApprovalsButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
                             Visibility="{Binding MyApprovalsVisibility, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Content="{DynamicResource add_med}" Name="AddMedicineButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
-                            Click="AddMedicineButton_Click"
+                            Command="{Binding AddMed}"
                             Visibility="{Binding AddMedicineVisibility, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Name="AddInstituitionButton"  Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
-                            Click="AddInstitutionButton_Click"
-                            Visibility="{Binding AddInstitutionVisibility, UpdateSourceTrigger=PropertyChanged}">
-                        <Button.ContentTemplate>
-                            <DataTemplate>
-                                <Viewbox>
-                                    <TextBlock Text="{DynamicResource add_inst}"/>
-                                </Viewbox>
-                            </DataTemplate>
-                        </Button.ContentTemplate>
-                    </Button>
+                            Command="{Binding AddInst}"
+                            Visibility="{Binding AddInstitutionVisibility, UpdateSourceTrigger=PropertyChanged}"
+                            Content="{DynamicResource add_inst}"/>
                     <Button Content="{DynamicResource sell_med}" Name="SellMedicinesButton"  Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
                             Click="SellMedicinesButton_Click"
                             Visibility="{Binding SellMedicinesVisibility, UpdateSourceTrigger=PropertyChanged}"/>

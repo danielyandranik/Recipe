@@ -58,6 +58,10 @@ namespace Desktop.ViewModels
 
         private readonly NavigateCommand<AddPharmacyAdminProfile> _addPharmacyAdmin;
 
+        private readonly NavigateCommand<Hospitals> _showHospitals;
+
+        private readonly NavigateCommand<Pharmacies> _showPharmacies;
+
         public string Username
         {
             get => this._username;
@@ -153,6 +157,14 @@ namespace Desktop.ViewModels
 
         public ICommand AddHospitalAdmin => this._addHospAdmin;
 
+        public ICommand AddMed => this._addMed;
+
+        public ICommand AddInst => this._addInst;
+
+        public ICommand ShowHospitals => this._showHospitals;
+
+        public ICommand ShowPharmacies => this._showPharmacies;
+
         public MainWindowViewModel(MainWindow mainWindow)
         {
             this._mainWindow = mainWindow;
@@ -166,6 +178,10 @@ namespace Desktop.ViewModels
             this._addPharmacist = new NavigateCommand<AddPharmacistProfile>(this._mainWindow.frame);
             this._addPharmacyAdmin = new NavigateCommand<AddPharmacyAdminProfile>(this._mainWindow.frame);
             this._addHospAdmin = new NavigateCommand<AddHospitalAdministartorProfile>(this._mainWindow.frame);
+            this._addMed = new NavigateCommand<AddMedicine>(this._mainWindow.frame);
+            this._addInst = new NavigateCommand<AddInstitution>(this._mainWindow.frame);
+            this._showHospitals = new NavigateCommand<Hospitals>(this._mainWindow.frame);
+            this._showPharmacies = new NavigateCommand<Pharmacies>(this._mainWindow.frame);
         }
     }
 }

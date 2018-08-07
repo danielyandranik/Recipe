@@ -7,6 +7,7 @@ using System.Windows;
 using Desktop.Services;
 using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace Desktop.ViewModels
 {
@@ -41,6 +42,11 @@ namespace Desktop.ViewModels
         public IEnumerable<Institution> data;
 
         /// <summary>
+        /// Load service
+        /// </summary>
+        private readonly LoadPharmaciesService _loadPharmaciesService;
+
+        /// <summary>
         /// Command for deleting a pharmacy
         /// </summary>
         private readonly DeletePharmacyCommand deletePharmacyCommand;
@@ -50,6 +56,11 @@ namespace Desktop.ViewModels
         /// </summary>
         private readonly EditPharmacyCommand editPharmacyCommand;
 
+        /// <summary>
+        /// Load Command
+        /// </summary>
+        private readonly LoadCommand _loadCommand;
+       
         /// <summary>
         /// Gets or sets pharmacies value
         /// </summary>
@@ -98,18 +109,17 @@ namespace Desktop.ViewModels
         /// <summary>
         /// Getter for delete pharmacy command
         /// </summary>
-        public DeletePharmacyCommand DeletePharmacyCommand
-        {
-            get => this.deletePharmacyCommand;
-        }
+        public ICommand DeletePharmacyCommand  => this.deletePharmacyCommand;
 
         /// <summary>
         /// Getter for edit pharmacy command
         /// </summary>
-        public EditPharmacyCommand EditPharmacyCommand
-        {
-            get => this.editPharmacyCommand;
-        }
+        public ICommand EditPharmacyCommand => this.editPharmacyCommand;
+
+        /// <summary>
+        /// Get load pharmacies command
+        /// </summary>
+        public ICommand LoadPharmacies => this._loadCommand;
 
         /// <summary>
         /// Creates a new instanse of <see cref="PharmaciesViewModel"/>
@@ -117,9 +127,11 @@ namespace Desktop.ViewModels
         public PharmaciesViewModel()
         {
             this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "pharmacy_admin") ? Visibility.Visible : Visibility.Collapsed;
-            this.deletePharmacyCommand = new DeletePharmacyCommand(this.pharmacies, this.deletePharmacy, _ => true);
-            this.editPharmacyCommand = new EditPharmacyCommand(this.pharmacies, this.editPharmacy, _ => true);
             this.filterService = new FilterService<Institution>();
+            this._loadPharmaciesService = new LoadPharmaciesService(this);
+            this.deletePharmacyCommand = new DeletePharmacyCommand(this.pharmacies, this.DeletePharmacy, _ => true);
+            this.editPharmacyCommand = new EditPharmacyCommand(this.pharmacies, this.EditPharmacy, _ => true);
+            this._loadCommand = new LoadCommand(this._loadPharmaciesService);
         }
 
         /// <summary>
@@ -139,7 +151,7 @@ namespace Desktop.ViewModels
         /// </summary>
         /// <param name="id">Pharmacy Id</param>
         /// <returns>Boolean value indicating the success of operation</returns>
-        private async Task<bool> deletePharmacy(int id)
+        private async Task<bool> DeletePharmacy(int id)
         {
             return await ((App)App.Current).InstitutionClient.DeleteInstitutionAsync(id);
         }
@@ -149,7 +161,7 @@ namespace Desktop.ViewModels
         /// </summary>
         /// <param name="pharmacy">Pharmacy info</param>
         /// <returns>Boolean value indicating the success of operation</returns>
-        private async Task<bool> editPharmacy(Institution pharmacy)
+        private async Task<bool> EditPharmacy(Institution pharmacy)
         {
             return await ((App)App.Current).InstitutionClient.UpdateInstitutionAsync(pharmacy);
         }
