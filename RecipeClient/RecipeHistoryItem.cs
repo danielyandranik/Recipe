@@ -12,7 +12,7 @@ namespace RecipeClient
         /// <summary>
         /// An identifier of the medicine.
         /// </summary>
-        public int MecdicineId { get; set; }
+        public string MecdicineId { get; set; }
 
         /// <summary>
         /// Sold count of the medicine.

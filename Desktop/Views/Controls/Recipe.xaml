@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Desktop.Views.Controls"
-             Width="600" Height="300" 
+             Width="750" Height="400" 
              Background="White" BorderBrush="#FF182634" BorderThickness="2" >
     <Grid>
         <Grid.RowDefinitions>
 
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -17,13 +18,31 @@
 
         <Grid Grid.Row="0" Height="40">
 
-            <TextBlock Text="Recipe" Foreground="#FF182634" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,0" FontFamily="Comfortaa" FontSize="18"/>
+            <TextBlock Text="Recipe" Foreground="#FF182634" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Comfortaa" FontSize="18"/>
             <TextBlock Text="{Binding CreatedOn}" Foreground="#FF182634" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,10,20,0" FontFamily="Comfortaa" FontSize="14"/>
             <Separator VerticalAlignment="Bottom" Margin="0" Background="#FF182634" />
         
         </Grid>
 
-        <ListView Grid.Row="1"  Width="auto" ItemsSource="{Binding RecipeItems}" HorizontalContentAlignment="Stretch">
+        <Grid Grid.Row="1" Height="40">
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="{DynamicResource med}" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+            <Label Grid.Column="1" Content="{DynamicResource med_count}" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+            <Label Grid.Column="2" Content="{DynamicResource med_frequency}" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+            <Label Grid.Column="3" Content="{DynamicResource med_times}" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+            <Label Grid.Column="4" Content="{DynamicResource med_count_use}" HorizontalAlignment="Center" FontSize="14" FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"/>
+        </Grid>
+
+        <ListView Grid.Row="2"  Width="auto" ItemsSource="{Binding RecipeItems}" HorizontalContentAlignment="Stretch">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -31,15 +50,15 @@
 
                         <Grid.ColumnDefinitions>
 
+                            <ColumnDefinition Width="2*" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
 
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Column="0" Content="{Binding MedicineName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                        <Label Grid.Column="0" Content="{Binding Medicine.Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
                         <Label Grid.Column="1" Content="{Binding Count}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
                         <Label Grid.Column="2" Content="{Binding UseFrequencyUnit}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
                         <Label Grid.Column="3" Content="{Binding TimesPerUnit}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
@@ -51,10 +70,12 @@
 
         </ListView>
 
-        <Grid Grid.Row="2" Height="40">
+        <Grid Grid.Row="3" Height="40">
 
             <TextBlock Text="{Binding DoctorName}" Foreground="#FF182634" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" FontFamily="Comfortaa" FontSize="14"/>
             <TextBlock Text="{Binding HospitalName}" Foreground="#FF182634" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" FontFamily="Comfortaa" FontSize="14"/>
+            <TextBlock Text="{Binding Id}" Foreground="#FF182634" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Comfortaa" FontSize="14"/>
+
             <Separator VerticalAlignment="Top" Margin="0" Background="#FF182634" />
 
         </Grid>

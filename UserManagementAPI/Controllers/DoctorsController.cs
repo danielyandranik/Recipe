@@ -61,8 +61,8 @@ namespace UserManagementAPI.Controllers
             // gettting userId
             var userId = this.GetUserId();
 
-            if (userId != id)
-                return new StatusCodeResult(401);
+            //if (userId != id)
+                //return new StatusCodeResult(401);
 
             // getting doctor
             var doctor = this._dataManager.Operate<int, Doctor>("GetDoctorById", id);

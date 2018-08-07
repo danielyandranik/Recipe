@@ -18,16 +18,16 @@
         /// <summary>
         /// A unit of frequency.
         /// </summary>
-        public string FrequencyUnit { get; set; }
+        public string UseFrequencyUnit { get; set; }
 
         /// <summary>
         /// A Use frequency per frequency unit.
         /// </summary>
-        public int UseFrequencyPerFrequencyUnit { get; set; }
+        public int TimesPerUnit { get; set; }
 
         /// <summary>
         /// A count of units per use.
         /// </summary>
-        public int UnitCountPerUse { get; set; }
+        public int CountPerUse { get; set; }
     }
 }

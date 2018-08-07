@@ -86,6 +86,8 @@
     <system:String x:Key="inst_type">Հաստատության տեսակը</system:String>
     <system:String x:Key="inst_hospital">Հիվանդանոց</system:String>
     <system:String x:Key="inst_pharmacy">Դեղատուն</system:String>
+    <system:String x:Key="Հիվանդանոց">hospital</system:String>
+    <system:String x:Key="Դեղատուն">pharmacy</system:String>
 
     <!-- Add medicine page -->
     <system:String x:Key="med_name">Դեղի անուն</system:String>

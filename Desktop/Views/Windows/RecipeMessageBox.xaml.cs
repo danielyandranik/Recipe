@@ -23,7 +23,7 @@ namespace Desktop.Views.Windows
         {
             var msg = new RecipeMessageBox();
             msg.message.Text = message;
-            msg.Show();
+            msg.ShowDialog();
         }
 
         /// <summary>

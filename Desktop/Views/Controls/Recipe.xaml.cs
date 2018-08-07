@@ -23,6 +23,6 @@ namespace Desktop.Views.Controls
         public Recipe()
         {
             InitializeComponent();
-        }
+        }        
     }
 }
