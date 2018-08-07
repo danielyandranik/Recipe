@@ -10,25 +10,49 @@ using System.Collections.Generic;
 
 namespace Desktop.ViewModels
 {
+    /// <summary>
+    /// View model for Pharmacies page
+    /// </summary>
     public class PharmaciesViewModel : ViewModelBase
     {
-
+        /// <summary>
+        /// Container for pharmacies
+        /// </summary>
         private ObservableCollection<Institution> pharmacies;
 
-        private ObservableCollection<PharmMedicine> pharmMedicines;
-
+        /// <summary>
+        /// Editably pharmacy
+        /// </summary>
         private Institution editablePharmacy;
 
+        /// <summary>
+        /// Visibility of some features
+        /// </summary>
         private Visibility visibility;
 
+        /// <summary>
+        /// Filter service for institutions
+        /// </summary>
         private readonly FilterService<Institution> filterService;
 
+        /// <summary>
+        /// All loaded data
+        /// </summary>
         public IEnumerable<Institution> data;
 
+        /// <summary>
+        /// Command for deleting a pharmacy
+        /// </summary>
         private readonly DeletePharmacyCommand deletePharmacyCommand;
 
+        /// <summary>
+        /// Command for editing a pharmacy
+        /// </summary>
         private readonly EditPharmacyCommand editPharmacyCommand;
 
+        /// <summary>
+        /// Gets or sets pharmacies value
+        /// </summary>
         public ObservableCollection<Institution> Pharmacies
         {
             get
@@ -41,18 +65,9 @@ namespace Desktop.ViewModels
             }
         }
 
-        public ObservableCollection<PharmMedicine> PharmMedicines
-        {
-            get
-            {
-                return this.pharmMedicines;
-            }
-            set
-            {
-                this.Set("PharmMedicines", ref this.pharmMedicines, value);
-            }
-        }
-
+        /// <summary>
+        /// Gets or sets editable pharmacy value
+        /// </summary>
         public Institution EditablePharmacy
         {
             get
@@ -65,6 +80,9 @@ namespace Desktop.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets visibility value 
+        /// </summary>
         public Visibility Visibility
         {
             get
@@ -77,16 +95,25 @@ namespace Desktop.ViewModels
             }
         }
 
+        /// <summary>
+        /// Getter for delete pharmacy command
+        /// </summary>
         public DeletePharmacyCommand DeletePharmacyCommand
         {
             get => this.deletePharmacyCommand;
         }
 
+        /// <summary>
+        /// Getter for edit pharmacy command
+        /// </summary>
         public EditPharmacyCommand EditPharmacyCommand
         {
             get => this.editPharmacyCommand;
         }
 
+        /// <summary>
+        /// Creates a new instanse of <see cref="PharmaciesViewModel"/>
+        /// </summary>
         public PharmaciesViewModel()
         {
             this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "pharmacy_admin") ? Visibility.Visible : Visibility.Collapsed;
@@ -95,6 +122,11 @@ namespace Desktop.ViewModels
             this.filterService = new FilterService<Institution>();
         }
 
+        /// <summary>
+        /// Filters data by given predicate
+        /// </summary>
+        /// <param name="predicate">Predicate</param>
+        /// <returns></returns>
         public async Task Filter(Func<Institution, bool> predicate)
         {
             var pharmacies = await this.filterService.FilterAsync(this.data, predicate);
@@ -102,11 +134,21 @@ namespace Desktop.ViewModels
             this.Pharmacies = new ObservableCollection<Institution>(pharmacies);
         }
 
+        /// <summary>
+        /// Delete pharmacy with specified id
+        /// </summary>
+        /// <param name="id">Pharmacy Id</param>
+        /// <returns>Boolean value indicating the success of operation</returns>
         private async Task<bool> deletePharmacy(int id)
         {
             return await ((App)App.Current).InstitutionClient.DeleteInstitutionAsync(id);
         }
 
+        /// <summary>
+        /// Edit pharmacy with given values
+        /// </summary>
+        /// <param name="pharmacy">Pharmacy info</param>
+        /// <returns>Boolean value indicating the success of operation</returns>
         private async Task<bool> editPharmacy(Institution pharmacy)
         {
             return await ((App)App.Current).InstitutionClient.UpdateInstitutionAsync(pharmacy);

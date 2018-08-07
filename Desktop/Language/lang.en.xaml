@@ -132,7 +132,13 @@
     
     <!-- Pharmacies-->
     <system:String x:Key="pharmacies_email">Email</system:String>
+    <system:String x:Key="pharm_medicines">View medicines</system:String>
+
+    <!-- PharmMedicines page -->
+    <system:String x:Key="pharmmed_name">Name</system:String>
+    <system:String x:Key="pharmmed_price">Price</system:String>
     
+
     <!-- Map page -->
     <system:String x:Key="select_inst">Select institution type</system:String>
     <system:String x:Key="map_hospitals">Hospitals</system:String>

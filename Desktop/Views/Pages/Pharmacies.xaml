@@ -161,8 +161,11 @@
                                     CommandParameter="{Binding Id}" Foreground="White" BorderBrush="#FFE82E2E" Background="#FFE82E2E" FontFamily="Comfortaa" 
                                     FontSize="14" Margin="10,0,0,0"/>
 
-                        </StackPanel>
+                            <Button Content="{DynamicResource pharm_medicines}" Click="ViewMedicinesClick" Tag="{Binding Path=Id }"
+                                    Foreground="White" BorderBrush="#FFE82E2E" Background="#FFE82E2E" FontFamily="Comfortaa" FontSize="14" Margin="10,0,0,0"/>
 
+                        </StackPanel>
+                        
                     </StackPanel>
 
                 </DataTemplate>

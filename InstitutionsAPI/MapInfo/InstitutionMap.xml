@@ -130,12 +130,6 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
   </operation>
   <operation name="GetPharmacyMedicines">
     <spName>uspGetPharmacyMedicines</spName>
-    <parameters>
-      <parameter>
-        <parameterName>primitive</parameterName>
-        <spParameterName>id</spParameterName>
-      </parameter>
-    </parameters>
     <returnDataType>Enumerable</returnDataType>
   </operation>
   <operation name="GetPharmacyMedicine">

@@ -58,6 +58,10 @@ namespace InstitutionsAPI.Controllers
                 int.TryParse(param, out id);
                 result = await this._dataManager.OperateAsync<int, PharmMedicine>("GetPharmacyMedicine", id);
             }
+            else
+            {
+                result = await this._dataManager.OperateAsync<PharmMedicine>("GetPharmacyMedicines");
+            }
 
             // if no content retun 204
             if (result == null)

@@ -153,9 +153,14 @@ namespace InstitutionClient
             return await this.GetAllAsync<Institution>($"api/institutions/?medicineId={medicineId}");
         }
 
-        public async Task<ResponseMessage<IEnumerable<PharmMedicine>>> GetAllPharmacyMedicinesAsync(int pharmacyId)
+        public async Task<ResponseMessage<IEnumerable<PharmMedicine>>> GetPharmacyMedicinesAsync(int pharmacyId)
         {
             return await this.GetAllAsync<PharmMedicine>($"api/pharmmeds/?pharmacyId={pharmacyId}");
+        }
+
+        public async Task<ResponseMessage<IEnumerable<PharmMedicine>>> GetAllPharmacyMedicinesAsync()
+        {
+            return await this.GetAllAsync<PharmMedicine>($"api/pharmmeds");
         }
 
         public async Task<ResponseMessage<Institution>> GetInstitutionAsync(int id)

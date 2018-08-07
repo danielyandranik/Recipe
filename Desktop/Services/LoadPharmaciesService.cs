@@ -21,16 +21,14 @@ namespace Desktop.Services
 
         public async Task Load()
         {
-           // var medResponse = await this.client.GetAllPharmacyMedicinesAsync();
-            var pharmResponse = await this.client.GetAllPharmaciesAsync();
+            var response = await this.client.GetAllPharmaciesAsync();
 
-            if (!pharmResponse.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode)
             {
                 throw new Exception();
             }
 
-            this.pharmaciesViewModel.PharmMedicines = new ObservableCollection<PharmMedicine>();
-            this.pharmaciesViewModel.Pharmacies = new ObservableCollection<Institution>(pharmResponse.Content);
+            this.pharmaciesViewModel.Pharmacies = new ObservableCollection<Institution>(response.Content);
             this.pharmaciesViewModel.data = this.pharmaciesViewModel.Pharmacies;
         }
     }
