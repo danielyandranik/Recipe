@@ -53,7 +53,7 @@ namespace Desktop.Services
 
         public async Task<Recipe> Map(RecipeClient.Recipe recipeFromApi)
         {
-            var recipeItems = new List<RecipeItem>();
+            var recipeItems = new ObservableCollection<RecipeItem>();
 
             var dictionary = App.Current.Resources;
 
@@ -101,7 +101,7 @@ namespace Desktop.Services
                 HospitalName = gettingHospitalNameResponse.Result.HospitalName,
                 Id = recipeFromApi.Id,
                 DoctorName = gettingDoctorFullNameResponse.Result.FullName,
-                RecipeItems = new ObservableCollection<RecipeItem>(recipeItems)
+                RecipeItems = recipeItems
             };
         }
     }

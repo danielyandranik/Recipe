@@ -37,7 +37,7 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter.</param>
         public async override void Execute(object parameter)
         {
-            var historyItems = (IEnumerable<RecipeHistoryItem>)parameter;
+            var historyItems = (IEnumerable<RecipeHistoryItem>)this.viewModel.HistoryItems;
 
             var response = await ((App)App.Current).UserApiClient.GetPharmacistByIdAsync(User.Default.Id);
 
@@ -52,7 +52,7 @@ namespace Desktop.Commands
             var recipeHistory = new RecipeHistory
             {
                 CreatedOn = DateTime.Now,
-                RecipeId = this.viewModel.Recipe.Id,
+                RecipeId = this.viewModel.Recipe.First().Id,
                 PharmacyId = pharmacyId,
                 Sold = historyItems.ToList<RecipeHistoryItem>()
             };

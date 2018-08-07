@@ -114,7 +114,7 @@
     <system:String x:Key="add_pharmacy_admin">Add pharmacy admin profile</system:String>
 
     <!-- Create recipe page -->
-    <system:String x:Key="recipe_owner">Who is the recipe for></system:String>
+    <system:String x:Key="recipe_owner">Who is the recipe for</system:String>
     <system:String x:Key="med">Medicine</system:String>
     <system:String x:Key="med_count">Count</system:String>
     <system:String x:Key="med_frequency">Use frequency unit</system:String>

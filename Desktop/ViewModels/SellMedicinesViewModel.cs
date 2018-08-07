@@ -11,11 +11,13 @@ namespace Desktop.ViewModels
     {
         private readonly RecipeClient.RecipeClient client;
 
-        private Models.Recipe recipe;
+        private string recipeId;
+
+        private ObservableCollection<Models.Recipe> recipe;
 
         private ObservableCollection<RecipeHistoryItem> historyItems;
 
-        public Models.Recipe Recipe
+        public ObservableCollection<Models.Recipe> Recipe
         {
             get => this.recipe;
 
@@ -27,6 +29,13 @@ namespace Desktop.ViewModels
             get => this.historyItems;
 
             set => this.Set("HistoryItems", ref this.historyItems, value);
+        }
+
+        public string RecipeId
+        {
+            get => this.recipeId;
+
+            set => this.Set("RecipeId", ref this.recipeId, value);
         }
 
         public AddRecipeHistoryCommand AddRecipeHistoryCommand { get; private set; }

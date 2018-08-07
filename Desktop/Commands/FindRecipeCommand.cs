@@ -3,8 +3,10 @@ using Desktop.ViewModels;
 using Desktop.Views.Windows;
 using RecipeClient;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Desktop.Commands
 {
@@ -32,9 +34,10 @@ namespace Desktop.Commands
 
             var loadService = new LoadRecipesService();
 
-            this.ViewModel.Recipe = await loadService.Map(recipe);
+            this.ViewModel.Recipe = new ObservableCollection<Models.Recipe>();
+            this.ViewModel.Recipe.Add(await loadService.Map(recipe));
 
-            this.ViewModel.HistoryItems = this.Map(this.ViewModel.Recipe);
+            this.ViewModel.HistoryItems = this.Map(this.ViewModel.Recipe.First());
         }
 
         private ObservableCollection<RecipeHistoryItem> Map(Models.Recipe recipe)

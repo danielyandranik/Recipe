@@ -38,14 +38,14 @@
 
             </Grid.RowDefinitions>
 
-            <Border BorderThickness="0,2,0,0" BorderBrush="#FF182634">
+            <Border BorderThickness="0,0,0,1" BorderBrush="#FF182634">
                 <Grid Grid.Row="0" Background="#FF39B9B9">
 
                     <TextBlock Text="{DynamicResource sell_med}" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="28" HorizontalAlignment="Center" Margin="0,20"/>
                     <Button Content="{DynamicResource done}" Width="100" Height="32" HorizontalAlignment="Right" 
                             Margin="0,0,20,0" Background="White" BorderBrush="White" Foreground="#FF39B9B9" 
                             FontSize="14" FontWeight="Bold" FontFamily="Comfortaa"
-                            Command="{Binding AddRecipeHistoryCommand}" CommandParameter="{Binding HistoryItems}"
+                            Command="{Binding AddRecipeHistoryCommand}"
                             />
 
                 </Grid>
@@ -79,13 +79,13 @@
                 </Grid>
             </Border>
 
-            <ItemsControl Grid.Row="2" ItemsSource="{Binding Recipe}">
+            <ItemsControl Grid.Row="2" ItemsSource="{Binding Recipe}" HorizontalContentAlignment="Stretch">
 
                 <ItemsControl.ItemTemplate>
 
                     <DataTemplate>
 
-                        <Border Width="600" Height="300" BorderThickness="1" BorderBrush="#FF182634" Margin="0,10,0,0">
+                        <Border Width="750" Height="400" BorderThickness="1" BorderBrush="#FF182634" Margin="0,10,0,0">
 
                             <Grid>
 
@@ -109,55 +109,61 @@
 
                                     <Grid.ColumnDefinitions>
 
-                                        <ColumnDefinition Width="400" />
-                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="450" />
+                                        <ColumnDefinition Width="300" />
 
                                     </Grid.ColumnDefinitions>
                                     
-                                    <ListView Grid.Column="0"  Width="auto" ItemsSource="{Binding RecipeItems}" HorizontalContentAlignment="Stretch">
+                                    <ItemsControl Grid.Column="0"  Width="auto" ItemsSource="{Binding RecipeItems}" HorizontalContentAlignment="Stretch">
 
-                                        <ListView.ItemTemplate>
+                                        <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <Grid Height="40" >
+                                                <Border BorderThickness="0,0,0,1" BorderBrush="#FF182634">
+                                                    <Grid Height="40" >
 
-                                                    <Grid.ColumnDefinitions>
+                                                        <Grid.ColumnDefinitions>
 
-                                                        <ColumnDefinition Width="*" />
-                                                        <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
 
 
-                                                    </Grid.ColumnDefinitions>
+                                                        </Grid.ColumnDefinitions>
 
-                                                    <Label Grid.Column="0" Content="{Binding Medicine.Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                                                    <Label Grid.Column="1" Content="{Binding Count}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                                                        <Label Grid.Column="0" Content="{Binding Medicine.Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                                                        <Label Grid.Column="1" Content="{Binding Count}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
 
-                                                </Grid>
+                                                    </Grid>
+                                                </Border>
                                             </DataTemplate>
-                                        </ListView.ItemTemplate>
+                                        </ItemsControl.ItemTemplate>
 
-                                    </ListView>
+                                    </ItemsControl>
 
-                                    <ListView Grid.Column="1"  Width="auto" ItemsSource="{Binding DataContext.HistoryItems, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" HorizontalContentAlignment="Stretch">
+                                    <ItemsControl Grid.Column="1"  Width="auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                  ItemsSource="{Binding DataContext.HistoryItems, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" HorizontalContentAlignment="Stretch">
 
-                                        <ListView.ItemTemplate>
+                                        <ItemsControl.ItemTemplate>
 
                                             <DataTemplate>
 
-                                                <Grid Height="40">
+                                                <Border BorderThickness="0,0,0,1" BorderBrush="#FF182634">
 
-                                                    <TextBox  Height="25" Text="{Binding Count}" Width="200" BorderBrush="#FF39B9B9" 
-                                                              CaretBrush="#FF182634" Foreground="#FF182634" FontSize="16" 
-                                                              FontFamily="Comfortaa" HorizontalContentAlignment="Center" 
-                                                              VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2"
-                                                              VerticalAlignment="Center"/>
+                                                    <Grid Height="40">
 
-                                                </Grid>
-                                                
+                                                        <TextBox  Height="25" Text="{Binding Count}" Width="200" BorderBrush="#FF39B9B9" 
+                                                                  CaretBrush="#FF182634" Foreground="#FF182634" FontSize="16" 
+                                                                  FontFamily="Comfortaa" HorizontalContentAlignment="Center" 
+                                                                  VerticalContentAlignment="Bottom" TextWrapping="NoWrap"  Padding="5, 2"
+                                                                  VerticalAlignment="Center" Margin="0,5,0,0"/>
+
+                                                    </Grid>
+                                                </Border>
+
                                             </DataTemplate>
                                                                                         
-                                        </ListView.ItemTemplate>
+                                        </ItemsControl.ItemTemplate>
                                                                                 
-                                    </ListView>
+                                    </ItemsControl>
                                     
                                 </Grid>
                                 
