@@ -255,7 +255,7 @@
     <Compile Include="Commands\EditMedicineCommand.cs" />
     <Compile Include="Commands\EditPharmacyCommand.cs" />
     <Compile Include="Commands\FindRecipeCommand.cs" />
-    <Compile Include="Commands\LoadMedicinesCommand.cs" />
+    <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Models\MedicinePricePair.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Services\AddInstitutionService.cs" />
