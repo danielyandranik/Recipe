@@ -131,6 +131,11 @@
     
     <!-- Pharmacies page -->
     <system:String x:Key="pharmacies_email">Էլ․ հասցե</system:String>
+    <system:String x:Key="pharm_medicines">Առկա դեղեր</system:String>
+
+    <!-- PharmMedicines page -->
+    <system:String x:Key="pharmmed_name">Անուն</system:String>
+    <system:String x:Key="pharmmed_price">Արժեք</system:String>
 
     <!-- Medicines page-->
     <system:String x:Key="med_cancel">Չեղարկել</system:String>

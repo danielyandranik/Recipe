@@ -134,7 +134,7 @@
     
     <!-- Pharmacies-->
     <system:String x:Key="pharmacies_email">Email</system:String>
-    <system:String x:Key="pharm_medicines">View medicines</system:String>
+    <system:String x:Key="pharm_medicines">Available medicines</system:String>
 
     <!-- PharmMedicines page -->
     <system:String x:Key="pharmmed_name">Name</system:String>

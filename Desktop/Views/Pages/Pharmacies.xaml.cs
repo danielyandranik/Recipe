@@ -20,7 +20,7 @@ namespace Desktop.Views.Pages
 
         public Pharmacies()
         {
-            this.navigationService = new NavigateService(this.frame);
+           // this.navigationService = new NavigateService(this.frame);
             this.PharmaciesViewModel = new PharmaciesViewModel();
             this.DataContext = this.PharmaciesViewModel;
             InitializeComponent();
