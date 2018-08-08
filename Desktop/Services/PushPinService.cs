@@ -9,6 +9,9 @@ using Microsoft.Maps.MapControl.WPF;
 using InstitutionClient;
 using System.Net.Http;
 using Desktop.Models;
+using System.Windows.Input;
+using Desktop.ViewModels;
+using InstitutionClient.Models;
 
 namespace Desktop.Services
 {
@@ -23,9 +26,9 @@ namespace Desktop.Services
         private readonly Client _institutionClient;
 
         /// <summary>
-        /// Pushpins of map
+        /// Map page view model
         /// </summary>
-        private readonly UIElementCollection _pushPins;
+        private readonly MapPageViewModel _vm;
 
         /// <summary>
         /// Geocode path
@@ -38,16 +41,22 @@ namespace Desktop.Services
         private readonly HttpClient _httpClient;
 
         /// <summary>
+        /// Institutions
+        /// </summary>
+        private readonly Dictionary<Pushpin, Institution> _institutions;
+
+        /// <summary>
         /// Creates new instance of <see cref="PushPinService"/>
         /// </summary>
         /// <param name="pushPins">PushPins</param>
-        public PushPinService(UIElementCollection pushPins)
+        public PushPinService(MapPageViewModel vm)
         {
             // setting fields
+            this._vm = vm;
             this._institutionClient = ((App)App.Current).InstitutionClient;
-            this._pushPins = pushPins;
             this._geocodePath = ConfigurationManager.AppSettings["GeocodePath"];
             this._httpClient = new HttpClient();
+            this._institutions = new Dictionary<Pushpin, Institution>();
         }
 
         /// <summary>
@@ -57,21 +66,23 @@ namespace Desktop.Services
         /// <returns>nothing</returns>
         public async Task AddPushPins(string institutionType)
         {
-            this._pushPins.Clear();
+            this.Reset();
 
-            var addresses = default(IEnumerable<string>);
+            var institutions = default(IEnumerable<Institution>);
 
-            if (institutionType == "Hospitals")
-                addresses = await this.GetHospitalAddressesAsync();
+            var type = (string)App.Current.Resources[institutionType];
+
+            if (type == "hospital")
+                institutions = await this.GetHospitalAddressesAsync();
             else
-                addresses = await this.GetPharmacyAddressesAsync();
+                institutions = await this.GetPharmacyAddressesAsync();
 
-            if (addresses == null)
+            if (institutions == null)
                 return;
 
-            foreach (var address in addresses)
+            foreach (var institution in institutions)
             {
-                var point = await this.GetGeocodes(address);
+                var point = await this.GetGeocodes(institution.Address);
 
                 if (point == null)
                     continue;
@@ -81,7 +92,11 @@ namespace Desktop.Services
                     Location = new Location(point.Latitude, point.Longitude)
                 };
 
-                this._pushPins.Add(pushPin);
+                pushPin.PreviewMouseDown += this.ShowPopup;
+
+                this._institutions.Add(pushPin, institution);
+
+                this._vm.PushPins.Add(pushPin);
             }
         }
 
@@ -89,28 +104,28 @@ namespace Desktop.Services
         /// Gets addresses of all hospitals registered in Recipe system.
         /// </summary>
         /// <returns>enumerable of addresses</returns>
-        public async Task<IEnumerable<string>> GetHospitalAddressesAsync()
+        private async Task<IEnumerable<Institution>> GetHospitalAddressesAsync()
         {
             var response = await this._institutionClient.GetAllHospitalsAsync();
 
             if (!response.IsSuccessStatusCode)
                 return null;
 
-            return response.Content.Select(hospital => hospital.Address);
+            return response.Content;
         }
 
         /// <summary>
         /// Gets addresses of all pharmacies registered in Recipe system.
         /// </summary>
         /// <returns>enumerable of addresses</returns>
-        public async Task<IEnumerable<string>> GetPharmacyAddressesAsync()
+        private async Task<IEnumerable<Institution>> GetPharmacyAddressesAsync()
         {
             var response = await this._institutionClient.GetAllPharmaciesAsync();
 
             if (!response.IsSuccessStatusCode)
                 return null;
 
-            return response.Content.Select(pharmacy => pharmacy.Address);
+            return response.Content;
         }
 
         /// <summary>
@@ -149,5 +164,42 @@ namespace Desktop.Services
             };
         }
 
+        /// <summary>
+        /// Resets pushpins
+        /// </summary>
+        private void Reset()
+        {
+            var pushPins = this._vm.PushPins;
+
+            foreach(var pushPin in pushPins)
+            {
+                var pushPinObject = pushPin as Pushpin;
+
+                pushPinObject.PreviewMouseDown -= this.ShowPopup;
+            }
+
+            pushPins.Clear();
+            this._institutions.Clear();
+        }
+
+        /// <summary>
+        /// Event handler for pushpin PreviewMouseDown
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event argument</param>
+        private void ShowPopup(object sender, MouseButtonEventArgs e)
+        {
+            var pushPin = sender as Pushpin;
+
+            var institution = this._institutions[pushPin];
+
+            this._vm.Address = institution.Address;
+            this._vm.Description = institution.Description;
+            this._vm.Email = institution.Email;
+            this._vm.Name = institution.Name;
+            this._vm.Owner = institution.Owner;
+            this._vm.Phone = institution.Phone;
+            this._vm.IsInstitutionInfoOpen = true;
+        }
     }
 }

@@ -144,6 +144,8 @@
     <system:String x:Key="select_inst">Ընտրել հաստատության տեսակը</system:String>
     <system:String x:Key="map_hospitals">Հիվանդանոցներ</system:String>
     <system:String x:Key="map_pharmacies">Դեղատներ</system:String>
+    <system:String x:Key="Հիվանդանոցներ">hospital</system:String>
+    <system:String x:Key="Դեղատներ">pharmacy</system:String>
 
     <!-- Sell medicines page -->
     <system:String x:Key="recipe_id">Դեղատոմսի ID</system:String>

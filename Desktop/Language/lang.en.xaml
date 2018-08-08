@@ -145,6 +145,8 @@
     <system:String x:Key="select_inst">Select institution type</system:String>
     <system:String x:Key="map_hospitals">Hospitals</system:String>
     <system:String x:Key="map_pharmacies">Pharmacies</system:String>
+    <system:String x:Key="Hospitals">hospital</system:String>
+    <system:String x:Key="Pharmacies">pharmacy</system:String>
     
     <!-- Sell medicines page -->
     <system:String x:Key="recipe_id">Recipe id</system:String>

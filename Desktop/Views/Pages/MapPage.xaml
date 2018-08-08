@@ -5,9 +5,26 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Desktop.Views.Pages"
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Map" Background="#FF39B9B9" MinHeight="609" MinWidth="902">
+
+    <Page.Resources>
+        <Style x:Key="EditInputs" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <!-- Modify default template, to change triggers -->
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,0,2" >
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
     <Border BorderBrush="Black" BorderThickness="3">
         <Grid>
             <Grid.RowDefinitions>
@@ -19,15 +36,81 @@
                   VerticalAlignment="Center" BorderBrush="{x:Null}"
                       IsEditable="True" IsReadOnly="True" Text="{DynamicResource select_inst}"
                       Focusable="False">
-                <ComboBoxItem Content="{DynamicResource hospitals}" MinWidth="800"
+                <ComboBoxItem Name="hospitals_item" Content="{DynamicResource hospitals}" MinWidth="800"
                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                          Background="#FF39B9B9" Foreground="White" FontSize="20" PreviewMouseDown="ComboBoxItem_PreviewMouseDown"/>
-                <ComboBoxItem Content="{DynamicResource pharmacies}" MinWidth="800"
+                          Background="#FF39B9B9" Foreground="White" FontSize="20">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction 
+                                Command="{Binding PushPinCommand}"
+                                CommandParameter="{Binding ElementName=hospitals_item, Path=Content}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBoxItem>
+                <ComboBoxItem Name="pharmacies_item" Content="{DynamicResource pharmacies}" MinWidth="800"
                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                          Background="#FF39B9B9" Foreground="White" FontSize="20" PreviewMouseDown="ComboBoxItem_PreviewMouseDown"/>
+                          Background="#FF39B9B9" Foreground="White" FontSize="20">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction 
+                                Command="{Binding PushPinCommand}"
+                                CommandParameter="{Binding ElementName=pharmacies_item, Path=Content}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBoxItem>
             </ComboBox>
             <m:Map Name="map" Grid.Row="1" CredentialsProvider="EOnTRVd4HUO3jAbQVZes~hT8iS0wme8DOBnyr7lAJDA~AnhVYLJc5DzxhfKsllJY-P9mcE2oX0IuTrACvzjB9-nd8sRzlb3hrBEyXXufsVD0"
                Center="40.1792, 44.4991" ZoomLevel="11"/>
+
+            <Popup Name="InstitutionInfo" Placement="Center" HorizontalOffset="-200" VerticalOffset="-100" IsOpen="{Binding IsInstitutionInfoOpen}">
+                <Border BorderBrush="#FF182634" BorderThickness="3" Padding="20,20,20,18" Background="White" CornerRadius="5" Height="467" Width="329">
+                    <StackPanel Width="300" HorizontalAlignment="Center" Margin="0,28,0,0" RenderTransformOrigin="0.5,0.5" >
+
+                        <Label Content="{DynamicResource inst_name}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                        <TextBox Style="{StaticResource EditInputs}" IsReadOnly="True"
+                                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                                 Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
+
+
+                        <Label Content="{DynamicResource inst_owner}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                        <TextBox Style="{StaticResource EditInputs}" IsReadOnly="True"
+                                 Text="{Binding Owner, UpdateSourceTrigger=PropertyChanged}" 
+                                 Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
+
+                        <Label Content="{DynamicResource inst_phone}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                        <TextBox Style="{StaticResource EditInputs}" IsReadOnly="True"
+                                 Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" 
+                                 Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
+
+                        <Label Content="{DynamicResource inst_email}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                        <TextBox Style="{StaticResource EditInputs}" IsReadOnly="True"
+                                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" 
+                                 Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
+
+                        <Label Content="{DynamicResource inst_address}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                        <TextBox Style="{StaticResource EditInputs}" IsReadOnly="True"
+                                 Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" 
+                                 Height="25"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="0,0,0,5"/>
+
+                        <Label Content="{DynamicResource inst_description}" FontSize="14" FontFamily="Comfortaa" Foreground="#FF182634" HorizontalAlignment="Center"/>
+                        <TextBox Style="{StaticResource EditInputs}" 
+                                 Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" 
+                                 VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="39"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="30,0,30,5"/>
+
+                        <Button Grid.Row="2" Margin="25,10,0,0" BorderBrush="{x:Null}" Background="#FF00C853" Width="90" VerticalAlignment="Top" 
+                                Command="{Binding ClosePopup}"
+                                >
+                            <Button.ContentTemplate>
+                                <DataTemplate>
+                                    <Viewbox>
+                                        <TextBlock Text="{DynamicResource ok}"/>
+                                    </Viewbox>
+                                </DataTemplate>
+                            </Button.ContentTemplate>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Popup>
         </Grid>
     </Border>
 </Page>

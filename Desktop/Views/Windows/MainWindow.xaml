@@ -174,7 +174,7 @@
 
             </Grid>
 
-            <Frame Grid.Column="1" Name="frame" NavigationUIVisibility="Hidden"></Frame>
+            <Frame Grid.Column="1" Name="frame" NavigationUIVisibility="Hidden" Background="Transparent"></Frame>
 
         </Grid>
 

@@ -257,6 +257,7 @@
     <Compile Include="Commands\FindRecipeCommand.cs" />
     <Compile Include="Commands\LoadCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="Commands\PushPinCommand.cs" />
     <Compile Include="Interfaces\ILoadService.cs" />
     <Compile Include="Models\MedicinePricePair.cs" />
     <Compile Include="Models\Point.cs" />
@@ -328,6 +329,7 @@
     <Compile Include="ViewModels\HospitalDirectorProfileViewModel.cs" />
     <Compile Include="ViewModels\HospitalsViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MapPageViewModel.cs" />
     <Compile Include="ViewModels\MedicinesViewModel.cs" />
     <Compile Include="ViewModels\PatientProfileViewModel.cs" />
     <Compile Include="ViewModels\PharmaciesViewModel.cs" />
