@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Configuration;
 using System.Windows.Threading;
@@ -9,6 +10,8 @@ using Desktop.Models;
 using Desktop.ViewModels;
 using Desktop.Services;
 using Desktop.Views.Pages;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace Desktop
 {
@@ -138,6 +141,8 @@ namespace Desktop
         /// <param name="e">Event argument</param>
         private  async void Application_Startup(object sender, StartupEventArgs e)
         {
+            this.CheckBeforeStarting();
+
             var dictionary = App.Current.Resources;
 
             if(!this._isReadyForStartup)
@@ -253,5 +258,35 @@ namespace Desktop
             dictionaries.RemoveAt(4);
             dictionaries.Add(dictionary);
         }
+
+        /// <summary>
+        /// Checks if there is already recipe instance running preventing the new process creation.
+        /// </summary>
+        private void CheckBeforeStarting()
+        {
+            var processes = Process.GetProcesses();
+
+            var currentProcess = Process.GetCurrentProcess();
+
+            var runningProcess = processes.Where(process => process.Id != currentProcess.Id && 
+                      process.ProcessName.Equals(currentProcess.ProcessName,StringComparison.Ordinal))
+                      .FirstOrDefault();
+
+            if (runningProcess == null)
+                return;
+
+            ShowWindow(runningProcess.MainWindowHandle, 5);
+
+            this.Shutdown();
+        }
+
+        /// <summary>
+        /// Shows Window
+        /// </summary>
+        /// <param name="hWnd">Hwnd</param>
+        /// <param name="nCmdShow">nCmdShow</param>
+        /// <returns></returns>
+        [DllImport("user32.dll")]
+        private static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);
     }
 }
