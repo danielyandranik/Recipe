@@ -275,6 +275,12 @@ namespace Desktop
             if (runningProcess == null)
                 return;
 
+            // Now calling ShowWindow function from user32.dll.
+            // The second parameter of ShowWindow is nCmdShow.
+            // We will call it with SW_SHOW parameter which provides the following result:
+            // Activates the window and displays it in its current size and position.
+            // The value for SH_SHOW is 5.
+            // For more information please see docs of user32.dll.
             ShowWindow(runningProcess.MainWindowHandle, 5);
 
             this.Shutdown();
