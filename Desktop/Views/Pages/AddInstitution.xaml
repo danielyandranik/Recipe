@@ -90,7 +90,7 @@
                 <ComboBox Text="Select" Width="240" BorderBrush="{x:Null}" Foreground="#DD000000" 
                           FontFamily="Comfortaa" FontSize="16" Height="40" VerticalAlignment="Center" 
                           Background="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                          SelectedValue="{Binding Institution.Type, UpdateSourceTrigger=PropertyChanged}">
+                          SelectedIndex="{Binding Institution.Type, UpdateSourceTrigger=PropertyChanged}">
                     <ComboBoxItem VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="40" FontWeight="Bold" FontSize="16" 
                                   Content="{DynamicResource inst_hospital}"/>
                     <ComboBoxItem VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="40" FontWeight="Bold" FontSize="16"

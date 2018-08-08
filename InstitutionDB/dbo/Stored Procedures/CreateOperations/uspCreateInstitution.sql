@@ -14,9 +14,12 @@ AS
 	begin
 		if not exists(select * from Institutions where Address = @address)
 			begin 
-				insert into Institutions 
-				values(@name, @license, @owner, @address,
-						@phone, @email, @description, @openTime, @closeTime, SUBSTRING(@type, 39, 8))
+				if @type = 'hospital' or @type = 'pharmacy'
+					begin
+						insert into Institutions 
+						values(@name, @license, @owner, @address,
+						@phone, @email, @description, @openTime, @closeTime, @type)
+					end
 			end
 	end
 
