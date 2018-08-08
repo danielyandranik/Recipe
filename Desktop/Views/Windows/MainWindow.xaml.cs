@@ -114,8 +114,6 @@ namespace Desktop.Views.Windows
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            base.OnClosing(e);
-
             var menu = this.profiles.Items;
 
             var manager = ((App)App.Current).ProfilesMenuManager;
@@ -130,6 +128,8 @@ namespace Desktop.Views.Windows
             var app = (App)App.Current;
 
             app.ProfilesMenuManager = null;
+
+            base.OnClosing(e);
         }
     }
 }

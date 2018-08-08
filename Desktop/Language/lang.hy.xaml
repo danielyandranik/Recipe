@@ -24,6 +24,7 @@
     <system:String x:Key="add_inst">Ավելացնել հաստատ...</system:String>
     <system:String x:Key="sell_med">Վաճառել դեղեր</system:String>
     <system:String x:Key="dell_profile">Ջնջել պրոֆիլը</system:String>
+    <system:String x:Key="users">Օգտատերեր</system:String>
 
     <!-- Confirmation Window -->
     <system:String x:Key="confirmation">Հաստատում</system:String>

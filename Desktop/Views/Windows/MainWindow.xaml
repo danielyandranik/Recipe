@@ -21,9 +21,9 @@
         <Grid Height="70" Grid.Row="0" Background="#FF39B9B9">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="43*"/>
+                <ColumnDefinition Width="Auto" MinWidth="526"/>
+                <ColumnDefinition Width="24*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
@@ -69,7 +69,7 @@
                                       FontFamily="Comfortaa" FontSize="18" Tag="en" Command="{Binding ChangeLangCommand}"
                                       CommandParameter="{Binding ElementName=en_item, Path=Tag}"/>
                         </MenuItem>
-                        
+
                         <MenuItem Header="{DynamicResource sign_out}" Background="#FF39B9B9" Foreground="White" 
                                   FontFamily="Comfortaa" FontSize="18"
                                   Command="{Binding SignOutCommand}"/>
@@ -103,7 +103,13 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </TextBlock>
-
+                <TextBlock Cursor="Hand" Text="{DynamicResource users}" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction Command="{Binding ShowUsers}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
             </StackPanel>
 
 
@@ -145,7 +151,7 @@
 
                     <Separator Width="300" Background="White" Margin="0,0,0,0" />
 
-                   
+
 
                     <Button Content="{DynamicResource my_recipes}" Name="MyRecipesButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
                             Click="RecipesButton_Click" 

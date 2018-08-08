@@ -24,6 +24,7 @@
     <system:String x:Key="add_inst">Add institution</system:String>
     <system:String x:Key="sell_med">Sell Medicines</system:String>
     <system:String x:Key="dell_profile">Delete Profile</system:String>
+    <system:String x:Key="users">Users</system:String>
     
     <!-- Confirmation Window -->
     <system:String x:Key="confirmation">Confirmation</system:String>
