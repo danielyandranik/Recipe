@@ -96,10 +96,8 @@
                         <TextBox Style="{StaticResource EditInputs}" 
                                  Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" 
                                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="39"  BorderBrush="#FF39B9B9" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="30,0,30,5"/>
-
-                        <Button Grid.Row="2" Margin="25,10,0,0" BorderBrush="{x:Null}" Background="#FF00C853" Width="90" VerticalAlignment="Top" 
-                                Command="{Binding ClosePopup}"
-                                >
+                        <Button Margin="110,10,110,0" BorderBrush="{x:Null}" Background="#FF00C853" VerticalAlignment="Top" 
+                                Command="{Binding ClosePopup}">
                             <Button.ContentTemplate>
                                 <DataTemplate>
                                     <Viewbox>
