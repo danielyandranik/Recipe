@@ -58,6 +58,10 @@ namespace RecipeApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Recipe recipe)
         {
+            foreach(var item in recipe.RecipeItems)
+            {
+                item.LeftCount = item.Count;
+            }
             await this._recipeRepository.Create(recipe);
             return new OkObjectResult(recipe);
         }

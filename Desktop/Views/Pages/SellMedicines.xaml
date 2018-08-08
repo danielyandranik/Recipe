@@ -130,7 +130,7 @@
                                                         </Grid.ColumnDefinitions>
 
                                                         <Label Grid.Column="0" Content="{Binding Medicine.Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
-                                                        <Label Grid.Column="1" Content="{Binding Count}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
+                                                        <Label Grid.Column="1" Content="{Binding LeftCount}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comfortaa" Foreground="#FF182634" FontSize="14" />
 
                                                     </Grid>
                                                 </Border>

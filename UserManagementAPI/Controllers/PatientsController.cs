@@ -55,7 +55,7 @@ namespace UserManagementAPI.Controllers
         public IActionResult Get(int id)
         {
             // getting result
-            var result = this._dataManager.Operate<Patient>("GetPatienById");
+            var result = this._dataManager.Operate<Patient>("GetPatientById");
 
             // returning result
             return this.GetActionResult(result);

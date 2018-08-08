@@ -240,7 +240,7 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     <spName>uspGetPharmacistByUserId</spName>
     <parameters>
       <parameter>
-        <parameterName>primtive</parameterName>
+        <parameterName>primitive</parameterName>
         <spParameterName>userId</spParameterName>
       </parameter>
     </parameters>

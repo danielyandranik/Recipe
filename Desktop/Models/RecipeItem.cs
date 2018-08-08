@@ -31,5 +31,10 @@ namespace Desktop.Models
         /// Gets or sets the count of units per use
         /// </summary>
         public int CountPerUse { get; set; }
+
+        /// <summary>
+        /// Left count of this medicine.
+        /// </summary>
+        public int LeftCount { get; set; }
     }
 }

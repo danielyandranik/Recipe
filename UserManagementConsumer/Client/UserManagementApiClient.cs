@@ -384,7 +384,7 @@ namespace UserManagementConsumer.Client
         /// <returns>response</returns>
         public async Task<Response<PharmacistFullInfo>> GetPharmacistByIdAsync(int id)
         {
-            return await this.GetProfileByTypeAndIdAsync<PharmacistFullInfo>("patients", id);
+            return await this.GetProfileByTypeAndIdAsync<PharmacistFullInfo>("pharmacists", id);
         }
 
         

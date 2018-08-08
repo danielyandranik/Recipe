@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using RecipeApi.Models;
 using RecipeApi.Repositories;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace RecipeApi.Controllers
 {
@@ -56,81 +58,59 @@ namespace RecipeApi.Controllers
 		[HttpPost]
         public async Task<IActionResult> Post([FromBody]RecipeHistory recipeHistory)
         {
-			//var recipeId = recipeHistory.RecipeId;
+            var recipe = await this._recipeRepository.GetRecipe(recipeHistory.RecipeId);
 
-			//var history = await this._recipeHistoryRepository.GetRecipeHistoryByRecipe(recipeId);
-
-			//Dictionary<string, int> sold = new Dictionary<string, int>();
-
-   //         sold = recipeHistory.Sold;
-
-   //         var recipe = await this._recipeRepository.GetRecipe(recipeHistory.RecipeId);
-
-   //         if (recipe == null)
-   //         {
-   //             return new NotFoundResult();
-   //         }
-
-   //         foreach (var historyIteam in history)
-			//{
-			//	foreach (var medicine in sold)
-			//	{
-			//		if (historyIteam.Sold.ContainsKey(medicine.Key))
-			//		{
-   //                     historyIteam.Sold.TryGetValue(medicine.Key, out var count);
-			//			sold[medicine.Key] = count + medicine.Value;
-			//		}
-			//	}
-			//}
-
-
-   //         bool isApproved = true;
-
-   //         foreach (var medicine in sold)
-			//{
-			//	if (medicine.Value > recipe.RecipeItems[medicine.Key].UnitCountPerUse)
-			//	{
-   //                 recipeHistory.Sold[medicine.Key] = -1;
-   //                 isApproved = false;
-   //             }
-			//}
-
-   //         if(isApproved)
-			//    await this._recipeHistoryRepository.Create(recipeHistory);
+            if (recipe == null)
+            {
+                return new NotFoundResult();
+            }
+          
+            foreach(var medicine in recipeHistory.Sold)
+            {
+                var rec = recipe.RecipeItems.Where(med => med.MedicineId == medicine.MedicineId).First();
+                if(rec.LeftCount < medicine.Count)
+                {
+                    return new StatusCodeResult(StatusCodes.Status400BadRequest);
+                }
+                else
+                {
+                    rec.LeftCount -= medicine.Count;
+                }
+            }
 
             return new OkObjectResult(recipeHistory);
         }
 
-		//[Authorize(Policy = "CanChangeRecipeHistory")]
-		//[HttpPut("{id}")]
-  //      public async Task<IActionResult> Put(string id, [FromBody]RecipeHistory recipeHistory)
-  //      {
-  //          var dbRecipeHistory = await this._recipeHistoryRepository.GetRecipeHistory(id);
+        [Authorize(Policy = "CanChangeRecipeHistory")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(string id, [FromBody]RecipeHistory recipeHistory)
+        {
+            var dbRecipeHistory = await this._recipeHistoryRepository.GetRecipeHistory(id);
 
-  //          if (dbRecipeHistory == null)
-  //          {
-  //              return new NotFoundResult();
-  //          }
+            if (dbRecipeHistory == null)
+            {
+                return new NotFoundResult();
+            }
 
-  //          recipeHistory.Id = dbRecipeHistory.Id;
+            recipeHistory.Id = dbRecipeHistory.Id;
 
-  //          await this._recipeHistoryRepository.Update(recipeHistory);
-  //          return new OkObjectResult(recipeHistory);
-  //      }
+            await this._recipeHistoryRepository.Update(recipeHistory);
+            return new OkObjectResult(recipeHistory);
+        }
 
-		//No one can work with this 
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> Delete(string id)
-        //{
-        //    var dbRecipeHistory = await this._recipeHistoryRepository.GetRecipeHistory(id);
+        //No one can work with this
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var dbRecipeHistory = await this._recipeHistoryRepository.GetRecipeHistory(id);
 
-        //    if (dbRecipeHistory == null)
-        //    {
-        //        return new NotFoundResult();
-        //    }
+            if (dbRecipeHistory == null)
+            {
+                return new NotFoundResult();
+            }
 
-        //    await this._recipeHistoryRepository.Delete(id);
-        //    return new OkResult();
-        //}
+            await this._recipeHistoryRepository.Delete(id);
+            return new OkResult();
+        }
     }
 }
