@@ -31,6 +31,7 @@ namespace Desktop.Services
             if(this.viewModel is MedicinesViewModel)
             {
                 ((MedicinesViewModel)this.viewModel).Medicines = new ObservableCollection<Medicine>(response.Result);
+                ((MedicinesViewModel)this.viewModel).data = ((MedicinesViewModel)this.viewModel).Medicines;
             }
             else if(this.viewModel is CreateRecipeViewModel)
             {

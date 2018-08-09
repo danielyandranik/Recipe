@@ -3,6 +3,7 @@ using Desktop.Services;
 using GalaSoft.MvvmLight;
 using MedicineApiClient;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,6 +19,8 @@ namespace Desktop.ViewModels
         private Visibility visibility;
 
         private readonly FilterService<Medicine> _filterService;
+
+        public IEnumerable<Medicine> data;
 
         private DeleteMedicineCommand deleteMedicineCommand;
 
@@ -80,7 +83,7 @@ namespace Desktop.ViewModels
 
         public async Task Filter(Func<Medicine,bool> predicate)
         {
-            var medicines = await this._filterService.FilterAsync(this.Medicines, predicate);
+            var medicines = await this._filterService.FilterAsync(this.data, predicate);
 
             this.Medicines = new ObservableCollection<Medicine>(medicines);
         }
