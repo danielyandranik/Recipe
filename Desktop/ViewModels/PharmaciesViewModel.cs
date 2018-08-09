@@ -176,7 +176,7 @@ namespace Desktop.ViewModels
         /// <returns>Boolean value indicating the success of operation</returns>
         private async Task<bool> EditPharmacy(Institution pharmacy)
         {
-            if (!this.validation.Validate(hospital))
+            if (!this.validation.Validate(pharmacy))
             {
                 return false;
             }
