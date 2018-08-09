@@ -314,6 +314,7 @@
     </Compile>
     <Compile Include="Validations\ConfirmationCodeInputValidation.cs" />
     <Compile Include="Validations\DoctorInputValidation.cs" />
+    <Compile Include="Validations\EditableInstitutionValidation.cs" />
     <Compile Include="Validations\HospitalDirectorInputValidation.cs" />
     <Compile Include="Validations\InstitutionInputValidation.cs" />
     <Compile Include="Validations\PatientInputValidation.cs" />

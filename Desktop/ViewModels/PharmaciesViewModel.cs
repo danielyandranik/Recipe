@@ -8,6 +8,7 @@ using Desktop.Services;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using Desktop.Validations;
 
 namespace Desktop.ViewModels
 {
@@ -30,6 +31,11 @@ namespace Desktop.ViewModels
         /// Visibility of some features
         /// </summary>
         private Visibility visibility;
+
+        /// <summary>
+        /// Validation
+        /// </summary>
+        private EditableInstitutionValidation validation;
 
         /// <summary>
         /// Filter service for institutions
@@ -128,6 +134,7 @@ namespace Desktop.ViewModels
         {
             this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "pharmacy_admin") ? Visibility.Visible : Visibility.Collapsed;
             this.filterService = new FilterService<Institution>();
+            this.validation = new EditableInstitutionValidation();
             this._loadPharmaciesService = new LoadPharmaciesService(this);
             this.deletePharmacyCommand = new DeletePharmacyCommand(this.pharmacies, this.DeletePharmacy, _ => true);
             this.editPharmacyCommand = new EditPharmacyCommand(this.pharmacies, this.EditPharmacy, _ => true);
@@ -169,6 +176,11 @@ namespace Desktop.ViewModels
         /// <returns>Boolean value indicating the success of operation</returns>
         private async Task<bool> EditPharmacy(Institution pharmacy)
         {
+            if (!this.validation.Validate(hospital))
+            {
+                return false;
+            }
+
             return await ((App)App.Current).InstitutionClient.UpdateInstitutionAsync(pharmacy);
         }
     }
