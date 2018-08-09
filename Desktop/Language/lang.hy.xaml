@@ -82,8 +82,8 @@
     <system:String x:Key="inst_description">Նկարագրություն</system:String>
     <system:String x:Key="inst_email">Էլեկտրոնային հասցե</system:String>
     <system:String x:Key="inst_phone">Հեռախոս</system:String>
-    <system:String x:Key="inst_open">Բացվելու ժամը</system:String>
-    <system:String x:Key="inst_close">Փակվելու ժամը</system:String>
+    <system:String x:Key="inst_open">Բաց. ժամ</system:String>
+    <system:String x:Key="inst_close">Փակ. ժամ</system:String>
     <system:String x:Key="inst_type">Հաստատության տեսակը</system:String>
     <system:String x:Key="inst_hospital">Հիվանդանոց</system:String>
     <system:String x:Key="inst_pharmacy">Դեղատուն</system:String>
@@ -153,6 +153,11 @@
 
     <!-- Sell medicines page -->
     <system:String x:Key="recipe_id">Դեղատոմսի ID</system:String>
+    <system:String x:Key="sell_medicines_success">Դեղերը վաճառված են:</system:String>
+    <system:String x:Key="sell_medicines_fail">Տեղի է ունեցել սխալ դեղը վաճառելիս:</system:String>
+    <system:String x:Key="pharmacy_find_fail">Տեղի է ոնեցել սխալ դեղատունը փնտրելիս:</system:String>
+
+
 
     <!-- Profiles mapping -->
 

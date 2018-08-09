@@ -153,8 +153,10 @@
     
     <!-- Sell medicines page -->
     <system:String x:Key="recipe_id">Recipe id</system:String>
-    <system:String x:Key="sell">Recipe id</system:String>
-    
+    <system:String x:Key="sell_medicines_success">Medicines are sold.</system:String>
+    <system:String x:Key="sell_medicines_fail">Couldn't sell medicines.</system:String>
+    <system:String x:Key="pharmacy_find_fail">Coudln't get pharmacy.</system:String>
+
     <!-- Profiles mapping -->
     
     <!-- API to UI -->

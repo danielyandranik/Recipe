@@ -25,20 +25,21 @@
         </Style>
     </Page.Resources>
 
-    <Border BorderBrush="Black" BorderThickness="3">
+    <Border BorderBrush="#FF182634" BorderThickness="2">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <ComboBox Name="InstitutionsComboBox" Grid.Row="0"   Background="#FF39B9B9" Foreground="White" FontSize="20" MinWidth="800"
-                  VerticalAlignment="Center" BorderBrush="{x:Null}"
+            <Grid Grid.Row="0" Height="36">
+            
+            <ComboBox Name="InstitutionsComboBox"  Background="#FF39B9B9" Foreground="White" FontSize="18"                  VerticalAlignment="Center" BorderBrush="{x:Null}" Padding="20,0,0,0"
                       IsEditable="True" IsReadOnly="True" Text="{DynamicResource select_inst}"
-                      Focusable="False">
-                <ComboBoxItem Name="hospitals_item" Content="{DynamicResource hospitals}" MinWidth="800"
-                          VerticalAlignment="Center" HorizontalAlignment="Center"
-                          Background="#FF39B9B9" Foreground="White" FontSize="20">
+                      Focusable="False" HorizontalAlignment="Center">
+                <ComboBoxItem Name="hospitals_item" Content="{DynamicResource hospitals}"
+                          VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                          Background="#FF39B9B9" Foreground="White" FontSize="18">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction 
@@ -47,9 +48,9 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ComboBoxItem>
-                <ComboBoxItem Name="pharmacies_item" Content="{DynamicResource pharmacies}" MinWidth="800"
-                          VerticalAlignment="Center" HorizontalAlignment="Center"
-                          Background="#FF39B9B9" Foreground="White" FontSize="20">
+                <ComboBoxItem Name="pharmacies_item" Content="{DynamicResource pharmacies}"
+                          VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                          Background="#FF39B9B9" Foreground="White" FontSize="18">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction 
@@ -59,6 +60,8 @@
                     </i:Interaction.Triggers>
                 </ComboBoxItem>
             </ComboBox>
+            </Grid>    
+                
             <m:Map Name="map" Grid.Row="1" CredentialsProvider="EOnTRVd4HUO3jAbQVZes~hT8iS0wme8DOBnyr7lAJDA~AnhVYLJc5DzxhfKsllJY-P9mcE2oX0IuTrACvzjB9-nd8sRzlb3hrBEyXXufsVD0"
                Center="40.1792, 44.4991" ZoomLevel="11"/>
 

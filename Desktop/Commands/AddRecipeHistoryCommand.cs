@@ -41,9 +41,11 @@ namespace Desktop.Commands
 
             var response = await ((App)App.Current).UserApiClient.GetPharmacistByIdAsync(User.Default.Id);
 
+            var dictionary = App.Current.Resources;
+
             if(response.Status == Status.Error)
             {
-                RecipeMessageBox.Show("Couldn't get the pharmacy.");
+                RecipeMessageBox.Show((string)dictionary["pharmacy_find_fail"]);
                 return;
             }
 
@@ -57,7 +59,15 @@ namespace Desktop.Commands
                 Sold = historyItems.ToList<RecipeHistoryItem>()
             };
 
-            await this.ExecuteAsync(recipeHistory);
+            var sellResponse = await this.ExecuteAsync(recipeHistory);
+
+            if(!sellResponse.IsSuccessStatusCode)
+            {
+                RecipeMessageBox.Show((string)dictionary["sell_medicines_fail"]);
+                return;
+            }
+
+            RecipeMessageBox.Show((string)dictionary["sell_medicines_success"]);
         }
     }
 }
