@@ -82,6 +82,12 @@ namespace Desktop.ViewModels
             this.filterService = new FilterService<Institution>();
             this._loadHospitalsService = new LoadHospitalsService(this);
             this._loadCommand = new LoadCommand(this._loadHospitalsService);
+            ((App)App.Current).ProfileChanged += this.UpdateVisibiliies;
+        }
+
+        public void UpdateVisibiliies()
+        {
+            this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "hospital_admin") ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public async Task Filter(Func<Institution,bool> predicate)
@@ -90,6 +96,8 @@ namespace Desktop.ViewModels
 
             this.Hospitals = new ObservableCollection<Institution>(hospitals);
         }
+
+
 
         private async Task<bool> DeleteHospital(int id)
         {

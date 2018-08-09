@@ -65,6 +65,7 @@ namespace RecipeApi.Controllers
                 return new NotFoundResult();
             }
           
+            
             foreach(var medicine in recipeHistory.Sold)
             {
                 var rec = recipe.RecipeItems.Where(med => med.MedicineId == medicine.MedicineId).First();
@@ -76,6 +77,14 @@ namespace RecipeApi.Controllers
                 {
                     rec.LeftCount -= medicine.Count;
                 }
+                
+
+            }
+
+            var response = await this._recipeRepository.Update(recipe);
+            if(!response)
+            {
+                return new StatusCodeResult(StatusCodes.Status400BadRequest);
             }
 
             return new OkObjectResult(recipeHistory);

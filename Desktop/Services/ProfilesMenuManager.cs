@@ -9,6 +9,7 @@ using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
 using Desktop.Views.Windows;
 using Desktop.ViewModels;
+using AuthTokenService;
 
 namespace Desktop.Services
 {
@@ -150,6 +151,17 @@ namespace Desktop.Services
                 this.UpdateButtonsVisibilities();
 
                 this._vm.PhotoUrl = ConfigurationManager.AppSettings[User.Default.CurrentProfile];
+
+                var app = ((App)App.Current);
+
+                var tokenProvider = app.TokenProvider;
+
+                var tokenResponse = await tokenProvider.RefreshAccessTokenAsync();
+
+                if (tokenResponse == TokenStatus.Error)
+                    return;
+
+                app.RiseProfileChanged();
 
                 RecipeMessageBox.Show((string)dictionary["current_update_success"]);               
             }

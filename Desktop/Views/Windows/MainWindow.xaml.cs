@@ -122,7 +122,7 @@ namespace Desktop.Views.Windows
             {
                 var menuItem = (MenuItem)item;
 
-                menuItem.Click -= manager.ChangeProfileEventHandler;
+                menuItem.Click -= manager.ChangeProfileEventHandler;              
             }
 
             var app = (App)App.Current;

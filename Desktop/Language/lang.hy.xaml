@@ -54,7 +54,7 @@
     <system:String x:Key="confirm_password">Հաստատե՛ք գաղտնաբառը *</system:String>
     <system:String x:Key="sign_up">Գրանցվել</system:String>
     <system:String x:Key="account_msg0">Արդեն ունե՞ք հաշիվ։</system:String>
-    <system:String x:Key="sign_in">Մուտք գործել</system:String>
+    <system:String x:Key="sign_in">Մուտք</system:String>
 
     <!-- Sign In Window -->
     <system:String x:Key="s_username">Օգտատիրոջ անուն</system:String>
@@ -123,6 +123,9 @@
     <system:String x:Key="med_count_use">Օգտագործման քանակ</system:String>
     <system:String x:Key="medicine_name">Դեղի անուն</system:String>
     <system:String x:Key="add_medicine">Ավելացնել</system:String>
+    <system:String x:Key="recipe_add_success">Դեղատոմսը հաջողությամբ ավելացվեց:</system:String>
+    <system:String x:Key="recipe_add_fail">Տեղի է ունեցել սխալ դեղատոմսն ավելացնելիս:</system:String>
+
 
     <!-- Hospitals page -->
     <system:String x:Key="filter">Ֆիլտրել ըստ</system:String>

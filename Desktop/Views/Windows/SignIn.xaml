@@ -57,13 +57,13 @@
         <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
             <TextBlock TextWrapping="Wrap" Text="{DynamicResource sign_in}" Foreground="White" FontFamily="Comfortaa" FontSize="40" Margin="0,40,0,0" HorizontalAlignment="Center"/>
 
-            <Label Content="{DynamicResource s_username}" HorizontalAlignment="Center" Margin="0,15,0,0" FontFamily="Comfortaa" FontSize="18" Foreground="#FF474747" FontWeight="Bold"/>
+            <Label Content="{DynamicResource s_username}" HorizontalAlignment="Center" Margin="0,15,0,0" FontFamily="Comfortaa" FontSize="18" Foreground="#FF182634" />
             <TextBox VerticalContentAlignment="Center" Height="40" 
                      TextWrapping="Wrap" Width="240" Margin="0,10,0,0" 
                      FontSize="16" FontFamily="Consolas" BorderBrush="White" 
                      CaretBrush="White" Foreground="White" SelectionBrush="White" 
                      Text="{Binding SignInInfo.Username}"/>
-            <Label Content="{DynamicResource s_password}" HorizontalAlignment="Center" Margin="0,5,0,0" FontFamily="Comfortaa" FontSize="18" Foreground="#FF474747" FontWeight="Bold"/>
+            <Label Content="{DynamicResource s_password}" HorizontalAlignment="Center" Margin="0,5,0,0" FontFamily="Comfortaa" FontSize="18" Foreground="#FF182634"/>
             <PasswordBox VerticalContentAlignment="Center" Height="40"  
                          Width="240" Margin="0,10,0,0" FontSize="16" FontFamily="Consolas" 
                          Background="{x:Null}" BorderBrush="White" Foreground="White" SelectionBrush="White" CaretBrush="White" 
@@ -81,8 +81,8 @@
                     </DataTemplate>
                 </Button.ContentTemplate>
             </Button>
-            <TextBlock Margin="0,25,0,0" FontFamily="Comfortaa" FontWeight="Bold" Foreground="#FF474747" FontSize="14">
-                <TextBlock Margin="40,0,0,0" Text="{DynamicResource account_msg1}"/>
+            <TextBlock Margin="0,25,0,0" FontFamily="Comfortaa" FontWeight="Bold" Foreground="#FF474747" FontSize="14" TextAlignment="Center">
+                <TextBlock Text="{DynamicResource account_msg1}"/>
                 <Hyperlink Foreground="White" Command="{Binding HyperLinkCommand}">
                     <TextBlock Text="{DynamicResource sign_up}"/>
                 </Hyperlink>

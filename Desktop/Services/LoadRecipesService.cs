@@ -73,7 +73,8 @@ namespace Desktop.Services
                     Count = recipeItemFromApi.Count,
                     CountPerUse = recipeItemFromApi.CountPerUse,
                     TimesPerUnit = recipeItemFromApi.TimesPerUnit,
-                    UseFrequencyUnit = recipeItemFromApi.UseFrequencyUnit
+                    UseFrequencyUnit = recipeItemFromApi.UseFrequencyUnit,
+                    LeftCount = recipeItemFromApi.LeftCount
                 };
 
                 recipeItems.Add(recipeItem);

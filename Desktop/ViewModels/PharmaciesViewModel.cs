@@ -132,6 +132,12 @@ namespace Desktop.ViewModels
             this.deletePharmacyCommand = new DeletePharmacyCommand(this.pharmacies, this.DeletePharmacy, _ => true);
             this.editPharmacyCommand = new EditPharmacyCommand(this.pharmacies, this.EditPharmacy, _ => true);
             this._loadCommand = new LoadCommand(this._loadPharmaciesService);
+            ((App)App.Current).ProfileChanged += this.UpdateVisibilities;
+        }
+
+        private void UpdateVisibilities()
+        {
+            this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "pharmacy_admin") ? Visibility.Visible : Visibility.Collapsed;
         }
 
         /// <summary>

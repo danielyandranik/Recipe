@@ -75,6 +75,7 @@ namespace Desktop.ViewModels
             this.deleteMedicineCommand = new DeleteMedicineCommand(this.medicines, this.DeleteMedicine, _ => true);
             this.editMedicineCommand = new EditMedicineCommand(this.medicines, this.EditMedicine, _ => true);
             this._filterService = new FilterService<Medicine>();
+            ((App)App.Current).ProfileChanged += this.UpdateVisibilities;
         }
 
         public async Task Filter(Func<Medicine,bool> predicate)
@@ -82,6 +83,11 @@ namespace Desktop.ViewModels
             var medicines = await this._filterService.FilterAsync(this.Medicines, predicate);
 
             this.Medicines = new ObservableCollection<Medicine>(medicines);
+        }
+
+        public void UpdateVisibilities()
+        {
+            this.Visibility = User.Default.CurrentProfile == "ministry_worker" ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private async Task<bool> DeleteMedicine(string uri)

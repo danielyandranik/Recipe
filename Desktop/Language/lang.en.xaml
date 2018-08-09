@@ -123,7 +123,9 @@
     <system:String x:Key="med_count_use">Count per use</system:String>
     <system:String x:Key="medicine_name">Medicine name</system:String>
     <system:String x:Key="add_medicine">Add</system:String>
-    
+    <system:String x:Key="recipe_add_success">Recipe is successfully added.</system:String>
+    <system:String x:Key="recipe_add_fail">Unable to add recipe.</system:String>
+
     <!-- Medicines page -->
     <system:String x:Key="med_cancel">Cancel</system:String>
 
@@ -151,6 +153,7 @@
     
     <!-- Sell medicines page -->
     <system:String x:Key="recipe_id">Recipe id</system:String>
+    <system:String x:Key="sell">Recipe id</system:String>
     
     <!-- Profiles mapping -->
     

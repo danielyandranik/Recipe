@@ -61,6 +61,16 @@ namespace Desktop
         private readonly MapPage _mapPage;
 
         /// <summary>
+        /// Handler for profile changed event
+        /// </summary>
+        public delegate void ProfileChangedHandler();
+
+        /// <summary>
+        /// Event for profile changed
+        /// </summary>
+        public event ProfileChangedHandler ProfileChanged;
+
+        /// <summary>
         /// Gets token provider
         /// </summary>
         public TokenProvider TokenProvider => this._tokenProvider;
@@ -132,6 +142,14 @@ namespace Desktop
             {
                 this._isReadyForStartup = false;
             }
+        }
+
+        /// <summary>
+        /// Rises Profile Changed event
+        /// </summary>
+        public void RiseProfileChanged()
+        {
+            this.ProfileChanged?.Invoke();
         }
 
         /// <summary>

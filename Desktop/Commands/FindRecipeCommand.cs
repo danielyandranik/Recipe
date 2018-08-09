@@ -45,7 +45,7 @@ namespace Desktop.Commands
             var historyItems = new ObservableCollection<RecipeHistoryItem>();
             foreach(var item in recipe.RecipeItems)
             {
-                historyItems.Add(new RecipeHistoryItem { MecdicineId = item.Medicine.Id });
+                historyItems.Add(new RecipeHistoryItem { MedicineId = item.Medicine.Id });
             }
 
             return historyItems;

@@ -81,7 +81,19 @@ namespace Desktop.ViewModels
                 RecipeItems = recipeItems
             };
 
-            return await ((App)App.Current).RecipeClient.CreateAsync<RecipeClient.Recipe>("api/recipes", recipe);
+            var response =  await ((App)App.Current).RecipeClient.CreateAsync<RecipeClient.Recipe>("api/recipes", recipe);
+
+            var dictionary = App.Current.Resources;
+
+            if(!response.IsSuccessStatusCode)
+            {
+                RecipeMessageBox.Show((string)dictionary["recipe_add_fail"]);
+                return null;
+            }
+
+            RecipeMessageBox.Show((string)dictionary["recipe_add_success"]);
+
+            return response;
         }
     }
 }
