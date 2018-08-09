@@ -85,10 +85,10 @@ namespace InstitutionsAPI.Controllers
         public async Task<IActionResult> Post([FromBody]Institution institution)
         {
             // adding institution
-            var addedInstitutions = await this._dataManager.OperateAsync<Institution, object>("AddInstitution", institution);
+            var result = await this._dataManager.OperateAsync<Institution, object>("AddInstitution", institution);
 
             // if institution exists return 'Conflict' code
-            if ((int)addedInstitutions < 1)
+            if ((int)result < 1)
                 return new StatusCodeResult(409);
 
             // returning 200
@@ -115,6 +115,9 @@ namespace InstitutionsAPI.Controllers
 
             //getting result
             var result = await this._dataManager.OperateAsync<Institution, object>("UpdateInstitution", institution);
+
+            if ((int)result < 1)
+                return new StatusCodeResult(409);
 
             //returning 200
             return Ok();

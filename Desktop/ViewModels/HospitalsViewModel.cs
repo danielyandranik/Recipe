@@ -8,6 +8,7 @@ using Desktop.Services;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using Desktop.Validations;
 
 namespace Desktop.ViewModels
 {
@@ -18,6 +19,8 @@ namespace Desktop.ViewModels
         private Institution editableHospital;
 
         private Visibility visibility;
+
+        private EditableInstitutionValidation validation;
 
         private readonly FilterService<Institution> filterService;
 
@@ -76,7 +79,9 @@ namespace Desktop.ViewModels
 
         public HospitalsViewModel()
         {
-            this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "hospital_admin") ? Visibility.Visible : Visibility.Collapsed;
+            this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "hospital_admin") ?
+                                        Visibility.Visible : Visibility.Collapsed;
+            this.validation = new EditableInstitutionValidation();
             this.deleteHospitalCommand = new DeleteHospitalCommand(this.hospitals, this.DeleteHospital, _ => true);
             this.editHospitalCommand = new EditHospitalCommand(this.hospitals, this.EditHospital, _ => true);
             this.filterService = new FilterService<Institution>();
@@ -106,6 +111,10 @@ namespace Desktop.ViewModels
 
         private async Task<bool> EditHospital(Institution hospital)
         {
+            if (!this.validation.Validate(hospital))
+            {
+                return false;
+            }
             return await ((App)App.Current).InstitutionClient.UpdateInstitutionAsync(hospital);
         }
     }
