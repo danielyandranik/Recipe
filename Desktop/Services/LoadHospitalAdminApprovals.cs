@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
 using Desktop.ViewModels;
+using Desktop.Models;
+using System.Collections.Generic;
 
 namespace Desktop.Services
 {
@@ -38,14 +40,15 @@ namespace Desktop.Services
         /// <returns>nothing</returns>
         public async Task Load()
         {
-            var response = await this.client.GetUnapprovedProfilesByTypeAsync("doctor");
+            var hospitalAdminResponse = await this.client.GetHospitalDirectorByIdAsync(User.Default.Id);
 
-            if (response.Status == Status.Error)
-            {
-                throw new Exception();
-            }
+            var hospitalAdmin = hospitalAdminResponse.Result;
 
-            this.hospitalAdminApprovalsViewModel.WaitingCollection = new ObservableCollection<Profile>(response.Result);
+            var unapprovedDoctorsResponse = await this.client.GetUnapprovedDoctors(hospitalAdmin.HospitalName);
+
+            var unapprovedDoctors = unapprovedDoctorsResponse.Result;
+
+            this.hospitalAdminApprovalsViewModel.WaitingCollection = new ObservableCollection<UnapprovedDoctor>(unapprovedDoctors);
         }
     }
 }

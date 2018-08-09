@@ -17,6 +17,7 @@
         <TextBlock Foreground="White" Name="message"
                    FontSize="18"
                    HorizontalAlignment="Center"
+                   TextAlignment="Center"
                    VerticalAlignment="Center"
                    Text=""
                    TextWrapping="Wrap"

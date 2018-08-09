@@ -2,18 +2,20 @@
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using Desktop.Commands;
+using Desktop.Models;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
+using System.Collections.Generic;
 
 namespace Desktop.ViewModels
 {
     public class HospitalAdminApprovalViewModel : ViewModelBase
     {
-        private ObservableCollection<Profile> waitingCollection;
+        private ObservableCollection<UnapprovedDoctor> waitingCollection;
 
         private UserManagementApiClient client;
 
-        public ObservableCollection<Profile> WaitingCollection
+        public ObservableCollection<UnapprovedDoctor> WaitingCollection
         {
             get => this.waitingCollection;
 
@@ -24,13 +26,13 @@ namespace Desktop.ViewModels
 
         public HospitalAdminApprovalViewModel()
         {
-            this.ApproveDoctorCommand = new AsyncCommand<int, Response<string>>(this.AprroveDoctor, _ => true);
+            this.ApproveDoctorCommand = new ApproveDoctorCommand(this.AprroveDoctor, _ => true);
             this.client = ((App)App.Current).UserApiClient;
         }
 
-        private async Task<Response<string>> AprroveDoctor(int profileId)
+        private async Task<Response<string>> AprroveDoctor(int userId)
         {
-            return await client.PutDoctorAsync(new DoctorUpdateInfo());
+            return await client.ApproveDoctorAsync(userId);
         }
     }
 }
