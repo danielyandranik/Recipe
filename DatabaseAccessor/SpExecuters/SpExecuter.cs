@@ -261,14 +261,8 @@ namespace DatabaseAccess.SpExecuters
             // getting mapper
             var mapper = this.GetMapper<TResult>(properties);
 
-            // constructing result object
-            var result = Activator.CreateInstance<TResult>();
-
-            // calling mapper
-            mapper(reader, result);
-
-            // returning result object
-            return result;
+            // executing mapper
+            return mapper(reader);
         }
 
         /// <summary>
@@ -277,48 +271,76 @@ namespace DatabaseAccess.SpExecuters
         /// <typeparam name="TResult">Type of result</typeparam>
         /// <param name="properties">Properties</param>
         /// <returns>Sql Data reader to object mapper</returns>
-        private Action<SqlDataReader, TResult> GetMapper<TResult>(PropertyInfo[] properties)
+        private Func<SqlDataReader, TResult> GetMapper<TResult>(PropertyInfo[] properties)
         {
             // getting result type
             var resultType = typeof(TResult);
 
             //  checking if the mapper exists in cached mappers
             if (this._cachedMappers.ContainsKey(resultType))
-                return (Action<SqlDataReader, TResult>)this._cachedMappers[resultType];
+                return (Func<SqlDataReader, TResult>)this._cachedMappers[resultType];
 
-            // getting SqlDataReader type
+            // getting type of Sql Data Reader
             var sqlReaderType = typeof(SqlDataReader);
 
-            // creating result object expression
-            var resultExpression = Expression.Parameter(resultType);
-
-            // creating reader expression as parameter
-            var readerExpression = Expression.Parameter(sqlReaderType);
-
-            // creating list of expressions
+            // creating list of variable expressions
             var expressions = new List<Expression>();
 
-            // loop over properties constructing the expression
-            foreach (var property in properties)
+            // creating list of expressions
+            var variables = new List<ParameterExpression>();
+
+            // constructing sql reader parameter expression
+            var sourceExpr = Expression.Parameter(sqlReaderType);
+
+            // constructing result expression
+            var result = Expression.Parameter(resultType);
+
+            // adding variables to collection of variables expressions
+            variables.Add(result);
+
+            // constructing initializing expression
+            var init = Expression.New(resultType);
+
+            // constructing assign expression which assigned the initialized value to result
+            var resultInitAssign = Expression.Assign(result, init);
+
+            // adding result assignment expression to list of expressions
+            expressions.Add(resultInitAssign);
+
+            // loop over the properties constructing the block of assignment
+            foreach(var property in properties)
             {
-                var propExpr = Expression.Property(resultExpression, property.Name);
+                var propExpr = Expression.Property(result, property.Name);
 
-                var propValueExpr = Expression.Property(readerExpression, "Item", Expression.Constant(property.Name, typeof(string)));
+                var columnGetExpr = Expression.Property(sourceExpr,"Item",Expression.Constant(property.Name,typeof(string)));
 
-                var propCastValueExpr = Expression.Convert(propValueExpr, property.PropertyType);
+                var value = Expression.Convert(columnGetExpr, property.PropertyType);
 
-                var assignExpr = Expression.Assign(propExpr, propCastValueExpr);
+                var assignExpr = Expression.Assign(propExpr, value);
 
                 expressions.Add(assignExpr);
             }
 
-            // constructing body of expressions
-            var body = Expression.Block(expressions);
+            // constructing label target
+            var target = Expression.Label(resultType);
 
-            // constructing lambda expression
-            var lambda = Expression.Lambda<Action<SqlDataReader, TResult>>(body, readerExpression, resultExpression);
+            // constructing retrun expression
+            var returnExpr = Expression.Return(target, result, resultType);
 
-            // compiling lamda expression
+            // constructing label expression
+            var label = Expression.Label(target, Expression.Default(resultType));
+
+            // adding return expression and label to list of expressions
+            expressions.Add(returnExpr);
+            expressions.Add(label);
+
+            // constructing body  
+            var body = Expression.Block(variables, expressions);
+
+            // constructing lambda
+            var lambda = Expression.Lambda<Func<SqlDataReader, TResult>>(body, sourceExpr);
+
+            // compiling lambda expression
             var mapper = lambda.Compile();
 
             // adding compiled mapper to cached mappers
