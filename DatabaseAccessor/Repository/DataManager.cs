@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using DatabaseAccess.SpExecuters;
@@ -14,12 +15,17 @@ namespace DatabaseAccess.Repository
         /// <summary>
         /// Stored procedure executer
         /// </summary>
-        private ISpExecuter _spExecuter;
+        private readonly ISpExecuter _spExecuter;
 
         /// <summary>
         /// Mapping information
         /// </summary>
-        private MapInfo _mapInfo;
+        private readonly MapInfo _mapInfo;
+
+        /// <summary>
+        /// Dictionary of cached parameter getters
+        /// </summary>
+        private readonly Dictionary<Type, Delegate> _cachedParameterGetters;
 
         /// <summary>
         /// Creates new instance of <see cref="DataManager"/>
@@ -31,6 +37,9 @@ namespace DatabaseAccess.Repository
             // setting fields
             this._spExecuter = spExecuter;
             this._mapInfo = mapInfo;
+
+            // initializing
+            this._cachedParameterGetters = new Dictionary<Type, Delegate>();
         }
 
         /// <summary>
@@ -191,7 +200,7 @@ namespace DatabaseAccess.Repository
 
             // checking if parameter has primitive type
             // note that for DataManager primitive types are not only .NET primitive types but also string and decimal
-            if (type.IsPrimitive || type == typeof(string) || type == typeof(decimal))
+            if (type.IsPrimitive || type == typeof(string) || type == typeof(decimal) || type == typeof(DateTime))
             {
                 return new[]
                 {
@@ -199,34 +208,112 @@ namespace DatabaseAccess.Repository
                 };
             }
 
+            // getting getter
+            var getter = this.GetParamaterGetter<TParameter>();
+
+            // executing getter
+            return getter(parameter);
+        }
+
+        /// <summary>
+        /// Gets parameter getter if it exists in cached getters otherwise creates new one
+        /// </summary>
+        /// <typeparam name="TParameter">Type of parameter.</typeparam>
+        /// <returns>getter</returns>
+        private Func<TParameter,List<KeyValuePair<string,object>>> GetParamaterGetter<TParameter>()
+        {
+            // getting type of parameter
+            var type = typeof(TParameter);
+
+            // returning cached getter if it exists
+            if (this._cachedParameterGetters.ContainsKey(type))
+                return (Func<TParameter,List<KeyValuePair<string,object>>>)this._cachedParameterGetters[type];
+
+            // gettoing type of list
+            var listType = typeof(List<KeyValuePair<string, object>>);
+
+            // getting type of KeyValuPair
+            var kvpType = typeof(KeyValuePair<string, object>);
+
+            // getting KeyValuePair constructor information
+            var kvpCtor = kvpType.GetConstructor(new[] { typeof(string), typeof(object) });
+
+            // getting List Add method information
+            var addInfo = listType.GetMethod("Add");
+
             // getting properties
-            var properties = parameter.GetType().GetProperties();
+            var properties = type.GetProperties();
 
-            // list of parameters
-            var parameters = new List<KeyValuePair<string, object>>();
+            // constructing KeyValuePair variable expression
+            var kvp = Expression.Parameter(kvpType);
 
-            // loop over properties
-            foreach (var property in properties)
+            // constructing list expression
+            var list = Expression.Parameter(listType);
+
+            // constructing list initializing expression
+            var listInit = Expression.New(listType);
+
+            // assign expression for assigning initialized list to list variable
+            var listAssign = Expression.Assign(list, listInit);
+
+            // constructing source expression
+            var sourceExpr = Expression.Parameter(type);
+
+            // creating list of expression for lambda expression body
+            var expressions = new List<Expression>();
+
+            // constructing block parameters
+            var variables = new[] { kvp, list };
+
+            // adding list assignment
+            expressions.Add(listAssign);
+            
+            // loop over the properties and add key value pair to list expressions
+            foreach(var property in properties)
             {
-                // getting property type
-                var propertyType = property.PropertyType;
+                var propValue = Expression.Property(sourceExpr, property.Name);
 
-                // if property doesn't have primitive type
-                if (!propertyType.IsPrimitive && propertyType != typeof(string)  && propertyType != typeof(DateTime))
-                {
-                    // getting properties of property
-                    var propProperties = propertyType.GetProperties();
+                var value = Expression.Convert(propValue, typeof(object));
 
-                    // adding paramaters
-                    parameters.AddRange(
-                        propProperties.Select(propProperty =>
-                        KeyValuePair.Create(propProperty.Name, propProperty.GetValue(property.GetValue(parameter)))));
-                }
-                else parameters.Add(KeyValuePair.Create(property.Name, property.GetValue(parameter)));
+                var name = Expression.Constant(property.Name);
+
+                var init = Expression.New(kvpCtor, name, value);
+
+                var assign = Expression.Assign(kvp, init);
+
+                var add = Expression.Call(list, addInfo,kvp);
+
+                expressions.Add(assign);
+                expressions.Add(add);
             }
 
-            // returning parameters
-            return parameters;
+            // constructing label target
+            var target = Expression.Label(listType);
+
+            // constructing return expression
+            var returnExpr = Expression.Return(target, list, listType);
+
+            // constructing label expression
+            var label = Expression.Label(target, Expression.Default(listType));
+
+            // adding return expression and label to expressions list
+            expressions.Add(returnExpr);
+            expressions.Add(label);
+
+            // constructing block of expressions
+            var block = Expression.Block(variables, expressions);
+
+            // creating lambda from expression body
+            var lambda = Expression.Lambda<Func<TParameter, List<KeyValuePair<string, object>>>>(block, sourceExpr);
+
+            // compiling lambda
+            var getter = lambda.Compile();
+
+            // adding compiled getter to cached getters
+            this._cachedParameterGetters.Add(type, getter);
+
+            // returning getter
+            return getter;
         }
     }
 }
