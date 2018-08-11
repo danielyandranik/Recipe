@@ -37,23 +37,7 @@ namespace Desktop.Services
                 throw new Exception();
             }
 
-            // this.pharmaciesViewModel.Medicines = this.GetMedicinePricePair(response.Content).Result;
-            this.pharmaciesViewModel.Medicines = new ObservableCollection<MedicinePricePair>();
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aaa", Price = 1000 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
-            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "f", Price = 1500 });
+             this.pharmaciesViewModel.Medicines = this.GetMedicinePricePair(response.Content).Result;
         }
 
         private async Task<ObservableCollection<MedicinePricePair>> GetMedicinePricePair(IEnumerable<PharmMedicine> medicines)
