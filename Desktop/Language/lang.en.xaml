@@ -125,6 +125,10 @@
     <system:String x:Key="add_medicine">Add</system:String>
     <system:String x:Key="recipe_add_success">Recipe is successfully added.</system:String>
     <system:String x:Key="recipe_add_fail">Unable to add recipe.</system:String>
+    
+    <!-- Recipe control -->
+    <system:String x:Key="send_qr">Send QR</system:String>
+    <system:String x:Key="recipe">Recipe</system:String>
 
     <!-- Medicines page -->
     <system:String x:Key="med_cancel">Cancel</system:String>
