@@ -129,7 +129,10 @@
     <!-- Recipe control -->
     <system:String x:Key="send_qr">Send QR</system:String>
     <system:String x:Key="recipe">Recipe</system:String>
-
+    <system:String x:Key="mail_get_fail">Unable to find user email.</system:String>
+    <system:String x:Key="qr_send_fail">Unable to send QR code.</system:String>
+    <system:String x:Key="qr_send_success">QR code is successfully sent to your email.</system:String>
+    
     <!-- Medicines page -->
     <system:String x:Key="med_cancel">Cancel</system:String>
 

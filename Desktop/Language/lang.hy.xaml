@@ -129,6 +129,9 @@
     <!-- Recipe control -->
     <system:String x:Key="send_qr">Ուղարկել QR</system:String>
     <system:String x:Key="recipe">Դեղատոմս</system:String>
+    <system:String x:Key="mail_get_fail">Տեղի է ունեցել սխալ օգտատիրոջ մեյլի հասցեն փնտրելիս։</system:String>
+    <system:String x:Key="qr_send_fail">Տեղի է ունեցել սխալ QR կոդը ուղարկելիս։</system:String>
+    <system:String x:Key="qr_send_success">QR կոդը հաջողությամբ ուղարկվել է ձեր էլեկտրոնային փոստին։</system:String>
 
     <!-- Hospitals page -->
     <system:String x:Key="filter">Ֆիլտրել ըստ</system:String>
