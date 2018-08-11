@@ -182,7 +182,7 @@ namespace Desktop.Services
             this._vm.SellMedicinesVisibility = (currentProfile == "pharmacist") ? Visibility.Visible : Visibility.Collapsed;
             this._vm.AddMedicineVisibility = (currentProfile == "ministry_worker") ? Visibility.Visible : Visibility.Collapsed;
             this._vm.AddInstitutionVisibility = (currentProfile == "ministry_worker") ? Visibility.Visible : Visibility.Collapsed;
-            this._vm.MyApprovalsVisibility = (currentProfile == "doctor" || currentProfile == "ministry_worker") ? Visibility.Visible : Visibility.Collapsed;
+            this._vm.MyApprovalsVisibility = (currentProfile == "hospital_director" || currentProfile == "ministry_worker") ? Visibility.Visible : Visibility.Collapsed;
             this._vm.MyRecipesVisibility = (currentProfile == "patient") ? Visibility.Visible : Visibility.Collapsed;
             this._vm.DeleteVisibility = Visibility.Visible;
         }

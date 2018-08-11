@@ -155,12 +155,12 @@
 
                     <Button Content="{DynamicResource my_recipes}" Name="MyRecipesButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
                             Click="RecipesButton_Click" 
-                            Visibility="{Binding MyRecipesVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                            Visibility="{Binding MyRecipesVisibility, UpdateSourceTrigger=PropertyChanged}" />
                     <Button Content="{DynamicResource create_recipe}" Name="CreaterecipeButton"  Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
                             Click="CreateRecipeButton_Click"
                             Visibility="{Binding CreateRecipeVisibility, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Content="{DynamicResource approvals}" Name="MyApprovalsButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
-                            Visibility="{Binding MyApprovalsVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                            Visibility="{Binding MyApprovalsVisibility, UpdateSourceTrigger=PropertyChanged}" Click="MyApprovalsButton_Click"/>
                     <Button Content="{DynamicResource add_med}" Name="AddMedicineButton" Background="White" BorderBrush="White" Foreground="#FF39B9B9" Width="200" Margin="0,20,0,0" 
                             Command="{Binding AddMed}"
                             Visibility="{Binding AddMedicineVisibility, UpdateSourceTrigger=PropertyChanged}"/>
@@ -180,7 +180,7 @@
 
             </Grid>
 
-            <Frame Grid.Column="1" Name="frame" NavigationUIVisibility="Hidden" Background="Transparent"></Frame>
+            <Frame Grid.Column="1" Name="frame" NavigationUIVisibility="Hidden" Background="Transparent"/>
 
         </Grid>
 

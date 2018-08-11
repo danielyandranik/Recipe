@@ -31,7 +31,7 @@
 
             <Grid Grid.Row="1">
 
-                    <ListView VerticalAlignment="Top" ItemsSource="{Binding WaitingCollection}">
+                    <ListView VerticalAlignment="Top" ItemsSource="{Binding WaitingCollection}" HorizontalContentAlignment="Stretch">
 
                         <ListView.ItemTemplate>
 
@@ -62,7 +62,9 @@
 
                                 <StackPanel Grid.Column="5">
 
-                                    <Button Content="Approve" BorderBrush="{x:Null}" Background="#FF29D617" Width="100" Height="30" Margin="0,5" Command="{Binding ApproveDoctorCommand}" CommandParameter="{Binding Id}"/>
+                                    <Button Content="Approve" BorderBrush="{x:Null}" Background="#FF29D617" Width="100" Height="30" Margin="0,5" 
+                                            Command="{Binding DataContext.ApproveDoctorCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
+                                            CommandParameter="{Binding UserId}"/>
                                     <Button Content="Deny" BorderBrush="{x:Null}" Background="#FFFF2A2A" Width="100" Height="30" Margin="0,5" />
 
                                 </StackPanel>

@@ -135,7 +135,7 @@ namespace Desktop.Services
         /// <returns>Point representing geocodes.</returns>
         private async Task<Point> GetGeocodes(string address)
         {
-            var requestUri = $"{this._geocodePath}?address={Uri.EscapeDataString(address)}&sensor=true&key={ConfigurationManager.AppSettings["geocode_key"]}";
+            var requestUri = $"{this._geocodePath}?address={Uri.EscapeDataString(address)}&sensor=false";
 
             var response = await this._httpClient.GetAsync(requestUri);
 

@@ -167,6 +167,8 @@ namespace Desktop.ViewModels
 
         public MainWindowViewModel(MainWindow mainWindow)
         {
+            this.SetDefaultVisibilities();
+
             this._mainWindow = mainWindow;
             this._signOutCommand = new SignOutCommand();
             this._hyperLinkService = new HyperLinkService();
@@ -182,6 +184,18 @@ namespace Desktop.ViewModels
             this._addInst = new NavigateCommand<AddInstitution>(this._mainWindow.frame);
             this._showHospitals = new NavigateCommand<Hospitals>(this._mainWindow.frame);
             this._showPharmacies = new NavigateCommand<Pharmacies>(this._mainWindow.frame);
+        }
+
+        private void SetDefaultVisibilities()
+        {
+            this.AddInstitutionVisibility = Visibility.Collapsed;
+            this.AddMedicineVisibility = Visibility.Collapsed;
+            this.CreateRecipeVisibility = Visibility.Collapsed;
+            this.MyApprovalsVisibility = Visibility.Collapsed;
+            this.MyRecipesVisibility = Visibility.Collapsed;
+            this.SellMedicinesVisibility = Visibility.Collapsed;
+            this.DeleteVisibility = Visibility.Visible;
+            this.CreateRecipeVisibility = Visibility.Collapsed;
         }
     }
 }

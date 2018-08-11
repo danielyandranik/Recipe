@@ -34,7 +34,7 @@
 
                 <DataTemplate>
 
-                    <controls:Recipe></controls:Recipe>
+                    <controls:Recipe/>
 
                 </DataTemplate>
 

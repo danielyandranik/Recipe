@@ -131,5 +131,17 @@ namespace Desktop.Views.Windows
 
             base.OnClosing(e);
         }
+
+        private async void MyApprovalsButton_Click(object sender, RoutedEventArgs e)
+        {
+            this._navigationService.Navigate(ref this._hospitalAdminApprovals);
+
+            var vm = (HospitalAdminApprovalViewModel)this._hospitalAdminApprovals.DataContext;
+
+            var service = new LoadHospitalAdminApprovals(vm);
+
+            await service.Load();
+
+        }
     }
 }

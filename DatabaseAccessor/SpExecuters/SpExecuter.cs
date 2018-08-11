@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace DatabaseAccess.SpExecuters
 {
@@ -19,9 +20,14 @@ namespace DatabaseAccess.SpExecuters
         private readonly string _connString;
 
         /// <summary>
-        /// Dictionary cached properties
+        /// Dictionary of  cached properties
         /// </summary>
         private readonly Dictionary<Type, PropertyInfo[]> _cachedProperties;
+
+        /// <summary>
+        /// Dictionary of cached mappers
+        /// </summary>
+        private readonly Dictionary<Type, Delegate> _cachedMappers;
 
         /// <summary>
         /// Gets connection string
@@ -42,36 +48,11 @@ namespace DatabaseAccess.SpExecuters
             // sets connection string
             this._connString = connString;
 
-            // initializes dictionary
+            // initializes cached properties
             this._cachedProperties = new Dictionary<Type, PropertyInfo[]>();
-        }
 
-        /// <summary>
-        /// Creates new instance of <see cref="SpExecuter"/>.
-        /// </summary>
-        /// <param name="dataSource">Data Source</param>
-        /// <param name="initialCatalog">Initial catalog</param>
-        /// <param name="integratedSecurity">Integrated Security</param>
-        public SpExecuter(string dataSource, string initialCatalog, bool integratedSecurity)
-        {
-            this._connString = new SqlConnectionStringBuilder
-            {
-                DataSource = dataSource,
-                InitialCatalog = initialCatalog,
-                IntegratedSecurity = integratedSecurity
-            }.ConnectionString;
-
-            this._cachedProperties = new Dictionary<Type, PropertyInfo[]>();
-        }
-
-        /// <summary>
-        /// Creates new stored procedure executer.
-        /// </summary>
-        /// <param name="cnnString">Connection string</param>
-        /// <returns>Stored procedure executer.</returns>
-        public ISpExecuter Create(string cnnString)
-        {
-            return new SpExecuter(cnnString);
+            // initializes cached mappers
+            this._cachedMappers = new Dictionary<Type, Delegate>();
         }
 
         /// <summary>
@@ -274,62 +255,123 @@ namespace DatabaseAccess.SpExecuters
             if (!reader.HasRows)
                 return null;
 
-            // creating result instance
-            var result = Activator.CreateInstance<TResult>();
+            // getting properties
+            var properties = this.GetProperties<TResult>();
 
-            var properties = null as PropertyInfo[];
+            // getting mapper
+            var mapper = this.GetMapper<TResult>(properties);
 
-            var resultType = result.GetType();
+            // executing mapper
+            return mapper(reader);
+        }
+
+        /// <summary>
+        /// Gets mapper from cached mappers if it exists, otherwise creates the new one.
+        /// </summary>
+        /// <typeparam name="TResult">Type of result</typeparam>
+        /// <param name="properties">Properties</param>
+        /// <returns>Sql Data reader to object mapper</returns>
+        private Func<SqlDataReader, TResult> GetMapper<TResult>(PropertyInfo[] properties)
+        {
+            // getting result type
+            var resultType = typeof(TResult);
+
+            //  checking if the mapper exists in cached mappers
+            if (this._cachedMappers.ContainsKey(resultType))
+                return (Func<SqlDataReader, TResult>)this._cachedMappers[resultType];
+
+            // getting type of Sql Data Reader
+            var sqlReaderType = typeof(SqlDataReader);
+
+            // creating list of variable expressions
+            var expressions = new List<Expression>();
+
+            // creating list of expressions
+            var variables = new List<ParameterExpression>();
+
+            // constructing sql reader parameter expression
+            var sourceExpr = Expression.Parameter(sqlReaderType);
+
+            // constructing result expression
+            var result = Expression.Parameter(resultType);
+
+            // adding variables to collection of variables expressions
+            variables.Add(result);
+
+            // constructing initializing expression
+            var init = Expression.New(resultType);
+
+            // constructing assign expression which assigned the initialized value to result
+            var resultInitAssign = Expression.Assign(result, init);
+
+            // adding result assignment expression to list of expressions
+            expressions.Add(resultInitAssign);
+
+            // loop over the properties constructing the block of assignment
+            foreach(var property in properties)
+            {
+                var propExpr = Expression.Property(result, property.Name);
+
+                var columnGetExpr = Expression.Property(sourceExpr,"Item",Expression.Constant(property.Name,typeof(string)));
+
+                var value = Expression.Convert(columnGetExpr, property.PropertyType);
+
+                var assignExpr = Expression.Assign(propExpr, value);
+
+                expressions.Add(assignExpr);
+            }
+
+            // constructing label target
+            var target = Expression.Label(resultType);
+
+            // constructing retrun expression
+            var returnExpr = Expression.Return(target, result, resultType);
+
+            // constructing label expression
+            var label = Expression.Label(target, Expression.Default(resultType));
+
+            // adding return expression and label to list of expressions
+            expressions.Add(returnExpr);
+            expressions.Add(label);
+
+            // constructing body  
+            var body = Expression.Block(variables, expressions);
+
+            // constructing lambda
+            var lambda = Expression.Lambda<Func<SqlDataReader, TResult>>(body, sourceExpr);
+
+            // compiling lambda expression
+            var mapper = lambda.Compile();
+
+            // adding compiled mapper to cached mappers
+            this._cachedMappers.Add(resultType, mapper);
+
+            // returning mapper
+            return mapper;
+        }
+
+        /// <summary>
+        /// Gets properties from the cached properties if they exist,otherwise gets with reflection and adds them to cached properties
+        /// </summary>
+        /// <typeparam name="TResult">Type of result</typeparam>
+        /// <returns>Properties</returns>
+        private PropertyInfo[] GetProperties<TResult>()
+        {
+            // getting type of properties
+            var type = typeof(TResult);
+
+            // checking if dictionary of cached properties contains properties of the given type
+            if (this._cachedProperties.ContainsKey(type))
+                return this._cachedProperties[type];
 
             // getting properties
-            if (!this._cachedProperties.ContainsKey(resultType))
-            {
-                properties = resultType.GetProperties();
-                this._cachedProperties.Add(resultType, properties);
-            }
-            else
-            {
-                properties = this._cachedProperties[resultType];
-            }
+            var properties = type.GetProperties();
 
-            // setting result object properties
-            foreach (var property in properties)
-            {
-                // getting property type
-                var propertyType = property.PropertyType;
+            // adding them to cached properties
+            this._cachedProperties.Add(type, properties);
 
-                if (!propertyType.IsPrimitive && propertyType != typeof(string) && propertyType != typeof(DateTime) && propertyType != typeof(decimal))
-                {
-                    // getting properties of complex property
-                    var propProperties = propertyType.GetProperties();
-
-                    // getting property object
-                    var propObject = Activator.CreateInstance(propertyType);
-
-                    // loop over the properties of complex property
-                    foreach (var propProperty in propProperties)
-                    {
-                        propProperty.SetValue(propObject, reader[propProperty.Name]);
-                    }
-
-                    property.SetValue(result, propObject);
-                }
-                // setting primitive property value
-                else
-                {
-                    try
-                    {
-                        property.SetValue(result, reader[property.Name]);
-                    }
-                    catch (Exception ex)
-                    {
-                        property.SetValue(result, null);
-                    }
-                }
-            }
-
-            // returning result
-            return result;
+            // returning properties
+            return properties;
         }
     }
 }

@@ -9,12 +9,6 @@ namespace DatabaseAccess.SpExecuters
     public interface ISpExecuter
     {
         /// <summary>
-        /// Creates new stored procedure executer
-        /// </summary>
-        /// <param name="cnnString">Connection string</param>
-        ISpExecuter Create(string cnnString);
-
-        /// <summary>
         /// Executes store procedure which return data is enumerable.
         /// </summary>
         /// <typeparam name="TResult">Type of Result.</typeparam>

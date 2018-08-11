@@ -133,6 +133,7 @@
     <Build Include="dbo\Stored Procedures\CreateOperations\uspCreatePharmacyAdminProfile.sql" />
     <Build Include="dbo\Stored Procedures\DeleteOperations\uspDeletePharmacyAdminProfile.sql" />
     <Build Include="dbo\Stored Procedures\ReadOperations\uspGetPharmacyAdminByUserId.sql" />
+    <Build Include="dbo\Stored Procedures\ReadOperations\uspGetUnapprovedDoctorsByHospital.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="dbo\UsersDB.refactorlog" />

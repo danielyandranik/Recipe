@@ -4,6 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RecipeApi.Context;
 using RecipeApi.Repositories;
+using RecipeApi.Services;
+using System.IO;
+using System.Net;
 
 namespace RecipeApi
 {
@@ -15,6 +18,10 @@ namespace RecipeApi
         }
 
         public IConfiguration Configuration { get; }
+
+        private IConfiguration Credentials = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("MailCredentials.json").Build();
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -33,6 +40,10 @@ namespace RecipeApi
 
             services.AddTransient<IRecipeHistoryContext, RecipeHistoryContext>();
             services.AddTransient<IRecipeHistoryRepository, RecipeHistoryRepository>();
+
+            services.AddSingleton(new QrCodeService());
+            services.AddSingleton(new QrMailSender(
+                new NetworkCredential(Credentials["Username"], Credentials["Password"])));
 
             services.AddAuthentication("Bearer")
                 .AddIdentityServerAuthentication(options =>

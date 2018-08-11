@@ -54,7 +54,7 @@ namespace UserManagementAPI.Controllers
         /// </summary>
         /// <param name="id">id</param>
         /// <returns>action result</returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         [Authorize]
         public IActionResult Get(int id)
         {
@@ -62,7 +62,7 @@ namespace UserManagementAPI.Controllers
             var userId = this.GetUserId();
 
             //if (userId != id)
-                //return new StatusCodeResult(401);
+            //return new StatusCodeResult(401);
 
             // getting doctor
             var doctor = this._dataManager.Operate<int, Doctor>("GetDoctorById", id);
@@ -72,6 +72,18 @@ namespace UserManagementAPI.Controllers
                 return new StatusCodeResult(404);
 
             return new JsonResult(doctor);
+        }
+
+        [HttpGet("{hospital}")]
+        [Authorize]
+        public async Task<IActionResult> Get(string hospital)
+        {
+            var unapprovedDoctors = await this._dataManager.OperateAsync<string, UnapprovedDoctor>("GetUnapprovedDoctors", hospital);
+
+            if (unapprovedDoctors == null)
+                return new StatusCodeResult(204);
+
+            return new JsonResult(unapprovedDoctors);
         }
 
         /// <summary>
