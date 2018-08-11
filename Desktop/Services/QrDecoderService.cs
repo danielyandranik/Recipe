@@ -19,6 +19,7 @@ using ZXing;
 using ZXing.Common;
 using Desktop.Views.Windows;
 using System.Windows;
+using System.Media;
 
 namespace Desktop.Services
 {
@@ -70,6 +71,7 @@ namespace Desktop.Services
                         this._vm.QrDecoderVisibility = Visibility.Hidden;
                         this._vm.ItemsVisibility = Visibility.Visible;
                         this._dispatcher.Invoke(() => this._vm.FindRecipeCommand.Execute(this._vm.RecipeId));
+                        SystemSounds.Beep.Play();
                         return;
                     }
 
