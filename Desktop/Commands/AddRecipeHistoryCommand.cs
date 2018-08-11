@@ -61,7 +61,11 @@ namespace Desktop.Commands
 
             var sellResponse = await this.ExecuteAsync(recipeHistory);
 
-            if(!sellResponse.IsSuccessStatusCode)
+            this.viewModel.Start();
+            this.viewModel.Recipe = null;
+            this.viewModel.RecipeId = null;
+
+            if (!sellResponse.IsSuccessStatusCode)
             {
                 RecipeMessageBox.Show((string)dictionary["sell_medicines_fail"]);
                 return;

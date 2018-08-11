@@ -6,6 +6,8 @@ using System.Windows.Controls;
 using Desktop.ViewModels;
 using Desktop.Views.Pages;
 using Desktop.Services;
+using System;
+using System.Windows.Navigation;
 
 namespace Desktop.Views.Windows
 {
@@ -38,6 +40,20 @@ namespace Desktop.Views.Windows
             this._mainWindowVM = new MainWindowViewModel(this);
             this.DataContext = this._mainWindowVM;
             this._navigationService = new NavigateService(this.frame);
+
+            this.frame.Navigated += this.Navigate;
+        }
+
+        private void Navigate(object sender, NavigationEventArgs e)
+        {
+            var qrDecoder = ((App)App.Current).QrDecoderService;
+
+            var pageType = e.Content.GetType();
+
+            if (pageType == typeof(SellMedicines))
+                qrDecoder?.Start();
+            else
+                qrDecoder?.Stop();
         }
 
         private async void Medicines_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -128,6 +144,8 @@ namespace Desktop.Views.Windows
             var app = (App)App.Current;
 
             app.ProfilesMenuManager = null;
+
+            app.QrDecoderService?.Stop();
 
             base.OnClosing(e);
         }

@@ -11,11 +11,13 @@ namespace Desktop.Views.Pages
     public partial class SellMedicines : Page
     {
         private readonly SellMedicinesViewModel ViewModel; 
+
         public SellMedicines()
         {
-            this.ViewModel = new SellMedicinesViewModel();
-            this.DataContext = this.ViewModel;
             InitializeComponent();
+
+            this.ViewModel = new SellMedicinesViewModel(this.Dispatcher);
+            this.DataContext = this.ViewModel;
         }
     }
 }

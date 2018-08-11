@@ -26,6 +26,11 @@ namespace Desktop
         private readonly TokenProvider _tokenProvider;
 
         /// <summary>
+        /// Qr decoder
+        /// </summary>
+        private  QrDecoderService _qrDecoder;
+
+        /// <summary>
         /// User Management API client
         /// </summary>
         private readonly UserManagementApiClient _userApiClient;
@@ -88,6 +93,16 @@ namespace Desktop
             get => this._profilesMenuManager;
 
             set => this._profilesMenuManager = value;
+        }
+
+        /// <summary>
+        /// Gets or sets qr deocder
+        /// </summary>
+        public QrDecoderService QrDecoderService
+        {
+            get => this._qrDecoder;
+
+            set => this._qrDecoder = value;
         }
 
         /// <summary>

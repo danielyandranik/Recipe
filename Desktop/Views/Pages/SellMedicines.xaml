@@ -4,10 +4,21 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Desktop.Views.Pages"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       MinHeight="609" MinWidth="902"    
       Title="SellMedicines" Background="White">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding UnloadedComamnd}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
 
     <Page.Resources>
         <Style TargetType="{x:Type TextBox}">
@@ -79,7 +90,11 @@
                 </Grid>
             </Border>
 
-            <ItemsControl Grid.Row="2" ItemsSource="{Binding Recipe}" HorizontalContentAlignment="Stretch">
+            <Image Grid.Row="2" Name="qr_decoder" 
+                   Visibility="{Binding QrDecoderVisibility, UpdateSourceTrigger=PropertyChanged}" 
+                   Source="{Binding QrDecoderSource, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <ItemsControl Grid.Row="2" ItemsSource="{Binding Recipe}" HorizontalContentAlignment="Stretch" Visibility="{Binding ItemsVisibility}">
 
                 <ItemsControl.ItemTemplate>
 
