@@ -16,7 +16,7 @@ namespace RecipeClient
         private string _accessToken;
 
         public RecipeClient(string baseAddress)
-        { 
+        {
             this.client = new HttpClient() { BaseAddress = new Uri(baseAddress) };
 
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -97,7 +97,6 @@ namespace RecipeClient
 
         public async Task<ResponseMessage<string>> DeleteAsync(string requestUri)
         {
-
             var httpResponse = await this.client.DeleteAsync(requestUri);
 
             var content = await httpResponse.Content.ReadAsStringAsync();
@@ -109,5 +108,21 @@ namespace RecipeClient
                 Content = content
             };
         }
+
+        public async Task<ResponseMessage<string>> SendQrReqeust(QrSendInfo qrSendInfo)
+        {
+            var response = await this.client.PostAsync(
+                "api/recipe-qr-codes", new StringContent(JsonConvert.SerializeObject(qrSendInfo)));
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            return new ResponseMessage<string>
+            {
+                StatusCode = (int)response.StatusCode,
+                IsSuccessStatusCode = response.IsSuccessStatusCode,
+                Content = content
+            };
+        }
+        
     }
 }
