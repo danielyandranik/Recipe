@@ -5,6 +5,7 @@ using Microsoft.Extensions.Primitives;
 using RecipeApi.Models;
 using RecipeApi.Repositories;
 using System.Linq;
+using RecipeApi.Services;
 
 namespace RecipeApi.Controllers
 {
@@ -15,9 +16,12 @@ namespace RecipeApi.Controllers
     {
         private readonly IRecipeRepository _recipeRepository;
 
-        public RecipesController(IRecipeRepository recipeRepository)
+        private readonly QrCodeService _qrCodeService;
+
+        public RecipesController(IRecipeRepository recipeRepository, QrCodeService qrCodeService)
         {
             this._recipeRepository = recipeRepository;
+            this._qrCodeService = qrCodeService;
         }
 
         [HttpGet]
@@ -62,7 +66,11 @@ namespace RecipeApi.Controllers
             {
                 item.LeftCount = item.Count;
             }
+
             await this._recipeRepository.Create(recipe);
+
+            await this._qrCodeService.CreateQrCodeAsync(recipe.Id);
+
             return new OkObjectResult(recipe);
         }
 
