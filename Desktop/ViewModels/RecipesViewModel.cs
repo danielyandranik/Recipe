@@ -1,6 +1,8 @@
-﻿using Desktop.Models;
+﻿using Desktop.Commands;
+using Desktop.Models;
 using GalaSoft.MvvmLight;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace Desktop.ViewModels
 {
@@ -8,10 +10,19 @@ namespace Desktop.ViewModels
     {
         private ObservableCollection<Recipe> recipes;
 
+        private readonly SendQRCommand _sendQrCommand;
+
+        public ICommand SendQrCommand => this._sendQrCommand;
+
         public ObservableCollection<Recipe> Recipes
         {
             get => this.recipes;
             set => this.Set("Recipes", ref this.recipes, value);
+        }
+
+        public RecipesViewModel()
+        {
+            this._sendQrCommand = new SendQRCommand();
         }
     }
 }
