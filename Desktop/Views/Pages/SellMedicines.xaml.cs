@@ -13,7 +13,7 @@ namespace Desktop.Views.Pages
         private readonly SellMedicinesViewModel ViewModel; 
         public SellMedicines()
         {
-            this.ViewModel = new SellMedicinesViewModel();
+            this.ViewModel = new SellMedicinesViewModel(this.Dispatcher);
             this.DataContext = this.ViewModel;
             InitializeComponent();
         }
