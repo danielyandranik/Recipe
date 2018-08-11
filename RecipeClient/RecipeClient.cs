@@ -111,8 +111,10 @@ namespace RecipeClient
 
         public async Task<ResponseMessage<string>> SendQrReqeust(QrSendInfo qrSendInfo)
         {
+            var json = JsonConvert.SerializeObject(qrSendInfo);
+
             var response = await this.client.PostAsync(
-                "api/recipe-qr-codes", new StringContent(JsonConvert.SerializeObject(qrSendInfo)));
+                "api/recipe-qr-codes", new StringContent(json,Encoding.UTF8,"application/json"));
 
             var content = await response.Content.ReadAsStringAsync();
 
