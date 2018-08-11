@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Desktop.Validations;
+using Desktop.Models;
 
 namespace Desktop.ViewModels
 {
@@ -21,6 +22,11 @@ namespace Desktop.ViewModels
         /// Container for pharmacies
         /// </summary>
         private ObservableCollection<Institution> pharmacies;
+
+        /// <summary>
+        /// Container for medicines
+        /// </summary>
+        private ObservableCollection<MedicinePricePair> medicines;
 
         /// <summary>
         /// Editably pharmacy
@@ -79,6 +85,21 @@ namespace Desktop.ViewModels
             set
             {
                 this.Set("Pharmacies", ref this.pharmacies, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets medicines value
+        /// </summary>
+        public ObservableCollection<MedicinePricePair> Medicines
+        {
+            get
+            {
+                return this.medicines;
+            }
+            set
+            {
+                this.Set("Medicines", ref this.medicines, value);
             }
         }
 

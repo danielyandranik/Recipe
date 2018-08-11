@@ -6,36 +6,54 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Desktop.Models;
+using Desktop.Interfaces;
 
 namespace Desktop.Services
 {
-    public class LoadPharmMedicinesService
+    public class LoadPharmMedicinesService : ILoadService
     {
-        private PharmMedicinesViewModel medicinesViewModel;
+
+        public int id;
+
+        private PharmaciesViewModel pharmaciesViewModel;
 
         private readonly InstitutionClient.Client inst_client;
 
         private readonly Client med_client;
 
-        public LoadPharmMedicinesService(PharmMedicinesViewModel medicinesViewModel)
+        public LoadPharmMedicinesService(PharmaciesViewModel pharmaciesViewModel)
         {
-            this.medicinesViewModel = medicinesViewModel;
+            this.pharmaciesViewModel = pharmaciesViewModel;
             this.inst_client = ((App)App.Current).InstitutionClient;
             this.med_client = ((App)App.Current).MedicineClient;
         }
 
         public async Task Load()
         {
-            var response = await this.inst_client.GetPharmacyMedicinesAsync(this.medicinesViewModel.pharmacyId);
+            var response = await this.inst_client.GetPharmacyMedicinesAsync(this.id);
 
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception();
             }
 
-            this.medicinesViewModel.PharmMedicines = new ObservableCollection<PharmMedicine>(response.Content);
-
-            this.medicinesViewModel.MedicinePricePairs = this.GetMedicinePricePair(response.Content).Result;
+            // this.pharmaciesViewModel.Medicines = this.GetMedicinePricePair(response.Content).Result;
+            this.pharmaciesViewModel.Medicines = new ObservableCollection<MedicinePricePair>();
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aaa", Price = 1000 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "aas", Price = 1500 });
+            this.pharmaciesViewModel.Medicines.Add(new MedicinePricePair { Name = "f", Price = 1500 });
         }
 
         private async Task<ObservableCollection<MedicinePricePair>> GetMedicinePricePair(IEnumerable<PharmMedicine> medicines)

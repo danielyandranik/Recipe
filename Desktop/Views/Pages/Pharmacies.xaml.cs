@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using Desktop.Services;
 using Desktop.ViewModels;
@@ -11,19 +12,18 @@ namespace Desktop.Views.Pages
     /// </summary>
     public partial class Pharmacies : Page
     {
-        private readonly NavigateService navigationService;
-
-        private PharmMedicines pharmMedicines;
-
-
         public PharmaciesViewModel PharmaciesViewModel { get; private set; }
+
+        private LoadPharmMedicinesService service;
 
         public Pharmacies()
         {
-           // this.navigationService = new NavigateService(this.frame);
+            InitializeComponent();
+
             this.PharmaciesViewModel = new PharmaciesViewModel();
             this.DataContext = this.PharmaciesViewModel;
-            InitializeComponent();
+
+            this.service = new LoadPharmMedicinesService(this.PharmaciesViewModel);
         }
 
         private void EditPharmacyClick(object sender, RoutedEventArgs e)
@@ -34,13 +34,15 @@ namespace Desktop.Views.Pages
             Application.Current.MainWindow.IsEnabled = false;
         }
 
-        private async void ViewMedicinesClick(object sender, RoutedEventArgs e)
+        private void ViewMedicinesClick(object sender, RoutedEventArgs e)
         {
             var id = (int)(sender as Button).Tag;
-            this.pharmMedicines.MedicinesViewModel.pharmacyId = id;
-            this.navigationService.Navigate(ref this.pharmMedicines);
-            var loadPharmMedicinesService = new LoadPharmMedicinesService(this.pharmMedicines.MedicinesViewModel);
-            await loadPharmMedicinesService.Load();
+
+            this.service.id = id;
+            Task response =  this.service.Load();
+
+            this.MedicinesPopup.IsOpen = true;
+            Application.Current.MainWindow.IsEnabled = false;
         }
 
         private void CloseEditPharmacyPopup_Click(object sender, RoutedEventArgs e)
@@ -48,6 +50,13 @@ namespace Desktop.Views.Pages
             this.EditPopup.IsOpen = false;
             Application.Current.MainWindow.IsEnabled = true;
         }
+
+        private void CloseViewMedicinesPopup_Click(object sender, RoutedEventArgs e)
+        {
+            this.MedicinesPopup.IsOpen = false;
+            Application.Current.MainWindow.IsEnabled = true;
+        }
+        
 
         private async void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

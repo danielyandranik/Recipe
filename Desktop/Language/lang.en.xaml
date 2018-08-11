@@ -145,10 +145,9 @@
     <!-- Pharmacies-->
     <system:String x:Key="pharmacies_email">Email</system:String>
     <system:String x:Key="pharm_medicines">Available medicines</system:String>
-
-    <!-- PharmMedicines page -->
     <system:String x:Key="pharmmed_name">Name</system:String>
     <system:String x:Key="pharmmed_price">Price</system:String>
+    <system:String x:Key="close">Close</system:String>
     
 
     <!-- Map page -->

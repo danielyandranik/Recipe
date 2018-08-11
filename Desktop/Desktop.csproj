@@ -347,7 +347,6 @@
     <Compile Include="ViewModels\PharmaciesViewModel.cs" />
     <Compile Include="ViewModels\PharmacistProfileViewModel.cs" />
     <Compile Include="ViewModels\PharmacyAdminProfileViewModel.cs" />
-    <Compile Include="ViewModels\PharmMedicinesViewModel.cs" />
     <Compile Include="ViewModels\RecipesViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
     <Compile Include="ViewModels\SellMedicinesViewModel.cs" />
@@ -396,9 +395,6 @@
     </Compile>
     <Compile Include="Views\Pages\Pharmacies.xaml.cs">
       <DependentUpon>Pharmacies.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\PharmMedicines.xaml.cs">
-      <DependentUpon>PharmMedicines.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Recipes.xaml.cs">
       <DependentUpon>Recipes.xaml</DependentUpon>
@@ -514,10 +510,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Pages\Pharmacies.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Pages\PharmMedicines.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
