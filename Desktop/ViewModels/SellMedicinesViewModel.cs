@@ -7,6 +7,9 @@ using RecipeClient;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation.Peers;
+using System.Windows.Automation.Provider;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -104,16 +107,6 @@ namespace Desktop.ViewModels
             this._itemsVisibility = Visibility.Hidden;
         }
 
-        private async Task<ResponseMessage<RecipeClient.Recipe>> GetRecipe(string id)
-        {
-            return await this.client.GetAsync<RecipeClient.Recipe>($"api/recipes/{id}");
-        }
-
-        private async Task<ResponseMessage<string>> CreateRecipeHistory(RecipeHistory recipeHistory)
-        {
-            return await this.client.CreateAsync<RecipeHistory>("/api/recipeHistories", recipeHistory);
-        }
-
         public void Start()
         {
             this.QrDecoderVisibility = Visibility.Visible;
@@ -124,6 +117,16 @@ namespace Desktop.ViewModels
         public void Finish()
         {
             this._qrDecoder.Stop();
+        }
+
+        private async Task<ResponseMessage<RecipeClient.Recipe>> GetRecipe(string id)
+        {
+            return await this.client.GetAsync<RecipeClient.Recipe>($"api/recipes/{id}");
+        }
+
+        private async Task<ResponseMessage<string>> CreateRecipeHistory(RecipeHistory recipeHistory)
+        {
+            return await this.client.CreateAsync<RecipeHistory>("/api/recipeHistories", recipeHistory);
         }
     }
 }

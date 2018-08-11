@@ -69,6 +69,7 @@ namespace Desktop.Services
                         this._vm.RecipeId = id;
                         this._vm.QrDecoderVisibility = Visibility.Hidden;
                         this._vm.ItemsVisibility = Visibility.Visible;
+                        this._dispatcher.Invoke(() => this._vm.FindRecipeCommand.Execute(this._vm.RecipeId));
                         return;
                     }
 

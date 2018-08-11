@@ -85,7 +85,7 @@
                        FontFamily="Comfortaa"  Foreground="#FF182634" VerticalAlignment="Center"
                        Margin="10,0,10,0" />
 
-                    <Button Grid.Column="3" Content="{DynamicResource add}" BorderBrush="{x:Null}" Background="#FF39B9B9" Command="{Binding FindRecipeCommand}" CommandParameter="{Binding RecipeId}" 
+                    <Button Name="findRecipe" Grid.Column="3" Content="{DynamicResource add}" BorderBrush="{x:Null}" Background="#FF39B9B9" Command="{Binding FindRecipeCommand}" CommandParameter="{Binding RecipeId}" 
                         Margin="10,0,10,0"/>
                 </Grid>
             </Border>
