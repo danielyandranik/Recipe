@@ -48,9 +48,11 @@ namespace RecipeApi.Services
 
                 var stream = new MemoryStream();
 
-                qrImage.Save(stream, ImageFormat.Bmp);
+                qrImage.Save(stream, ImageFormat.Jpeg);
 
-                var img = new LinkedResource(stream, "image/bmp")
+                stream.Position = 0;
+
+                var img = new LinkedResource(stream, "image/jpeg")
                 {
                     ContentId = "recipe_qr_code"
                 };
@@ -64,6 +66,12 @@ namespace RecipeApi.Services
                 mail.To.Add(to);
 
                 this._smptpClient.Send(mail);
+
+                mail.Dispose();
+                foot.Dispose();
+                img.Dispose();
+                stream.Dispose();
+                qrImage.Dispose();
             });
 
             task.Start();

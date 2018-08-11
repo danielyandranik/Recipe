@@ -7,7 +7,6 @@ using RecipeApi.Repositories;
 using RecipeApi.Services;
 using System.IO;
 using System.Net;
-using UserManagementConsumer.Client;
 
 namespace RecipeApi
 {
