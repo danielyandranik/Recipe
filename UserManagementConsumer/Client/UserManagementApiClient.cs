@@ -603,16 +603,7 @@ namespace UserManagementConsumer.Client
         /// <returns>unapproved pharmacists</returns>
         public async Task<Response<IEnumerable<UnapprovedPharmacist>>> GetUnapprovedPharmacists(string pharmacy)
         {
-            var response = await this._userApiHttpClient.GetAsync($"api/pharmacists/{pharmacy}");
-
-            if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse<IEnumerable<UnapprovedPharmacist>>(Status.Error, null);
-
-            var content = await response.Content.ReadAsStringAsync();
-
-            var unapprovedPharmacists = JsonConvert.DeserializeObject<IEnumerable<UnapprovedPharmacist>>(content);
-
-            return this.ConstructResponse(Status.Ok, unapprovedPharmacists);
+            return await this.GetUnapprovedProfilesAsync<UnapprovedPharmacist>($"api/pharmacists/{pharmacy}");
         }
 
         /// <summary>
