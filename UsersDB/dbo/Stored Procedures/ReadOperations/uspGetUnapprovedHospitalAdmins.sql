@@ -1,19 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[uspGetUnapprovedHospitalAdmins]
 AS
-<<<<<<< HEAD:UsersDB/dbo/Stored Procedures/ReadOperations/uspGetUnapprovedHospitalAdmins.sql
 	select p.UserId, u.FullName, h.HospitalName, p.CreatedDate as 'ProfileCreatedOn', h.StartedWorking 
 	from Users u
 	join UserProfile p on u.Id = p.UserId
 	join HospitalDirectors h on p.ProfileId = h.ProfileId
 	where p.[Type] = 'hospital_director' and p.IsApproved = 0
 
-=======
-	begin
-		select p.UserId, u.FullName, h.HospitalName, p.CreatedDate, h.StartedWorking 
-			from Users u
-				join UserProfile p on u.Id = p.UserId
-				join HospitalDirectors h on p.ProfileId = h.ProfileId
-				where p.[Type] = 'hospital_director' and p.IsApproved = 0
-	end
->>>>>>> 8fd1918033ece5ea8dc2b893fe078dc12ef4d5bf:UsersDB/dbo/Stored Procedures/ReadOperations/uspGetUnapprvedHospitalAdmins.sql
 RETURN 0

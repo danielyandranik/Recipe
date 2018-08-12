@@ -65,16 +65,16 @@ namespace UserManagementAPI.Controllers
         }
 
         /// <summary>
-        /// Gets all pharmacy directors
+        /// Gets pharmacy admin by id
         /// </summary>
         /// <returns>action result</returns>
         [HttpGet("{id}")]
-        [Authorize(Policy = "")]
-        public async Task<IActionResult> Get(int id)
+        [Authorize(Policy = "PharmacyAdminOrHigher")]
+        public IActionResult Get(int id)
         {
-            
+            var result = this._dataManager.Operate<int, PharmacyAdmin>("GetPharmacyAdminById", id);
 
-            return new StatusCodeResult(404);
+            return new JsonResult(result);
         }
 
         /// <summary>

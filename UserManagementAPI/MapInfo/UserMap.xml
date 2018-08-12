@@ -592,6 +592,16 @@
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
   </operation>
+  <operation name="GetPharmacyAdminById">
+    <spName>uspPharmacyAdminByUserId</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Entity</returnDataType>
+  </operation>  
   <operation name="GetUnapprovedDoctors">
     <spName>uspGetUnapprovedDoctorsByHospital</spName>
     <parameters>

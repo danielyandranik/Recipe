@@ -269,10 +269,7 @@
     <Compile Include="Commands\AddRecipeHistoryCommand.cs" />
     <Compile Include="Commands\ApproveDoctorCommand.cs" />
     <Compile Include="Commands\ApproveHospitalAdminCommand.cs" />
-<<<<<<< HEAD
     <Compile Include="Commands\ApprovePharmacistCommand.cs" />
-=======
->>>>>>> 8fd1918033ece5ea8dc2b893fe078dc12ef4d5bf
     <Compile Include="Commands\ApprovePharmacyAdminCommand.cs" />
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\ChangeLangCommand.cs" />

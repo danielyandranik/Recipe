@@ -115,6 +115,12 @@ namespace UserManagementAPI
                 options.AddPolicy("IsHospitalDirector", policy => policy.RequireClaim("current_profile", "hospital_director"));
 
                 options.AddPolicy("IsPharmacyAdmin", policy => policy.RequireClaim("current_profile", "pharmacy_admin"));
+
+                options.AddPolicy("IsPharmacyAdminOrHigher", policy => policy.RequireClaim("current_profile", new[]
+                {
+                    "pharmacy_admin", "minisry_worker", "admin"
+                }
+                ));
             });
         }
 

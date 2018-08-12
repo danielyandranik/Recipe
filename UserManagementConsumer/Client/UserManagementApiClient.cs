@@ -610,9 +610,9 @@ namespace UserManagementConsumer.Client
 
             var content = await response.Content.ReadAsStringAsync();
 
-            var unapprovedDoctors = JsonConvert.DeserializeObject<IEnumerable<UnapprovedPharmacist>>(content);
+            var unapprovedPharmacists = JsonConvert.DeserializeObject<IEnumerable<UnapprovedPharmacist>>(content);
 
-            return this.ConstructResponse(Status.Ok, unapprovedDoctors);
+            return this.ConstructResponse(Status.Ok, unapprovedPharmacists);
         }
 
         /// <summary>
@@ -767,7 +767,7 @@ namespace UserManagementConsumer.Client
                 return this.ConstructResponse<T>(Status.Error, null);
 
             var content = JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
-
+            
             return this.ConstructResponse(Status.Ok, content);
         }
 
