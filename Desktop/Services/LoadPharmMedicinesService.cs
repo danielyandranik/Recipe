@@ -12,25 +12,24 @@ namespace Desktop.Services
 {
     public class LoadPharmMedicinesService : ILoadService
     {
-
-        public int id;
-
         private PharmaciesViewModel pharmaciesViewModel;
 
-        private readonly InstitutionClient.Client inst_client;
+        private readonly InstitutionClient.Client instClient;
 
-        private readonly Client med_client;
+        private readonly Client medClient;
+
+        public int CurrentPharamcy;
 
         public LoadPharmMedicinesService(PharmaciesViewModel pharmaciesViewModel)
         {
             this.pharmaciesViewModel = pharmaciesViewModel;
-            this.inst_client = ((App)App.Current).InstitutionClient;
-            this.med_client = ((App)App.Current).MedicineClient;
+            this.instClient = ((App)App.Current).InstitutionClient;
+            this.medClient = ((App)App.Current).MedicineClient;
         }
 
         public async Task Load()
         {
-            var response = await this.inst_client.GetPharmacyMedicinesAsync(this.id);
+            var response = await this.instClient.GetPharmacyMedicinesAsync(this.CurrentPharamcy);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -46,7 +45,7 @@ namespace Desktop.Services
 
             foreach (var medicine in medicines)
             {
-                var response = await this.med_client.GetMedicineAsync($"api/medicines/{medicine.MedicineId}");
+                var response = await this.medClient.GetMedicineAsync($"api/medicines/{medicine.MedicineId}");
 
                 if (!response.IsSuccessStatusCode)
                 {
