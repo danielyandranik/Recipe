@@ -206,7 +206,7 @@ namespace Desktop
                         return;
                     }
 
-                    var response = await this._userApiClient.GetUserByUsernameAsync(username);
+                    var response = await this._userApiClient.GetUserAsync(username);
 
                     if (response.Status == Status.Error)
                     {

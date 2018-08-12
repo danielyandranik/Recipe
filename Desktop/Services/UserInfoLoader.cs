@@ -30,7 +30,7 @@ namespace Desktop.Services
         /// <returns>user initial information</returns>
         public async Task<UserInitialInfo> Execute()
         {
-            var response = await this._client.GetUserByUsernameAsync(User.Default.Username);
+            var response = await this._client.GetUserAsync(User.Default.Username);
 
             if (response.Status == Status.Error)
                 return null;
