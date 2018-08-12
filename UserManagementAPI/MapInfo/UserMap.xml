@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <operations
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="MapSchema.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="MapSchema.xsd">
   <operation name="GetAllUsers">
     <spName>uspGetUsersPublicInfo</spName>
     <returnDataType>Enumerable</returnDataType>
