@@ -5,6 +5,9 @@ using InstitutionClient.Models;
 
 namespace Desktop.Commands
 {
+    /// <summary>
+    /// Institution add command
+    /// </summary>
     public class AddInstitutionCommand : AsyncCommand<Institution, bool>
     {
         /// <summary>
