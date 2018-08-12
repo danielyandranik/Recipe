@@ -1,41 +1,54 @@
-﻿using AForge.Video;
-using AForge.Video.DirectShow;
-using Desktop.ViewModels;
-using RecipeClient;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.IO;
+using System.Media;
+using System.Windows;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Text;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
-using System.ComponentModel;
-using System.Windows.Threading;
+using AForge.Video;
+using AForge.Video.DirectShow;
 using ZXing;
 using ZXing.Common;
+using Desktop.ViewModels;
 using Desktop.Views.Windows;
-using System.Windows;
-using System.Media;
+
 
 namespace Desktop.Services
 {
+    /// <summary>
+    /// Service for decoding service
+    /// </summary>
     public class QrDecoderService
     {
+        /// <summary>
+        /// Video capture device
+        /// </summary>
         private readonly VideoCaptureDevice _finalFrame;
 
+        /// <summary>
+        /// Sell medicines page viewmodel
+        /// </summary>
         private readonly SellMedicinesViewModel _vm;
 
+        /// <summary>
+        /// Dispatcher
+        /// </summary>
         private readonly Dispatcher _dispatcher;
 
+        /// <summary>
+        /// Creates new instance of <see cref="QrDecoderService"/>
+        /// </summary>
+        /// <param name="vm">Sell Medicines page viewmodel</param>
+        /// <param name="dispatcher">Dispatcher</param>
         public QrDecoderService(SellMedicinesViewModel vm, Dispatcher dispatcher)
         {
+            // setting fields
             this._vm = vm;
             this._dispatcher = dispatcher;
 
+            // initializing components
             var filterInfo = new FilterInfoCollection(FilterCategory.VideoInputDevice);
 
             var device = filterInfo[0];
@@ -44,16 +57,29 @@ namespace Desktop.Services
             this._finalFrame.NewFrame += this.FrameHandler;
         }
 
+        /// <summary>
+        /// Starts qr decoding
+        /// </summary>
         public void Start()
         {
-            this._finalFrame.Start();
+            if(!this._finalFrame.IsRunning)
+                this._finalFrame.Start();
         }
 
+        /// <summary>
+        /// Stops qr decoding
+        /// </summary>
         public void Stop()
         {
-            this._finalFrame.Stop();
+            if(this._finalFrame.IsRunning)
+                this._finalFrame.Stop();
         }
 
+        /// <summary>
+        /// Handler for new frame
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="eventArgs">Event argument</param>
         private async void FrameHandler(object sender, NewFrameEventArgs eventArgs)
         {
             try
@@ -62,8 +88,10 @@ namespace Desktop.Services
 
                 using (var bitmap = (Bitmap)eventArgs.Frame.Clone())
                 {
+                    // decoding QR 
                     var id = await this.GetRecipeId(bitmap);
 
+                    // if id is not null end QR decoding and open sell page
                     if (id != null)
                     {
                         this.Stop();
@@ -90,6 +118,11 @@ namespace Desktop.Services
             }
         }
 
+        /// <summary>
+        /// Gets bitmap image from bitmap
+        /// </summary>
+        /// <param name="bitmap">Bitmap</param>
+        /// <returns>bitmap image</returns>
         private BitmapImage GetImage(Bitmap bitmap)
         {
             var bi = new BitmapImage();
@@ -108,6 +141,11 @@ namespace Desktop.Services
             return bi;
         }
 
+        /// <summary>
+        /// Gets recipe id
+        /// </summary>
+        /// <param name="bitmap">QR code bitmap</param>
+        /// <returns>recipe id</returns>
         private Task<string> GetRecipeId(Bitmap bitmap)
         {
             return Task.Run(() =>

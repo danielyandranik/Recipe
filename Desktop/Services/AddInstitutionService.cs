@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Desktop.Interfaces;
 using InstitutionClient;
 using InstitutionClient.Models;
+using Desktop.Interfaces;
 
 namespace Desktop.Services
 {
