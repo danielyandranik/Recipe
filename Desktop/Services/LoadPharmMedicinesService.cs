@@ -36,7 +36,7 @@ namespace Desktop.Services
                 throw new Exception();
             }
 
-             this.pharmaciesViewModel.Medicines = this.GetMedicinePricePair(response.Content).Result;
+            this.pharmaciesViewModel.Medicines = await this.GetMedicinePricePair(response.Content);
         }
 
         private async Task<ObservableCollection<MedicinePricePair>> GetMedicinePricePair(IEnumerable<PharmMedicine> medicines)
