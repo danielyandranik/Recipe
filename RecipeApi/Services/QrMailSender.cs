@@ -1,21 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace RecipeApi.Services
 {
+    /// <summary>
+    /// QR Sender
+    /// </summary>
     public class QrMailSender
     {
+        /// <summary>
+        /// SMTP client
+        /// </summary>
         private readonly SmtpClient _smptpClient;
 
+        /// <summary>
+        /// Network credentials
+        /// </summary>
         private readonly NetworkCredential _networkCredential;
 
+        /// <summary>
+        /// Creates new instance of <see cref="NetworkCredential"/>
+        /// </summary>
+        /// <param name="networkCredential"></param>
         public QrMailSender(NetworkCredential networkCredential)
         {
             this._networkCredential = networkCredential;
@@ -30,11 +40,25 @@ namespace RecipeApi.Services
             };
         }
         
+        /// <summary>
+        /// Sends QR code image to given mail address asynchronously.
+        /// </summary>
+        /// <param name="to">Mail address which message will be sent to.</param>
+        /// <param name="recipeId">Recipe Id</param>
+        /// <param name="qrImage">QR code Image</param>
+        /// <returns>nothing</returns>
         public async Task SendAsync(string to,string recipeId,Bitmap qrImage)
         {
             await this.GetSendTask(to,recipeId,qrImage);
         }
 
+        /// <summary>
+        /// Creates QR code image sending task.
+        /// </summary>
+        /// <param name="to">Mail address which message will be sent to.</param>
+        /// <param name="recipeId">Recipe Id</param>
+        /// <param name="qrImage">QR code Image</param>
+        /// <returns>QR code image sending task.</returns>
         private Task GetSendTask(string to,string recipeId,Bitmap qrImage)
         {
             var task = new Task(() =>
