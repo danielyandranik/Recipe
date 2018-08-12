@@ -350,6 +350,16 @@ namespace UserManagementConsumer.Client
         }
 
         /// <summary>
+        /// Gets pharmacy admin profile by user id
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>response</returns>
+        public async Task<Response<PharmacyAdmin>> GetPharmacyAdminByIdAsync(int id)
+        {
+            return await this.GetProfileByTypeAndIdAsync<PharmacyAdmin>("pharmacy-admins", id);
+        }
+
+        /// <summary>
         /// Gets ministry worker
         /// </summary>
         /// <returns>response</returns>
@@ -623,6 +633,25 @@ namespace UserManagementConsumer.Client
             var content = await response.Content.ReadAsStringAsync();
 
             var unapprovedDoctors = JsonConvert.DeserializeObject<IEnumerable<UnapprovedDoctor>>(content);
+
+            return this.ConstructResponse(Status.Ok, unapprovedDoctors);
+        }
+
+        /// <summary>
+        /// Gets unapproved pharmacists
+        /// </summary>
+        /// <param name="pharmacy">Pharmacy name.</param>
+        /// <returns>unapproved pharmacists</returns>
+        public async Task<Response<IEnumerable<UnapprovedPharmacist>>> GetUnapprovedPharmacists(string pharmacy)
+        {
+            var response = await this._userApiHttpClient.GetAsync($"api/pharmacists/{pharmacy}");
+
+            if (!response.IsSuccessStatusCode)
+                return this.ConstructResponse<IEnumerable<UnapprovedPharmacist>>(Status.Error, null);
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            var unapprovedDoctors = JsonConvert.DeserializeObject<IEnumerable<UnapprovedPharmacist>>(content);
 
             return this.ConstructResponse(Status.Ok, unapprovedDoctors);
         }

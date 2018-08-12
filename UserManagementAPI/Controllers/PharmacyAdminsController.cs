@@ -65,6 +65,19 @@ namespace UserManagementAPI.Controllers
         }
 
         /// <summary>
+        /// Gets all pharmacy directors
+        /// </summary>
+        /// <returns>action result</returns>
+        [HttpGet("{id}")]
+        [Authorize(Policy = "")]
+        public async Task<IActionResult> Get(int id)
+        {
+            
+
+            return new StatusCodeResult(404);
+        }
+
+        /// <summary>
         /// Posts new pharmacy admin
         /// </summary>
         /// <param name="pharmacyAdmin">Pharmacy admin</param>

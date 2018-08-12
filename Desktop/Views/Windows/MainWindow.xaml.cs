@@ -23,6 +23,8 @@ namespace Desktop.Views.Windows
 
         private HospitalAdminApprovals _hospitalAdminApprovals;
 
+        private PharmacyAdminApprovals _pharmacyAdminApprovals;
+
         private MinistryWorkerApprovals _ministryWorkerApprovals;
 
         private readonly NavigateService _navigationService;
@@ -154,13 +156,23 @@ namespace Desktop.Views.Windows
 
         private async void MyApprovalsButton_Click(object sender, RoutedEventArgs e)
         {
-            if(User.Default.CurrentProfile == "hospital_admin")
+            if(User.Default.CurrentProfile == "hospital_director")
             {
                 this._navigationService.Navigate(ref this._hospitalAdminApprovals);
 
                 var vm = (HospitalAdminApprovalViewModel)this._hospitalAdminApprovals.DataContext;
 
                 var service = new LoadHospitalAdminApprovals(vm);
+
+                await service.Load();
+            }
+            else if(User.Default.CurrentProfile == "pharmacy_admin")
+            {
+                this._navigationService.Navigate(ref this._pharmacyAdminApprovals);
+
+                var vm = (PharmacyAdminApprovalsViewModel)this._pharmacyAdminApprovals.DataContext;
+
+                var service = new LoadPharmacyAdminApprovalsService(vm);
 
                 await service.Load();
             }

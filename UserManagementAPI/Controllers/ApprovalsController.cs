@@ -98,7 +98,7 @@ namespace UserManagementAPI.Controllers
         [Route("hospital-directors")]
         public IActionResult PutHospitalAdminApproval([FromBody]Approval approval)
         {
-            if (approval.Type != "hospital_directors")
+            if (approval.Type != "hospital_director")
                 return new StatusCodeResult(400);
 
             // getting operation result

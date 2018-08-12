@@ -49,15 +49,15 @@
 
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Column="0" Text="{Binding FullName}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="White" FontFamily="Comfortaa"/>
+                                <TextBlock Grid.Column="0" Text="{Binding FullName}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="#FF182634" FontFamily="Comfortaa"/>
 
-                                <TextBlock Grid.Column="1" Text="{Binding License}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="White" FontFamily="Comfortaa"/>
+                                <TextBlock Grid.Column="1" Text="{Binding License}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="#FF182634" FontFamily="Comfortaa"/>
 
-                                <TextBlock Grid.Column="2" Text="{Binding Specification}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="White" FontFamily="Comfortaa"/>
+                                <TextBlock Grid.Column="2" Text="{Binding Specification}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="#FF182634" FontFamily="Comfortaa"/>
 
-                                <TextBlock Grid.Column="3" Text="{Binding StartedWork}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="White" FontFamily="Comfortaa"/>
+                                <TextBlock Grid.Column="3" Text="{Binding StartedWork}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="#FF182634" FontFamily="Comfortaa"/>
 
-                                <TextBlock Grid.Column="4" Text="{Binding ProfileCreatedOn}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="White" FontFamily="Comfortaa"/>
+                                <TextBlock Grid.Column="4" Text="{Binding ProfileCreatedOn}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="#FF182634" FontFamily="Comfortaa"/>
 
                                 <StackPanel Grid.Column="5">
 

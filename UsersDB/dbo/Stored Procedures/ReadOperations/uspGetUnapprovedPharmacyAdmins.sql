@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[uspGetUnapprovedPharmacyAdmins]
 AS
-	select p.UserId, u.FullName, a.PharmacyName, p.CreatedDate, a.StartedWorking 
+	select p.UserId, u.FullName, a.PharmacyName, p.CreatedDate as 'ProfileCreatedOn', a.StartedWorking 
 	from Users u
 	join UserProfile p on u.Id = p.UserId
 	join PharmacyAdmins a on p.ProfileId = a.ProfileId

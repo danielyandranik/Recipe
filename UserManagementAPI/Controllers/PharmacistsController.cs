@@ -73,6 +73,23 @@ namespace UserManagementAPI.Controllers
         }
 
         /// <summary>
+        /// Gets unapproved pharmacist by pharmacy name
+        /// </summary>
+        /// <param name="pharmacy">pharmacy name</param>
+        /// <returns></returns>
+        [HttpGet("{pharmacy}")]
+        [Authorize]
+        public async Task<IActionResult> Get(string pharmacy)
+        {
+            var unapprovedpharmacists = await this._dataManager.OperateAsync<string, UnapprovedPharmacist>("GetUnapprovedPharmacists", pharmacy);
+
+            if (unapprovedpharmacists == null)
+                return new StatusCodeResult(204);
+
+            return new JsonResult(unapprovedpharmacists);
+        }
+
+        /// <summary>
         /// Posts new pharmacist
         /// </summary>
         /// <param name="pharmacistFullInfo">pharmacist full info</param>

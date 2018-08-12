@@ -24,7 +24,7 @@ namespace Desktop.Views.Pages
         /// <summary>
         /// Service for loading suppliers of given medicine
         /// </summary>
-        public LoadSuppliersService SuppliersService { get; private set; }
+       // public LoadSuppliersService SuppliersService { get; private set; }
 
         /// <summary>
         /// Creates a new instance of <see cref="Pharmacies"/>
@@ -36,7 +36,7 @@ namespace Desktop.Views.Pages
             this.PharmaciesViewModel = new PharmaciesViewModel();
             this.DataContext = this.PharmaciesViewModel;
             this.MedicinesService = new LoadPharmMedicinesService(this.PharmaciesViewModel);
-            this.SuppliersService = new LoadSuppliersService(this.PharmaciesViewModel);
+            //this.SuppliersService = new LoadSuppliersService(this.PharmaciesViewModel);
         }
 
         /// <summary>
@@ -120,8 +120,8 @@ namespace Desktop.Views.Pages
             // Getting the textbox
             var textbox = sender as TextBox;
 
-            this.SuppliersService.MedicineName = textbox.Text;
-            await this.SuppliersService.Load();
+            //this.SuppliersService.MedicineName = textbox.Text;
+           // await this.SuppliersService.Load();
         }
     }
 }

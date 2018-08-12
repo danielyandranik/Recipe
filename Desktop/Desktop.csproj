@@ -268,6 +268,9 @@
     <Compile Include="Commands\AddMedicineCommand.cs" />
     <Compile Include="Commands\AddRecipeHistoryCommand.cs" />
     <Compile Include="Commands\ApproveDoctorCommand.cs" />
+    <Compile Include="Commands\ApproveHospitalAdminCommand.cs" />
+    <Compile Include="Commands\ApprovePharmacistCommand.cs" />
+    <Compile Include="Commands\ApprovePharmacyAdminCommand.cs" />
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\ChangeLangCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
@@ -295,6 +298,7 @@
     <Compile Include="Services\LoadMedicinesService.cs" />
     <Compile Include="Services\LoadMinistryWorkerApprovals.cs" />
     <Compile Include="Services\LoadPharmaciesService.cs" />
+    <Compile Include="Services\LoadPharmacyAdminApprovalsService.cs" />
     <Compile Include="Services\LoadPharmMedicinesService.cs" />
     <Compile Include="Services\LoadRecipesService.cs" />
     <Compile Include="Services\LoadService.cs" />
@@ -326,7 +330,6 @@
     <Compile Include="Services\DoctorProfileService.cs" />
     <Compile Include="Services\HospitalDirectorProfileService.cs" />
     <Compile Include="Services\HyperLinkService.cs" />
-    <Compile Include="Services\LoadSuppliersService.cs" />
     <Compile Include="Services\NavigateService.cs" />
     <Compile Include="Services\PatientProfileService.cs" />
     <Compile Include="Services\PharmacistProfileService.cs" />
@@ -366,6 +369,7 @@
     <Compile Include="ViewModels\PatientProfileViewModel.cs" />
     <Compile Include="ViewModels\PharmaciesViewModel.cs" />
     <Compile Include="ViewModels\PharmacistProfileViewModel.cs" />
+    <Compile Include="ViewModels\PharmacyAdminApprovalsViewModel.cs" />
     <Compile Include="ViewModels\PharmacyAdminProfileViewModel.cs" />
     <Compile Include="ViewModels\RecipesViewModel.cs" />
     <Compile Include="ViewModels\RegisterWindowViewModel.cs" />
@@ -415,6 +419,9 @@
     </Compile>
     <Compile Include="Views\Pages\Pharmacies.xaml.cs">
       <DependentUpon>Pharmacies.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\PharmacyAdminApprovals.xaml.cs">
+      <DependentUpon>PharmacyAdminApprovals.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Recipes.xaml.cs">
       <DependentUpon>Recipes.xaml</DependentUpon>
@@ -532,6 +539,10 @@
     <Page Include="Views\Pages\Pharmacies.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pages\PharmacyAdminApprovals.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Recipes.xaml">
       <Generator>MSBuild:Compile</Generator>
