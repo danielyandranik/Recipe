@@ -39,7 +39,7 @@ namespace UserManagementAPI.Controllers
         public async Task<IActionResult> Get()
         {
             var query = this.Request.Query;
-            object result;
+            var result = default(object);
 
             if (query.Count > 0)
             {

@@ -23,8 +23,17 @@ namespace Desktop.Commands
             this._vm = vm;
         }
 
+        /// <summary>
+        /// Determines if command can bex executed.
+        /// </summary>
+        /// <param name="parameter">Command parameter.</param>
+        /// <returns>Boolean value indicating whether the command can be executed.</returns>
         public bool CanExecute(object parameter) => true;
 
+        /// <summary>
+        /// Executes the command.
+        /// </summary>
+        /// <param name="parameter">Command parameter</param>
         public void Execute(object parameter)
         {
             var tag = (string)parameter;
@@ -46,7 +55,5 @@ namespace Desktop.Commands
             User.Default.Language = tag;
             User.Default.Save();
         }
-
-
     }
 }

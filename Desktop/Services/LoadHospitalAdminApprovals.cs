@@ -1,11 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
 using Desktop.ViewModels;
-using Desktop.Models;
-using System.Collections.Generic;
 
 namespace Desktop.Services
 {

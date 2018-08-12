@@ -4,12 +4,24 @@ using Desktop.Views.Windows;
 
 namespace Desktop.Commands
 {
+    /// <summary>
+    /// QR send command
+    /// </summary>
     public class SendQRCommand : CommandBase
     {
+        /// <summary>
+        /// Recipe API client
+        /// </summary>
         private readonly RecipeClient.RecipeClient _recipeClient;
 
+        /// <summary>
+        /// User Management API
+        /// </summary>
         private readonly UserManagementApiClient _userApiClient;
 
+        /// <summary>
+        /// Creates new instance of <see cref="SendQRCommand"/>
+        /// </summary>
         public SendQRCommand()
         {
             var app = ((App)App.Current);
@@ -17,11 +29,20 @@ namespace Desktop.Commands
             this._userApiClient = app.UserApiClient;
         }
 
+        /// <summary>
+        /// Determines if the command can be executed
+        /// </summary>
+        /// <param name="parameter">Command parameter</param>
+        /// <returns>boolean value indicating wheter the command can be executed</returns>
         public override bool CanExecute(object parameter)
         {
             return parameter != null;
         }
 
+        /// <summary>
+        /// Executes the command
+        /// </summary>
+        /// <param name="parameter">Command parameter</param>
         public override async void Execute(object parameter)
         {
             var userResponse = await this._userApiClient.GetUserAsync(User.Default.Id);

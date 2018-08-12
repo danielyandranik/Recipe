@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Linq;
 using System.Xml.Linq;
+using System.Net.Http;
+using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Collections.Generic;
-using System.Windows.Controls;
 using Microsoft.Maps.MapControl.WPF;
 using InstitutionClient;
-using System.Net.Http;
-using Desktop.Models;
-using System.Windows.Input;
-using Desktop.ViewModels;
 using InstitutionClient.Models;
+using Desktop.Models;
+using Desktop.ViewModels;
 
 namespace Desktop.Services
 {

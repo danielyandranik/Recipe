@@ -49,7 +49,7 @@ namespace Desktop.ViewModels
 
         private async Task<ResponseMessage<string>> CreateRecipe(Models.Recipe recipeModel)
         {
-            var userApiResponse = await ((App)App.Current).UserApiClient.GetUserByUsernameAsync(recipeModel.PatientUserName);
+            var userApiResponse = await ((App)App.Current).UserApiClient.GetUserAsync(recipeModel.PatientUserName);
 
             if(userApiResponse.Status == Status.Error)
             {

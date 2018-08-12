@@ -2,6 +2,9 @@
 
 namespace UserManagementAPI.Models
 {
+    /// <summary>
+    /// Class for user personal info
+    /// </summary>
     public class UserPersonalInfo:UserPublicInfo
     {
         /// <summary>

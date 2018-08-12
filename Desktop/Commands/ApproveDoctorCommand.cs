@@ -1,9 +1,7 @@
-﻿using Desktop.Views.Windows;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Threading.Tasks;
 using UserManagementConsumer.Client;
-using UserManagementConsumer.Models;
+using Desktop.Views.Windows;
 
 namespace Desktop.Commands
 {
@@ -23,6 +21,10 @@ namespace Desktop.Commands
 
         }
 
+        /// <summary>
+        /// Executes doctor approving command
+        /// </summary>
+        /// <param name="parameter">Command parameter.</param>
         public override async void Execute(object parameter)
         {
             var response = await this.ExecuteAsync((int)parameter);
