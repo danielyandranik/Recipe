@@ -325,6 +325,7 @@
     <Compile Include="Services\DoctorProfileService.cs" />
     <Compile Include="Services\HospitalDirectorProfileService.cs" />
     <Compile Include="Services\HyperLinkService.cs" />
+    <Compile Include="Services\LoadSuppliersService.cs" />
     <Compile Include="Services\NavigateService.cs" />
     <Compile Include="Services\PatientProfileService.cs" />
     <Compile Include="Services\PharmacistProfileService.cs" />

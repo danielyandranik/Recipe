@@ -81,7 +81,7 @@
 
                 <Label Content="{DynamicResource filter}" Foreground="#DDFFFFFF" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" />
                 <Label Content="{DynamicResource medicine_name}" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
-                <TextBox Name="medicine" Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" TextChanged="TextBox_TextChanged" />
+                <TextBox Name="medicine" Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" KeyUp="TextBox_KeyUp"/>
                 <Label Content="{DynamicResource inst_name}" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
                 <TextBox Name="name" Style="{StaticResource Filter}" VerticalContentAlignment="Center" Height="30" TextWrapping="Wrap" Width="120" FontSize="16" FontFamily="Consolas" BorderBrush="White" CaretBrush="White" Foreground="White" SelectionBrush="White" TextChanged="TextBox_TextChanged" />
                 <Label Content="{DynamicResource inst_address}" Foreground="#FF182634" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="14" Background="{x:Null}" Margin="20,0,10,0"/>
