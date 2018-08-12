@@ -12,6 +12,11 @@ namespace Desktop.Commands
     public class SignInCommand : CommandBase
     {
         /// <summary>
+        /// Boolean value for Sign In button availability
+        /// </summary>
+        private bool _isSignInAvailable;
+
+        /// <summary>
         /// Token provider
         /// </summary>
         private readonly TokenProvider _tokenProvider;
@@ -36,6 +41,9 @@ namespace Desktop.Commands
 
             // setting fields
             this._tokenProvider = app.TokenProvider;
+            this._isSignInAvailable = true;
+
+            // initializing components
             this._userInfoLoader = new UserInfoLoader();
             this._hyperLinkService = new HyperLinkService();
         }
@@ -47,8 +55,8 @@ namespace Desktop.Commands
         /// <returns>boolean value indicating whether the command can be executed.</returns>
         public override bool CanExecute(object parameter)
         {
-            if (parameter == null)
-                return true;
+            if (parameter == null || !this._isSignInAvailable)
+                return false;
 
             var signInInfo = (SignInInfo)parameter;
 
@@ -64,6 +72,8 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter</param>
         public override async void Execute(object parameter)
         {
+            this._isSignInAvailable = false;
+
             var signInInfo = (SignInInfo)parameter;
 
             var dictionary = App.Current.Resources;
@@ -75,6 +85,7 @@ namespace Desktop.Commands
                 if (status == TokenStatus.Error)
                 {
                     RecipeMessageBox.Show((string)dictionary["invalid_credentials"]);
+                    this._isSignInAvailable = true;
                     return;
                 }
 
@@ -86,6 +97,7 @@ namespace Desktop.Commands
             catch (Exception)
             {
                 RecipeMessageBox.Show((string)dictionary["server_error"]);
+                this._isSignInAvailable = true;
             }
         }
     }
