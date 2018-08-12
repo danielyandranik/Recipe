@@ -127,25 +127,9 @@ namespace UserManagementConsumer.Client
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public async Task<Response<UserPublicInfo>> GetUserByUsernameAsync(string username)
+        public async Task<Response<UserPublicInfo>> GetUserAsync(string username)
         {
-            // getting response
-            var response = await this._userApiHttpClient.GetAsync($"api/users/{username}");
-
-            // if error occured inform about that
-            if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse<UserPublicInfo>(Status.Error, null);
-
-            // reading content
-            var content = await response.Content.ReadAsStringAsync();
-
-            // if no content inform about that
-            if (string.IsNullOrEmpty(content))
-                return this.ConstructResponse<UserPublicInfo>(Status.Error, null);
-
-            // returning result
-            return this.ConstructResponse(
-                Status.Ok ,JsonConvert.DeserializeObject<UserPublicInfo>(content));
+            return await this.GetUserAsync<string, UserPublicInfo>(username);
         }
 
         /// <summary>
@@ -155,23 +139,7 @@ namespace UserManagementConsumer.Client
         /// <returns>User personal info</returns>
         public async Task<Response<UserPersonalInfo>> GetUserAsync(int id)
         {
-            // getting response
-            var response = await this._userApiHttpClient.GetAsync($"api/users/{id}");
-
-            // if error occured inform about that
-            if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse<UserPersonalInfo>(Status.Error, null);
-
-            // reading content
-            var content = await response.Content.ReadAsStringAsync();
-
-            // if no content inform about that
-            if (string.IsNullOrEmpty(content))
-                return this.ConstructResponse<UserPersonalInfo>(Status.Error, null);
-
-            // returning result
-            return this.ConstructResponse(
-                Status.Ok, JsonConvert.DeserializeObject<UserPersonalInfo>(content));
+            return await this.GetUserAsync<int,UserPersonalInfo>(id);
         }
 
         /// <summary>
@@ -615,16 +583,7 @@ namespace UserManagementConsumer.Client
         /// <returns>unapproved doctors</returns>
         public async Task<Response<IEnumerable<UnapprovedDoctor>>> GetUnapprovedDoctors(string hospital)
         {
-            var response = await this._userApiHttpClient.GetAsync($"api/doctors/{hospital}");
-
-            if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse<IEnumerable<UnapprovedDoctor>>(Status.Error, null);
-
-            var content = await response.Content.ReadAsStringAsync();
-
-            var unapprovedDoctors = JsonConvert.DeserializeObject<IEnumerable<UnapprovedDoctor>>(content);
-
-            return this.ConstructResponse(Status.Ok, unapprovedDoctors);
+            return await this.GetUnapprovedProfilesAsync<UnapprovedDoctor>($"api/doctors/{hospital}");
         }
 
         /// <summary>
@@ -633,16 +592,7 @@ namespace UserManagementConsumer.Client
         /// <returns>unapproved hospital admins</returns>
         public async Task<Response<IEnumerable<UnapprovedHospitalAdmin>>> GetUnapprovedHospitalAdmins()
         {
-            var response = await this._userApiHttpClient.GetAsync($"api/hospital-directors?isApproved=false");
-
-            if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse<IEnumerable<UnapprovedHospitalAdmin>>(Status.Error, null);
-
-            var content = await response.Content.ReadAsStringAsync();
-
-            var unapprovedDoctors = JsonConvert.DeserializeObject<IEnumerable<UnapprovedHospitalAdmin>>(content);
-
-            return this.ConstructResponse(Status.Ok, unapprovedDoctors);
+            return await this.GetUnapprovedProfilesAsync<UnapprovedHospitalAdmin>($"api/hospital-directors?isApproved=false");
         }
 
         /// <summary>
@@ -651,16 +601,7 @@ namespace UserManagementConsumer.Client
         /// <returns>unapproved hospital admins</returns>
         public async Task<Response<IEnumerable<UnapprovedPharmacyAdmin>>> GetUnapprovedPharmacyAdmins()
         {
-            var response = await this._userApiHttpClient.GetAsync($"api/pharmacy-admins?isApproved=false");
-
-            if (!response.IsSuccessStatusCode)
-                return this.ConstructResponse<IEnumerable<UnapprovedPharmacyAdmin>>(Status.Error, null);
-
-            var content = await response.Content.ReadAsStringAsync();
-
-            var unapprovedDoctors = JsonConvert.DeserializeObject<IEnumerable<UnapprovedPharmacyAdmin>>(content);
-
-            return this.ConstructResponse(Status.Ok, unapprovedDoctors);
+            return await this.GetUnapprovedProfilesAsync<UnapprovedPharmacyAdmin>($"api/pharmacy-admins?isApproved=false");
         }
 
         /// <summary>
@@ -681,6 +622,53 @@ namespace UserManagementConsumer.Client
         {
             this._registerClient.Dispose();
             this._userApiHttpClient.Dispose();
+        }
+
+        /// <summary>
+        /// Gets user info by the given paramater,which can be id or string.
+        /// </summary>
+        /// <typeparam name="TParmater">Type of parameter</typeparam>
+        /// <param name="parmater">parameter</param>
+        /// <returns>user info</returns>
+        private async Task<Response<TUserInfo>> GetUserAsync<TParmater,TUserInfo>(TParmater parmater)
+        {
+            // getting response
+            var response = await this._userApiHttpClient.GetAsync($"api/users/{parmater}");
+
+            // if error occured inform about that
+            if (!response.IsSuccessStatusCode)
+                return this.ConstructResponse(Status.Error, default(TUserInfo));
+
+            // reading content
+            var content = await response.Content.ReadAsStringAsync();
+
+            // if no content inform about that
+            if (string.IsNullOrEmpty(content))
+                return this.ConstructResponse<TUserInfo>(Status.Error, default(TUserInfo));
+
+            // returning result
+            return this.ConstructResponse(
+                Status.Ok, JsonConvert.DeserializeObject<TUserInfo>(content));
+        }
+
+        /// <summary>
+        /// Gets unapproved profiles
+        /// </summary>
+        /// <typeparam name="TProfile">Type of profile</typeparam>
+        /// <param name="reqeustUri">Request URI</param>
+        /// <returns>enumerable of unapproved profiles</returns>
+        public async Task<Response<IEnumerable<TProfile>>> GetUnapprovedProfilesAsync<TProfile>(string reqeustUri)
+        {
+            var response = await this._userApiHttpClient.GetAsync(reqeustUri);
+
+            if (!response.IsSuccessStatusCode)
+                return this.ConstructResponse<IEnumerable<TProfile>>(Status.Error, null);
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            var unapprovedProfiles = JsonConvert.DeserializeObject<IEnumerable<TProfile>>(content);
+
+            return this.ConstructResponse(Status.Ok, unapprovedProfiles);
         }
 
         /// <summary>
