@@ -80,6 +80,15 @@ namespace UserManagementAPI
             // adding policies
             services.AddAuthorization(options =>
             {
+                options.AddPolicy("AdminOrMinistryWorker", policy =>
+                {
+                    policy.RequireClaim("current_profile",
+                        new[]
+                        {
+                            "ministry_worker", "admin"
+                        });
+                });
+
                 options.AddPolicy("IsAdmin", policy => policy.RequireClaim("current_profile", "admin"));
 
                 options.AddPolicy("HasProfile", policy =>
@@ -100,6 +109,8 @@ namespace UserManagementAPI
                             "admin","ministryworker","hospitaldirector"
                         });
                 });
+
+                options.AddPolicy("IsMinistryWorker", policy => policy.RequireClaim("current_profile", "ministry_worker"));
 
                 options.AddPolicy("IsHospitalDirector", policy => policy.RequireClaim("current_profile", "hospital_director"));
 

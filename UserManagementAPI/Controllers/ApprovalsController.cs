@@ -69,6 +69,46 @@ namespace UserManagementAPI.Controllers
         }
 
         /// <summary>
+        /// Puts pharmacy admin profile approval
+        /// </summary>
+        /// <param name="approval">approval</param>
+        /// <returns>action result</returns>
+        [HttpPut]
+        [Authorize(Policy = "IsMinistryWorker")]
+        [Route("pharmacy-admins")]
+        public IActionResult PutPharmacyAdminApproval([FromBody]Approval approval)
+        {
+            if (approval.Type != "pharmacy_admin")
+                return new StatusCodeResult(400);
+
+            // getting operation result
+            var result = (int)this._dataManager.Operate<Approval, object>("ApproveProfile", approval);
+
+            // returning result
+            return this.GetActionResult(result);
+        }
+
+        /// <summary>
+        /// Puts hospital admin profile approval
+        /// </summary>
+        /// <param name="approval">approval</param>
+        /// <returns>action result</returns>
+        [HttpPut]
+        [Authorize(Policy = "IsMinistryWorker")]
+        [Route("hospital-directors")]
+        public IActionResult PutHospitalAdminApproval([FromBody]Approval approval)
+        {
+            if (approval.Type != "hospital_directors")
+                return new StatusCodeResult(400);
+
+            // getting operation result
+            var result = (int)this._dataManager.Operate<Approval, object>("ApproveProfile", approval);
+
+            // returning result
+            return this.GetActionResult(result);
+        }
+
+        /// <summary>
         /// Gets action result
         /// </summary>
         /// <param name="result">result</param>

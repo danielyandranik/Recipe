@@ -2,10 +2,8 @@
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using Desktop.Commands;
-using Desktop.Models;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
-using System.Collections.Generic;
 
 namespace Desktop.ViewModels
 {

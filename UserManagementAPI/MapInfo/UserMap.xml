@@ -602,4 +602,12 @@ xsi:noNamespaceSchemaLocation="MapSchema.xsd">
     </parameters>
     <returnDataType>Enumerable</returnDataType>
   </operation>
+  <operation name="GeUnapprovedHospitalAdmins">
+    <spName>uspGetUnapprovedHospitalAdmins</spName>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
+  <operation name="GeUnapprovePharmacyAdmins">
+    <spName>uspGetUnapprovedPharmacyAdmins</spName>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
 </operations>

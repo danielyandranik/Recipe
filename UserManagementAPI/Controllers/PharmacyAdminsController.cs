@@ -1,8 +1,10 @@
 ﻿using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using DatabaseAccess.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using UserManagementAPI.Models;
 
 namespace UserManagementAPI.Controllers
@@ -26,6 +28,40 @@ namespace UserManagementAPI.Controllers
         public PharmacyAdminsController(DataManager dataManager)
         {
             this._dataManager = dataManager;
+        }
+
+        /// <summary>
+        /// Gets all pharmacy directors
+        /// </summary>
+        /// <returns>action result</returns>
+        [HttpGet]
+        [Authorize(Policy = "AdminOrMinistryWorker")]
+        public async Task<IActionResult> Get()
+        {
+            var query = this.Request.Query;
+            object result;
+
+            if (query.Count > 0)
+            {
+                if (query.TryGetValue("isApproved", out StringValues value))
+                {
+                    if (value.ToString() == "false")
+                    {
+                        result = await this._dataManager.OperateAsync<UnapprovedPharmacyAdmin>("GetUnapprovedPharmacyAdmins");
+
+                        if (result == null)
+                            return new StatusCodeResult(204);
+
+                        return new JsonResult(result);
+                    }
+
+                    return new StatusCodeResult(500);
+                }
+
+                return new StatusCodeResult(404);
+            }
+
+            return new StatusCodeResult(404);
         }
 
         /// <summary>

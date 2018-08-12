@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DatabaseAccess.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using UserManagementAPI.Models;
 
 namespace UserManagementAPI.Controllers
@@ -35,11 +36,34 @@ namespace UserManagementAPI.Controllers
         /// </summary>
         /// <returns>action result</returns>
         [HttpGet]
-        [Authorize(Policy = "IsAdmin")]
+        [Authorize(Policy = "AdminOrMinistryWorker")]
         public async Task<IActionResult> Get()
         {
+            var query = this.Request.Query;
+            object result;
+
+            if(query.Count > 0)
+            {
+                if (query.TryGetValue("isApproved", out StringValues value))
+                {
+                    if (value.ToString() == "false")
+                    {
+                        result = await this._dataManager.OperateAsync<UnapprovedHospitalAdmin>("GetUnapprovedHospitalAdmins");
+
+                        if (result == null)
+                            return new StatusCodeResult(204);
+
+                        return new JsonResult(result);
+                    }
+
+                    return new StatusCodeResult(500);
+                }
+
+                return new StatusCodeResult(404);
+            }
+
             // getting result
-            var result = await this._dataManager.OperateAsync<HospitalDirector>("GetAllHospitalDirectors");
+            result = await this._dataManager.OperateAsync<HospitalDirector>("GetAllHospitalDirectors");
 
             if (result == null)
                 return new StatusCodeResult(204);

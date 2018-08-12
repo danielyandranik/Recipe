@@ -23,6 +23,8 @@ namespace Desktop.Views.Windows
 
         private HospitalAdminApprovals _hospitalAdminApprovals;
 
+        private MinistryWorkerApprovals _ministryWorkerApprovals;
+
         private readonly NavigateService _navigationService;
 
         private  int menuButtonRotateAngle;
@@ -152,14 +154,26 @@ namespace Desktop.Views.Windows
 
         private async void MyApprovalsButton_Click(object sender, RoutedEventArgs e)
         {
-            this._navigationService.Navigate(ref this._hospitalAdminApprovals);
+            if(User.Default.CurrentProfile == "hospital_admin")
+            {
+                this._navigationService.Navigate(ref this._hospitalAdminApprovals);
 
-            var vm = (HospitalAdminApprovalViewModel)this._hospitalAdminApprovals.DataContext;
+                var vm = (HospitalAdminApprovalViewModel)this._hospitalAdminApprovals.DataContext;
 
-            var service = new LoadHospitalAdminApprovals(vm);
+                var service = new LoadHospitalAdminApprovals(vm);
 
-            await service.Load();
+                await service.Load();
+            }
+            else
+            {
+                this._navigationService.Navigate(ref this._ministryWorkerApprovals);
 
+                var vm = (MinistryWorkerApprovalsViewModel)this._ministryWorkerApprovals.DataContext;
+
+                var service = new LoadMinistryWorkerApprovals(vm);
+
+                await service.Load();
+            }
         }
     }
 }

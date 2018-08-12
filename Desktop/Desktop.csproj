@@ -293,6 +293,7 @@
     <Compile Include="Services\LoadHospitalAdminApprovals.cs" />
     <Compile Include="Services\LoadHospitalsService.cs" />
     <Compile Include="Services\LoadMedicinesService.cs" />
+    <Compile Include="Services\LoadMinistryWorkerApprovals.cs" />
     <Compile Include="Services\LoadPharmaciesService.cs" />
     <Compile Include="Services\LoadPharmMedicinesService.cs" />
     <Compile Include="Services\LoadRecipesService.cs" />
@@ -360,6 +361,7 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MapPageViewModel.cs" />
     <Compile Include="ViewModels\MedicinesViewModel.cs" />
+    <Compile Include="ViewModels\MinistryWorkerApprovalsViewModel.cs" />
     <Compile Include="ViewModels\PatientProfileViewModel.cs" />
     <Compile Include="ViewModels\PharmaciesViewModel.cs" />
     <Compile Include="ViewModels\PharmacistProfileViewModel.cs" />
@@ -407,8 +409,8 @@
     <Compile Include="Views\Pages\Medicines.xaml.cs">
       <DependentUpon>Medicines.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\MinsitryWorkerApprovements.xaml.cs">
-      <DependentUpon>MinsitryWorkerApprovements.xaml</DependentUpon>
+    <Compile Include="Views\Pages\MinsitryWorkerApprovals.xaml.cs">
+      <DependentUpon>MinsitryWorkerApprovals.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Pharmacies.xaml.cs">
       <DependentUpon>Pharmacies.xaml</DependentUpon>
@@ -522,7 +524,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Pages\MinsitryWorkerApprovements.xaml">
+    <Page Include="Views\Pages\MinsitryWorkerApprovals.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

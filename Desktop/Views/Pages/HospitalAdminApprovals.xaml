@@ -15,27 +15,26 @@
 
             <Grid.RowDefinitions>
 
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="42"/>
                 <RowDefinition Height="*"/>
                 
             </Grid.RowDefinitions>
 
-            <Border BorderThickness="0,0,0,2" BorderBrush="#FF182634">
-               
-                <Grid Grid.Row="0" Height="50">
+            <Border Grid.Row="0" BorderThickness="0,0,0,2" BorderBrush="#FF182634">
 
-                    <TextBlock Text="Waiting for approval" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="18" />
+                <Grid>
+
+                    <TextBlock Text="Waiting for approval" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="20" />
 
                 </Grid>
+
             </Border>
 
-            <Grid Grid.Row="1">
+            <ListView Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding WaitingColection}" HorizontalContentAlignment="Stretch">
 
-                    <ListView VerticalAlignment="Top" ItemsSource="{Binding WaitingCollection}" HorizontalContentAlignment="Stretch">
+                    <ListView.ItemTemplate>
 
-                        <ListView.ItemTemplate>
-
-                            <DataTemplate>
+                        <DataTemplate>
 
                             <Grid Height="80" VerticalAlignment="Top" Background="#FF39B9B9" >
 
@@ -72,14 +71,11 @@
                             </Grid>
 
                         </DataTemplate>
-                            
-                        </ListView.ItemTemplate>
-                        
-                    </ListView>
-                    
-                               
-            </Grid>
-            
+
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
         </Grid>
 
     </Border>
