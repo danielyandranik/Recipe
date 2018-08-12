@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Windows;
 using AuthTokenService;
 using Desktop.Models;
 using Desktop.Services;
+using Desktop.ViewModels;
 using Desktop.Views.Windows;
 
 namespace Desktop.Commands
@@ -22,6 +24,11 @@ namespace Desktop.Commands
         private readonly TokenProvider _tokenProvider;
 
         /// <summary>
+        /// Sign In viewmodel
+        /// </summary>
+        private readonly SignInViewModel _vm;
+
+        /// <summary>
         /// User info loader
         /// </summary>
         private readonly UserInfoLoader _userInfoLoader;
@@ -34,13 +41,14 @@ namespace Desktop.Commands
         /// <summary>
         /// Creates new instance of <see cref="SignInCommand"/>
         /// </summary>
-        public SignInCommand()
+        public SignInCommand(SignInViewModel signInViewModel)
         {
             // getting current app
             var app = ((App)App.Current);
 
             // setting fields
             this._tokenProvider = app.TokenProvider;
+            this._vm = signInViewModel;
             this._isSignInAvailable = true;
 
             // initializing components
@@ -55,7 +63,7 @@ namespace Desktop.Commands
         /// <returns>boolean value indicating whether the command can be executed.</returns>
         public override bool CanExecute(object parameter)
         {
-            if (parameter == null || !this._isSignInAvailable)
+            if (parameter == null)
                 return false;
 
             var signInInfo = (SignInInfo)parameter;
@@ -72,7 +80,12 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter</param>
         public override async void Execute(object parameter)
         {
+            if (!this._isSignInAvailable)
+                return;
+
             this._isSignInAvailable = false;
+
+            this._vm.SetVisibilities(Visibility.Visible, Visibility.Collapsed, true);
 
             var signInInfo = (SignInInfo)parameter;
 
@@ -85,7 +98,10 @@ namespace Desktop.Commands
                 if (status == TokenStatus.Error)
                 {
                     RecipeMessageBox.Show((string)dictionary["invalid_credentials"]);
+
                     this._isSignInAvailable = true;
+                    this._vm.SetVisibilities(Visibility.Collapsed, Visibility.Visible, false);
+
                     return;
                 }
 
@@ -97,7 +113,9 @@ namespace Desktop.Commands
             catch (Exception)
             {
                 RecipeMessageBox.Show((string)dictionary["server_error"]);
+
                 this._isSignInAvailable = true;
+                this._vm.SetVisibilities(Visibility.Collapsed, Visibility.Visible, false);
             }
         }
     }
