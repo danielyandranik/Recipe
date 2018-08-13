@@ -593,7 +593,7 @@
     <returnDataType>NoReturnValue</returnDataType>
   </operation>
   <operation name="GetPharmacyAdminById">
-    <spName>uspPharmacyAdminByUserId</spName>
+    <spName>uspGetPharmacyAdminByUserId</spName>
     <parameters>
       <parameter>
         <parameterName>primitive</parameterName>
@@ -613,11 +613,11 @@
     <returnDataType>Enumerable</returnDataType>
   </operation>
   <operation name="GetUnapprovedPharmacists">
-    <spName>uspGetUnapprovedPharmacistsByPharmacy</spName>
+    <spName>uspGetUnapprovedPharmacistByPharmacy</spName>
     <parameters>
       <parameter>
         <parameterName>primitive</parameterName>
-        <spParameterName>hospital</spParameterName>
+        <spParameterName>pharmacy</spParameterName>
       </parameter>
     </parameters>
     <returnDataType>Enumerable</returnDataType>

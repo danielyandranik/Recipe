@@ -52,7 +52,7 @@ namespace UserManagementAPI.Controllers
         /// </summary>
         /// <param name="id">id</param>
         /// <returns>action result</returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         [Authorize]
         public IActionResult Get(int id)
         {
@@ -78,7 +78,7 @@ namespace UserManagementAPI.Controllers
         /// <param name="pharmacy">pharmacy name</param>
         /// <returns></returns>
         [HttpGet("{pharmacy}")]
-        [Authorize]
+        [Authorize(Policy = "IsPharmacyAdminOrHigher")]
         public async Task<IActionResult> Get(string pharmacy)
         {
             var unapprovedpharmacists = await this._dataManager.OperateAsync<string, UnapprovedPharmacist>("GetUnapprovedPharmacists", pharmacy);

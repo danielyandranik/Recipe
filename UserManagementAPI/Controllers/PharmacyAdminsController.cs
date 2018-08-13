@@ -69,7 +69,7 @@ namespace UserManagementAPI.Controllers
         /// </summary>
         /// <returns>action result</returns>
         [HttpGet("{id}")]
-        [Authorize(Policy = "PharmacyAdminOrHigher")]
+        [Authorize(Policy = "IsPharmacyAdminOrHigher")]
         public IActionResult Get(int id)
         {
             var result = this._dataManager.Operate<int, PharmacyAdmin>("GetPharmacyAdminById", id);
