@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Desktop.Views.Pages"
       xmlns:controls="clr-namespace:Desktop.Views.Controls"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       MinHeight="609" MinWidth="902" 
@@ -23,8 +24,13 @@
 
             <Grid Grid.Row="0" Height="50">
 
-                <TextBlock Text="Your recipes" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="18" />
-
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,0,0,0">
+                    <TextBlock Text="Your recipes" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="18" />
+                    <fa:ImageAwesome Icon="Spinner" 
+                             Spin="{Binding IsSpinning}"
+                             Visibility="{Binding SpinnerVisibility}"
+                             SpinDuration="2" Foreground="#FF39B9B9" Width="50" Height="50" Margin="10,0,0,0"/>
+                </StackPanel>
             </Grid>
         </Border>
 

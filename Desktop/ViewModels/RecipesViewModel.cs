@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace Desktop.ViewModels
 {
-    public class RecipesViewModel : ViewModelBase
+    public class RecipesViewModel : LoadablePageViewModel
     {
         private ObservableCollection<Recipe> recipes;
 
@@ -22,7 +22,7 @@ namespace Desktop.ViewModels
 
         public RecipesViewModel()
         {
-            this._sendQrCommand = new SendQRCommand();
+            this._sendQrCommand = new SendQRCommand(this);
         }
     }
 }

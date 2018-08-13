@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
 using UserManagementConsumer.Client;
 using Desktop.Models;
 using Desktop.ViewModels;
@@ -10,6 +10,8 @@ namespace Desktop.Services
 {
     class LoadRecipesService
     {
+        private bool isLoadAvailable;
+
         private readonly RecipesViewModel recipesViewModel;
 
         private readonly RecipeClient.RecipeClient recipeClient;
@@ -25,6 +27,8 @@ namespace Desktop.Services
 
         public LoadRecipesService()
         {
+            this.isLoadAvailable = true;
+
             this.recipeClient = ((App)App.Current).RecipeClient;
             this.medicineClient = ((App)App.Current).MedicineClient;
             this.userApiClient = ((App)App.Current).UserApiClient;
@@ -32,23 +36,42 @@ namespace Desktop.Services
 
         public async Task Load()
         {
-            var response = await this.recipeClient.GetAllAsync<RecipeClient.Recipe>($"api/recipes?patientId={User.Default.Id}");
-
-            if (!response.IsSuccessStatusCode)
-            {
-                RecipeMessageBox.Show((string)App.Current.Resources["recipe_load_fail"]);
+            if (!this.isLoadAvailable)
                 return;
-            }
 
-            var recipes = new ObservableCollection<Recipe>();
+            this.isLoadAvailable = false;
+            this.recipesViewModel.SetVisibilities(Visibility.Visible, true);
 
-            foreach (var recipeFromApi in response.Content)
+            var dictionary = App.Current.Resources;
+
+            try
             {
-                recipes.Add(await this.Map(recipeFromApi));
+                var response = await this.recipeClient.GetAllAsync<RecipeClient.Recipe>($"api/recipes?patientId={User.Default.Id}");
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    RecipeMessageBox.Show((string)App.Current.Resources["recipe_load_fail"]);
+                    return;
+                }
+
+                var recipes = new ObservableCollection<Recipe>();
+
+                foreach (var recipeFromApi in response.Content)
+                {
+                    recipes.Add(await this.Map(recipeFromApi));
+                }
+
+                this.recipesViewModel.Recipes = recipes;
             }
-
-            this.recipesViewModel.Recipes = recipes;
-
+            catch
+            {
+                RecipeMessageBox.Show((string)dictionary["recipes_unknown_erro"]);
+            }
+            finally
+            {
+                this.isLoadAvailable = true;
+                this.recipesViewModel.SetVisibilities(Visibility.Collapsed, false);
+            }
         }
 
         public async Task<Recipe> Map(RecipeClient.Recipe recipeFromApi)
