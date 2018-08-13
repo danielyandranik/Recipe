@@ -52,13 +52,17 @@ namespace Desktop.ViewModels
         {
             this.SetVisibilities(Visibility.Visible, true);
 
+            var status = default(Status);
+
             var dictionary = App.Current.Resources;
 
             try
             {
                 var userApiResponse = await ((App)App.Current).UserApiClient.GetUserAsync(recipeModel.PatientUserName);
 
-                if (userApiResponse.Status == Status.Error)
+                status = userApiResponse.Status;
+
+                if (status == Status.Error)
                 {
                     RecipeMessageBox.Show((string)dictionary["patient_fail"]);
                     return null;
@@ -106,7 +110,10 @@ namespace Desktop.ViewModels
             }
             finally
             {
-                this.SetVisibilities(Visibility.Collapsed, false);
+                if(status != Status.Error)
+                    this.Recipe.RecipeItems.Clear();
+
+                this.SetVisibilities(Visibility.Collapsed, false);                
             }
         }
     }
