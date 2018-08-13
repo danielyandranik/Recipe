@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Desktop.Views.Windows;
+using System.Windows;
 using InstitutionClient.Models;
+using Desktop.Views.Windows;
+using Desktop.ViewModels;
 
 namespace Desktop.Commands
 {
@@ -11,13 +13,26 @@ namespace Desktop.Commands
     public class AddInstitutionCommand : AsyncCommand<Institution, bool>
     {
         /// <summary>
+        /// Boolean value indicating whether the done button is available
+        /// </summary>
+        private bool _isDoneAvailable;
+
+        /// <summary>
+        /// Add institution page viewmodel
+        /// </summary>
+        private readonly AddInstitutionViewModel _vm;
+
+        /// <summary>
         /// Creates new instance of <see cref="AddInstitutionCommand"/>
         /// </summary>
         /// <param name="executeMethod">Execute method</param>
         /// <param name="canExecuteMethod">Can execute method</param>
-        public AddInstitutionCommand(Func<Institution, Task<bool>> executeMethod, Func<Institution, bool> canExecuteMethod) :
+        public AddInstitutionCommand(AddInstitutionViewModel addInstitutionViewModel, Func<Institution, Task<bool>> executeMethod, Func<Institution, bool> canExecuteMethod) :
             base(executeMethod, canExecuteMethod)
-        { }
+        {
+            this._isDoneAvailable = true;
+            this._vm = addInstitutionViewModel;
+        }
 
         /// <summary>
         /// Executes the command asynchronously
@@ -25,7 +40,13 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter</param>
         public override async void Execute(object parameter)
         {
-            var dictionary = ((App)App.Current).Resources;
+            if (!this._isDoneAvailable)
+                return;
+
+            this._isDoneAvailable = false;
+            this._vm.SetVisibilities(Visibility.Visible, true);
+
+            var dictionary = App.Current.Resources;
             
             try
             {
@@ -46,6 +67,11 @@ namespace Desktop.Commands
             catch (Exception)
             {
                 RecipeMessageBox.Show((string)dictionary["server_error"]);
+            }
+            finally
+            {
+                this._isDoneAvailable = true;
+                this._vm.SetVisibilities(Visibility.Collapsed, false);
             }
         }
     }
