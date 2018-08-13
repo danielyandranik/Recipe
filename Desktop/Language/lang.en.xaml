@@ -145,6 +145,7 @@
     <system:String x:Key="hospitals_email">Email</system:String>
     <system:String x:Key="edit">Edit</system:String>
     <system:String x:Key="delete">Delete</system:String>
+    <system:String x:Key="hospitals_load_error">Unable to load hospitals.</system:String>
     
     <!-- Pharmacies-->
     <system:String x:Key="pharmacies_email">Email</system:String>
@@ -152,6 +153,7 @@
     <system:String x:Key="pharmmed_name">Name</system:String>
     <system:String x:Key="pharmmed_price">Price</system:String>
     <system:String x:Key="close">Close</system:String>
+    <system:String x:Key="pharmacies_load_error">Unable to load pharmacies.</system:String>
     
 
     <!-- Map page -->

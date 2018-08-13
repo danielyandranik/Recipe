@@ -12,7 +12,7 @@ using Desktop.Validations;
 
 namespace Desktop.ViewModels
 {
-    public class HospitalsViewModel : ViewModelBase
+    public class HospitalsViewModel : LoadablePageViewModel
     {
         private ObservableCollection<Institution> hospitals;
 
