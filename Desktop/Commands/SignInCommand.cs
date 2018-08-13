@@ -97,10 +97,7 @@ namespace Desktop.Commands
 
                 if (status == TokenStatus.Error)
                 {
-                    RecipeMessageBox.Show((string)dictionary["invalid_credentials"]);
-
-                    this._isSignInAvailable = true;
-                    this._vm.SetVisibilities(Visibility.Collapsed, Visibility.Visible, false);
+                    RecipeMessageBox.Show((string)dictionary["invalid_credentials"]);                
 
                     return;
                 }
@@ -114,6 +111,11 @@ namespace Desktop.Commands
             {
                 RecipeMessageBox.Show((string)dictionary["server_error"]);
 
+                this._isSignInAvailable = true;
+                this._vm.SetVisibilities(Visibility.Collapsed, Visibility.Visible, false);
+            }
+            finally
+            {
                 this._isSignInAvailable = true;
                 this._vm.SetVisibilities(Visibility.Collapsed, Visibility.Visible, false);
             }

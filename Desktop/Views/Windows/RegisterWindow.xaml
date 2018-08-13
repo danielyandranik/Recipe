@@ -5,6 +5,7 @@
          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
          xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
          xmlns:local="clr-namespace:Desktop"
+         xmlns:fa="http://schemas.fontawesome.io/icons/"
          mc:Ignorable="d"
          Title="{DynamicResource register}" 
         Height="700" Width="600" ResizeMode="NoResize" Background="#FF39B9B9" WindowStartupLocation="CenterScreen">
@@ -191,18 +192,19 @@
                               PasswordChanged="PasswordBox_PasswordChanged"/>
 
 
-                <Button  Width="120" Margin="0,50,0,0" Height="40" 
+                <Button Margin="90,50,66,0" Height="40" 
                          FontFamily="Comfortaa" FontSize="20" FontWeight="Bold" Foreground="White" 
                          Background="{x:Null}" BorderBrush="White" BorderThickness="2"
                          Command="{Binding RegisterCommand}"
                          CommandParameter="{Binding Register}">
-                    <Button.ContentTemplate>
-                        <DataTemplate>
-                            <Viewbox>
-                                <TextBlock Text="{DynamicResource sign_up}"/>
-                            </Viewbox>
-                        </DataTemplate>
-                    </Button.ContentTemplate>
+                    <Button.Content>
+                        <TextBlock>
+                            <TextBlock Text="{DynamicResource sign_up}" Visibility="{Binding SignUpTextVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                            <fa:ImageAwesome Icon="Spinner" Spin="{Binding IsSpinning, UpdateSourceTrigger=PropertyChanged}" SpinDuration="2" 
+                                             HorizontalAlignment="Center" Foreground="White"
+                                             Visibility="{Binding SpinnerVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                        </TextBlock>
+                    </Button.Content>
                 </Button>
             </StackPanel>
 

@@ -123,16 +123,16 @@ namespace Desktop.Views.Windows
         {
             var menu = this.profiles.Items;
 
-            var manager = ((App)App.Current).ProfilesMenuManager;
+            var app = (App)App.Current;
+
+            var manager = app.ProfilesMenuManager;
 
             foreach(var item in menu)
             {
                 var menuItem = (MenuItem)item;
 
                 menuItem.Click -= manager.ChangeProfileEventHandler;              
-            }
-
-            var app = (App)App.Current;
+            }           
 
             app.ProfilesMenuManager = null;
 
