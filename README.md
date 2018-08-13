@@ -14,6 +14,9 @@ Recipe is a complete platform for doctors,patients and pharmacies.
 <a href="https://github.com/andrewkirillov/AForge.NET">AForge.NET</a> </br>
 <a href="https://github.com/amirkhaniansev/DbAccess.NET">DbAccess.NET</a> </br>
 
-## Registration flow in our system
+## Sign Up flow in our system
 
 ![Alt Text](https://github.com/DanielyanAndranik/Recipe/blob/master/docs/UI/sign-up-flow.gif)
+
+## Sign In flow in our system
+![Alt Text](https://github.com/DanielyanAndranik/Recipe/blob/master/docs/UI/sign-in-flow.gif)
