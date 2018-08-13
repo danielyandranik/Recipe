@@ -13,7 +13,7 @@ namespace Desktop.Views.Windows
 {
     public partial class MainWindow : Window
     {
-        private  Medicines _medicines;
+        private Medicines _medicines;
 
         private Recipes _recipes;
 
@@ -28,8 +28,6 @@ namespace Desktop.Views.Windows
         private MinistryWorkerApprovals _ministryWorkerApprovals;
 
         private readonly NavigateService _navigationService;
-
-        private  int menuButtonRotateAngle;
 
         private readonly MainWindowViewModel _mainWindowVM;
 
@@ -79,22 +77,9 @@ namespace Desktop.Views.Windows
             await loadMedicinesService.Load();
         }
 
-        private void Toggle_menu(object sender, MouseButtonEventArgs e)
-        {
-            this.menu_opener.LayoutTransform = new RotateTransform(menuButtonRotateAngle);
-
-            menuButtonRotateAngle = (menuButtonRotateAngle == 180) ? 0 : 180;
-
-        }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.frame.NavigationService.Navigate(new Recipes());
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            this.frame.NavigationService.Navigate(new CreateRecipe());
         }
 
         private void Menu_Click(object sender, RoutedEventArgs e)

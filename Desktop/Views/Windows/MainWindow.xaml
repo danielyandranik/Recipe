@@ -36,12 +36,12 @@
 
                     <MenuItem  FontFamily="Comfortaa" Foreground="White"
                                FontSize="14" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Name="Menu"
-                                PreviewMouseDown="Toggle_menu">
+                               >
                         <MenuItem.Header>
 
-                            <Image Cursor="Hand" Source="/Images/down_arrow.png" Width="24" Height="20" 
+                            <Image Cursor="Hand" Source="/Images/menu.png" Width="40" Height="40" 
                                    VerticalAlignment="Center" Stretch="UniformToFill"
-                                   Name="menu_opener" PreviewMouseDown="Toggle_menu"/>
+                                   Name="menu_opener"/>
 
                         </MenuItem.Header>
                         <MenuItem Name="profiles" Header="{DynamicResource profiles}" Background="#FF39B9B9" Foreground="White" FontFamily="Comfortaa" FontSize="18">
