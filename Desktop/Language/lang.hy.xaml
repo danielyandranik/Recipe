@@ -140,6 +140,7 @@
     
     <!-- Recipes page -->
     <system:String x:Key="recipes_unknown_error">Տեղի է ունեցել անհայտ սխալ դեղատոմսերը բեռնելիս։</system:String>
+    <system:String x:Key="recipes">Ձեր դեղատոմսերը</system:String>
     
     <!-- Hospitals page -->
     <system:String x:Key="filter">Ֆիլտրել ըստ</system:String>

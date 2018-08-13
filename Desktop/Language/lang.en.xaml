@@ -140,6 +140,7 @@
 
     <!-- Recipes page -->
     <system:String x:Key="recipes_unknown_error">Unknown error occured while loading recipes.</system:String>
+    <system:String x:Key="recipes">Your species</system:String>
     
     <!-- Medicines page -->
     <system:String x:Key="med_cancel">Cancel</system:String>
