@@ -1,19 +1,19 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Desktop.ViewModels;
+using Desktop.Views.Windows;
+using System.Windows;
 using MedicineApiClient;
-using GalaSoft.MvvmLight;
 
 namespace Desktop.Services
 {
     class LoadMedicinesService
     {
-        private readonly ViewModelBase viewModel;
+        private readonly LoadablePageViewModel viewModel;
 
         private readonly Client client;
 
-        public LoadMedicinesService(ViewModelBase viewModel)
+        public LoadMedicinesService(LoadablePageViewModel viewModel)
         {
             this.viewModel = viewModel;
             this.client = ((App)App.Current).MedicineClient;
@@ -21,21 +21,36 @@ namespace Desktop.Services
 
         public async Task Load()
         {
-            var response = await this.client.GetAllMedicinesAsync("api/medicines");
+            this.viewModel.SetVisibilities(Visibility.Visible, true);
 
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception();
-            }
+            var msg = (string)App.Current.Resources["med_load_error"];
 
-            if(this.viewModel is MedicinesViewModel)
+            try
             {
-                ((MedicinesViewModel)this.viewModel).Medicines = new ObservableCollection<Medicine>(response.Result);
-                ((MedicinesViewModel)this.viewModel).data = ((MedicinesViewModel)this.viewModel).Medicines;
+                var response = await this.client.GetAllMedicinesAsync("api/medicines");
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    RecipeMessageBox.Show(msg);
+                }
+
+                if (this.viewModel is MedicinesViewModel)
+                {
+                    ((MedicinesViewModel)this.viewModel).Medicines = new ObservableCollection<Medicine>(response.Result);
+                    ((MedicinesViewModel)this.viewModel).data = ((MedicinesViewModel)this.viewModel).Medicines;
+                }
+                else if (this.viewModel is CreateRecipeViewModel)
+                {
+                    ((CreateRecipeViewModel)this.viewModel).Medicines = new ObservableCollection<Medicine>(response.Result);
+                }
             }
-            else if(this.viewModel is CreateRecipeViewModel)
+            catch
             {
-                ((CreateRecipeViewModel)this.viewModel).Medicines = new ObservableCollection<Medicine>(response.Result);
+                RecipeMessageBox.Show(msg);
+            }
+            finally
+            {
+                this.viewModel.SetVisibilities(Visibility.Collapsed, false);
             }
         }
     }

@@ -154,7 +154,9 @@
 
     <!-- Medicines page-->
     <system:String x:Key="med_cancel">Չեղարկել</system:String>
-    
+    <system:String x:Key="med_load_error">Տեղի է ունեցել սխալ դեղերը բեռնելիս։</system:String>
+
+
     <!-- Map page -->
     <system:String x:Key="select_inst">Ընտրել հաստատության տեսակը</system:String>
     <system:String x:Key="map_hospitals">Հիվանդանոցներ</system:String>

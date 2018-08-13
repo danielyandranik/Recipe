@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace Desktop.ViewModels
 {
-    public class MedicinesViewModel : ViewModelBase
+    public class MedicinesViewModel : LoadablePageViewModel
     {
         private ObservableCollection<Medicine> medicines;
 

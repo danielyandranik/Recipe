@@ -139,6 +139,7 @@
     
     <!-- Medicines page -->
     <system:String x:Key="med_cancel">Cancel</system:String>
+    <system:String x:Key="med_load_error">Unable to load medicines.</system:String>
 
     <!-- Hospitals page -->
     <system:String x:Key="filter">Filter by</system:String>
