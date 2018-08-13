@@ -1,10 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-using Desktop.ViewModels;
-using Desktop.Interfaces;
+using System.Windows;
 using InstitutionClient;
 using InstitutionClient.Models;
+using Desktop.ViewModels;
+using Desktop.Interfaces;
+using Desktop.Views.Windows;
 
 namespace Desktop.Services
 {
@@ -22,15 +23,30 @@ namespace Desktop.Services
 
         public async Task Load()
         {
-            var response = await this.client.GetAllHospitalsAsync();
+            this.hospitalsViewModel.SetVisibilities(Visibility.Visible, true);
 
-            if (!response.IsSuccessStatusCode)
+            var msg = (string)App.Current.Resources["hospitals_load_error"];
+
+            try
             {
-                throw new Exception();
-            }
+                var response = await this.client.GetAllHospitalsAsync();
 
-            this.hospitalsViewModel.Hospitals = new ObservableCollection<Institution>(response.Content);
-            this.hospitalsViewModel.data = this.hospitalsViewModel.Hospitals; 
+                if (!response.IsSuccessStatusCode)
+                {
+                    RecipeMessageBox.Show(msg);
+                }
+
+                this.hospitalsViewModel.Hospitals = new ObservableCollection<Institution>(response.Content);
+                this.hospitalsViewModel.data = this.hospitalsViewModel.Hospitals;
+            }
+            catch
+            {
+                RecipeMessageBox.Show(msg);
+            }
+            finally
+            {
+                this.hospitalsViewModel.SetVisibilities(Visibility.Collapsed, false);
+            }
         }
     }
 }

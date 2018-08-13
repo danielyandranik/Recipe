@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Desktop"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       Title="Medicines" Background="White" MinHeight="609" MinWidth="902" >
     <Page.Resources>
@@ -56,7 +57,13 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
-            <TextBlock Text="{DynamicResource medicines}" HorizontalAlignment="Center" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="24" Margin="0,20,0,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <TextBlock Text="{DynamicResource medicines}" HorizontalAlignment="Center" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="24" Margin="0,20,0,0"/>
+                <fa:ImageAwesome Icon="Spinner" 
+                             Spin="{Binding IsSpinning}"
+                             Visibility="{Binding SpinnerVisibility}"
+                             SpinDuration="2" Foreground="#FF39B9B9" Width="50" Height="50" Margin="10,0,0,0"/>
+            </StackPanel>
             <Separator Width="500"  HorizontalAlignment="Center" Margin="0,15" Background="#FF7A7979" Height="3" />
         </StackPanel>
 

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Desktop.Views.Pages"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       MinHeight="609" MinWidth="902"
       d:DesignHeight="450" d:DesignWidth="902"
@@ -40,7 +41,13 @@
         <Border BorderThickness="0,2,0,0" BorderBrush="#FF182634">
             <Grid Grid.Row="0" Background="#FF39B9B9">
 
-                <TextBlock Text="{DynamicResource create_recipe}" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="28" HorizontalAlignment="Center" Margin="0,20"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="{DynamicResource create_recipe}" Foreground="#FF182634" FontFamily="Comfortaa" FontSize="28" HorizontalAlignment="Center" Margin="0,20"/>
+                    <fa:ImageAwesome Icon="Spinner" 
+                             Spin="{Binding IsSpinning}"
+                             Visibility="{Binding SpinnerVisibility}"
+                             SpinDuration="2" Foreground="White" Width="50" Height="50" Margin="10,0,0,0"/>
+                </StackPanel>
                 <Button Content="{DynamicResource done}" Width="100" Height="32" HorizontalAlignment="Right" Margin="0,0,20,0" 
                         Background="White" BorderBrush="White" Foreground="#FF39B9B9" FontSize="14" FontWeight="Bold" 
                         FontFamily="Comfortaa" Command="{Binding CreateRecipeCommand}" CommandParameter="{Binding Recipe}"/>

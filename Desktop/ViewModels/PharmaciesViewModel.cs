@@ -16,7 +16,7 @@ namespace Desktop.ViewModels
     /// <summary>
     /// View model for Pharmacies page
     /// </summary>
-    public class PharmaciesViewModel : ViewModelBase
+    public class PharmaciesViewModel : LoadablePageViewModel
     {
         /// <summary>
         /// Container for pharmacies

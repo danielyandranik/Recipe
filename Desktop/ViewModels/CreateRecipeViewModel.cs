@@ -7,10 +7,11 @@ using Desktop.Views.Windows;
 using RecipeClient;
 using UserManagementConsumer.Client;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace Desktop.ViewModels
 {
-    public class CreateRecipeViewModel : ViewModelBase
+    public class CreateRecipeViewModel : LoadablePageViewModel
     {
         private Models.Recipe recipe;
 
@@ -49,51 +50,71 @@ namespace Desktop.ViewModels
 
         private async Task<ResponseMessage<string>> CreateRecipe(Models.Recipe recipeModel)
         {
-            var userApiResponse = await ((App)App.Current).UserApiClient.GetUserAsync(recipeModel.PatientUserName);
+            this.SetVisibilities(Visibility.Visible, true);
 
-            if(userApiResponse.Status == Status.Error)
-            {
-                RecipeMessageBox.Show((string)App.Current.Resources["patient_fail"]);
-                return null;
-            }
-
-            var patientId = userApiResponse.Result.Id;
-
-            var recipeItems = new List<RecipeClient.RecipeItem>();
-
-            foreach(var item in recipeModel.RecipeItems)
-            {
-                recipeItems.Add(new RecipeClient.RecipeItem
-                {
-                    Count = item.Count,
-                    MedicineId = item.Medicine.Id,
-                    UseFrequencyUnit = item.UseFrequencyUnit,
-                    TimesPerUnit = item.TimesPerUnit,
-                    CountPerUse =item.CountPerUse,
-                });
-            }
-
-            var recipe = new RecipeClient.Recipe
-            {
-                CreatedOn = DateTime.Now,
-                DoctorId = User.Default.Id,
-                PatientId = patientId,
-                RecipeItems = recipeItems
-            };
-
-            var response =  await ((App)App.Current).RecipeClient.CreateAsync<RecipeClient.Recipe>("api/recipes", recipe);
+            var status = default(Status);
 
             var dictionary = App.Current.Resources;
 
-            if(!response.IsSuccessStatusCode)
+            try
             {
-                RecipeMessageBox.Show((string)dictionary["recipe_add_fail"]);
-                return null;
+                var userApiResponse = await ((App)App.Current).UserApiClient.GetUserAsync(recipeModel.PatientUserName);
+
+                status = userApiResponse.Status;
+
+                if (status == Status.Error)
+                {
+                    RecipeMessageBox.Show((string)dictionary["patient_fail"]);
+                    return null;
+                }
+
+                var patientId = userApiResponse.Result.Id;
+
+                var recipeItems = new List<RecipeClient.RecipeItem>();
+
+                foreach (var item in recipeModel.RecipeItems)
+                {
+                    recipeItems.Add(new RecipeClient.RecipeItem
+                    {
+                        Count = item.Count,
+                        MedicineId = item.Medicine.Id,
+                        UseFrequencyUnit = item.UseFrequencyUnit,
+                        TimesPerUnit = item.TimesPerUnit,
+                        CountPerUse = item.CountPerUse,
+                    });
+                }
+
+                var recipe = new RecipeClient.Recipe
+                {
+                    CreatedOn = DateTime.Now,
+                    DoctorId = User.Default.Id,
+                    PatientId = patientId,
+                    RecipeItems = recipeItems
+                };
+
+                var response = await ((App)App.Current).RecipeClient.CreateAsync<RecipeClient.Recipe>("api/recipes", recipe);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    RecipeMessageBox.Show((string)dictionary["recipe_add_fail"]);
+                    return null;
+                }
+
+                RecipeMessageBox.Show((string)dictionary["recipe_add_success"]);
+
+                return response;
             }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if(status != Status.Error)
+                    this.Recipe.RecipeItems.Clear();
 
-            RecipeMessageBox.Show((string)dictionary["recipe_add_success"]);
-
-            return response;
+                this.SetVisibilities(Visibility.Collapsed, false);                
+            }
         }
     }
 }

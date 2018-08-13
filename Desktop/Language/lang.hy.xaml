@@ -142,6 +142,7 @@
     <system:String x:Key="hospitals_email">Էլ․ հասցե</system:String>
     <system:String x:Key="edit">Փոփոխել</system:String>
     <system:String x:Key="delete">Ջնջել</system:String>
+    <system:String x:Key="hospitals_load_error">Տեղի է ունեցել սխալ հիվանդանոցները բեռնելիս։</system:String>
     
     <!-- Pharmacies page -->
     <system:String x:Key="pharmacies_email">Էլ․ հասցե</system:String>
@@ -149,10 +150,13 @@
     <system:String x:Key="pharmmed_name">Անուն</system:String>
     <system:String x:Key="pharmmed_price">Արժեք</system:String>
     <system:String x:Key="close">Փակել</system:String>
+    <system:String x:Key="pharmacies_load_error">Տեղի է ունեցել սխալ դեղատները բեռնելիս։</system:String>
 
     <!-- Medicines page-->
     <system:String x:Key="med_cancel">Չեղարկել</system:String>
-    
+    <system:String x:Key="med_load_error">Տեղի է ունեցել սխալ դեղերը բեռնելիս։</system:String>
+
+
     <!-- Map page -->
     <system:String x:Key="select_inst">Ընտրել հաստատության տեսակը</system:String>
     <system:String x:Key="map_hospitals">Հիվանդանոցներ</system:String>
