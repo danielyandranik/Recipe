@@ -296,10 +296,10 @@
     <Compile Include="Models\Point.cs" />
     <Compile Include="Services\AddInstitutionService.cs" />
     <Compile Include="Services\FilterService.cs" />
-    <Compile Include="Services\LoadHospitalAdminApprovals.cs" />
+    <Compile Include="Services\LoadHospitalAdminApprovalsService.cs" />
     <Compile Include="Services\LoadHospitalsService.cs" />
     <Compile Include="Services\LoadMedicinesService.cs" />
-    <Compile Include="Services\LoadMinistryWorkerApprovals.cs" />
+    <Compile Include="Services\LoadUnapprovedHospitalAdminsService.cs" />
     <Compile Include="Services\LoadPharmaciesService.cs" />
     <Compile Include="Services\LoadPharmacyAdminApprovalsService.cs" />
     <Compile Include="Services\LoadPharmMedicinesService.cs" />
@@ -333,6 +333,7 @@
     <Compile Include="Services\DoctorProfileService.cs" />
     <Compile Include="Services\HospitalDirectorProfileService.cs" />
     <Compile Include="Services\HyperLinkService.cs" />
+    <Compile Include="Services\LoadUnapprovedPharmacyAdminsService.cs" />
     <Compile Include="Services\NavigateService.cs" />
     <Compile Include="Services\PatientProfileService.cs" />
     <Compile Include="Services\PharmacistProfileService.cs" />

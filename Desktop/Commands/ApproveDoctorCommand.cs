@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using UserManagementConsumer.Client;
 using Desktop.Views.Windows;
+using Desktop.Services;
+using Desktop.ViewModels;
 
 namespace Desktop.Commands
 {
@@ -10,15 +12,17 @@ namespace Desktop.Commands
     /// </summary>
     public class ApproveDoctorCommand : AsyncCommand<int, Response<string>>
     {
+        private readonly HospitalAdminApprovalViewModel viewModel;
+
         /// <summary>
         /// Creates new instance of <see cref="ApproveDoctorCommand"/>
         /// </summary>
         /// <param name="executeMethod">Execute method</param>
         /// <param name="canExecuteMethod">CanExecute method</param>
-        public ApproveDoctorCommand(Func<int, Task<Response<string>>> executeMethod, Func<int, bool> canExecuteMethod) : 
+        public ApproveDoctorCommand(HospitalAdminApprovalViewModel viewModel, Func<int, Task<Response<string>>> executeMethod, Func<int, bool> canExecuteMethod) : 
             base(executeMethod, canExecuteMethod)
         {
-
+            this.viewModel = viewModel;
         }
 
         /// <summary>
@@ -36,6 +40,9 @@ namespace Desktop.Commands
             }
 
             RecipeMessageBox.Show("Profile is successfully approved");
+
+            var service = new LoadHospitalAdminApprovalsService(this.viewModel);
+            await service.Load();
         }
     }
 }

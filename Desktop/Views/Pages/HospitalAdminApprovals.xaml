@@ -30,13 +30,13 @@
 
             </Border>
 
-            <ListView Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding WaitingColection}" HorizontalContentAlignment="Stretch">
+            <ListView Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding WaitingCollection}" HorizontalContentAlignment="Stretch">
 
                     <ListView.ItemTemplate>
 
                         <DataTemplate>
 
-                            <Grid Height="80" VerticalAlignment="Top" Background="#FF39B9B9" >
+                            <Grid Height="80">
 
                                 <Grid.ColumnDefinitions>
 
@@ -55,16 +55,16 @@
 
                                 <TextBlock Grid.Column="2" Text="{Binding Specification}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="#FF182634" FontFamily="Comfortaa"/>
 
-                                <TextBlock Grid.Column="3" Text="{Binding StartedWork}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="#FF182634" FontFamily="Comfortaa"/>
+                                <TextBlock Grid.Column="3" Text="{Binding StartedWorking}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="#FF182634" FontFamily="Comfortaa"/>
 
                                 <TextBlock Grid.Column="4" Text="{Binding ProfileCreatedOn}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="#FF182634" FontFamily="Comfortaa"/>
 
                                 <StackPanel Grid.Column="5">
 
-                                    <Button Content="Approve" BorderBrush="{x:Null}" Background="#FF29D617" Width="100" Height="30" Margin="0,5" 
+                                    <Button Content="Approve" BorderBrush="{x:Null}" Background="#FF29D617" Width="100" Height="30" Margin="10,5" 
                                             Command="{Binding DataContext.ApproveDoctorCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
                                             CommandParameter="{Binding UserId}"/>
-                                    <Button Content="Deny" BorderBrush="{x:Null}" Background="#FFFF2A2A" Width="100" Height="30" Margin="0,5" />
+                                    <Button Content="Deny" BorderBrush="{x:Null}" Background="#FFFF2A2A" Width="100" Height="30" Margin="10,5" />
 
                                 </StackPanel>
 

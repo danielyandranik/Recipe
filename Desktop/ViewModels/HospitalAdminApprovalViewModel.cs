@@ -24,7 +24,7 @@ namespace Desktop.ViewModels
 
         public HospitalAdminApprovalViewModel()
         {
-            this.ApproveDoctorCommand = new ApproveDoctorCommand(this.AprroveDoctor, _ => true);
+            this.ApproveDoctorCommand = new ApproveDoctorCommand(this, this.AprroveDoctor, _ => true);
             this.client = ((App)App.Current).UserApiClient;
         }
 

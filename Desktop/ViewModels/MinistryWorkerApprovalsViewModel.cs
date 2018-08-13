@@ -11,7 +11,7 @@ using UserManagementConsumer.Models;
 
 namespace Desktop.ViewModels
 {
-    class MinistryWorkerApprovalsViewModel : ViewModelBase
+    public class MinistryWorkerApprovalsViewModel : ViewModelBase
     {
         private readonly UserManagementApiClient client;
 
@@ -40,8 +40,8 @@ namespace Desktop.ViewModels
         public MinistryWorkerApprovalsViewModel()
         {
             this.client = ((App)App.Current).UserApiClient;
-            this.ApproveHospitalAdminCommand = new ApproveHospitalAdminCommand(this.ApproveHospitalAdmin, _ => true);
-            this.ApprovePharmacyAdminCommand = new ApprovePharmacyAdminCommand(this.ApprovePharmacyAdmin, _ => true);
+            this.ApproveHospitalAdminCommand = new ApproveHospitalAdminCommand(this, this.ApproveHospitalAdmin, _ => true);
+            this.ApprovePharmacyAdminCommand = new ApprovePharmacyAdminCommand(this, this.ApprovePharmacyAdmin, _ => true);
         }
 
         private async Task<Response<string>> ApproveHospitalAdmin(int id)

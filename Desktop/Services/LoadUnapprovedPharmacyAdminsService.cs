@@ -1,4 +1,5 @@
 ﻿using Desktop.ViewModels;
+using Desktop.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,9 +12,9 @@ using UserManagementConsumer.Models;
 namespace Desktop.Services
 {
     /// <summary>
-    /// Ministry worker approvals service.
+    /// Load unapproved pharmacy admins service.
     /// </summary>
-    class LoadMinistryWorkerApprovals
+    class LoadUnapprovedPharmacyAdminsService
     {
         /// <summary>
         /// Mininstry worker approvals viewmodel.
@@ -29,31 +30,27 @@ namespace Desktop.Services
         /// Creates new instance of <see cref="MinistryWorkerApprovalsViewModel"/>
         /// </summary>
         /// <param name="viewModel">Ministry worker approvals view model</param>
-        public LoadMinistryWorkerApprovals(MinistryWorkerApprovalsViewModel viewModel)
+        public LoadUnapprovedPharmacyAdminsService(MinistryWorkerApprovalsViewModel viewModel)
         {
             this.viewModel = viewModel;
             this.client = ((App)App.Current).UserApiClient;
         }
 
         /// <summary>
-        /// Loads necessary approvals.
+        /// Loads unapproved  pharmacy admins.
         /// </summary>
         /// <returns></returns>
         public async Task Load()
         {
-            var unapprovedHospitalAdminsResponse = await this.client.GetUnapprovedHospitalAdmins();
-
-            if(unapprovedHospitalAdminsResponse.Status == Status.Ok)
-            {
-                this.viewModel.HospitalAdmins = new ObservableCollection<UnapprovedHospitalAdmin>(unapprovedHospitalAdminsResponse.Result);
-            }
-
             var unapprovedPharmacyAdminsResponse = await this.client.GetUnapprovedPharmacyAdmins();
 
-            if (unapprovedPharmacyAdminsResponse.Status == Status.Ok)
+            if (unapprovedPharmacyAdminsResponse.Status == Status.Error)
             {
-                this.viewModel.PharmacyAdmins = new ObservableCollection<UnapprovedPharmacyAdmin>(unapprovedPharmacyAdminsResponse.Result);
+                RecipeMessageBox.Show("Couldn't get unapproved hospital admins.");
+                return;
             }
+
+            this.viewModel.PharmacyAdmins = new ObservableCollection<UnapprovedPharmacyAdmin>(unapprovedPharmacyAdminsResponse.Result);
         }
     }
 }

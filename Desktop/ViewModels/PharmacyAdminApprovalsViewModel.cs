@@ -7,7 +7,7 @@ using UserManagementConsumer.Models;
 
 namespace Desktop.ViewModels
 {
-    class PharmacyAdminApprovalsViewModel : ViewModelBase
+    public class PharmacyAdminApprovalsViewModel : ViewModelBase
     {
         private ObservableCollection<UnapprovedPharmacist> unapprovedPharmacists;
 
@@ -24,7 +24,7 @@ namespace Desktop.ViewModels
 
         public PharmacyAdminApprovalsViewModel()
         {
-            this.ApprovePharmacistCommand = new ApprovePharmacistCommand(this.AprrovePharmacist, _ => true);
+            this.ApprovePharmacistCommand = new ApprovePharmacistCommand(this, this.AprrovePharmacist, _ => true);
             this.client = ((App)App.Current).UserApiClient;
         }
 

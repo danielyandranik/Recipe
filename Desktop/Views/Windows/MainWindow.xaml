@@ -29,8 +29,8 @@
 
             <StackPanel Orientation="Horizontal" Grid.Column="3">
 
-                <TextBlock Text="{Binding Username}" Foreground="White" FontSize="24" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                <TextBlock Text="{Binding CurrentProfile}" Foreground="White" FontSize="24" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Username}" Foreground="White" FontSize="20" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding CurrentProfile}" Foreground="White" FontSize="20" Margin="0,0,10,0" VerticalAlignment="Center"/>
 
                 <Menu Background="Transparent" Margin="0,20,0,0" FlowDirection="RightToLeft">
 
@@ -39,7 +39,7 @@
                                >
                         <MenuItem.Header>
 
-                            <Image Cursor="Hand" Source="/Images/menu.png" Width="40" Height="40" 
+                            <Image Cursor="Hand" Source="/Images/menu.png" Height="24"
                                    VerticalAlignment="Center" Stretch="UniformToFill"
                                    Name="menu_opener"/>
 
@@ -82,8 +82,6 @@
 
 
             </StackPanel>
-
-
 
             <StackPanel Orientation="Horizontal" Grid.Column="1">
 

@@ -2,7 +2,7 @@
 	@hospital nvarchar(50)
 AS
 	begin
-		select p.UserId,u.FullName, p.CreatedDate, d.License, d.Specification, d.WorkStartYear
+		select p.UserId,u.FullName, p.CreatedDate as 'ProfileCreatedOn', d.License, d.Specification, d.WorkStartYear as 'StartedWorking'
 			from Users u 
 				join UserProfile p on u.Id = p.UserId
 				join Doctors d on p.ProfileId = d.ProfileId

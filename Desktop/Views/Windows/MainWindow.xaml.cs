@@ -101,7 +101,7 @@ namespace Desktop.Views.Windows
         private async void HospitalAdminApprovalsButton_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.Navigate(ref this._hospitalAdminApprovals);
-            var loadHospitalApprovalsService = new LoadHospitalAdminApprovals(this._hospitalAdminApprovals.ViewModel);
+            var loadHospitalApprovalsService = new LoadHospitalAdminApprovalsService(this._hospitalAdminApprovals.ViewModel);
             await loadHospitalApprovalsService.Load();
         }
 
@@ -149,7 +149,7 @@ namespace Desktop.Views.Windows
 
                 var vm = (HospitalAdminApprovalViewModel)this._hospitalAdminApprovals.DataContext;
 
-                var service = new LoadHospitalAdminApprovals(vm);
+                var service = new LoadHospitalAdminApprovalsService(vm);
 
                 await service.Load();
             }
@@ -169,9 +169,13 @@ namespace Desktop.Views.Windows
 
                 var vm = (MinistryWorkerApprovalsViewModel)this._ministryWorkerApprovals.DataContext;
 
-                var service = new LoadMinistryWorkerApprovals(vm);
+                var pharmacyAdminsService = new LoadUnapprovedPharmacyAdminsService(vm);
 
-                await service.Load();
+                await pharmacyAdminsService.Load();
+
+                var hospitalAdminsService = new LoadUnapprovedHospitalAdminsService(vm);
+
+                await hospitalAdminsService.Load();
             }
         }
     }

@@ -1,4 +1,6 @@
-﻿using Desktop.Views.Windows;
+﻿using Desktop.Services;
+using Desktop.ViewModels;
+using Desktop.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,12 @@ namespace Desktop.Commands
 {
     public class ApprovePharmacistCommand : AsyncCommand<int, Response<string>>
     {
-        public ApprovePharmacistCommand(Func<int, Task<Response<string>>> executeMethod, Func<int, bool> canExecuteMethod) :
+        private readonly PharmacyAdminApprovalsViewModel viewModel;
+
+        public ApprovePharmacistCommand(PharmacyAdminApprovalsViewModel viewModel, Func<int, Task<Response<string>>> executeMethod, Func<int, bool> canExecuteMethod) :
             base(executeMethod, canExecuteMethod)
         {
+            this.viewModel = viewModel;
         }
 
         public override async void Execute(object parameter)
@@ -26,6 +31,9 @@ namespace Desktop.Commands
             }
 
             RecipeMessageBox.Show("Profile is successfully approved");
+
+            var service = new LoadPharmacyAdminApprovalsService(this.viewModel);
+            await service.Load();
         }
     }
 }

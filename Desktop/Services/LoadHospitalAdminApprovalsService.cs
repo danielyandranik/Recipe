@@ -9,7 +9,7 @@ namespace Desktop.Services
     /// <summary>
     /// Hospital admin approvals service
     /// </summary>
-    class LoadHospitalAdminApprovals
+    class LoadHospitalAdminApprovalsService
     {
         /// <summary>
         /// Hospital admin approval viewmodel
@@ -22,10 +22,10 @@ namespace Desktop.Services
         private readonly UserManagementApiClient client;
 
         /// <summary>
-        /// Creates new instance of <see cref="LoadHospitalAdminApprovals"/>
+        /// Creates new instance of <see cref="LoadHospitalAdminApprovalsService"/>
         /// </summary>
         /// <param name="hospitalAdminApprovalsViewModel">Hospital Admin approvals viewmodel</param>
-        public LoadHospitalAdminApprovals(HospitalAdminApprovalViewModel hospitalAdminApprovalsViewModel)
+        public LoadHospitalAdminApprovalsService(HospitalAdminApprovalViewModel hospitalAdminApprovalsViewModel)
         {
             this.hospitalAdminApprovalsViewModel = hospitalAdminApprovalsViewModel;
             this.client = ((App)App.Current).UserApiClient;
