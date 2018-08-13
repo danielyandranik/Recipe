@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Desktop.ViewModels;
-using Desktop.Views.Windows;
+using System.Windows;
 using RecipeClient;
 using UserManagementConsumer.Client;
-using System.Linq;
+using Desktop.ViewModels;
+using Desktop.Views.Windows;
 
 namespace Desktop.Commands
 {
@@ -14,6 +15,11 @@ namespace Desktop.Commands
     /// </summary>
     public class AddRecipeHistoryCommand : AsyncCommand<RecipeHistory, ResponseMessage<string>>
     {
+        /// <summary>
+        /// Boolean value indicating whether the Done button is available
+        /// </summary>
+        private bool _isDoneAvailable;
+
         /// <summary>
         /// Sell medicines view model
         /// </summary>
@@ -29,6 +35,7 @@ namespace Desktop.Commands
             base(executeMethod, canExecuteMethod)
         {
             this.viewModel = sellMedicinesViewModel;
+            this._isDoneAvailable = true;
         }
 
         /// <summary>
@@ -37,41 +44,59 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter.</param>
         public async override void Execute(object parameter)
         {
-            var historyItems = (IEnumerable<RecipeHistoryItem>)this.viewModel.HistoryItems;
+            if (!this._isDoneAvailable)
+                return;
 
-            var response = await ((App)App.Current).UserApiClient.GetPharmacistByIdAsync(User.Default.Id);
+            this._isDoneAvailable = false;
+            this.viewModel.SetVisibilities(Visibility.Visible, true);
 
             var dictionary = App.Current.Resources;
 
-            if(response.Status == Status.Error)
+            try
             {
-                RecipeMessageBox.Show((string)dictionary["pharmacy_find_fail"]);
-                return;
+                var historyItems = (IEnumerable<RecipeHistoryItem>)this.viewModel.HistoryItems;
+
+                var response = await ((App)App.Current).UserApiClient.GetPharmacistByIdAsync(User.Default.Id);
+
+                if (response.Status == Status.Error)
+                {
+                    RecipeMessageBox.Show((string)dictionary["pharmacy_find_fail"]);
+                    return;
+                }
+
+                var pharmacyId = response.Result.PharmacyId;
+
+                var recipeHistory = new RecipeHistory
+                {
+                    CreatedOn = DateTime.Now,
+                    RecipeId = this.viewModel.Recipe.First().Id,
+                    PharmacyId = pharmacyId,
+                    Sold = historyItems.ToList<RecipeHistoryItem>()
+                };
+
+                var sellResponse = await this.ExecuteAsync(recipeHistory);
+
+                this.viewModel.Start();
+                this.viewModel.Recipe = null;
+                this.viewModel.RecipeId = null;
+
+                if (!sellResponse.IsSuccessStatusCode)
+                {
+                    RecipeMessageBox.Show((string)dictionary["sell_medicines_fail"]);
+                    return;
+                }
+
+                RecipeMessageBox.Show((string)dictionary["sell_medicines_success"]);
             }
-
-            var pharmacyId = response.Result.PharmacyId;
-
-            var recipeHistory = new RecipeHistory
+            catch
             {
-                CreatedOn = DateTime.Now,
-                RecipeId = this.viewModel.Recipe.First().Id,
-                PharmacyId = pharmacyId,
-                Sold = historyItems.ToList<RecipeHistoryItem>()
-            };
-
-            var sellResponse = await this.ExecuteAsync(recipeHistory);
-
-            this.viewModel.Start();
-            this.viewModel.Recipe = null;
-            this.viewModel.RecipeId = null;
-
-            if (!sellResponse.IsSuccessStatusCode)
-            {
-                RecipeMessageBox.Show((string)dictionary["sell_medicines_fail"]);
-                return;
+                RecipeMessageBox.Show((string)dictionary["recipe_unknown_error"]);
             }
-
-            RecipeMessageBox.Show((string)dictionary["sell_medicines_success"]);
+            finally
+            {
+                this._isDoneAvailable = true;
+                this.viewModel.SetVisibilities(Visibility.Collapsed, false);
+            }
         }
     }
 }

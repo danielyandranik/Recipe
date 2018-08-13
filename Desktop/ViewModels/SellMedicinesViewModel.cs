@@ -17,7 +17,7 @@ using System.Windows.Threading;
 
 namespace Desktop.ViewModels
 {
-    public class SellMedicinesViewModel : ViewModelBase
+    public class SellMedicinesViewModel : LoadablePageViewModel
     {
         private readonly RecipeClient.RecipeClient client;
 

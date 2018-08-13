@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Windows;
 using RecipeClient;
 using Desktop.Services;
 using Desktop.ViewModels;
@@ -15,9 +16,14 @@ namespace Desktop.Commands
     public class FindRecipeCommand : AsyncCommand<string, ResponseMessage<RecipeClient.Recipe>>
     {
         /// <summary>
+        /// Boolean value indicating the availabality of find button
+        /// </summary>
+        private bool _isFindAvailable;
+
+        /// <summary>
         /// Sell medicines page view model
         /// </summary>
-        private SellMedicinesViewModel _viewModel;
+        private readonly SellMedicinesViewModel _viewModel;
 
         /// <summary>
         /// Creates new instance of <see cref="FindRecipeCommand"/>
@@ -29,6 +35,7 @@ namespace Desktop.Commands
             : base(executeMethod, canExecuteMethod)
         {
             this._viewModel = viewModel;
+            this._isFindAvailable = true;
         }
 
         /// <summary>
@@ -37,22 +44,42 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter</param>
         public async override void Execute(object parameter)
         {
-            var response = await this.ExecuteAsync((string)parameter);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                RecipeMessageBox.Show((string)App.Current.Resources["recipe_find_fail"]);
+            if (!this._isFindAvailable)
                 return;
+
+            this._isFindAvailable = false;
+            this._viewModel.SetVisibilities(Visibility.Visible, true);
+
+            var dictionary = App.Current.Resources;
+
+            try
+            {
+                var response = await this.ExecuteAsync((string)parameter);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    RecipeMessageBox.Show((string)dictionary["recipe_find_fail"]);
+                    return;
+                }
+
+                var recipe = response.Content;
+
+                var loadService = new LoadRecipesService();
+
+                this._viewModel.Recipe = new ObservableCollection<Models.Recipe>();
+                this._viewModel.Recipe.Add(await loadService.Map(recipe));
+
+                this._viewModel.HistoryItems = this.Map(this._viewModel.Recipe.First());
             }
-
-            var recipe = response.Content;
-
-            var loadService = new LoadRecipesService();
-
-            this._viewModel.Recipe = new ObservableCollection<Models.Recipe>();
-            this._viewModel.Recipe.Add(await loadService.Map(recipe));
-
-            this._viewModel.HistoryItems = this.Map(this._viewModel.Recipe.First());
+            catch
+            {
+                RecipeMessageBox.Show((string)dictionary["recipe_find_fail"]);
+            }
+            finally
+            {
+                this._isFindAvailable = true;
+                this._viewModel.SetVisibilities(Visibility.Collapsed, false);
+            }
         }
 
         /// <summary>

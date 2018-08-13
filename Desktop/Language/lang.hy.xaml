@@ -170,6 +170,8 @@
     <system:String x:Key="sell_medicines_fail">Տեղի է ունեցել սխալ դեղը վաճառելիս:</system:String>
     <system:String x:Key="pharmacy_find_fail">Տեղի է ոնեցել սխալ դեղատունը փնտրելիս:</system:String>
     <system:String x:Key="qr_decode_error">Տեղի է ունեցել սխալ QR կոդը սկանավորելիս։</system:String>
+    <system:String x:Key="recipe_search">Փնտրել</system:String>
+    <system:String x:Key="recipe_unknown_error">Տեղի է ունեցել անհայտ սխալ դեղատոմսերի հետ կապված։</system:String>
 
     <!-- Profiles mapping -->
 
