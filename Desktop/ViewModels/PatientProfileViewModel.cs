@@ -13,7 +13,7 @@ namespace Desktop.ViewModels
     /// <summary>
     /// View model for adding patient profile page
     /// </summary>
-    public class PatientProfileViewModel : ViewModelBase
+    public class PatientProfileViewModel : LoadablePageViewModel
     {
         /// <summary>
         /// Patient info
@@ -58,10 +58,9 @@ namespace Desktop.ViewModels
             this.patient.UserId = User.Default.Id;
             this.validation = new PatientInputValidation();
             this.patientProfileService = new PatientProfileService();
-            this.patientProfileCommand = new ProfileCommand<Patient>(
+            this.patientProfileCommand = new ProfileCommand<Patient>(this, "patient",
                 this.patientProfileService.Execute, 
-                this.validation.Validate,
-                "patient");
+                this.validation.Validate);
         }
     }
 }

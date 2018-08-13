@@ -365,6 +365,7 @@
     <Compile Include="ViewModels\HospitalAdminApprovalViewModel.cs" />
     <Compile Include="ViewModels\HospitalDirectorProfileViewModel.cs" />
     <Compile Include="ViewModels\HospitalsViewModel.cs" />
+    <Compile Include="ViewModels\LoadablePageViewModel.cs" />
     <Compile Include="ViewModels\LoadableWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MapPageViewModel.cs" />

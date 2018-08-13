@@ -11,7 +11,7 @@ namespace Desktop.ViewModels
     /// <summary>
     /// Pharmacy admin viewmodel
     /// </summary>
-    public class PharmacyAdminProfileViewModel : ViewModelBase
+    public class PharmacyAdminProfileViewModel : LoadablePageViewModel
     {
         /// <summary>
         /// Pharmacy admin
@@ -56,10 +56,9 @@ namespace Desktop.ViewModels
             this._pharmacyAdmin.UserId = User.Default.Id;
             this._pharmacyAdminService = new PharmacyAdminProfileService();
             this._pharmacyInputValidation = new PharmacyAdminInputValidation();
-            this._pharmacyAdminCommand = new ProfileCommand<PharmacyAdmin>(
+            this._pharmacyAdminCommand = new ProfileCommand<PharmacyAdmin>(this, "pharmacy_admin",
                 this._pharmacyAdminService.Execute, 
-                this._pharmacyInputValidation.Validate,
-                "pharmacy_admin");
+                this._pharmacyInputValidation.Validate);
         }
     }
 }

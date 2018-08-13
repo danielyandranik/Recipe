@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows;
 using UserManagementConsumer.Client;
+using Desktop.ViewModels;
 using Desktop.Views.Windows;
 
 namespace Desktop.Commands
@@ -11,6 +13,16 @@ namespace Desktop.Commands
     public class ProfileCommand<T> : AsyncCommand<T, Response<string>> where T : class
     {
         /// <summary>
+        /// Boolean value indicating whether the done button is available
+        /// </summary>
+        private bool _isDoneAvailable;
+
+        /// <summary>
+        /// Loadable page viewmodel
+        /// </summary>
+        private readonly LoadablePageViewModel _vm;
+
+        /// <summary>
         /// Name
         /// </summary>
         private readonly string _name;
@@ -18,12 +30,17 @@ namespace Desktop.Commands
         /// <summary>
         /// Creates new instance of <see cref="ProfileCommand<T>"/>
         /// </summary>
+        /// <param name="loadablePageViewModel">Loadable page viewmodel</param>
+        /// <param name="name">Profile name</param>
         /// <param name="executeMethod">Execute method</param>
         /// <param name="canExecuteMethod">Can execute method</param>
-        public ProfileCommand(Func<T, Task<Response<string>>> executeMethod, Func<T, bool> canExecuteMethod,string name) :
+        public ProfileCommand(LoadablePageViewModel loadablePageViewModel, string name,
+            Func<T, Task<Response<string>>> executeMethod, Func<T, bool> canExecuteMethod) :
             base(executeMethod, canExecuteMethod)
         {
+            this._vm = loadablePageViewModel;
             this._name = name;
+            this._isDoneAvailable = true;
         }
 
         /// <summary>
@@ -32,7 +49,13 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter</param>
         public override async void Execute(object parameter)
         {
+            if (!this._isDoneAvailable)
+                return;
+
             var dictionary = App.Current.Resources;
+
+            this._isDoneAvailable = false;
+            this._vm.SetVisibilities(Visibility.Visible, true);
 
             try
             {
@@ -56,6 +79,11 @@ namespace Desktop.Commands
             catch (Exception)
             {
                 RecipeMessageBox.Show((string)dictionary["server_error"]);
+            }
+            finally
+            {
+                this._isDoneAvailable = true;
+                this._vm.SetVisibilities(Visibility.Collapsed, false);
             }
         }
     }

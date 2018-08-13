@@ -10,7 +10,8 @@ namespace Desktop.Commands
 {
     public class ApprovePharmacistCommand : AsyncCommand<int, Response<string>>
     {
-        public ApprovePharmacistCommand(Func<int, Task<Response<string>>> executeMethod, Func<int, bool> canExecuteMethod) : base(executeMethod, canExecuteMethod)
+        public ApprovePharmacistCommand(Func<int, Task<Response<string>>> executeMethod, Func<int, bool> canExecuteMethod) :
+            base(executeMethod, canExecuteMethod)
         {
         }
 

@@ -12,7 +12,7 @@ namespace Desktop.ViewModels
     /// <summary>
     /// View model for adding doctor profile page
     /// </summary>
-    public class PharmacistProfileViewModel : ViewModelBase
+    public class PharmacistProfileViewModel : LoadablePageViewModel
     {
         /// <summary>
         /// Doctor info
@@ -59,10 +59,9 @@ namespace Desktop.ViewModels
             this.pharmacist.UserId = User.Default.Id;
             this.validation = new PharmacistInputValidation();
             this.pharmacistProfileService = new PharmacistProfileService();
-            this.pharmacistProfileCommand = new ProfileCommand<PharmacistFullInfo>(
+            this.pharmacistProfileCommand = new ProfileCommand<PharmacistFullInfo>(this, "pharmacist",
                 this.pharmacistProfileService.Execute,
-                this.validation.Validate,
-                "pharmacist");
+                this.validation.Validate);
         }
     }
 }

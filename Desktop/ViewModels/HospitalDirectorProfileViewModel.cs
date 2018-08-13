@@ -12,7 +12,7 @@ namespace Desktop.ViewModels
     /// <summary>
     /// View model for adding hospital director profile page
     /// </summary>
-    public class HospitalDirectorProfileViewModel : ViewModelBase
+    public class HospitalDirectorProfileViewModel : LoadablePageViewModel
     {
         /// <summary>
         /// Hospital director info
@@ -57,10 +57,9 @@ namespace Desktop.ViewModels
             this.director = new HospitalDirector();
             this.validation = new HospitalDirectorInputValidation();
             this.directorProfileService = new HospitalDirectorProfileService();
-            this.directorProfileCommand = new ProfileCommand<HospitalDirector>(
+            this.directorProfileCommand = new ProfileCommand<HospitalDirector>(this, "hospital_director", 
                 this.directorProfileService.Execute, 
-                this.validation.Validate,
-                "hospital_director");
+                this.validation.Validate);
         }
     }
 }
