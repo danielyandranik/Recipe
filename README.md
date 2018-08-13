@@ -2,7 +2,7 @@
 Recipe is a complete platform for doctors,patients and pharmacies.
 
 ## Technologies and libs we used
-<a href="https://github.com/dotnet/core">.NET Core</a>
+<a href="https://github.com/dotnet/core">.NET Core</a> </br>
 <a href="https://github.com/IdentityServer/IdentityServer4">IdentityServer4<a>
 <a href="https://github.com/JamesNK/Newtonsoft.Json">Newtonsoft.Json<a>
 <a href="https://github.com/Microsoft/WPF-Samples">WPF</a>
