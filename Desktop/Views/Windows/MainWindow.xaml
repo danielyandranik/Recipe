@@ -180,7 +180,7 @@
 
             </Grid>
 
-            <Frame Grid.Column="1" Name="frame" NavigationUIVisibility="Hidden" Background="Transparent"/>
+            <Frame Grid.Column="1" Name="frame" NavigationUIVisibility="Hidden" Background="Transparent" Navigated="Navigate"/>
 
         </Grid>
 

@@ -2,7 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Desktop.Language"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
-     
+
+    <!-- Loading page -->
+    <system:String x:Key="load_msg0">Recipe is loading...</system:String>
+    <system:String x:Key="load_msg1">Please wait.</system:String>
+
     <!-- Main Window -->
     <system:String x:Key="main">Main</system:String>
     <system:String x:Key="medicines">Medicines</system:String>

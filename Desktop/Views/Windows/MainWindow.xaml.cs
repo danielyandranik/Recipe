@@ -29,6 +29,8 @@ namespace Desktop.Views.Windows
 
         private readonly NavigateService _navigationService;
 
+        private object _contentHolder;
+
         private readonly MainWindowViewModel _mainWindowVM;
 
         public MainWindowViewModel Vm => this._mainWindowVM;
@@ -38,12 +40,15 @@ namespace Desktop.Views.Windows
             // initializing components
             InitializeComponent();
 
+            // setting loading content
+            this._contentHolder = this.Content;
+            this.Content = new LoadPage();
+
             // setting fields
             this._mainWindowVM = new MainWindowViewModel(this);
             this.DataContext = this._mainWindowVM;
             this._navigationService = new NavigateService(this.frame);
 
-            this.frame.Navigated += this.Navigate;
         }
 
         private void Navigate(object sender, NavigationEventArgs e)
@@ -82,18 +87,15 @@ namespace Desktop.Views.Windows
             this.frame.NavigationService.Navigate(new Recipes());
         }
 
-        private void Menu_Click(object sender, RoutedEventArgs e)
-        {
-            this.menu_opener.LayoutTransform = new RotateTransform(180);
-        }
-
         private async void Main_Loaded(object sender, RoutedEventArgs e)
-        {            
+        {
             await this._mainWindowVM.LoadService.Execute();
 
             var mapPage = ((App)App.Current).MapPage;
 
             this.frame.Navigate(mapPage);
+
+            this.Content = this._contentHolder;
         }
 
         private async void HospitalAdminApprovalsButton_Click(object sender, RoutedEventArgs e)

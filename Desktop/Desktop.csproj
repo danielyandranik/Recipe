@@ -411,6 +411,9 @@
     <Compile Include="Views\Pages\Hospitals.xaml.cs">
       <DependentUpon>Hospitals.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\LoadPage.xaml.cs">
+      <DependentUpon>LoadPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
@@ -525,6 +528,10 @@
     <Page Include="Views\Pages\Hospitals.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pages\LoadPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\MapPage.xaml">
       <SubType>Designer</SubType>

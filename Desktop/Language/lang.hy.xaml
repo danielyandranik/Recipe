@@ -3,6 +3,10 @@
                     xmlns:local="clr-namespace:Desktop.Language"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
+    <!-- Loading page -->
+    <system:String x:Key="load_msg0">Recipe բեռնվում է․․․</system:String>
+    <system:String x:Key="load_msg1">Խնդրում ենք սպասել։</system:String>
+    
     <!-- Main Window -->
     <system:String x:Key="main">Գլխավոր</system:String>
     <system:String x:Key="medicines">Դեղեր</system:String>
