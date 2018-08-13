@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desktop"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         Title="{DynamicResource confirmation}" Height="320" Width="360" Background="#FF39B9B9" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Window.Resources>
@@ -41,15 +42,16 @@
                  Foreground="White" SelectionBrush="White" 
                  Text="{Binding VerificationInfo.VerifyKey, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <Button BorderThickness="2"  Background="{x:Null}" 
-                BorderBrush="White" Height="40" Width="120" FontFamily="Comfortaa" FontSize="20" Margin="0,30,0,0" 
+                BorderBrush="White" Height="40" Width="147" FontFamily="Comfortaa" FontSize="20" Margin="0,30,0,0" 
                 Command="{Binding ConfirmCommand}" CommandParameter="{Binding VerificationInfo}">
-            <Button.ContentTemplate>
-                <DataTemplate>
-                    <Viewbox>
-                        <TextBlock Text="{DynamicResource confirm}"/>
-                    </Viewbox>
-                </DataTemplate>
-            </Button.ContentTemplate>
+            <Button.Content>
+                <TextBlock>
+                        <TextBlock Text="{DynamicResource confirm}" Visibility="{Binding TextVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                        <fa:ImageAwesome Name="spinner" Icon="Spinner" Spin="{Binding IsSpinning, UpdateSourceTrigger=PropertyChanged}" SpinDuration="2" 
+                                         HorizontalAlignment="Center" Foreground="White"
+                                         Visibility="{Binding SpinnerVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                    </TextBlock>
+            </Button.Content>
         </Button>
     </StackPanel>
 </Window>

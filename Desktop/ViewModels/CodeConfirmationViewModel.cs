@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using System.Windows.Input;
+using System.Windows;
 using Desktop.Commands;
 using Desktop.Interfaces;
 using Desktop.Services;
@@ -13,7 +14,7 @@ namespace Desktop.ViewModels
     /// <summary>
     /// Code confirmation view mode
     /// </summary>
-    public class CodeConfirmationViewModel:ViewModelBase
+    public class CodeConfirmationViewModel : LoadableWindowViewModel
     {
         /// <summary>
         /// User verification info
@@ -63,7 +64,7 @@ namespace Desktop.ViewModels
             this._userVerificationInfo = new UserVerificationInfo();
             this._userVerificationInfo.Username = username;
             this._userVerificationInfo.VerifyKey = "";
-            this._confirmCommand = new ConfirmCommand(this._verificationService.Execute, this._codeValidation.Validate);
+            this._confirmCommand = new ConfirmCommand(this,this._verificationService.Execute, this._codeValidation.Validate);
         }
     }
 }

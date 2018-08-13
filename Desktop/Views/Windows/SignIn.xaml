@@ -78,7 +78,7 @@
                     >
                 <Button.Content>
                     <TextBlock>
-                        <TextBlock Name="signInText" Text="{DynamicResource sign_in}" Visibility="{Binding SignInTextVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Name="signInText" Text="{DynamicResource sign_in}" Visibility="{Binding TextVisibility, UpdateSourceTrigger=PropertyChanged}"/>
                         <fa:ImageAwesome Name="spinner" Icon="Spinner" Spin="{Binding IsSpinning, UpdateSourceTrigger=PropertyChanged}" SpinDuration="2" 
                                          HorizontalAlignment="Center" Foreground="White"
                                          Visibility="{Binding SpinnerVisibility, UpdateSourceTrigger=PropertyChanged}"/>

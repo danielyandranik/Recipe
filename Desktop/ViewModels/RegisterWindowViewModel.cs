@@ -16,23 +16,8 @@ namespace Desktop.ViewModels
     /// <summary>
     /// View model for register window
     /// </summary>
-    public class RegisterWindowViewModel : ViewModelBase
+    public class RegisterWindowViewModel : LoadableWindowViewModel
     {
-        /// <summary>
-        /// Sign Up Text visibility
-        /// </summary>
-        private Visibility _signUpTextVisibility;
-
-        /// <summary>
-        /// Spinner visibility
-        /// </summary>
-        private Visibility _spinnerVisibility;
-
-        /// <summary>
-        /// Is spinning value
-        /// </summary>
-        private bool _isSpinning;
-
         /// <summary>
         /// Register info
         /// </summary>
@@ -76,42 +61,6 @@ namespace Desktop.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets IsSpinning
-        /// </summary>
-        public bool IsSpinning
-        {
-            // gets IsSpinning
-            get => this._isSpinning;
-
-            // sets IsSpinning
-            set => this.Set("IsSpinning", ref this._isSpinning, value);
-        }
-
-        /// <summary>
-        /// Gets or sets spinner visibility
-        /// </summary>
-        public Visibility SpinnerVisibility
-        {
-            // gets spinner visibility
-            get => this._spinnerVisibility;
-
-            // sets spinner visibility
-            set => this.Set("SpinnerVisibility", ref this._spinnerVisibility, value);
-        }
-
-        /// <summary>
-        /// Gets or sets SignUp text visibility
-        /// </summary>
-        public Visibility SignUpTextVisibility
-        {
-            // gets sign up text visibility
-            get => this._signUpTextVisibility;
-
-            // sets sign up text visibility
-            set => this.Set("SignUpTextVisibility", ref this._signUpTextVisibility, value);
-        }
-
-        /// <summary>
         /// Gets register commad
         /// </summary>
         public ICommand RegisterCommand => this._registerCommand;
@@ -134,21 +83,6 @@ namespace Desktop.ViewModels
             this._hyperLinkService = new HyperLinkService();
             this._registerCommand = new RegisterCommand(this,this._registrationService.Execute, this._validation.Validate);
             this._hyperlinkCommand = new RelayCommand(() => this._hyperLinkService.Navigate<RegisterWindow,SignIn>(), () => true);
-
-            this.SetVisibilities(Visibility.Collapsed, Visibility.Visible, false);
-        }
-
-        /// <summary>
-        /// Sets visibilities
-        /// </summary>
-        /// <param name="spinnerVisibility">Spinner visibility</param>
-        /// <param name="signInTextVisibility">Sign Up Text visibility</param>
-        /// <param name="isSpinning">IsSpinning value</param>
-        public void SetVisibilities(Visibility spinnerVisibility, Visibility signUpTextVisibility, bool isSpinning)
-        {
-            this.SpinnerVisibility = spinnerVisibility;
-            this.SignUpTextVisibility = signUpTextVisibility;
-            this.IsSpinning = isSpinning;
         }
     }
 }

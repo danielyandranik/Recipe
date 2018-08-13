@@ -110,9 +110,6 @@ namespace Desktop.Commands
             catch (Exception)
             {
                 RecipeMessageBox.Show((string)dictionary["server_error"]);
-
-                this._isSignInAvailable = true;
-                this._vm.SetVisibilities(Visibility.Collapsed, Visibility.Visible, false);
             }
             finally
             {

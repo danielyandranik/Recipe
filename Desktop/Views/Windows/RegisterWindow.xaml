@@ -199,7 +199,7 @@
                          CommandParameter="{Binding Register}">
                     <Button.Content>
                         <TextBlock>
-                            <TextBlock Text="{DynamicResource sign_up}" Visibility="{Binding SignUpTextVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Text="{DynamicResource sign_up}" Visibility="{Binding TextVisibility, UpdateSourceTrigger=PropertyChanged}"/>
                             <fa:ImageAwesome Icon="Spinner" Spin="{Binding IsSpinning, UpdateSourceTrigger=PropertyChanged}" SpinDuration="2" 
                                              HorizontalAlignment="Center" Foreground="White"
                                              Visibility="{Binding SpinnerVisibility, UpdateSourceTrigger=PropertyChanged}"/>
