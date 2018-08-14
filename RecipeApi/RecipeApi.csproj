@@ -9,7 +9,6 @@
     <ServerGarbageCollection>true</ServerGarbageCollection>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="QrCodes\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>

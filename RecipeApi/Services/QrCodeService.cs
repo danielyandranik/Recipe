@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -14,7 +16,12 @@ namespace RecipeApi.Services
         /// <summary>
         /// QR code generator
         /// </summary>
-        private readonly QRCodeGenerator _qrGenerator;       
+        private readonly QRCodeGenerator _qrGenerator;
+
+        /// <summary>
+        /// Path of the folder where QR codes are stored
+        /// </summary>
+        private string _path;
 
         /// <summary>
         /// Creates new instance of <see cref="QrCodeService"/>
@@ -22,6 +29,8 @@ namespace RecipeApi.Services
         public QrCodeService()
         {
             this._qrGenerator = new QRCodeGenerator();
+
+            this.CreateQrFolder();
         }
 
         /// <summary>
@@ -41,7 +50,7 @@ namespace RecipeApi.Services
         /// <returns>QR code bitmap image</returns>
         public async Task<Bitmap> GetQrImage(string recipeId)
         {
-            if (!Directory.Exists($@".\QrCodes\{recipeId}.jpg"))
+            if (!Directory.Exists($@"{this._path}\{recipeId}.jpg"))
                 await this.CreateQrCodeAsync(recipeId);
 
             return await this.GetImageTask(recipeId);
@@ -53,7 +62,7 @@ namespace RecipeApi.Services
         /// <param name="recipeId">Recipe Id</param>
         public void DeleteQrCode(string recipeId)
         {
-            File.Delete($".\\QrCodes\\{recipeId}.jpg");
+            File.Delete($@"{this._path}\{recipeId}.jpg");
         }
 
         /// <summary>
@@ -71,7 +80,7 @@ namespace RecipeApi.Services
 
                 var qrImage = qrCode.GetGraphic(20);
 
-                var fileStream = File.Create($".\\QrCodes\\{recipeId}.jpg");
+                var fileStream = File.Create($@"{this._path}\{recipeId}.jpg");
 
                 qrImage.Save(fileStream, ImageFormat.Jpeg);
 
@@ -93,11 +102,28 @@ namespace RecipeApi.Services
         /// <returns>QR code image getting task</returns>
         private Task<Bitmap> GetImageTask(string recipeId)
         {
-            var task = new Task<Bitmap>(() => (Bitmap)Bitmap.FromFile($@".\QrCodes\{recipeId}.jpg"));
-
+            var task = new Task<Bitmap>(() => (Bitmap)Bitmap.FromFile($@"{this._path}\{recipeId}.jpg"));
+ 
             task.Start();
 
             return task;
+        }
+
+        /// <summary>
+        /// Creates QR codes folder in AppData local
+        /// </summary>
+        private void CreateQrFolder()
+        {
+            var builder = new StringBuilder();
+
+            builder.Append(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData))
+                   .Append("\\RecipeAPI\\QrCodes");
+
+            var path = builder.ToString();
+
+            Directory.CreateDirectory(path);
+
+            this._path = path;
         }
     }
 }
