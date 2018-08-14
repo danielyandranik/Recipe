@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight;
-using Desktop.Interfaces;
+﻿using Desktop.Interfaces;
 using Desktop.Services;
 using Desktop.Validations;
 using Desktop.Commands;

@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Desktop.Commands;
 using System.Collections.ObjectModel;
 using InstitutionClient.Models;
@@ -79,8 +78,7 @@ namespace Desktop.ViewModels
 
         public HospitalsViewModel()
         {
-            this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "hospital_admin") ?
-                                        Visibility.Visible : Visibility.Collapsed;
+            this.Visibility = User.Default.CurrentProfile == "ministry_worker" ? Visibility.Visible : Visibility.Collapsed;
             this.validation = new EditableInstitutionValidation();
             this.deleteHospitalCommand = new DeleteHospitalCommand(this.hospitals, this.DeleteHospital, _ => true);
             this.editHospitalCommand = new EditHospitalCommand(this.hospitals, this.EditHospital, _ => true);
@@ -92,7 +90,7 @@ namespace Desktop.ViewModels
 
         public void UpdateVisibiliies()
         {
-            this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "hospital_admin") ? Visibility.Visible : Visibility.Collapsed;
+            this.Visibility = User.Default.CurrentProfile == "ministry_worker" ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public async Task Filter(Func<Institution,bool> predicate)

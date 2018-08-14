@@ -1,7 +1,5 @@
 ﻿using System.Net.Http;
 using System.Windows.Input;
-using System.Windows;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Desktop.Interfaces;
 using Desktop.Validations;

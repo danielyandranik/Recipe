@@ -2,8 +2,6 @@
 using Desktop.Interfaces;
 using Desktop.Services;
 using Desktop.Validations;
-using Desktop.Views.Pages;
-using GalaSoft.MvvmLight;
 using System.Windows.Input;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;

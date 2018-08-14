@@ -1,6 +1,5 @@
 ﻿using Desktop.Commands;
 using Desktop.Services;
-using GalaSoft.MvvmLight;
 using MedicineApiClient;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,4 @@
 ﻿using System.Windows.Input;
-using GalaSoft.MvvmLight;
 using Desktop.Commands;
 using Desktop.Interfaces;
 using Desktop.Services;

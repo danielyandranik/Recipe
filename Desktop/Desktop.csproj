@@ -299,6 +299,7 @@
     <Compile Include="Services\LoadHospitalAdminApprovalsService.cs" />
     <Compile Include="Services\LoadHospitalsService.cs" />
     <Compile Include="Services\LoadMedicinesService.cs" />
+    <Compile Include="Services\LoadSuppliersService.cs" />
     <Compile Include="Services\LoadUnapprovedHospitalAdminsService.cs" />
     <Compile Include="Services\LoadPharmaciesService.cs" />
     <Compile Include="Services\LoadPharmacyAdminApprovalsService.cs" />

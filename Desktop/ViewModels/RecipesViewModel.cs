@@ -1,6 +1,5 @@
 ﻿using Desktop.Commands;
 using Desktop.Models;
-using GalaSoft.MvvmLight;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 

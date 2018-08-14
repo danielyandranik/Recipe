@@ -24,7 +24,7 @@ namespace Desktop.Views.Pages
         /// <summary>
         /// Service for loading suppliers of given medicine
         /// </summary>
-       // public LoadSuppliersService SuppliersService { get; private set; }
+        public LoadSuppliersService SuppliersService { get; private set; }
 
         /// <summary>
         /// Creates a new instance of <see cref="Pharmacies"/>
@@ -36,7 +36,7 @@ namespace Desktop.Views.Pages
             this.PharmaciesViewModel = new PharmaciesViewModel();
             this.DataContext = this.PharmaciesViewModel;
             this.MedicinesService = new LoadPharmMedicinesService(this.PharmaciesViewModel);
-            //this.SuppliersService = new LoadSuppliersService(this.PharmaciesViewModel);
+            this.SuppliersService = new LoadSuppliersService(this.PharmaciesViewModel);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Desktop.Views.Pages
         private void EditPharmacyClick(object sender, RoutedEventArgs e)
         {
             var id = (int)(sender as Button).Tag;
-            this.PharmaciesViewModel.EditablePharmacy = new Institution() { Id = id };
+            this.PharmaciesViewModel.EditablePharmacy = new Institution{ Id = id };
 
             // Open popup and disable Main Window
             this.EditPopup.IsOpen = true;
@@ -59,11 +59,11 @@ namespace Desktop.Views.Pages
         /// </summary>
         /// <param name="sender">The sender</param>
         /// <param name="e">The Routed Event Args</param>
-        private void ViewMedicinesClick(object sender, RoutedEventArgs e)
+        private async void ViewMedicinesClick(object sender, RoutedEventArgs e)
         {
             var id = (int)(sender as Button).Tag;
             this.MedicinesService.CurrentPharamcy = id;
-            var response =  this.MedicinesService.Load();
+            await this.MedicinesService.Load();
 
             // Open popup and disable Main Window
             this.MedicinesPopup.IsOpen = true;
@@ -120,8 +120,8 @@ namespace Desktop.Views.Pages
             // Getting the textbox
             var textbox = sender as TextBox;
 
-            //this.SuppliersService.MedicineName = textbox.Text;
-           // await this.SuppliersService.Load();
+            this.SuppliersService.MedicineName = textbox.Text;
+            await this.SuppliersService.Load();
         }
     }
 }

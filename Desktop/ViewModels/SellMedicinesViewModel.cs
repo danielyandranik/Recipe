@@ -1,18 +1,12 @@
 ﻿using Desktop.Commands;
-using Desktop.Models;
 using Desktop.Services;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using RecipeClient;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Automation.Peers;
-using System.Windows.Automation.Provider;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace Desktop.ViewModels

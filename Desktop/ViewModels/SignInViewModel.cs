@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Input;
-using GalaSoft.MvvmLight;
+﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Desktop.Views.Windows;
 using Desktop.Services;

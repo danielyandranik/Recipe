@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
 using Desktop.Commands;
 using Desktop.Views.Windows;
 using RecipeClient;

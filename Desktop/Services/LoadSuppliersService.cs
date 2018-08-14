@@ -2,9 +2,9 @@
 using Desktop.ViewModels;
 using MedicineApiClient;
 using InstitutionClient.Models;
-using System;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using Desktop.Views.Windows;
 
 namespace Desktop.Services
 {
@@ -33,7 +33,8 @@ namespace Desktop.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception();
+                RecipeMessageBox.Show("Couldn't find medicine suppliers.");
+                return;
             }
 
             this.pharmaciesViewModel.Pharmacies = new ObservableCollection<Institution>(response.Content);
@@ -46,7 +47,8 @@ namespace Desktop.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception();
+                RecipeMessageBox.Show("Couldn't find the medicine.");
+                return -1;
             }
 
             int.TryParse(response.Result.Id, out int id);

@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Desktop.Commands;
 using System.Collections.ObjectModel;
 using InstitutionClient.Models;
@@ -153,7 +152,7 @@ namespace Desktop.ViewModels
         /// </summary>
         public PharmaciesViewModel()
         {
-            this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "pharmacy_admin") ? Visibility.Visible : Visibility.Collapsed;
+            this.Visibility = User.Default.CurrentProfile == "ministry_worker" ? Visibility.Visible : Visibility.Collapsed;
             this.filterService = new FilterService<Institution>();
             this.validation = new EditableInstitutionValidation();
             this._loadPharmaciesService = new LoadPharmaciesService(this);
@@ -165,7 +164,7 @@ namespace Desktop.ViewModels
 
         private void UpdateVisibilities()
         {
-            this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || (User.Default.CurrentProfile == "pharmacy_admin") ? Visibility.Visible : Visibility.Collapsed;
+            this.Visibility = User.Default.CurrentProfile == "ministry_worker" ? Visibility.Visible : Visibility.Collapsed;
         }
 
         /// <summary>

@@ -1,5 +1,4 @@
 ﻿using System.Windows.Input;
-using GalaSoft.MvvmLight;
 using UserManagementConsumer.Client;
 using UserManagementConsumer.Models;
 using Desktop.Commands;

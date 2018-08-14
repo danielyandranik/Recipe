@@ -1,12 +1,12 @@
 ﻿using Desktop.ViewModels;
 using MedicineApiClient;
 using InstitutionClient.Models;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Desktop.Models;
 using Desktop.Interfaces;
+using Desktop.Views.Windows;
 
 namespace Desktop.Services
 {
@@ -33,7 +33,8 @@ namespace Desktop.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception();
+                RecipeMessageBox.Show("There is no such pharmacy. Please, try again.");
+                return;
             }
 
             this.pharmaciesViewModel.Medicines = await this.GetMedicinePricePair(response.Content);
@@ -49,7 +50,8 @@ namespace Desktop.Services
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    throw new Exception();
+                    RecipeMessageBox.Show("Couldn't find the medicine.");
+                    return null;
                 }
 
                 var medicinePrice = new MedicinePricePair
