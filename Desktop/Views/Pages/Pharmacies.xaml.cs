@@ -92,27 +92,6 @@ namespace Desktop.Views.Pages
             Application.Current.MainWindow.IsEnabled = true;
         }
 
-        /// <summary>
-        /// Pharmacies filter event
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The Routed Event Args</param>
-        private async void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            // Getting the textbox
-            var textbox = sender as TextBox;
-            
-            // Filter pharmacies by appropriate predicate
-            if (textbox == this.name)
-            {
-                await this.PharmaciesViewModel.Filter(pharmacy => pharmacy.Name.Contains(textbox.Text));
-            }
-            else
-            {
-                await this.PharmaciesViewModel.Filter(pharmacy => pharmacy.Address.Contains(textbox.Text));
-            }
-        }
-
         private async void TextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key != System.Windows.Input.Key.Enter) return;
