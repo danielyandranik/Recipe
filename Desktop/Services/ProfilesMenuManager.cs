@@ -80,13 +80,15 @@ namespace Desktop.Services
         /// Deletes profile from menu.
         /// </summary>
         /// <param name="profile">profile</param>
-        public void DeleteProfile(string profile)
+        public async void DeleteProfile(string profile)
         {
             var menuItems = this._menuItem.Items.Cast<MenuItem>().ToList();
 
             var count = menuItems.Count();
 
-            var dictionary = App.Current.Resources;
+            var app = ((App)App.Current);
+
+            var dictionary = app.Resources;
 
             var header = (string)dictionary[profile];
 
@@ -108,6 +110,12 @@ namespace Desktop.Services
                     User.Default.Save();
 
                     this._vm.PhotoUrl = ConfigurationManager.AppSettings[User.Default.CurrentProfile];
+
+                    var tokenProvider = app.TokenProvider;
+
+                    var tokenResponse = await tokenProvider.RefreshAccessTokenAsync();
+
+                    app.RiseProfileChanged();
 
                     break;
                 }
