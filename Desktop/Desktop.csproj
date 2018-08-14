@@ -286,6 +286,7 @@
     <Compile Include="Commands\EditHospitalCommand.cs" />
     <Compile Include="Commands\EditMedicineCommand.cs" />
     <Compile Include="Commands\EditPharmacyCommand.cs" />
+    <Compile Include="Commands\FilterCommand.cs" />
     <Compile Include="Commands\FindRecipeCommand.cs" />
     <Compile Include="Commands\LoadCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
@@ -363,6 +364,7 @@
     <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
     <Compile Include="ViewModels\CreateRecipeViewModel.cs" />
     <Compile Include="ViewModels\DoctorProfileViewModel.cs" />
+    <Compile Include="ViewModels\FilterablePageViewModel.cs" />
     <Compile Include="ViewModels\HospitalAdminApprovalViewModel.cs" />
     <Compile Include="ViewModels\HospitalDirectorProfileViewModel.cs" />
     <Compile Include="ViewModels\HospitalsViewModel.cs" />
