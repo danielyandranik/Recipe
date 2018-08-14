@@ -53,11 +53,18 @@ namespace Desktop.Views.Windows
 
         private void Navigate(object sender, NavigationEventArgs e)
         {
+            var sellMedicinesPageType = typeof(SellMedicines);
+
+            var currentPageType = this.frame.Content.GetType();
+
+            if (currentPageType == sellMedicinesPageType)
+                return;
+
             var qrDecoder = ((App)App.Current).QrDecoderService;
 
-            var pageType = e.Content.GetType();
+            var pageType = e.Content.GetType();                        
 
-            if (pageType == typeof(SellMedicines))
+            if (pageType == sellMedicinesPageType)
                 qrDecoder?.Start();
             else
                 qrDecoder?.Stop();

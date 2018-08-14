@@ -5,7 +5,7 @@ using MedicineApiClient;
 
 namespace Desktop.ViewModels
 {
-    class AddMedicineViewModel : ViewModelBase
+    class AddMedicineViewModel : LoadablePageViewModel
     {
         private Medicine medicine;
 
@@ -22,7 +22,7 @@ namespace Desktop.ViewModels
         public AddMedicineViewModel()
         {
             this.medicine = new Medicine();
-            this._addMedicineCommand = new AddMedicineCommand(this.AddMedicine, _ => true);
+            this._addMedicineCommand = new AddMedicineCommand(this,this.AddMedicine, _ => true);
         }
 
         private async Task<bool> AddMedicine(Medicine medicine)

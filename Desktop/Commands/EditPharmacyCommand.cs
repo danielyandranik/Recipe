@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-using Desktop.Views.Windows;
+using System.Windows;
 using InstitutionClient.Models;
+using Desktop.Views.Windows;
+using Desktop.ViewModels;
 
 namespace Desktop.Commands
 {
@@ -12,20 +14,20 @@ namespace Desktop.Commands
     public class EditPharmacyCommand : AsyncCommand<Institution, bool>
     {
         /// <summary>
-        /// Pharmacies
+        /// Pharmacies page viewmodel
         /// </summary>
-        private ObservableCollection<Institution> pharmacies;
-
+        private readonly PharmaciesViewModel _vm;
+        
         /// <summary>
         /// Creates new instance of <see cref="EditPharmacyCommand"/>
         /// </summary>
-        /// <param name="pharmacies">Pharmacies</param>
+        /// <param name="pharmaciesViewModel">Pharmacies page viewmodel</param>
         /// <param name="executeMethod">Execute method</param>
         /// <param name="canExecuteMethod">CanExecute method</param>
-        public EditPharmacyCommand(ObservableCollection<Institution> pharmacies, Func<Institution, Task<bool>> executeMethod, Func<Institution, bool> canExecuteMethod) : 
+        public EditPharmacyCommand(PharmaciesViewModel pharmaciesViewModel, Func<Institution, Task<bool>> executeMethod, Func<Institution, bool> canExecuteMethod) : 
             base(executeMethod, canExecuteMethod)
         {
-            this.pharmacies = pharmacies;
+            this._vm = pharmaciesViewModel;
         }
 
         /// <summary>
@@ -44,10 +46,13 @@ namespace Desktop.Commands
                 {
                     RecipeMessageBox.Show((string)dictionary["pharmacy_edit_success"]);
 
+                    this._vm.SetVisibilities(Visibility.Visible, true);
+
                     var response = await ((App)App.Current).InstitutionClient.GetAllPharmaciesAsync();
+
                     if (response.IsSuccessStatusCode)
                     {
-                        this.pharmacies = new ObservableCollection<Institution>(response.Content);
+                        this._vm.Pharmacies = new ObservableCollection<Institution>(response.Content);
                     }
                 }
                 else
@@ -58,6 +63,10 @@ namespace Desktop.Commands
             catch (Exception)
             {
                 RecipeMessageBox.Show((string)dictionary["server_error"]);
+            }
+            finally
+            {
+                this._vm.SetVisibilities(Visibility.Collapsed, false);
             }
         }
     }

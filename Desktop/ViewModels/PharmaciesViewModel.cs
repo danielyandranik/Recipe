@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using GalaSoft.MvvmLight;
+using System.Threading.Tasks;
 using Desktop.Commands;
 using System.Collections.ObjectModel;
 using InstitutionClient.Models;
@@ -15,7 +16,7 @@ namespace Desktop.ViewModels
     /// <summary>
     /// View model for Pharmacies page
     /// </summary>
-    public class PharmaciesViewModel : LoadablePageViewModel
+    public class PharmaciesViewModel : FilterablePageViewModel
     {
         /// <summary>
         /// Container for pharmacies
@@ -71,20 +72,22 @@ namespace Desktop.ViewModels
         /// Load Command
         /// </summary>
         private readonly LoadCommand _loadCommand;
-       
+
+        /// <summary>
+        /// Filter command
+        /// </summary>
+        private readonly FilterCommand _filterCommand;
+
         /// <summary>
         /// Gets or sets pharmacies value
         /// </summary>
         public ObservableCollection<Institution> Pharmacies
         {
-            get
-            {
-                return this.pharmacies;
-            }
-            set
-            {
-                this.Set("Pharmacies", ref this.pharmacies, value);
-            }
+            // gets pharmacies 
+            get => this.pharmacies;
+
+            // sets pharmacies
+            set => this.Set("Pharmacies", ref this.pharmacies, value);
         }
 
         /// <summary>
@@ -92,14 +95,11 @@ namespace Desktop.ViewModels
         /// </summary>
         public ObservableCollection<MedicinePricePair> Medicines
         {
-            get
-            {
-                return this.medicines;
-            }
-            set
-            {
-                this.Set("Medicines", ref this.medicines, value);
-            }
+            // gets medicines
+            get => this.medicines;
+
+            // sets medicines
+            set => this.Set("Medicines", ref this.medicines, value);
         }
 
         /// <summary>
@@ -107,14 +107,11 @@ namespace Desktop.ViewModels
         /// </summary>
         public Institution EditablePharmacy
         {
-            get
-            {
-                return this.editablePharmacy;
-            }
-            set
-            {
-                this.Set("EditablePharmacy", ref this.editablePharmacy, value);
-            }
+            // gets editable pharmacy
+            get => this.editablePharmacy;
+
+            // sets editable pharmacy
+            set => this.Set("EditablePharmacy", ref this.editablePharmacy, value);
         }
 
         /// <summary>
@@ -122,14 +119,11 @@ namespace Desktop.ViewModels
         /// </summary>
         public Visibility Visibility
         {
-            get
-            {
-                return this.visibility;
-            }
-            set
-            {
-                this.Set("Visibility", ref this.visibility, value);
-            }
+            // gets visibility
+            get => this.visibility;
+
+            // sets visibility
+            set => this.Set("Visibility", ref this.visibility, value);
         }
 
         /// <summary>
@@ -148,34 +142,76 @@ namespace Desktop.ViewModels
         public ICommand LoadPharmacies => this._loadCommand;
 
         /// <summary>
+        /// Gets filter command
+        /// </summary>
+        public ICommand FilterCommand => this._filterCommand;
+
+        /// <summary>
         /// Creates a new instanse of <see cref="PharmaciesViewModel"/>
         /// </summary>
         public PharmaciesViewModel()
         {
-            this.Visibility = User.Default.CurrentProfile == "ministry_worker" ? Visibility.Visible : Visibility.Collapsed;
+            // setting visibility
+            this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || 
+                (User.Default.CurrentProfile == "pharmacy_admin") ? Visibility.Visible : Visibility.Collapsed;
+
+            // initializing services
             this.filterService = new FilterService<Institution>();
             this.validation = new EditableInstitutionValidation();
             this._loadPharmaciesService = new LoadPharmaciesService(this);
-            this.deletePharmacyCommand = new DeletePharmacyCommand(this.pharmacies, this.DeletePharmacy, _ => true);
-            this.editPharmacyCommand = new EditPharmacyCommand(this.pharmacies, this.EditPharmacy, _ => true);
+
+            // initializing commands
+            this.deletePharmacyCommand = new DeletePharmacyCommand(this, this.DeletePharmacy, _ => true);
+            this.editPharmacyCommand = new EditPharmacyCommand(this, this.EditPharmacy, _ => true);
             this._loadCommand = new LoadCommand(this._loadPharmaciesService);
+            this._filterCommand = new FilterCommand(this);
+
+            // registering Updater to Profile Changed event
             ((App)App.Current).ProfileChanged += this.UpdateVisibilities;
         }
 
+        /// <summary>
+        /// Updates visibilities
+        /// </summary>
         private void UpdateVisibilities()
         {
-            this.Visibility = User.Default.CurrentProfile == "ministry_worker" ? Visibility.Visible : Visibility.Collapsed;
+            this.Visibility = (User.Default.CurrentProfile == "ministry_worker") || 
+                (User.Default.CurrentProfile == "pharmacy_admin") ? Visibility.Visible : Visibility.Collapsed;
         }
 
         /// <summary>
         /// Filters data by given predicate
         /// </summary>
-        /// <param name="predicate">Predicate</param>
-        /// <returns></returns>
-        public async Task Filter(Func<Institution, bool> predicate)
+        /// <returns>nothing</returns>
+        public async override Task Filter()
         {
-            var pharmacies = await this.filterService.FilterAsync(this.data, predicate);
+            // defaul predicate
+            var defaultPredicate = new Func<Institution, bool>(inst => true);
 
+            // name predicate
+            var namePredicate = defaultPredicate;
+
+            // address predicate
+            var addressPredicate = defaultPredicate;
+
+            // combined predicate
+            var combinedPredicate = defaultPredicate;
+
+            /* constructing predicates if there is need */
+
+            if (!string.IsNullOrEmpty(this.Name))
+                namePredicate = inst => inst.Name.Contains(this.Name);
+
+            if (!string.IsNullOrEmpty(this.Address))
+                addressPredicate = inst => inst.Address.Contains(this.Address);
+
+            // combining predicates
+            combinedPredicate = inst => namePredicate(inst) && addressPredicate(inst);
+
+            // filtering
+            var pharmacies = await this.filterService.FilterAsync(this.data, combinedPredicate);
+
+            // setting filtered pharmacies
             this.Pharmacies = new ObservableCollection<Institution>(pharmacies);
         }
 
@@ -196,11 +232,13 @@ namespace Desktop.ViewModels
         /// <returns>Boolean value indicating the success of operation</returns>
         private async Task<bool> EditPharmacy(Institution pharmacy)
         {
+            // validating
             if (!this.validation.Validate(pharmacy))
             {
                 return false;
             }
 
+            // returning value
             return await ((App)App.Current).InstitutionClient.UpdateInstitutionAsync(pharmacy);
         }
     }

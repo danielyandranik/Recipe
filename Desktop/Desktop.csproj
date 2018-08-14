@@ -286,6 +286,7 @@
     <Compile Include="Commands\EditHospitalCommand.cs" />
     <Compile Include="Commands\EditMedicineCommand.cs" />
     <Compile Include="Commands\EditPharmacyCommand.cs" />
+    <Compile Include="Commands\FilterCommand.cs" />
     <Compile Include="Commands\FindRecipeCommand.cs" />
     <Compile Include="Commands\LoadCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
@@ -364,6 +365,7 @@
     <Compile Include="ViewModels\CodeConfirmationViewModel.cs" />
     <Compile Include="ViewModels\CreateRecipeViewModel.cs" />
     <Compile Include="ViewModels\DoctorProfileViewModel.cs" />
+    <Compile Include="ViewModels\FilterablePageViewModel.cs" />
     <Compile Include="ViewModels\HospitalAdminApprovalViewModel.cs" />
     <Compile Include="ViewModels\HospitalDirectorProfileViewModel.cs" />
     <Compile Include="ViewModels\HospitalsViewModel.cs" />
@@ -625,9 +627,6 @@
     <Resource Include="Images\none.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\ministry-worker.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\pharmacy-admin.png" />
   </ItemGroup>
   <ItemGroup>
@@ -635,6 +634,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ministry-worker.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

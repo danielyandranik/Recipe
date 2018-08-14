@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Desktop.ViewModels
 {
-    public class AddInstitutionViewModel : ViewModelBase
+    public class AddInstitutionViewModel : LoadablePageViewModel
     {
         /// <summary>
         /// Institution info
@@ -55,7 +55,7 @@ namespace Desktop.ViewModels
             this.institution = new Institution();
             this.validation = new InstitutionInputValidation();
             this.institutionService = new AddInstitutionService();
-            this.addInstitutionCommand = new AddInstitutionCommand(this.institutionService.Execute, this.validation.Validate);
+            this.addInstitutionCommand = new AddInstitutionCommand(this,this.institutionService.Execute, this.validation.Validate);
         }
     }
 }

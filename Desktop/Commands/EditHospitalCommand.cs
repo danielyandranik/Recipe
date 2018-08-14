@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Desktop.Views.Windows;
+using System.Windows;
 using InstitutionClient.Models;
+using Desktop.Views.Windows;
+using Desktop.ViewModels;
 
 namespace Desktop.Commands
 {
@@ -12,20 +14,20 @@ namespace Desktop.Commands
     public class EditHospitalCommand : AsyncCommand<Institution, bool>
     {
         /// <summary>
-        /// Hospitals
+        /// Hospitals page viewmodel
         /// </summary>
-        private ObservableCollection<Institution> hospitals;
-
+        private readonly HospitalsViewModel _vm;
+        
         /// <summary>
         /// Creates new instance of <see cref="EditHospitalCommand"/>
         /// </summary>
-        /// <param name="hospitals">Hospitals</param>
+        /// <param name="hospitalsViewModel">Hospitals page viewmodel</param>
         /// <param name="executeMethod">Execute method</param>
         /// <param name="canExecuteMethod">CanExecute method</param>
-        public EditHospitalCommand(ObservableCollection<Institution> hospitals, Func<Institution, Task<bool>> executeMethod, Func<Institution, bool> canExecuteMethod) :
+        public EditHospitalCommand(HospitalsViewModel hospitalsViewModel, Func<Institution, Task<bool>> executeMethod, Func<Institution, bool> canExecuteMethod) :
             base(executeMethod, canExecuteMethod)
         {
-            this.hospitals = hospitals;
+            this._vm = hospitalsViewModel;
         }
 
         /// <summary>
@@ -43,11 +45,14 @@ namespace Desktop.Commands
                 if (isSucceed)
                 {
                     RecipeMessageBox.Show((string)dictionary["hospital_edit_success"]);
-                    
+
+                    this._vm.SetVisibilities(Visibility.Visible, true);
+
                     var response = await ((App)App.Current).InstitutionClient.GetAllHospitalsAsync();
+
                     if (response.IsSuccessStatusCode)
                     {
-                        this.hospitals = new ObservableCollection<Institution>(response.Content);
+                        this._vm.Hospitals = new ObservableCollection<Institution>(response.Content);
                     }
                 }
                 else
@@ -58,6 +63,10 @@ namespace Desktop.Commands
             catch (Exception)
             {
                 RecipeMessageBox.Show((string)dictionary["server_error"]);
+            }
+            finally
+            {
+                this._vm.SetVisibilities(Visibility.Collapsed, false);
             }
         }
     }

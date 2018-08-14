@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Desktop.Views.Windows;
+using System.Windows;
 using InstitutionClient.Models;
+using Desktop.ViewModels;
+using Desktop.Views.Windows;
 
 namespace Desktop.Commands
 {
@@ -12,9 +14,9 @@ namespace Desktop.Commands
     public class DeletePharmacyCommand : AsyncCommand<int, bool>
     {
         /// <summary>
-        /// Pharmacies
+        /// Pharmacies page viewmodel
         /// </summary>
-        private ObservableCollection<Institution> pharmacies;
+        private readonly PharmaciesViewModel _vm;
 
         /// <summary>
         /// Creates new instance of <see cref="DeletePharmacyCommand"/>
@@ -22,10 +24,10 @@ namespace Desktop.Commands
         /// <param name="pharmacies">Pharmacies</param>
         /// <param name="executeMethod">Execute method.</param>
         /// <param name="canExecuteMethod">CanExecute method</param>
-        public DeletePharmacyCommand(ObservableCollection<Institution> pharmacies, Func<int, Task<bool>> executeMethod, Func<int, bool> canExecuteMethod) : 
+        public DeletePharmacyCommand(PharmaciesViewModel pharmaciesViewModel, Func<int, Task<bool>> executeMethod, Func<int, bool> canExecuteMethod) : 
             base(executeMethod, canExecuteMethod)
         {
-            this.pharmacies = pharmacies;
+            this._vm = pharmaciesViewModel;
         }
 
         /// <summary>
@@ -44,10 +46,13 @@ namespace Desktop.Commands
                 {
                     RecipeMessageBox.Show((string)dictionary["pharmacy_del_success"]);
 
+                    this._vm.SetVisibilities(Visibility.Visible, true);
+
                     var response = await ((App)App.Current).InstitutionClient.GetAllPharmaciesAsync();
+
                     if (response.IsSuccessStatusCode)
                     {
-                        this.pharmacies = new ObservableCollection<Institution>(response.Content);
+                        this._vm.Pharmacies = new ObservableCollection<Institution>(response.Content);
                     }
                 }
                 else
@@ -58,6 +63,10 @@ namespace Desktop.Commands
             catch (Exception)
             {
                 RecipeMessageBox.Show((string)dictionary["server_error"]);
+            }
+            finally
+            {
+                this._vm.SetVisibilities(Visibility.Collapsed, false);
             }
         }
     }

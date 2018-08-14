@@ -33,14 +33,5 @@ namespace Desktop.Views.Pages
             this.EditPopup.IsOpen = false;
             Application.Current.MainWindow.IsEnabled = true;
         }
-
-        private async void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var textbox = (TextBox)sender;
-
-            if (textbox == this.name)
-                await this.MedicinesViewModel.Filter(medicine => medicine.Name.Contains(textbox.Text));
-            else await this.MedicinesViewModel.Filter(medicine => medicine.Country.Contains(textbox.Text));
-        }
     }
 }
