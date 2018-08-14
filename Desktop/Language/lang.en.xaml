@@ -216,6 +216,10 @@
     <system:String x:Key="hospital_edit_fail">Unable to update hospital․</system:String>
     <system:String x:Key="pharmacy_edit_success">Pharmacy is updated successfully․</system:String>
     <system:String x:Key="pharmacy_edit_fail">Unable to update pharmacy․</system:String>
+    <system:String x:Key="med_del_success">Medicine is successfully deleted.</system:String>
+    <system:String x:Key="med_del_fail">Unable to delete medicine.</system:String>
+    <system:String x:Key="med_edit_success">Medicine is successfully updated.</system:String>
+    <system:String x:Key="med_edit_fail">Unable to update medicine.</system:String>
     <system:String x:Key="recipe_find_fail">Couldn't find recipe․</system:String>
     <system:String x:Key="profile_add_success">Profile is added․</system:String>
     <system:String x:Key="profile_add_fail">Unable to add profile․</system:String>
