@@ -165,7 +165,7 @@ namespace Desktop.ViewModels
 
             // initialing commands
             this._deleteMedicineCommand = new DeleteMedicineCommand(this, this.DeleteMedicine, _ => true);
-            this._editMedicineCommand = new EditMedicineCommand(this.medicines, this.EditMedicine, _ => true);
+            this._editMedicineCommand = new EditMedicineCommand(this, this.EditMedicine, _ => true);
             this._filterCommand = new FilterCommand(this);
 
             // registering update visibilitis to ProfileChanged event

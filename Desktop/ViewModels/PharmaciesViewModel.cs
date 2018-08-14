@@ -162,7 +162,7 @@ namespace Desktop.ViewModels
 
             // initializing commands
             this.deletePharmacyCommand = new DeletePharmacyCommand(this, this.DeletePharmacy, _ => true);
-            this.editPharmacyCommand = new EditPharmacyCommand(this.pharmacies, this.EditPharmacy, _ => true);
+            this.editPharmacyCommand = new EditPharmacyCommand(this, this.EditPharmacy, _ => true);
             this._loadCommand = new LoadCommand(this._loadPharmaciesService);
             this._filterCommand = new FilterCommand(this);
 

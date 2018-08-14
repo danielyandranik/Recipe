@@ -157,7 +157,7 @@ namespace Desktop.ViewModels
 
             // initializing commands
             this.deleteHospitalCommand = new DeleteHospitalCommand(this, this.DeleteHospital, _ => true);
-            this.editHospitalCommand = new EditHospitalCommand(this.hospitals, this.EditHospital, _ => true);   
+            this.editHospitalCommand = new EditHospitalCommand(this, this.EditHospital, _ => true);   
             this._loadCommand = new LoadCommand(this._loadHospitalsService);
 
             this._filterCommand = new FilterCommand(this);

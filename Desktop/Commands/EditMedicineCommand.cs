@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using MedicineApiClient;
+using Desktop.ViewModels;
 
 namespace Desktop.Commands
 {
@@ -11,20 +12,20 @@ namespace Desktop.Commands
     public class EditMedicineCommand : AsyncCommand<Medicine, bool>
     {
         /// <summary>
-        /// Medicines
+        /// Medicines page viewmodel
         /// </summary>
-        private ObservableCollection<Medicine> _medicines;
+        private readonly MedicinesViewModel _vm;        
 
         /// <summary>
         /// Creates new instance of <see cref="EditMedicineCommand"/>
         /// </summary>
-        /// <param name="medicines">Medicines</param>
+        /// <param name="medicinesViewModel">Medicines page viewmodel</param>
         /// <param name="executeMethod">Execute method</param>
         /// <param name="canExecuteMethod">CanExecute method</param>
-        public EditMedicineCommand(ObservableCollection<Medicine> medicines, Func<Medicine, Task<bool>> executeMethod, Func<Medicine, bool> canExecuteMethod) : 
+        public EditMedicineCommand(MedicinesViewModel medicinesViewModel, Func<Medicine, Task<bool>> executeMethod, Func<Medicine, bool> canExecuteMethod) : 
             base(executeMethod, canExecuteMethod)
         {
-            this._medicines = medicines;
+            this._vm = medicinesViewModel;
         }
 
         /// <summary>
@@ -38,9 +39,10 @@ namespace Desktop.Commands
             if (isSuccessed)
             {
                 var response = await ((App)App.Current).MedicineClient.GetAllMedicinesAsync("api/medicines");
+
                 if (response.IsSuccessStatusCode)
                 {
-                    this._medicines = new ObservableCollection<Medicine>(response.Result);
+                    this._vm.Medicines = new ObservableCollection<Medicine>(response.Result);
                 }
             }
         }
