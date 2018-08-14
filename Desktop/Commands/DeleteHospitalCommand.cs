@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Desktop.Views.Windows;
 using InstitutionClient.Models;
+using Desktop.ViewModels;
+using Desktop.Views.Windows;
 
 namespace Desktop.Commands
 {
@@ -12,9 +13,9 @@ namespace Desktop.Commands
     public class DeleteHospitalCommand : AsyncCommand<int, bool>
     {
         /// <summary>
-        /// Hospitals
+        /// Hospitals page viewmodel
         /// </summary>
-        private ObservableCollection<Institution> hospitals;
+        private readonly HospitalsViewModel _vm;
 
         /// <summary>
         /// Creates new instance of <see cref="DeleteHospitalCommand"/>
@@ -22,10 +23,10 @@ namespace Desktop.Commands
         /// <param name="hospitals">Hospitals</param>
         /// <param name="executeMethod">Execute method.</param>
         /// <param name="canExecuteMethod">Can execute method</param>
-        public DeleteHospitalCommand(ObservableCollection<Institution> hospitals, Func<int, Task<bool>> executeMethod, Func<int, bool> canExecuteMethod) :
+        public DeleteHospitalCommand(HospitalsViewModel hospitalsViewModel, Func<int, Task<bool>> executeMethod, Func<int, bool> canExecuteMethod) :
             base(executeMethod, canExecuteMethod)
         {
-            this.hospitals = hospitals;
+            this._vm = hospitalsViewModel;
         }
 
         /// <summary>
@@ -44,9 +45,10 @@ namespace Desktop.Commands
                     RecipeMessageBox.Show((string)dictionary["hospital_del_success"]);
 
                     var response = await ((App)App.Current).InstitutionClient.GetAllHospitalsAsync();
+
                     if (response.IsSuccessStatusCode)
                     {
-                        this.hospitals = new ObservableCollection<Institution>(response.Content);
+                        this._vm.Hospitals = new ObservableCollection<Institution>(response.Content);
                     }
                 }
                 else

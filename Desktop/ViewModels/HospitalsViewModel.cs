@@ -156,7 +156,7 @@ namespace Desktop.ViewModels
             this.validation = new EditableInstitutionValidation();
 
             // initializing commands
-            this.deleteHospitalCommand = new DeleteHospitalCommand(this.hospitals, this.DeleteHospital, _ => true);
+            this.deleteHospitalCommand = new DeleteHospitalCommand(this, this.DeleteHospital, _ => true);
             this.editHospitalCommand = new EditHospitalCommand(this.hospitals, this.EditHospital, _ => true);   
             this._loadCommand = new LoadCommand(this._loadHospitalsService);
 
