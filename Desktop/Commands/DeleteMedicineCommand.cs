@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows;
 using MedicineApiClient;
 using Desktop.ViewModels;
 using Desktop.Views.Windows;
@@ -45,6 +46,8 @@ namespace Desktop.Commands
                 {
                     RecipeMessageBox.Show((string)dictionary["med_del_success"]);
 
+                    this._vm.SetVisibilities(Visibility.Visible, true);
+
                     var response = await ((App)App.Current).MedicineClient.GetAllMedicinesAsync("api/medicines");
 
                     if (response.IsSuccessStatusCode)
@@ -60,6 +63,10 @@ namespace Desktop.Commands
             catch
             {
                 RecipeMessageBox.Show((string)dictionary["med_del_fail"]);
+            }
+            finally
+            {
+                this._vm.SetVisibilities(Visibility.Collapsed, false);
             }
         }
     }

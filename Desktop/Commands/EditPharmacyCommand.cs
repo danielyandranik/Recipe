@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Windows;
 using InstitutionClient.Models;
 using Desktop.Views.Windows;
 using Desktop.ViewModels;
@@ -45,6 +46,8 @@ namespace Desktop.Commands
                 {
                     RecipeMessageBox.Show((string)dictionary["pharmacy_edit_success"]);
 
+                    this._vm.SetVisibilities(Visibility.Visible, true);
+
                     var response = await ((App)App.Current).InstitutionClient.GetAllPharmaciesAsync();
 
                     if (response.IsSuccessStatusCode)
@@ -60,6 +63,10 @@ namespace Desktop.Commands
             catch (Exception)
             {
                 RecipeMessageBox.Show((string)dictionary["server_error"]);
+            }
+            finally
+            {
+                this._vm.SetVisibilities(Visibility.Collapsed, false);
             }
         }
     }

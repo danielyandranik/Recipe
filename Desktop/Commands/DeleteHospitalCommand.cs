@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows;
 using InstitutionClient.Models;
 using Desktop.ViewModels;
 using Desktop.Views.Windows;
@@ -40,9 +41,12 @@ namespace Desktop.Commands
             try
             {
                 var isSuccessed = await this.ExecuteAsync((int)parameter);
+
                 if (isSuccessed)
                 {
                     RecipeMessageBox.Show((string)dictionary["hospital_del_success"]);
+
+                    this._vm.SetVisibilities(Visibility.Visible, true);
 
                     var response = await ((App)App.Current).InstitutionClient.GetAllHospitalsAsync();
 
@@ -59,6 +63,10 @@ namespace Desktop.Commands
             catch (Exception)
             {
                 RecipeMessageBox.Show((string)dictionary["server_error"]);
+            }
+            finally
+            {
+                this._vm.SetVisibilities(Visibility.Collapsed, false);
             }
         }
     }
