@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using MedicineApiClient;
 using Desktop.ViewModels;
+using Desktop.Views.Windows;
 
 namespace Desktop.Commands
 {
@@ -34,16 +35,31 @@ namespace Desktop.Commands
         /// <param name="parameter">Command parameter</param>
         public async override void Execute(object parameter)
         {
-            var isSuccessed = await this.ExecuteAsync((Medicine)parameter);
+            var dictionary = App.Current.Resources;
 
-            if (isSuccessed)
+            try
             {
-                var response = await ((App)App.Current).MedicineClient.GetAllMedicinesAsync("api/medicines");
+                var isSuccessed = await this.ExecuteAsync((Medicine)parameter);
 
-                if (response.IsSuccessStatusCode)
+                if (isSuccessed)
                 {
-                    this._vm.Medicines = new ObservableCollection<Medicine>(response.Result);
+                    RecipeMessageBox.Show((string)dictionary["med_del_success"]);
+
+                    var response = await ((App)App.Current).MedicineClient.GetAllMedicinesAsync("api/medicines");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        this._vm.Medicines = new ObservableCollection<Medicine>(response.Result);
+                    }
                 }
+                else
+                {
+                    RecipeMessageBox.Show((string)dictionary["med_del_fail"]);
+                }
+            }
+            catch
+            {
+                RecipeMessageBox.Show((string)dictionary["med_del_fail"]);
             }
         }
 
