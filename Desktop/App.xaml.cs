@@ -168,7 +168,7 @@ namespace Desktop
 
             var main = this.MainWindow as MainWindow;
 
-            main.frame.Navigate(this.MapPage);
+            main?.frame.Navigate(this.MapPage);
         }
 
         /// <summary>

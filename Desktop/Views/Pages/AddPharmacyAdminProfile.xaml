@@ -59,7 +59,7 @@
                      Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" 
                      HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" 
                      TextWrapping="NoWrap" Width="240" Padding="5, 2"
-                     Text="{Binding PharmacyAdmin.StartedWorkingYear, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding PharmacyAdmin.StartedWorking, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Button Content="{DynamicResource done}" Margin="0,20,0,0" BorderBrush="{x:Null}" 
                     Background="#FF39B9B9" Width="120"

@@ -576,7 +576,7 @@
         <spParameterName>pharmacyName</spParameterName>
       </parameter>
       <parameter>
-        <parameterName>StartedWorkingYear</parameterName>
+        <parameterName>StartedWorking</parameterName>
         <spParameterName>startedWorking</spParameterName>
       </parameter>
     </parameters>

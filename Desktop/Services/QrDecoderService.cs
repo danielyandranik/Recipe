@@ -49,7 +49,7 @@ namespace Desktop.Services
             var device = filterInfo[0];
 
             this._finalFrame = new VideoCaptureDevice(device.MonikerString);
-            this._finalFrame.NewFrame += this.FrameHandler;
+            
         }
 
         /// <summary>
@@ -57,6 +57,8 @@ namespace Desktop.Services
         /// </summary>
         public void Start()
         {
+            this._finalFrame.NewFrame += this.FrameHandler;
+
             if(!this._finalFrame.IsRunning)
                 this._finalFrame.Start();
         }
@@ -68,6 +70,8 @@ namespace Desktop.Services
         {
             if(this._finalFrame.IsRunning)
                 this._finalFrame.Stop();
+
+            this._finalFrame.NewFrame -= this.FrameHandler;
         }
 
         /// <summary>
@@ -84,7 +88,9 @@ namespace Desktop.Services
                 using (var bitmap = (Bitmap)eventArgs.Frame.Clone())
                 {
                     // decoding QR 
-                    var id = await this.GetRecipeId(bitmap);
+                    var id = "";
+
+                    await App.Current.Dispatcher.BeginInvoke(new ThreadStart(delegate { id = this.GetRecipeId(bitmap).Result; }));
 
                     // if id is not null end QR decoding and open sell page
                     if (id != null)
@@ -93,7 +99,10 @@ namespace Desktop.Services
                         this._vm.RecipeId = id;
                         this._vm.QrDecoderVisibility = Visibility.Hidden;
                         this._vm.ItemsVisibility = Visibility.Visible;
-                        DispatcherHelper.CheckBeginInvokeOnUI(() => this._vm.FindRecipeCommand.Execute(id));
+                        await App.Current.Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            this._vm.FindRecipeCommand.Execute(id);
+                        }));
                         SystemSounds.Beep.Play();
                         return;
                     }
