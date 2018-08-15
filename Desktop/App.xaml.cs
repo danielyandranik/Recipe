@@ -165,6 +165,10 @@ namespace Desktop
         public void RiseProfileChanged()
         {
             this.ProfileChanged?.Invoke();
+
+            var main = this.MainWindow as MainWindow;
+
+            main.frame.Navigate(this.MapPage);
         }
 
         /// <summary>

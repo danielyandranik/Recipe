@@ -101,13 +101,6 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </TextBlock>
-                <TextBlock Cursor="Hand" Text="{DynamicResource users}" VerticalAlignment="Center" FontFamily="Comfortaa" FontSize="20" Foreground="White" Margin="20,0">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="PreviewMouseDown">
-                            <i:InvokeCommandAction Command="{Binding ShowUsers}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBlock>
             </StackPanel>
 
 
