@@ -16,7 +16,7 @@ namespace Desktop.Views.Pages
         {
             InitializeComponent();
 
-            this.ViewModel = new SellMedicinesViewModel(this.Dispatcher);
+            this.ViewModel = new SellMedicinesViewModel();
             this.DataContext = this.ViewModel;
         }
     }

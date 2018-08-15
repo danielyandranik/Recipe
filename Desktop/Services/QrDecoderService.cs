@@ -13,7 +13,7 @@ using ZXing;
 using ZXing.Common;
 using Desktop.ViewModels;
 using Desktop.Views.Windows;
-
+using GalaSoft.MvvmLight.Threading;
 
 namespace Desktop.Services
 {
@@ -32,21 +32,16 @@ namespace Desktop.Services
         /// </summary>
         private readonly SellMedicinesViewModel _vm;
 
-        /// <summary>
-        /// Dispatcher
-        /// </summary>
-        private readonly Dispatcher _dispatcher;
 
         /// <summary>
         /// Creates new instance of <see cref="QrDecoderService"/>
         /// </summary>
         /// <param name="vm">Sell Medicines page viewmodel</param>
         /// <param name="dispatcher">Dispatcher</param>
-        public QrDecoderService(SellMedicinesViewModel vm, Dispatcher dispatcher)
+        public QrDecoderService(SellMedicinesViewModel vm)
         {
             // setting fields
             this._vm = vm;
-            this._dispatcher = dispatcher;
 
             // initializing components
             var filterInfo = new FilterInfoCollection(FilterCategory.VideoInputDevice);
@@ -98,7 +93,7 @@ namespace Desktop.Services
                         this._vm.RecipeId = id;
                         this._vm.QrDecoderVisibility = Visibility.Hidden;
                         this._vm.ItemsVisibility = Visibility.Visible;
-                        this._dispatcher.Invoke(() => this._vm.FindRecipeCommand.Execute(this._vm.RecipeId));
+                        DispatcherHelper.CheckBeginInvokeOnUI(() => this._vm.FindRecipeCommand.Execute(id));
                         SystemSounds.Beep.Play();
                         return;
                     }
@@ -108,7 +103,7 @@ namespace Desktop.Services
 
                 bitmapImage.Freeze();
 
-                await this._dispatcher.BeginInvoke(new ThreadStart(delegate { this._vm.QrDecoderSource = bitmapImage; }));
+                await App.Current.Dispatcher.BeginInvoke(new ThreadStart(delegate { this._vm.QrDecoderSource = bitmapImage; }));
             }
             catch
             {

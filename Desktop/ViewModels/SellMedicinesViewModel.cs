@@ -83,7 +83,7 @@ namespace Desktop.ViewModels
 
         public ICommand UnloadedCommand => this._unloadedCommand;
 
-        public SellMedicinesViewModel(Dispatcher dispatcher)
+        public SellMedicinesViewModel()
         {
             this.client = ((App)App.Current).RecipeClient;
             this.HistoryItems = new ObservableCollection<RecipeHistoryItem>();
@@ -93,7 +93,7 @@ namespace Desktop.ViewModels
             this._loadedCommand = new RelayCommand(this.Start, () => true);
             this._unloadedCommand = new RelayCommand(this.Finish, () => true);
 
-            this._qrDecoder = new QrDecoderService(this,dispatcher);
+            this._qrDecoder = new QrDecoderService(this);
 
             ((App)App.Current).QrDecoderService = this._qrDecoder;
 
